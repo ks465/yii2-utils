@@ -1,21 +1,30 @@
 {
-    "name": "khans465/yii2-utils",
-    "description": "A pack of multiple components and widgets, especially designed for simpler and more generic coding",
-    "type": "yii2-extension",
-    "keywords": ["yii2","extension"],
-    "license": "GPL-2.0+",
-    "authors": [
-        {
-            "name": "Keyhan Sedaghat",
-            "email": "keyhansedaghat@netscape.net"
-        }
-    ],
-    "require": {
-        "yiisoft/yii2": "~2.0.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "KHanS\\Utils\\": ""
-        }
+  "name": "khans465/yii2-utils",
+  "description": "A pack of multiple components and widgets, especially designed for simpler and more generic coding",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension"
+  ],
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Keyhan Sedaghat",
+      "email": "keyhansedaghat@netscape.net"
     }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "yiisoft/yii2": "~2.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "KHanS\\Utils\\": ""
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.0.1-dev"
+    }
+  }
 }
