@@ -1,3 +1,4 @@
+c4848079c833bf3155207f757d9e0e8c59b15e51
 Personal Utilities for Simpler Coding
 =====================================
 A pack of multiple components and widgets, especially designed for simpler and more generic coding
@@ -44,7 +45,4 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
-
-```php
-<?= \KHanS\Utils\AutoloadExample::widget(); ?>```
+The Test* files in *tests* directory show all possible usage for the package.
