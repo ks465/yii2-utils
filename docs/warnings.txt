@@ -1,0 +1,976 @@
+Array
+(
+    [0] => Array
+        (
+            [line] => 48
+            [file] => yii2-utils/src/Settings.php
+            [message] => No docblock for element 'init'
+        )
+
+    [1] => Array
+        (
+            [line] => 61
+            [file] => yii2-utils/src/columns/ActionColumn.php
+            [message] => No docblock for element 'init'
+        )
+
+    [2] => Array
+        (
+            [line] => 52
+            [file] => yii2-utils/src/components/Jalali.php
+            [message] => No short description for element '$timeStamp'
+        )
+
+    [3] => Array
+        (
+            [line] => 95
+            [file] => yii2-utils/src/components/Jalali.php
+            [message] => No short description for element '$second'
+        )
+
+    [4] => Array
+        (
+            [line] => 102
+            [file] => yii2-utils/src/components/Jalali.php
+            [message] => No short description for element '$minute'
+        )
+
+    [5] => Array
+        (
+            [line] => 109
+            [file] => yii2-utils/src/components/Jalali.php
+            [message] => No short description for element '$hour'
+        )
+
+    [6] => Array
+        (
+            [line] => 116
+            [file] => yii2-utils/src/components/Jalali.php
+            [message] => No short description for element '$day'
+        )
+
+    [7] => Array
+        (
+            [line] => 123
+            [file] => yii2-utils/src/components/Jalali.php
+            [message] => No short description for element '$month'
+        )
+
+    [8] => Array
+        (
+            [line] => 130
+            [file] => yii2-utils/src/components/Jalali.php
+            [message] => No short description for element '$year'
+        )
+
+    [9] => Array
+        (
+            [line] => 137
+            [file] => yii2-utils/src/components/Jalali.php
+            [message] => No short description for element '$dayOfYear'
+        )
+
+    [10] => Array
+        (
+            [line] => 144
+            [file] => yii2-utils/src/components/Jalali.php
+            [message] => No short description for element '$timeZone'
+        )
+
+    [11] => Array
+        (
+            [line] => 378
+            [file] => yii2-utils/src/components/Jalali.php
+            [message] => No short description for element '$monthLongName'
+        )
+
+    [12] => Array
+        (
+            [line] => 119
+            [file] => yii2-utils/src/components/JalaliX.php
+            [message] => No docblock for element 'date'
+        )
+
+    [13] => Array
+        (
+            [line] => 16
+            [file] => yii2-utils/src/components/MathHelper.php
+            [message] => No docblock for element 'KHanS\Utils\components\MathHelper'
+        )
+
+    [14] => Array
+        (
+            [line] => 53
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$reserved_attributes'
+        )
+
+    [15] => Array
+        (
+            [line] => 53
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$reserved_attributes'
+        )
+
+    [16] => Array
+        (
+            [line] => 54
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$boundary_attributes'
+        )
+
+    [17] => Array
+        (
+            [line] => 54
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$boundary_attributes'
+        )
+
+    [18] => Array
+        (
+            [line] => 66
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$error_attributes'
+        )
+
+    [19] => Array
+        (
+            [line] => 66
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$error_attributes'
+        )
+
+    [20] => Array
+        (
+            [line] => 67
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$comment_attributes'
+        )
+
+    [21] => Array
+        (
+            [line] => 67
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$comment_attributes'
+        )
+
+    [22] => Array
+        (
+            [line] => 68
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$variable_attributes'
+        )
+
+    [23] => Array
+        (
+            [line] => 68
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$variable_attributes'
+        )
+
+    [24] => Array
+        (
+            [line] => 69
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$pre_attributes'
+        )
+
+    [25] => Array
+        (
+            [line] => 69
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$pre_attributes'
+        )
+
+    [26] => Array
+        (
+            [line] => 70
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$cli'
+        )
+
+    [27] => Array
+        (
+            [line] => 70
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$cli'
+        )
+
+    [28] => Array
+        (
+            [line] => 71
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$cli_quote'
+        )
+
+    [29] => Array
+        (
+            [line] => 71
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$cli_quote'
+        )
+
+    [30] => Array
+        (
+            [line] => 72
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$cli_backtick_quote'
+        )
+
+    [31] => Array
+        (
+            [line] => 72
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$cli_backtick_quote'
+        )
+
+    [32] => Array
+        (
+            [line] => 73
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$cli_reserved'
+        )
+
+    [33] => Array
+        (
+            [line] => 73
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$cli_reserved'
+        )
+
+    [34] => Array
+        (
+            [line] => 74
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$cli_boundary'
+        )
+
+    [35] => Array
+        (
+            [line] => 74
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$cli_boundary'
+        )
+
+    [36] => Array
+        (
+            [line] => 87
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$cli_error'
+        )
+
+    [37] => Array
+        (
+            [line] => 87
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$cli_error'
+        )
+
+    [38] => Array
+        (
+            [line] => 88
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$cli_comment'
+        )
+
+    [39] => Array
+        (
+            [line] => 88
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$cli_comment'
+        )
+
+    [40] => Array
+        (
+            [line] => 89
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$cli_functions'
+        )
+
+    [41] => Array
+        (
+            [line] => 89
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$cli_functions'
+        )
+
+    [42] => Array
+        (
+            [line] => 90
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$cli_variable'
+        )
+
+    [43] => Array
+        (
+            [line] => 90
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$cli_variable'
+        )
+
+    [44] => Array
+        (
+            [line] => 91
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$tab'
+        )
+
+    [45] => Array
+        (
+            [line] => 91
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$tab'
+        )
+
+    [46] => Array
+        (
+            [line] => 92
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$use_pre'
+        )
+
+    [47] => Array
+        (
+            [line] => 92
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$use_pre'
+        )
+
+    [48] => Array
+        (
+            [line] => 93
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$max_cachekey_size'
+        )
+
+    [49] => Array
+        (
+            [line] => 93
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$max_cachekey_size'
+        )
+
+    [50] => Array
+        (
+            [line] => 94
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$reserved'
+        )
+
+    [51] => Array
+        (
+            [line] => 94
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$reserved'
+        )
+
+    [52] => Array
+        (
+            [line] => 126
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$reserved_toplevel'
+        )
+
+    [53] => Array
+        (
+            [line] => 126
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$reserved_toplevel'
+        )
+
+    [54] => Array
+        (
+            [line] => 192
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$regex_boundaries'
+        )
+
+    [55] => Array
+        (
+            [line] => 192
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$regex_boundaries'
+        )
+
+    [56] => Array
+        (
+            [line] => 193
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$regex_reserved'
+        )
+
+    [57] => Array
+        (
+            [line] => 193
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$regex_reserved'
+        )
+
+    [58] => Array
+        (
+            [line] => 194
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$regex_reserved_newline'
+        )
+
+    [59] => Array
+        (
+            [line] => 194
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$regex_reserved_newline'
+        )
+
+    [60] => Array
+        (
+            [line] => 195
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$regex_reserved_toplevel'
+        )
+
+    [61] => Array
+        (
+            [line] => 195
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$regex_reserved_toplevel'
+        )
+
+    [62] => Array
+        (
+            [line] => 203
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$token_cache'
+        )
+
+    [63] => Array
+        (
+            [line] => 203
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$token_cache'
+        )
+
+    [64] => Array
+        (
+            [line] => 204
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$cache_hits'
+        )
+
+    [65] => Array
+        (
+            [line] => 204
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$cache_hits'
+        )
+
+    [66] => Array
+        (
+            [line] => 205
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element '$cache_misses'
+        )
+
+    [67] => Array
+        (
+            [line] => 205
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No short description for element '$cache_misses'
+        )
+
+    [68] => Array
+        (
+            [line] => 482
+            [file] => yii2-utils/src/components/SqlFormatter.php
+            [message] => No docblock for element 'getQuotedString'
+        )
+
+    [69] => Array
+        (
+            [line] => 723
+            [file] => yii2-utils/src/components/VarDump.php
+            [message] => No short description for element '$colors'
+        )
+
+    [70] => Array
+        (
+            [line] => 729
+            [file] => yii2-utils/src/components/VarDump.php
+            [message] => No short description for element '$styles'
+        )
+
+    [71] => Array
+        (
+            [line] => 934
+            [file] => yii2-utils/src/components/VarDump.php
+            [message] => No docblock for element '__construct'
+        )
+
+    [72] => Array
+        (
+            [line] => 954
+            [file] => yii2-utils/src/components/VarDump.php
+            [message] => No docblock for element '__construct'
+        )
+
+    [73] => Array
+        (
+            [line] => 974
+            [file] => yii2-utils/src/components/VarDump.php
+            [message] => No docblock for element '__construct'
+        )
+
+    [74] => Array
+        (
+            [line] => 994
+            [file] => yii2-utils/src/components/VarDump.php
+            [message] => No docblock for element '__construct'
+        )
+
+    [75] => Array
+        (
+            [line] => 1014
+            [file] => yii2-utils/src/components/VarDump.php
+            [message] => No docblock for element '__construct'
+        )
+
+    [76] => Array
+        (
+            [line] => 134
+            [file] => yii2-utils/src/models/KHanUser.php
+            [message] => No docblock for element 'scenarios'
+        )
+
+    [77] => Array
+        (
+            [line] => 141
+            [file] => yii2-utils/src/models/KHanUserIdentity.php
+            [message] => No docblock for element 'scenarios'
+        )
+
+    [78] => Array
+        (
+            [line] => 24
+            [file] => yii2-utils/src/widgets/DatePicker.php
+            [message] => No docblock for element 'init'
+        )
+
+    [79] => Array
+        (
+            [line] => 27
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$title'
+        )
+
+    [80] => Array
+        (
+            [line] => 33
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$footer'
+        )
+
+    [81] => Array
+        (
+            [line] => 39
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$id'
+        )
+
+    [82] => Array
+        (
+            [line] => 45
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$striped'
+        )
+
+    [83] => Array
+        (
+            [line] => 45
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$striped'
+        )
+
+    [84] => Array
+        (
+            [line] => 46
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$condensed'
+        )
+
+    [85] => Array
+        (
+            [line] => 46
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$condensed'
+        )
+
+    [86] => Array
+        (
+            [line] => 47
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$responsive'
+        )
+
+    [87] => Array
+        (
+            [line] => 47
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$responsive'
+        )
+
+    [88] => Array
+        (
+            [line] => 48
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$export'
+        )
+
+    [89] => Array
+        (
+            [line] => 48
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$export'
+        )
+
+    [90] => Array
+        (
+            [line] => 49
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$toggleData'
+        )
+
+    [91] => Array
+        (
+            [line] => 49
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$toggleData'
+        )
+
+    [92] => Array
+        (
+            [line] => 50
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$resizableColumn'
+        )
+
+    [93] => Array
+        (
+            [line] => 50
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$resizableColumn'
+        )
+
+    [94] => Array
+        (
+            [line] => 51
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$before'
+        )
+
+    [95] => Array
+        (
+            [line] => 51
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$before'
+        )
+
+    [96] => Array
+        (
+            [line] => 52
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$formatter'
+        )
+
+    [97] => Array
+        (
+            [line] => 52
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$formatter'
+        )
+
+    [98] => Array
+        (
+            [line] => 53
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$showPageSummary'
+        )
+
+    [99] => Array
+        (
+            [line] => 53
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$showPageSummary'
+        )
+
+    [100] => Array
+        (
+            [line] => 54
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$showCreate'
+        )
+
+    [101] => Array
+        (
+            [line] => 54
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$showCreate'
+        )
+
+    [102] => Array
+        (
+            [line] => 56
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$beforeHeader'
+        )
+
+    [103] => Array
+        (
+            [line] => 56
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$beforeHeader'
+        )
+
+    [104] => Array
+        (
+            [line] => 58
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$dataProvider'
+        )
+
+    [105] => Array
+        (
+            [line] => 58
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$dataProvider'
+        )
+
+    [106] => Array
+        (
+            [line] => 59
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$filterModel'
+        )
+
+    [107] => Array
+        (
+            [line] => 59
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$filterModel'
+        )
+
+    [108] => Array
+        (
+            [line] => 60
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$columns'
+        )
+
+    [109] => Array
+        (
+            [line] => 60
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$columns'
+        )
+
+    [110] => Array
+        (
+            [line] => 61
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$rowOptions'
+        )
+
+    [111] => Array
+        (
+            [line] => 61
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$rowOptions'
+        )
+
+    [112] => Array
+        (
+            [line] => 67
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$createAction'
+        )
+
+    [113] => Array
+        (
+            [line] => 67
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$createAction'
+        )
+
+    [114] => Array
+        (
+            [line] => 68
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$floatHeader'
+        )
+
+    [115] => Array
+        (
+            [line] => 68
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$floatHeader'
+        )
+
+    [116] => Array
+        (
+            [line] => 69
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$createLabel'
+        )
+
+    [117] => Array
+        (
+            [line] => 69
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$createLabel'
+        )
+
+    [118] => Array
+        (
+            [line] => 82
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$createContent'
+        )
+
+    [119] => Array
+        (
+            [line] => 82
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$createContent'
+        )
+
+    [120] => Array
+        (
+            [line] => 83
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$content'
+        )
+
+    [121] => Array
+        (
+            [line] => 83
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$content'
+        )
+
+    [122] => Array
+        (
+            [line] => 234
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$refreshOptions'
+        )
+
+    [123] => Array
+        (
+            [line] => 234
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$refreshOptions'
+        )
+
+    [124] => Array
+        (
+            [line] => 235
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element '$pjax'
+        )
+
+    [125] => Array
+        (
+            [line] => 235
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No short description for element '$pjax'
+        )
+
+    [126] => Array
+        (
+            [line] => 237
+            [file] => yii2-utils/src/widgets/GridView.php
+            [message] => No docblock for element 'init'
+        )
+
+    [127] => Array
+        (
+            [line] => 81
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$tabs'
+        )
+
+    [128] => Array
+        (
+            [line] => 90
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$label'
+        )
+
+    [129] => Array
+        (
+            [line] => 95
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$tag'
+        )
+
+    [130] => Array
+        (
+            [line] => 100
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$options'
+        )
+
+    [131] => Array
+        (
+            [line] => 126
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No docblock for element 'run'
+        )
+
+    [132] => Array
+        (
+            [line] => 19
+            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
+            [message] => No docblock for element '$sourcePath'
+        )
+
+    [133] => Array
+        (
+            [line] => 19
+            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
+            [message] => No short description for element '$sourcePath'
+        )
+
+    [134] => Array
+        (
+            [line] => 21
+            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
+            [message] => No docblock for element '$css'
+        )
+
+    [135] => Array
+        (
+            [line] => 21
+            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
+            [message] => No short description for element '$css'
+        )
+
+    [136] => Array
+        (
+            [line] => 25
+            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
+            [message] => No docblock for element '$js'
+        )
+
+    [137] => Array
+        (
+            [line] => 25
+            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
+            [message] => No short description for element '$js'
+        )
+
+    [138] => Array
+        (
+            [line] => 59
+            [file] => yii2-utils/src/widgets/menu/OverlayMenuFiller.php
+            [message] => No short description for element '$tabs'
+        )
+
+)

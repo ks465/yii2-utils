@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/b01f69f9/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/47da18fa/style.css" rel="stylesheet">
+<script src="./assets/e36a8b07/jquery.js"></script>
+<script src="./assets/b01f69f9/js/bootstrap.js"></script>
+<script src="./assets/b3d3834e/jssearch.js"></script>    <title>Base Model - Models - KHanUtils</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w61" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w61-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">KHanUtils</a></div><div id="w61-collapse" class="collapse navbar-collapse"><ul id="w62" class="navbar-nav nav"><li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-54" data-toggle="collapse" data-parent="#navigation">Documentation <b class="caret"></b></a><div id="navigation-54" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_documents.html">Document Tips and Tricks</a></div>
+<a class="list-group-item" href="#navigation-55" data-toggle="collapse" data-parent="#navigation">Components <b class="caret"></b></a><div id="navigation-55" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_components-array-helper.html">Array Helper</a></div>
+<a class="list-group-item active" href="#navigation-56" data-toggle="collapse" data-parent="#navigation">Models <b class="caret"></b></a><div id="navigation-56" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./g_models-khan-model.html">Base Model</a>
+<a class="list-group-item" href="./g_models-khan-user.html">Base user</a></div>
+<a class="list-group-item" href="#navigation-57" data-toggle="collapse" data-parent="#navigation">Others <b class="caret"></b></a><div id="navigation-57" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_settings.html">Settings</a>
+<a class="list-group-item" href="./g_helpers-migrations.html">Migrations</a></div>
+<a class="list-group-item" href="#navigation-58" data-toggle="collapse" data-parent="#navigation">StartUp <b class="caret"></b></a><div id="navigation-58" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-59" data-toggle="collapse" data-parent="#navigation">Sanitizing User Input <b class="caret"></b></a><div id="navigation-59" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-60" data-toggle="collapse" data-parent="#navigation">RBAC Setup <b class="caret"></b></a><div id="navigation-60" class="submenu panel-collapse collapse"></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>KHanModel Class <span id="khanmodel-class"></span><a href="#khanmodel-class" class="hashlink">&para;</a></h1><p>Documentation Edition: 1.0-970803</p>
+<p>Class Version: 0.4-970803</p>
+<p>All of the standard globally required methods and properties are set here for simplicity.
+The most imprtant items are:</p>
+<ol>
+<li>Disabling <strong>Delete</strong> method and replace it with status-changing method.</li>
+<li>Adding <strong>BlameAble</strong> and <strong>TimeStamp</strong> behaviors to automatically record the creation and update time and user.</li>
+<li>The status field shows how to filter (or when to show) the item:<ul>
+<li><strong>KHanModel::STATUS_DELETED</strong> shows the record is totally out of reach of every user and method except for the <code>Sper Admin</code>. </li>
+<li><strong>KHanModel::STATUS_PENDING</strong> shows the record is out of order. No record in other models can choose the value of this record 
+for creating or updating values. But whenever there is need to <em>show data of other</em> records which depend in this one,
+data is available. </li>
+<li><strong>KHanModel::STATUS_ACTIVE</strong>  shows data is completely available for updating, using in other data sets, etc.</li>
+</ul>
+</li>
+<li>Methods to find the creater, last updater, and time of each.</li>
+</ol>
+<p>For details see <span class="broken-link">KHanS\Utils\models\KHanModel</span></p>
+<p>A <code>sqlite</code> database is ready in the <code>demos</code> directory, which contains all models needed for the demos. In order to activate it,
+load <code>db</code> component as follows:</p>
+<pre><code class="hljs php language-php"><span class="hljs-string">'db'</span> =&gt; [
+    <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\db\Connection'</span>,
+    <span class="hljs-string">'dsn'</span> =&gt; <span class="hljs-string">'sqlite:@app/db/database.db'</span>,
+    <span class="hljs-string">'charset'</span> =&gt; <span class="hljs-string">'utf8'</span>,
+    <span class="hljs-comment">// Schema cache options (for production environment)</span>
+    <span class="hljs-comment">//'enableSchemaCache' =&gt; true,</span>
+    <span class="hljs-comment">//'schemaCacheDuration' =&gt; 60,</span>
+    <span class="hljs-comment">//'schemaCache' =&gt; 'cache',</span>
+],
+</code></pre>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Mon, 05 Nov 2018 16:35:59 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

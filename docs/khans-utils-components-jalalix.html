@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/b01f69f9/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/47da18fa/style.css" rel="stylesheet">
+<script src="./assets/e36a8b07/jquery.js"></script>
+<script src="./assets/b01f69f9/js/bootstrap.js"></script>
+<script src="./assets/b3d3834e/jssearch.js"></script>    <title>JalaliX, KHanS\Utils\components\JalaliX - KHanUtils</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w43" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w43-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">KHanUtils</a></div><div id="w43-collapse" class="collapse navbar-collapse"><ul id="w44" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-36" data-toggle="collapse" data-parent="#navigation">KHanS\Utils <b class="caret"></b></a><div id="navigation-36" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-debug.html">Debug</a>
+<a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-37" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\columns <b class="caret"></b></a><div id="navigation-37" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-actioncolumn.html">ActionColumn</a></div>
+<a class="list-group-item active" href="#navigation-38" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\components <b class="caret"></b></a><div id="navigation-38" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
+<a class="list-group-item" href="./khans-utils-components-batmanhtmlvardumptheme.html">BatmanHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-clivardumptheme.html">CliVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-filevardumptheme.html">FileVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-htmlvardumptheme.html">HtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-hulkhtmlvardumptheme.html">HulkHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-ironmanhtmlvardumptheme.html">IronmanHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-jalali.html">Jalali</a>
+<a class="list-group-item active" href="./khans-utils-components-jalalix.html">JalaliX</a>
+<a class="list-group-item" href="./khans-utils-components-mathhelper.html">MathHelper</a>
+<a class="list-group-item" href="./khans-utils-components-spidermanhtmlvardumptheme.html">SpidermanHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-sqlformatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./khans-utils-components-stringhelper.html">StringHelper</a>
+<a class="list-group-item" href="./khans-utils-components-supermanhtmlvardumptheme.html">SupermanHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-vardump.html">VarDump</a>
+<a class="list-group-item" href="./khans-utils-components-vardumptheme.html">VarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-viewhelper.html">ViewHelper</a></div>
+<a class="list-group-item" href="#navigation-39" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\helpers <b class="caret"></b></a><div id="navigation-39" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-appbuilder.html">AppBuilder</a>
+<a class="list-group-item" href="./khans-utils-helpers-khanmigration.html">KHanMigration</a></div>
+<a class="list-group-item" href="#navigation-40" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\models <b class="caret"></b></a><div id="navigation-40" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-khanmodel.html">KHanModel</a>
+<a class="list-group-item" href="./khans-utils-models-khanuser.html">KHanUser</a>
+<a class="list-group-item" href="./khans-utils-models-khanuserhistory.html">KHanUserHistory</a>
+<a class="list-group-item" href="./khans-utils-models-khanuseridentity.html">KHanUserIdentity</a></div>
+<a class="list-group-item" href="#navigation-41" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\widgets <b class="caret"></b></a><div id="navigation-41" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-ajaxgridview.html">AjaxGridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-basegridview.html">BaseGridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-datepicker.html">DatePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a></div>
+<a class="list-group-item" href="#navigation-42" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\widgets\menu <b class="caret"></b></a><div id="navigation-42" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Class KHanS\Utils\components\JalaliX</h1>
+<div class="top-nav">
+    <a href="index.html">All Classes</a>
+            | <a href="#properties">Properties</a>
+                | <a href="#methods">Methods</a>
+            </div>
+
+<table class="summaryTable docClass table table-bordered">
+    <colgroup>
+        <col class="col-name" />
+        <col class="col-value" />
+    </colgroup>
+            <tr><th>Inheritance</th><td><a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a> &raquo;
+<a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td></tr>
+                                        </table>
+
+<div class="class-description">
+    <p><strong>JalaliX
+Some additional methods to be added in future</strong></p>
+    
+    </div>
+
+<a id="properties"></a>
+
+<div class="summary doc-property">
+<h2>Public Properties</h2>
+
+<p><a href="#" class="toggle">Hide inherited properties</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-property" />
+    <col class="col-type" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
+</tr>
+                            <tr class="inherited" id="$monthLongName">
+        <td><a href="khans-utils-components-jalali.html#$monthLongName-detail">$monthLongName</a></td>
+        <td><a href="http://www.php.net/language.types.array">array</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+                    </table>
+</div>
+
+<div class="summary doc-property">
+<h2>Protected Properties</h2>
+
+<p><a href="#" class="toggle">Hide inherited properties</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-property" />
+    <col class="col-type" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr class="inherited" id="$day">
+        <td><a href="khans-utils-components-jalali.html#$day-detail">$day</a></td>
+        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="$dayOfYear">
+        <td><a href="khans-utils-components-jalali.html#$dayOfYear-detail">$dayOfYear</a></td>
+        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="$hour">
+        <td><a href="khans-utils-components-jalali.html#$hour-detail">$hour</a></td>
+        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="$minute">
+        <td><a href="khans-utils-components-jalali.html#$minute-detail">$minute</a></td>
+        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="$month">
+        <td><a href="khans-utils-components-jalali.html#$month-detail">$month</a></td>
+        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+                <tr class="inherited" id="$second">
+        <td><a href="khans-utils-components-jalali.html#$second-detail">$second</a></td>
+        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="$timeStamp">
+        <td><a href="khans-utils-components-jalali.html#$timeStamp-detail">$timeStamp</a></td>
+        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="$timeZone">
+        <td><a href="khans-utils-components-jalali.html#$timeZone-detail">$timeZone</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="$year">
+        <td><a href="khans-utils-components-jalali.html#$year-detail">$year</a></td>
+        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="methods"></a>
+
+<div class="summary doc-method">
+<h2>Public Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+            <tr class="inherited" id="__construct()">
+        <td><a href="khans-utils-components-jalali.html#__construct()-detail">__construct()</a></td>
+        <td>Jalali::__construct()</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+                    <tr id="calculatePgradCalendar()">
+        <td><a href="khans-utils-components-jalalix.html#calculatePgradCalendar()-detail">calculatePgradCalendar()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a></td>
+    </tr>
+            <tr id="date()">
+        <td><a href="khans-utils-components-jalalix.html#date()-detail">date()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a></td>
+    </tr>
+                            <tr class="inherited" id="getDay()">
+        <td><a href="khans-utils-components-jalali.html#getDay()-detail">getDay()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="getDoW()">
+        <td><a href="khans-utils-components-jalali.html#getDoW()-detail">getDoW()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="getHour()">
+        <td><a href="khans-utils-components-jalali.html#getHour()-detail">getHour()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="getMinute()">
+        <td><a href="khans-utils-components-jalali.html#getMinute()-detail">getMinute()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="getMonth()">
+        <td><a href="khans-utils-components-jalali.html#getMonth()-detail">getMonth()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="getSecond()">
+        <td><a href="khans-utils-components-jalali.html#getSecond()-detail">getSecond()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr id="getThisDate()">
+        <td><a href="khans-utils-components-jalalix.html#getThisDate()-detail">getThisDate()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a></td>
+    </tr>
+            <tr id="getThisWeek()">
+        <td><a href="khans-utils-components-jalalix.html#getThisWeek()-detail">getThisWeek()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a></td>
+    </tr>
+            <tr id="getThisWeekEnd()">
+        <td><a href="khans-utils-components-jalalix.html#getThisWeekEnd()-detail">getThisWeekEnd()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a></td>
+    </tr>
+            <tr id="getThisWeekStart()">
+        <td><a href="khans-utils-components-jalalix.html#getThisWeekStart()-detail">getThisWeekStart()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a></td>
+    </tr>
+            <tr id="getThisWeekText()">
+        <td><a href="khans-utils-components-jalalix.html#getThisWeekText()-detail">getThisWeekText()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a></td>
+    </tr>
+            <tr id="getTimestamp()">
+        <td><a href="khans-utils-components-jalalix.html#getTimestamp()-detail">getTimestamp()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a></td>
+    </tr>
+            <tr id="getWoy()">
+        <td><a href="khans-utils-components-jalalix.html#getWoy()-detail">getWoy()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a></td>
+    </tr>
+            <tr class="inherited" id="getYear()">
+        <td><a href="khans-utils-components-jalali.html#getYear()-detail">getYear()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+                <tr class="inherited" id="mktime()">
+        <td><a href="khans-utils-components-jalali.html#mktime()-detail">mktime()</a></td>
+        <td>Jalali::mktime()
+creates timestamp depending on the Persian time parameters</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+                <tr class="inherited" id="monthName()">
+        <td><a href="khans-utils-components-jalali.html#monthName()-detail">monthName()</a></td>
+        <td>Jalali::monthName()
+returns names of the month</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="monthShortName()">
+        <td><a href="khans-utils-components-jalali.html#monthShortName()-detail">monthShortName()</a></td>
+        <td>Jalali::monthShortName()
+returns abbreviated names of the month</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="timestamp()">
+        <td><a href="khans-utils-components-jalali.html#timestamp()-detail">timestamp()</a></td>
+        <td>Jalali::timestamp()
+returns current timestamp of the object
+this time stamp is equivalent to system timestamp; for current time</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+        </table>
+</div>
+
+<div class="summary doc-method">
+<h2>Protected Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr class="inherited" id="ParsiNumbers()">
+        <td><a href="khans-utils-components-jalali.html#ParsiNumbers()-detail">ParsiNumbers()</a></td>
+        <td>Jalali::ParsiNumbers()
+converts digits to Persian traditional font face and
+corrects the no-width space in words
+use the function on the returned value in the source code</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+                <tr class="inherited" id="_date()">
+        <td><a href="khans-utils-components-jalali.html#_date()-detail">_date()</a></td>
+        <td>Jalali::_date()
+sets the full date data Y;M;D;H;I;S in various class attributes</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="calcRasad()">
+        <td><a href="khans-utils-components-jalali.html#calcRasad()-detail">calcRasad()</a></td>
+        <td>Jalali::calcRasad()
+calculates the years from reference Rasad year</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+                    <tr class="inherited" id="dayName()">
+        <td><a href="khans-utils-components-jalali.html#dayName()-detail">dayName()</a></td>
+        <td>Jalali::dayName()
+returns names of the weekday</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="dayOfWeek()">
+        <td><a href="khans-utils-components-jalali.html#dayOfWeek()-detail">dayOfWeek()</a></td>
+        <td>Jalali::dayOfWeek()
+returns weekday of the specified day of the year</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="dayOfYear()">
+        <td><a href="khans-utils-components-jalali.html#dayOfYear()-detail">dayOfYear()</a></td>
+        <td>Jalali::dayOfYear()
+get value of the day in the year</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr class="inherited" id="dayShortName()">
+        <td><a href="khans-utils-components-jalali.html#dayShortName()-detail">dayShortName()</a></td>
+        <td>Jalali::dayShortName()
+returns abbreviated names of the weekday</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+                                                                    <tr class="inherited" id="isLeap()">
+        <td><a href="khans-utils-components-jalali.html#isLeap()-detail">isLeap()</a></td>
+        <td>Jalali::isLeap()
+Checks the specified year for a leap year
+if the second parameter is false the year is assumed to
+be Gregorian otherwise Persian.</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+                <tr class="inherited" id="monthDayString()">
+        <td><a href="khans-utils-components-jalali.html#monthDayString()-detail">monthDayString()</a></td>
+        <td>Jalali::monthDayString()
+returns long text day of the month</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+                        <tr class="inherited" id="yearName()">
+        <td><a href="khans-utils-components-jalali.html#yearName()-detail">yearName()</a></td>
+        <td>Jalali::yearName()
+returns ancient names of the year</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="events"></a>
+
+<a id="constants"></a>
+
+<h2>Method Details</h2>
+
+<div class="method-doc">
+
+    <div class="detail-header h3" id="calculatePgradCalendar()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-jalalix.html#calculatePgradCalendar()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        calculatePgradCalendar()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-components-jalalix.html#calculatePgradCalendar()-detail">calculatePgradCalendar</a></strong> ( <span style="color: #0000BB">$timestamp</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$timestamp</span></td>
+                  <td class="param-type-col"></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="date()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-jalalix.html#date()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        date()
+        <span class="detail-header-tag small">
+            public                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type">void</span> <strong><a href="khans-utils-components-jalalix.html#date()-detail">date</a></strong> ( <span style="color: #0000BB">$format</span>, <span style="color: #0000BB">$timestamp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span>, <span style="color: #0000BB">$decorate&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$format</span></td>
+                  <td class="param-type-col"></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$timestamp</span></td>
+                  <td class="param-type-col"></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$decorate</span></td>
+                  <td class="param-type-col"></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getThisDate()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-jalalix.html#getThisDate()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getThisDate()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-components-jalalix.html#getThisDate()-detail">getThisDate</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getThisWeek()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-jalalix.html#getThisWeek()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getThisWeek()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-components-jalalix.html#getThisWeek()-detail">getThisWeek</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getThisWeekEnd()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-jalalix.html#getThisWeekEnd()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getThisWeekEnd()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-components-jalalix.html#getThisWeekEnd()-detail">getThisWeekEnd</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getThisWeekStart()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-jalalix.html#getThisWeekStart()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getThisWeekStart()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-components-jalalix.html#getThisWeekStart()-detail">getThisWeekStart</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getThisWeekText()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-jalalix.html#getThisWeekText()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getThisWeekText()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-components-jalalix.html#getThisWeekText()-detail">getThisWeekText</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getTimestamp()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-jalalix.html#getTimestamp()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getTimestamp()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-components-jalalix.html#getTimestamp()-detail">getTimestamp</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getWoy()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-jalalix.html#getWoy()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getWoy()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-components-jalalix.html#getWoy()-detail">getWoy</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+</div>
+        </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Mon, 05 Nov 2018 16:36:01 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

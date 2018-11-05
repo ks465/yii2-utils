@@ -1,11 +1,11 @@
-c4848079c833bf3155207f757d9e0e8c59b15e51
+  [doc_0_9]: https://github.com/nikic/PHP-Parser/tree/0.9/doc
+  [doc_1_x]: https://github.com/nikic/PHP-Parser/tree/1.x/doc
 Personal Utilities for Simpler Coding
 =====================================
-A pack of multiple components and widgets, especially designed for simpler and more generic coding
+A pack of multiple components and widgets, especially designed for simpler and more generic coding [doc_1_x]
 
 
-Test Install
-------------
+#Test Install
 The next step is just for initial development, skip it if you directly publish the extension on packagist.org
 
 Add the newly created repo to your composer.json.
@@ -22,8 +22,7 @@ And run
 composer.phar require khans465/yii2-utils:dev-master
 ```
 
-Installation
-------------
+#Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
@@ -41,14 +40,36 @@ or add
 
 to the require section of your `composer.json` file.
 
-
-Usage
------
+#Usage
 
 The Test* files in *tests* directory show all possible usage for the package. Each file has a ```runAllTests``` method
 which you can use to see everything this class does.
 
+
+#Documentation
+
+ 1. [Installation](README.md)
+ 1. [Documents](documents.md)
+ 2. [Guide](guide.md)
+ 2. [Columns](columns.md)
+ 
+ 
+
+  
+Test debug utilities:
 ```
 $tester = new \KHanS\Utils\tests\TestDebug();
+$tester->runAllTests();
+```
+
+Test components:
+```
+$tester = new \KHanS\Utils\tests\TestComponents();
+$tester->runAllTests();
+```
+
+Test widgets:
+```
+$tester = new \KHanS\Utils\tests\TestWidgets();
 $tester->runAllTests();
 ```

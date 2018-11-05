@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/b01f69f9/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/47da18fa/style.css" rel="stylesheet">
+<script src="./assets/e36a8b07/jquery.js"></script>
+<script src="./assets/b01f69f9/js/bootstrap.js"></script>
+<script src="./assets/b3d3834e/jssearch.js"></script>    <title>KHanUtils</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w313" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w313-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">KHanUtils</a></div><div id="w313-collapse" class="collapse navbar-collapse"><ul id="w314" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-306" data-toggle="collapse" data-parent="#navigation">KHanS\Utils <b class="caret"></b></a><div id="navigation-306" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-debug.html">Debug</a>
+<a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-307" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\columns <b class="caret"></b></a><div id="navigation-307" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-actioncolumn.html">ActionColumn</a></div>
+<a class="list-group-item" href="#navigation-308" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\components <b class="caret"></b></a><div id="navigation-308" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
+<a class="list-group-item" href="./khans-utils-components-batmanhtmlvardumptheme.html">BatmanHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-clivardumptheme.html">CliVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-filevardumptheme.html">FileVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-htmlvardumptheme.html">HtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-hulkhtmlvardumptheme.html">HulkHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-ironmanhtmlvardumptheme.html">IronmanHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-jalali.html">Jalali</a>
+<a class="list-group-item" href="./khans-utils-components-jalalix.html">JalaliX</a>
+<a class="list-group-item" href="./khans-utils-components-mathhelper.html">MathHelper</a>
+<a class="list-group-item" href="./khans-utils-components-spidermanhtmlvardumptheme.html">SpidermanHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-sqlformatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./khans-utils-components-stringhelper.html">StringHelper</a>
+<a class="list-group-item" href="./khans-utils-components-supermanhtmlvardumptheme.html">SupermanHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-vardump.html">VarDump</a>
+<a class="list-group-item" href="./khans-utils-components-vardumptheme.html">VarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-viewhelper.html">ViewHelper</a></div>
+<a class="list-group-item" href="#navigation-309" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\helpers <b class="caret"></b></a><div id="navigation-309" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-appbuilder.html">AppBuilder</a>
+<a class="list-group-item" href="./khans-utils-helpers-khanmigration.html">KHanMigration</a></div>
+<a class="list-group-item" href="#navigation-310" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\models <b class="caret"></b></a><div id="navigation-310" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-khanmodel.html">KHanModel</a>
+<a class="list-group-item" href="./khans-utils-models-khanuser.html">KHanUser</a>
+<a class="list-group-item" href="./khans-utils-models-khanuserhistory.html">KHanUserHistory</a>
+<a class="list-group-item" href="./khans-utils-models-khanuseridentity.html">KHanUserIdentity</a></div>
+<a class="list-group-item" href="#navigation-311" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\widgets <b class="caret"></b></a><div id="navigation-311" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-ajaxgridview.html">AjaxGridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-basegridview.html">BaseGridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-datepicker.html">DatePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a></div>
+<a class="list-group-item" href="#navigation-312" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\widgets\menu <b class="caret"></b></a><div id="navigation-312" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Class Reference</h1>
+
+<table class="summaryTable docIndex table table-bordered table-striped table-hover">
+    <colgroup>
+        <col class="col-package" />
+        <col class="col-class" />
+        <col class="col-description" />
+    </colgroup>
+    <tr>
+        <th>Class</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-debug.html">KHanS\Utils\Debug</a></td>
+        <td>Wrapper for all utilities for debuging.</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-settings.html">KHanS\Utils\Settings</a></td>
+        <td>Class Settings</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-columns-actioncolumn.html">KHanS\Utils\columns\ActionColumn</a></td>
+        <td>Show column in grid views for actions on the data
+Example:
+<code>`</code>php</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-arrayhelper.html">KHanS\Utils\components\ArrayHelper</a></td>
+        <td>Class ArrayHelper contains all methods for simplifying work with arrays.</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-batmanhtmlvardumptheme.html">KHanS\Utils\components\BatmanHtmlVarDumpTheme</a></td>
+        <td>Batman HTML dump theme</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-clivardumptheme.html">KHanS\Utils\components\CliVarDumpTheme</a></td>
+        <td>CLI dump theme</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-filevardumptheme.html">KHanS\Utils\components\FileVarDumpTheme</a></td>
+        <td>File dump theme</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-htmlvardumptheme.html">KHanS\Utils\components\HtmlVarDumpTheme</a></td>
+        <td>HTML dump theme</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-hulkhtmlvardumptheme.html">KHanS\Utils\components\HulkHtmlVarDumpTheme</a></td>
+        <td>Hulk HTML dump theme</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-ironmanhtmlvardumptheme.html">KHanS\Utils\components\IronmanHtmlVarDumpTheme</a></td>
+        <td>Ironman HTML dump theme</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+        <td>Examples:
+Constructing the class:
+1. Constructing a class from php.time():
+   $jDate_1 = new Jalali( ) ;
+2. Constructing the class from any given time stamp:
+   $jDate_2 = new Jalali( Time_Stamp ) ;
+3. Constructing the class from (year, month, day, hour, minute, second) values:
+   $jDate_3 = new Jalali( 1383, 12, 30, 13, 45, 25 ) ;
+Calling class methods:
+1. $jDate-&gt;date( format ) ; //using format syntax same as php.date() syntax generates the string output
+   [see: http://www.php.net/manual/en/function.date.php].</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a></td>
+        <td>JalaliX
+Some additional methods to be added in future</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-mathhelper.html">KHanS\Utils\components\MathHelper</a></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-spidermanhtmlvardumptheme.html">KHanS\Utils\components\SpidermanHtmlVarDumpTheme</a></td>
+        <td>Spiderman HTML dump theme</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-sqlformatter.html">KHanS\Utils\components\SqlFormatter</a></td>
+        <td>SQL Formatter is a collection of utilities for debugging SQL queries.</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-stringhelper.html">KHanS\Utils\components\StringHelper</a></td>
+        <td>Class StringHelper contains all the utilities for formatting, correcting and ahaping strings for saving or showing.</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-supermanhtmlvardumptheme.html">KHanS\Utils\components\SupermanHtmlVarDumpTheme</a></td>
+        <td>Superman HTML dump theme</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-vardump.html">KHanS\Utils\components\VarDump</a></td>
+        <td>Class to print variables like var_dump</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-vardumptheme.html">KHanS\Utils\components\VarDumpTheme</a></td>
+        <td>Interface for a theme of the dump output</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-components-viewhelper.html">KHanS\Utils\components\ViewHelper</a></td>
+        <td>Class ViewHelper contains all the utilities required for simpler and better view of objects in output.</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-helpers-appbuilder.html">KHanS\Utils\helpers\AppBuilder</a></td>
+        <td>Class AppBuilder do some cool stuff to make life easier in development period.</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-helpers-khanmigration.html">KHanS\Utils\helpers\KHanMigration</a></td>
+        <td>Class KHanMigration holds extra abilities for migrating required tables.</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-models-khanmodel.html">KHanS\Utils\models\KHanModel</a></td>
+        <td>Class KHanModel holds the basic structure of all database models.</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-models-khanuser.html">KHanS\Utils\models\KHanUser</a></td>
+        <td>User model</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-models-khanuserhistory.html">KHanS\Utils\models\KHanUserHistory</a></td>
+        <td>Class KHanUserHistory holds history of user login</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-models-khanuseridentity.html">KHanS\Utils\models\KHanUserIdentity</a></td>
+        <td>User model</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-widgets-ajaxgridview.html">KHanS\Utils\widgets\AjaxGridView</a></td>
+        <td>Create a uniform grid view for Ajax controllers along with the required Modal widget required for this to work</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-widgets-basegridview.html">KHanS\Utils\widgets\BaseGridView</a></td>
+        <td>Create a uniform grid view for controllers. This is the common parts for both normal and AJAX grids.</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-widgets-datepicker.html">KHanS\Utils\widgets\DatePicker</a></td>
+        <td>Class DatePicker simplifies date picker widget for forms</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-widgets-gridview.html">KHanS\Utils\widgets\GridView</a></td>
+        <td>Create a uniform grid view for controllers</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html">KHanS\Utils\widgets\menu\OverlayMenu</a></td>
+        <td>Class OverlayMenu creates an overlay menu</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-widgets-menu-overlaymenuasset.html">KHanS\Utils\widgets\menu\OverlayMenuAsset</a></td>
+        <td>Asset bundle for overlay menu</td>
+    </tr>
+    <tr>
+        <td><a href="khans-utils-widgets-menu-overlaymenufiller.html">KHanS\Utils\widgets\menu\OverlayMenuFiller</a></td>
+        <td>Class OverlayMenuFiller reads a CSV file and builds the menu items required for <a href="khans-utils-widgets-menu-overlaymenu.html">KHanS\Utils\widgets\menu\OverlayMenu</a>.</td>
+    </tr>
+</table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Mon, 05 Nov 2018 16:36:01 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

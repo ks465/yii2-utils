@@ -15,12 +15,22 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "yiisoft/yii2": "~2.0.0"
+    "yiisoft/yii2": "~2.0.0",
+    "yiisoft/yii2-apidoc": "~2.1.0",
+    "faravaghi/yii2-jalali-datepicker ": "~1.0",
+    "kartik-v/yii2-grid": "~3.1.0",
+    "johnitvn/yii2-ajaxcrud": "~2.1.0",
+    "nhkey/yii2-activerecord-history": "*"
   },
   "autoload": {
     "psr-4": {
-      "KHanS\\Utils\\": ""
-    }
+      "KHanS\\Utils\\": "src"
+    },
+    "classmap": [
+      "src/components/",
+      "src/columns/",
+      "src/widgets/"
+    ]
   },
   "extra": {
     "branch-alias": {

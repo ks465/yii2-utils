@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/b01f69f9/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/47da18fa/style.css" rel="stylesheet">
+<script src="./assets/e36a8b07/jquery.js"></script>
+<script src="./assets/b01f69f9/js/bootstrap.js"></script>
+<script src="./assets/b3d3834e/jssearch.js"></script>    <title>OverlayMenu, KHanS\Utils\widgets\menu\OverlayMenu - KHanUtils</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w232" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w232-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">KHanUtils</a></div><div id="w232-collapse" class="collapse navbar-collapse"><ul id="w233" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-225" data-toggle="collapse" data-parent="#navigation">KHanS\Utils <b class="caret"></b></a><div id="navigation-225" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-debug.html">Debug</a>
+<a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-226" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\columns <b class="caret"></b></a><div id="navigation-226" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-actioncolumn.html">ActionColumn</a></div>
+<a class="list-group-item" href="#navigation-227" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\components <b class="caret"></b></a><div id="navigation-227" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
+<a class="list-group-item" href="./khans-utils-components-batmanhtmlvardumptheme.html">BatmanHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-clivardumptheme.html">CliVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-filevardumptheme.html">FileVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-htmlvardumptheme.html">HtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-hulkhtmlvardumptheme.html">HulkHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-ironmanhtmlvardumptheme.html">IronmanHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-jalali.html">Jalali</a>
+<a class="list-group-item" href="./khans-utils-components-jalalix.html">JalaliX</a>
+<a class="list-group-item" href="./khans-utils-components-mathhelper.html">MathHelper</a>
+<a class="list-group-item" href="./khans-utils-components-spidermanhtmlvardumptheme.html">SpidermanHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-sqlformatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./khans-utils-components-stringhelper.html">StringHelper</a>
+<a class="list-group-item" href="./khans-utils-components-supermanhtmlvardumptheme.html">SupermanHtmlVarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-vardump.html">VarDump</a>
+<a class="list-group-item" href="./khans-utils-components-vardumptheme.html">VarDumpTheme</a>
+<a class="list-group-item" href="./khans-utils-components-viewhelper.html">ViewHelper</a></div>
+<a class="list-group-item" href="#navigation-228" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\helpers <b class="caret"></b></a><div id="navigation-228" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-appbuilder.html">AppBuilder</a>
+<a class="list-group-item" href="./khans-utils-helpers-khanmigration.html">KHanMigration</a></div>
+<a class="list-group-item" href="#navigation-229" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\models <b class="caret"></b></a><div id="navigation-229" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-khanmodel.html">KHanModel</a>
+<a class="list-group-item" href="./khans-utils-models-khanuser.html">KHanUser</a>
+<a class="list-group-item" href="./khans-utils-models-khanuserhistory.html">KHanUserHistory</a>
+<a class="list-group-item" href="./khans-utils-models-khanuseridentity.html">KHanUserIdentity</a></div>
+<a class="list-group-item" href="#navigation-230" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\widgets <b class="caret"></b></a><div id="navigation-230" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-ajaxgridview.html">AjaxGridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-basegridview.html">BaseGridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-datepicker.html">DatePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a></div>
+<a class="list-group-item active" href="#navigation-231" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\widgets\menu <b class="caret"></b></a><div id="navigation-231" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Class KHanS\Utils\widgets\menu\OverlayMenu</h1>
+<div class="top-nav">
+    <a href="index.html">All Classes</a>
+            | <a href="#properties">Properties</a>
+                | <a href="#methods">Methods</a>
+            </div>
+
+<table class="summaryTable docClass table table-bordered">
+    <colgroup>
+        <col class="col-name" />
+        <col class="col-value" />
+    </colgroup>
+            <tr><th>Inheritance</th><td><a href="khans-utils-widgets-menu-overlaymenu.html">KHanS\Utils\widgets\menu\OverlayMenu</a> &raquo;
+yii\base\Widget</td></tr>
+                                        <tr><th>Available since version</th><td>1.0</td></tr>
+            </table>
+
+<div class="class-description">
+    <p><strong>Class OverlayMenu creates an overlay menu</strong></p>
+    <p><strong>Example </strong> use in the navigation bar:</p>
+<pre><code class="hljs php language-php">NavBar::begin([
+   <span class="hljs-string">'brandLabel'</span> =&gt; Yii::<span class="hljs-variable">$app</span>-&gt;name,
+   <span class="hljs-string">'brandUrl'</span> =&gt; Yii::<span class="hljs-variable">$app</span>-&gt;homeUrl,
+   <span class="hljs-string">'options'</span> =&gt; [
+      <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'navbar-inverse navbar-fixed-top'</span>,
+   ],
+]);
+<span class="hljs-keyword">echo</span> Nav::widget([
+   <span class="hljs-string">'options'</span> =&gt; [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'navbar-nav navbar-right'</span>],
+   <span class="hljs-string">'items'</span> =&gt; [
+      <span class="hljs-string">'&lt;li&gt;'</span> . \app\widgets\menu\OverlayMenu::widget([
+         <span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'menu'</span>,
+         <span class="hljs-string">'csvFileUrl'</span> =&gt; <span class="hljs-string">'@app/commands/menu-contents.csv'</span>,
+         <span class="hljs-string">'options'</span> =&gt; [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'btn btn-danger'</span>, <span class="hljs-string">'style'</span> =&gt; <span class="hljs-string">'color:yellow;'</span>]
+      ]) . <span class="hljs-string">'&lt;/li&gt;'</span>,
+      [<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'Home'</span>, <span class="hljs-string">'url'</span> =&gt; [<span class="hljs-string">'/site/index'</span>]],
+      [<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'About'</span>, <span class="hljs-string">'url'</span> =&gt; [<span class="hljs-string">'/site/about'</span>]],
+      [<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'Contact'</span>, <span class="hljs-string">'url'</span> =&gt; [<span class="hljs-string">'/site/contact'</span>]],
+   ],
+]);
+NavBar::end();
+</code></pre>
+<p><strong>Example use in page</strong></p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> * \app\widgets\menu\OverlayMenu::widget([
+   <span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'منوی همگانی سامانه‌ها'</span>,
+   <span class="hljs-string">'tag'</span> =&gt; <span class="hljs-string">'button'</span>,
+   <span class="hljs-string">'csvFileUrl'</span> =&gt; <span class="hljs-string">'@app/commands/menu-contents.csv'</span>,
+   <span class="hljs-string">'options'</span> =&gt; [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'btn btn-danger'</span>],
+   <span class="hljs-string">'tabs'</span> =&gt; [
+      <span class="hljs-string">'general'</span> =&gt; [
+         <span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'general'</span>,
+         <span class="hljs-string">'title'</span> =&gt; <span class="hljs-string">'همگانی'</span>,
+         <span class="hljs-string">'icon'</span> =&gt; <span class="hljs-string">'heart'</span>,
+         <span class="hljs-string">'admin'</span> =&gt; <span class="hljs-keyword">false</span>,
+      ],
+      <span class="hljs-string">'others'</span> =&gt; [
+         <span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'others'</span>,
+         <span class="hljs-string">'title'</span> =&gt; <span class="hljs-string">'سایر'</span>,
+         <span class="hljs-string">'icon'</span> =&gt; <span class="hljs-string">'user'</span>,
+         <span class="hljs-string">'admin'</span> =&gt; <span class="hljs-keyword">false</span>,
+      ],
+   ],
+]);
+</code></pre>
+
+    </div>
+
+<a id="properties"></a>
+
+<div class="summary doc-property">
+<h2>Public Properties</h2>
+
+<p><a href="#" class="toggle">Hide inherited properties</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-property" />
+    <col class="col-type" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="$csvFileUrl">
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html#$csvFileUrl-detail">$csvFileUrl</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>Full path to a CSV file containing the data required for rendering menu</td>
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html">KHanS\Utils\widgets\menu\OverlayMenu</a></td>
+    </tr>
+            <tr id="$label">
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html#$label-detail">$label</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td></td>
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html">KHanS\Utils\widgets\menu\OverlayMenu</a></td>
+    </tr>
+            <tr id="$options">
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html#$options-detail">$options</a></td>
+        <td><a href="http://www.php.net/language.types.array">array</a></td>
+        <td></td>
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html">KHanS\Utils\widgets\menu\OverlayMenu</a></td>
+    </tr>
+            <tr id="$tabs">
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html#$tabs-detail">$tabs</a></td>
+        <td><a href="http://www.php.net/language.types.array">array</a></td>
+        <td></td>
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html">KHanS\Utils\widgets\menu\OverlayMenu</a></td>
+    </tr>
+            <tr id="$tag">
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html#$tag-detail">$tag</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td></td>
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html">KHanS\Utils\widgets\menu\OverlayMenu</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="methods"></a>
+
+<div class="summary doc-method">
+<h2>Public Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="getBundleUrl()">
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html#getBundleUrl()-detail">getBundleUrl()</a></td>
+        <td>Get th URL to the published assets</td>
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html">KHanS\Utils\widgets\menu\OverlayMenu</a></td>
+    </tr>
+            <tr id="getMenu()">
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html#getMenu()-detail">getMenu()</a></td>
+        <td></td>
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html">KHanS\Utils\widgets\menu\OverlayMenu</a></td>
+    </tr>
+            <tr id="init()">
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html#init()-detail">init()</a></td>
+        <td></td>
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html">KHanS\Utils\widgets\menu\OverlayMenu</a></td>
+    </tr>
+            <tr id="run()">
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html#run()-detail">run()</a></td>
+        <td></td>
+        <td><a href="khans-utils-widgets-menu-overlaymenu.html">KHanS\Utils\widgets\menu\OverlayMenu</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="events"></a>
+
+<a id="constants"></a>
+
+<h2>Property Details</h2>
+
+<div class="property-doc">
+
+    <div class="detail-header h3" id="$csvFileUrl-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-menu-overlaymenu.html#$csvFileUrl-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $csvFileUrl        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>Full path to a CSV file containing the data required for rendering menu</p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-widgets-menu-overlaymenu.html#$csvFileUrl-detail">$csvFileUrl</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">''</span></div>
+
+
+    <div class="detail-header h3" id="$label-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-menu-overlaymenu.html#$label-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $label        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-widgets-menu-overlaymenu.html#$label-detail">$label</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Offnen'</span></div>
+
+
+    <div class="detail-header h3" id="$options-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-menu-overlaymenu.html#$options-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $options        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="khans-utils-widgets-menu-overlaymenu.html#$options-detail">$options</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[]</span></div>
+
+
+    <div class="detail-header h3" id="$tabs-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-menu-overlaymenu.html#$tabs-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $tabs        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="khans-utils-widgets-menu-overlaymenu.html#$tabs-detail">$tabs</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[]</span></div>
+
+
+    <div class="detail-header h3" id="$tag-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-menu-overlaymenu.html#$tag-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $tag        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-widgets-menu-overlaymenu.html#$tag-detail">$tag</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'a'</span></div>
+
+</div>
+<h2>Method Details</h2>
+
+<div class="method-doc">
+
+    <div class="detail-header h3" id="getBundleUrl()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-menu-overlaymenu.html#getBundleUrl()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getBundleUrl()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Get th URL to the published assets</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-widgets-menu-overlaymenu.html#getBundleUrl()-detail">getBundleUrl</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getMenu()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-menu-overlaymenu.html#getMenu()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getMenu()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="khans-utils-widgets-menu-overlaymenufiller.html">KHanS\Utils\widgets\menu\OverlayMenuFiller</a></span> <strong><a href="khans-utils-widgets-menu-overlaymenu.html#getMenu()-detail">getMenu</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="init()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-menu-overlaymenu.html#init()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        init()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-widgets-menu-overlaymenu.html#init()-detail">init</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="run()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-menu-overlaymenu.html#run()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        run()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-widgets-menu-overlaymenu.html#run()-detail">run</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+</div>
+        </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Mon, 05 Nov 2018 16:36:01 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>
