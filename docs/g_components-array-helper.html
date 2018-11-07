@@ -14,10 +14,11 @@
 <body>
 
 <div class="wrap">
-    <nav id="w7" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w7-collapse"><span class="sr-only">Toggle navigation</span>
+    <nav id="w8" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w8-collapse"><span class="sr-only">Toggle navigation</span>
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
-<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">KHanUtils</a></div><div id="w7-collapse" class="collapse navbar-collapse"><ul id="w8" class="navbar-nav nav"><li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">KHanUtils</a></div><div id="w8-collapse" class="collapse navbar-collapse"><ul id="w9" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
   <div class="form-group">
     <input id="searchbox" type="text" class="form-control" placeholder="Search">
   </div>
@@ -32,23 +33,25 @@
 <div class="row">
     <div class="col-md-2">
                 <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-0" data-toggle="collapse" data-parent="#navigation">Documentation <b class="caret"></b></a><div id="navigation-0" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_documents.html">Document Tips and Tricks</a></div>
-<a class="list-group-item active" href="#navigation-1" data-toggle="collapse" data-parent="#navigation">Components <b class="caret"></b></a><div id="navigation-1" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./g_components-array-helper.html">Array Helper</a></div>
-<a class="list-group-item" href="#navigation-2" data-toggle="collapse" data-parent="#navigation">Models <b class="caret"></b></a><div id="navigation-2" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_models-khan-model.html">Base Model</a>
+<a class="list-group-item active" href="#navigation-1" data-toggle="collapse" data-parent="#navigation">Components <b class="caret"></b></a><div id="navigation-1" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./g_components-array-helper.html">Array Helper</a>
+<a class="list-group-item" href="./g_components-jalali.html">Jalali &amp;amp; JalaliX</a></div>
+<a class="list-group-item" href="#navigation-2" data-toggle="collapse" data-parent="#navigation">Columns <b class="caret"></b></a><div id="navigation-2" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_columns-action-column.html">ActionColumn</a></div>
+<a class="list-group-item" href="#navigation-3" data-toggle="collapse" data-parent="#navigation">Models <b class="caret"></b></a><div id="navigation-3" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_models-khan-model.html">Base Model</a>
 <a class="list-group-item" href="./g_models-khan-user.html">Base user</a></div>
-<a class="list-group-item" href="#navigation-3" data-toggle="collapse" data-parent="#navigation">Others <b class="caret"></b></a><div id="navigation-3" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_settings.html">Settings</a>
+<a class="list-group-item" href="#navigation-4" data-toggle="collapse" data-parent="#navigation">Others <b class="caret"></b></a><div id="navigation-4" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_settings.html">Settings</a>
 <a class="list-group-item" href="./g_helpers-migrations.html">Migrations</a></div>
-<a class="list-group-item" href="#navigation-4" data-toggle="collapse" data-parent="#navigation">StartUp <b class="caret"></b></a><div id="navigation-4" class="submenu panel-collapse collapse"></div>
-<a class="list-group-item" href="#navigation-5" data-toggle="collapse" data-parent="#navigation">Sanitizing User Input <b class="caret"></b></a><div id="navigation-5" class="submenu panel-collapse collapse"></div>
-<a class="list-group-item" href="#navigation-6" data-toggle="collapse" data-parent="#navigation">RBAC Setup <b class="caret"></b></a><div id="navigation-6" class="submenu panel-collapse collapse"></div></div>    </div>
+<a class="list-group-item" href="#navigation-5" data-toggle="collapse" data-parent="#navigation">StartUp <b class="caret"></b></a><div id="navigation-5" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-6" data-toggle="collapse" data-parent="#navigation">Sanitizing User Input <b class="caret"></b></a><div id="navigation-6" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-7" data-toggle="collapse" data-parent="#navigation">RBAC Setup <b class="caret"></b></a><div id="navigation-7" class="submenu panel-collapse collapse"></div></div>    </div>
     <div class="col-md-9 guide-content" role="main">
         <h1>ArrayHelper Class <span id="arrayhelper-class"></span><a href="#arrayhelper-class" class="hashlink">&para;</a></h1>
-<div class="toc"><ol><li><a href="#khansutilscomponentsarrayhelperpivot">KHanS\Utils\components\ArrayHelper::pivot</a></li>
-<li><a href="#khansutilscomponentsarrayhelpergroupby">KHanS\Utils\components\ArrayHelper::groupBy</a></li></ol></div>
+<div class="toc"><ol><li><a href="#pivot">Pivot</a></li>
+<li><a href="#groupby">GroupBy</a></li></ol></div>
 <p>Documentation Edition: 1.0-970803</p>
 <p>Class Version: 0.2-970803</p>
 <p>This class contains more methods for transforming and reshaping arrays.
 It extends \yii\helpers\ArrayHelper so there is only one class to import into namespace.</p>
-<h2><span class="broken-link">KHanS\Utils\components\ArrayHelper::pivot</span> <span id="khansutilscomponentsarrayhelperpivot"></span><a href="#khansutilscomponentsarrayhelperpivot" class="hashlink">&para;</a></h2><p>This static method is a transformer, which accepts an array and some row and column identifiers plus a numeric field.
+<h2><a href="./khans-utils-components-arrayhelper.html#pivot()-detail">Pivot</a> <span id="pivot"></span><a href="#pivot" class="hashlink">&para;</a></h2><p>This static method is a transformer, which accepts an array and some row and column identifiers plus a numeric field.
 In simple call the output is an array containing sum of all values of the numeric field --pivotValue.
 Currently the only aggregating function available is <code>summation</code>.</p>
 <p>This methods requires five arguments:</p>
@@ -100,7 +103,7 @@ ArrayHelper::pivot(<span class="hljs-variable">$inputArray</span>, <span class="
  <span class="hljs-string">'PhD'</span> =&gt; [<span class="hljs-string">'grade'</span> =&gt; <span class="hljs-string">'PhD'</span>, <span class="hljs-string">'Pardis.Male'</span> =&gt; <span class="hljs-string">'96/44'</span>,],
 ];
 </code></pre>
-<h2><span class="broken-link">KHanS\Utils\components\ArrayHelper::groupBy</span> <span id="khansutilscomponentsarrayhelpergroupby"></span><a href="#khansutilscomponentsarrayhelpergroupby" class="hashlink">&para;</a></h2><p>This static method is very similar to <a href="#pivot">Pivot</a> method above. The only difference is that there is no pivoting columns
+<h2><a href="./khans-utils-components-arrayhelper.html#groupBy()-detail">GroupBy</a> <span id="groupby"></span><a href="#groupby" class="hashlink">&para;</a></h2><p>This static method is very similar to <a href="#pivot">Pivot</a> method above. The only difference is that there is no pivoting columns
 here. For the current version when using closure, the output array contains one addition column named <code>_data_</code>. 
 This column contains the result of the closure function. If the <code>$pivotValue</code> is string, the same field contains the output value.
 This methods requires four arguments:</p>
@@ -148,7 +151,7 @@ If it is a closure, the output data cell (value of output_array[$pivotRow]['_dat
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Mon, 05 Nov 2018 16:35:59 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Wed, 07 Nov 2018 17:20:48 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

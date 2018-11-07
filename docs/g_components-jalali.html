@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/b01f69f9/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/47da18fa/style.css" rel="stylesheet">
+<script src="./assets/e36a8b07/jquery.js"></script>
+<script src="./assets/b01f69f9/js/bootstrap.js"></script>
+<script src="./assets/b3d3834e/jssearch.js"></script>    <title>Jalali &amp;amp; JalaliX - Components - KHanUtils</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w88" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w88-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">KHanUtils</a></div><div id="w88-collapse" class="collapse navbar-collapse"><ul id="w89" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-80" data-toggle="collapse" data-parent="#navigation">Documentation <b class="caret"></b></a><div id="navigation-80" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_documents.html">Document Tips and Tricks</a></div>
+<a class="list-group-item active" href="#navigation-81" data-toggle="collapse" data-parent="#navigation">Components <b class="caret"></b></a><div id="navigation-81" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./g_components-array-helper.html">Array Helper</a>
+<a class="list-group-item active" href="./g_components-jalali.html">Jalali &amp;amp; JalaliX</a></div>
+<a class="list-group-item" href="#navigation-82" data-toggle="collapse" data-parent="#navigation">Columns <b class="caret"></b></a><div id="navigation-82" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_columns-action-column.html">ActionColumn</a></div>
+<a class="list-group-item" href="#navigation-83" data-toggle="collapse" data-parent="#navigation">Models <b class="caret"></b></a><div id="navigation-83" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_models-khan-model.html">Base Model</a>
+<a class="list-group-item" href="./g_models-khan-user.html">Base user</a></div>
+<a class="list-group-item" href="#navigation-84" data-toggle="collapse" data-parent="#navigation">Others <b class="caret"></b></a><div id="navigation-84" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_settings.html">Settings</a>
+<a class="list-group-item" href="./g_helpers-migrations.html">Migrations</a></div>
+<a class="list-group-item" href="#navigation-85" data-toggle="collapse" data-parent="#navigation">StartUp <b class="caret"></b></a><div id="navigation-85" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-86" data-toggle="collapse" data-parent="#navigation">Sanitizing User Input <b class="caret"></b></a><div id="navigation-86" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-87" data-toggle="collapse" data-parent="#navigation">RBAC Setup <b class="caret"></b></a><div id="navigation-87" class="submenu panel-collapse collapse"></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Jalali and JalaliX Classes <span id="jalali-and-jalalix-classes"></span><a href="#jalali-and-jalalix-classes" class="hashlink">&para;</a></h1><p>Jalali class is an attempt to use astronomical calculations of Khayyam and keep the interface 
+as similar as possible to <code>PHP::date()</code> function.</p>
+<p>Jalali has two main public methods:</p>
+<ol>
+<li><p><code>Jalali::date()</code> which by accepting format and timestamp returns a date string:</p>
+</li>
+<li><p><code>Jalali::mktime()</code> which accepts elements of date and time and returns timestamp integer:</p>
+</li>
+<li><p>Other public methods, show output based on the last static usage of any of the above methods:</p>
+<ul>
+<li><code>date()</code> This is a clone of the internal php function date(). </li>
+<li><code>dayName()</code> Returns names of the weekday in full </li>
+<li><code>dayOfWeek()</code> Get number of days from starting of the current week </li>
+<li><code>dayOfYear()</code> Get value of the day in the year </li>
+<li><code>dayShortName()</code> Returns abbreviated --single letter-- names of the weekday. </li>
+<li><code>getDay()</code> Get day in month value </li>
+<li><code>getHour()</code> Get hour </li>
+<li><code>getMinute()</code> Get minute </li>
+<li><code>getMonth()</code> Get month value </li>
+<li><code>getSecond()</code> Get second </li>
+<li><code>getTimestamp()</code> Get current value of the timestamp in Unix timestamp format </li>
+<li><code>getWeekName()</code> Return number of week from beginning of the month in words </li>
+<li><code>getYear()</code> Get year value </li>
+<li><code>isLeap()</code> Checks the specified year for a leap year. </li>
+<li><code>monthDayString()</code> Returns long text day of the month </li>
+<li><code>monthName()</code> Returns names of the month </li>
+<li><code>monthShortName()</code> Returns abbreviated --three-letters-- names of the month </li>
+<li><code>weekOfYear()</code>  Get value of week number in year </li>
+</ul>
+</li>
+</ol>
+<p><code>JalaliX</code> tries to fulfills other requirements in a date object. 
+Most important aspect of this class is that it should be instantiated.
+The extra methods for this object are as following:</p>
+<ul>
+<li><code>getWeekStart()</code> Return starting day of the current week in YYYY/MM/DD format.</li>
+<li><code>getWeekEnd()</code> Return ending day of the current week in YYYY/MM/DD format</li>
+<li><code>getStartWeekOfMonth()</code> Return starting week number of the current month</li>
+<li><code>getEndWeekOfMonth()</code> Return ending week number of the current month</li>
+<li><code>getWoM()</code> Return 1-based number of week in the current month</li>
+<li><code>getWoMString()</code> Return a simple string as 'هفته سوم شهریور'</li>
+<li><code>getIsLeap()</code> Checks the specified year for a leap year.</li>
+</ul>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Wed, 07 Nov 2018 17:20:48 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

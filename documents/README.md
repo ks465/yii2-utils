@@ -12,19 +12,26 @@ Guides, notes, and anything regarding good style programming and documenting:
 #Components
 All the classes in the component directory of the package:
 
- 1. [Array Helper](components-array-helper.md) contains more methods for transforming and reshaping arrays.
+1. [Array Helper](components-array-helper.md) contains more methods for transforming and reshaping arrays.
+1. [Jalali & JalaliX](components-jalali.md) contain Jalali date object creation and manipulation. 
 
+#Columns
+Columns are classes extending \kartik\grid\ActionColumn instead of \yii\grid\ActionColumn.
+They are specialized versions for Kartik Gridview.
+
+1. [ActionColumn](columns-action-column.md)
 
 #Models
 
- 1. [Base Model](models-khan-model.md) contains basic skeleton for all models.
- 1. [Base user](models-khan-user.md) contains basic skeleton for all user models.
+1. [Base Model](models-khan-model.md) contains basic skeleton for all models.
+1. [Base user](models-khan-user.md) contains basic skeleton for all user models.
 
 
 #Others
+These are miscellaneous classes for configuring the package or installation.
 
- 1. [Settings](settings.md) contains all the settings and constant values.
- 1. [Migrations](helpers-migrations.md) contains all the migrations required for rising the package up and running.
+1. [Settings](settings.md) contains all the settings and constant values.
+1. [Migrations](helpers-migrations.md) contains all the migrations required for rising the package up and running.
  
  
 #StartUp

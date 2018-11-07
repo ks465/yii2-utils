@@ -347,7 +347,7 @@ class SqlFormatter
      * Return the next token and token type in a SQL string.
      * Quoted strings, comments, reserved words, whitespace, and punctuation are all their own tokens.
      *
-     * @param String $string   The SQL string
+     * @param String $string The SQL string
      * @param array  $previous The result of the previous getNextToken() call
      *
      * @return array An associative array containing the type and value of the token.
@@ -774,7 +774,7 @@ class SqlFormatter
     /**
      * Format the whitespace in a SQL string to make it easier to read.
      *
-     * @param String  $string    The SQL string
+     * @param String  $string The SQL string
      * @param boolean $highlight If true, syntax highlighting will also be performed
      *
      * @return String The SQL string with HTML styles and formatting wrapped in a <pre> tag

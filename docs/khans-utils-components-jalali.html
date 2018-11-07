@@ -69,140 +69,47 @@
         <h1>Class KHanS\Utils\components\Jalali</h1>
 <div class="top-nav">
     <a href="index.html">All Classes</a>
-            | <a href="#properties">Properties</a>
                 | <a href="#methods">Methods</a>
-            </div>
+                    | <a href="#constants">Constants</a>
+    </div>
 
 <table class="summaryTable docClass table table-bordered">
     <colgroup>
         <col class="col-name" />
         <col class="col-value" />
     </colgroup>
-            <tr><th>Inheritance</th><td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td></tr>
+            <tr><th>Inheritance</th><td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a> &raquo;
+yii\base\BaseObject</td></tr>
                             <tr><th>Subclasses</th><td><a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a></td></tr>
                         </table>
 
 <div class="class-description">
-    <p><strong>Examples:
-Constructing the class:
-1. Constructing a class from php.time():
-   $jDate_1 = new Jalali( ) ;
-2. Constructing the class from any given time stamp:
-   $jDate_2 = new Jalali( Time_Stamp ) ;
-3. Constructing the class from (year, month, day, hour, minute, second) values:
-   $jDate_3 = new Jalali( 1383, 12, 30, 13, 45, 25 ) ;
-Calling class methods:
-1. $jDate-&gt;date( format ) ; //using format syntax same as php.date() syntax generates the string output
-   [see: http://www.php.net/manual/en/function.date.php].</strong></p>
-    <ol>
-<li>$jDate-&gt;timestamp( ) ; //returns the used (internal) timestamp. php.date() returns equivalent Julian date
-for this time stamp.
-Direct call:</li>
-<li>Jalali::date( format, [time stamp], [decorate] ) ; //using the format outputs the timestamp -- or the current
-stamp if left blank, in the desired shape. use decorate to show numbers as numbers or strings.</li>
-<li>Jalali::timestamp() ; //returns the used (internal) timestamp. php.date() returns equivalent Julian date
-for this time stamp.</li>
-</ol>
+    <p><strong>Class JalaliDate provides an exact scientific approach to creating Persian date
+with an output interface as similar to php::date() as possible</strong></p>
+    <p>Note 1: <a href="khans-utils-components-jalali.html#date()-detail">date()</a> method changes internals of the Jalali Class. After using <a href="khans-utils-components-jalali.html#date()-detail">date()</a> static method, other static
+methods of this class will act upon that date/time settings.</p>
+<p>Note 2: <a href="khans-utils-components-jalali.html#mktime()-detail">mktime()</a> method does not change internals of Jalali static class. In other words using other static
+methods of this class after using <a href="khans-utils-components-jalali.html#mktime()-detail">mktime()</a> method has unpredicted results. If you need a consistent calendar
+object use <a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a> instead.</p>
+<p>Examples:</p>
+<p>Constructing the class:</p>
+<p>   Jalali class is not intended to be instantiated. Use JalaliX instead.</p>
+<p>Calling class methods:</p>
+<pre><code class="hljs php language-php"><span class="hljs-number">1.</span> <span class="hljs-variable">$jDate</span>-&gt;date( format ) ; <span class="hljs-comment">//using format syntax same as php::date() syntax generates the string output</span>
 
-    </div>
+<span class="hljs-number">2.</span> <span class="hljs-variable">$jDate</span>-&gt;timestamp( ) ; <span class="hljs-comment">//returns the used(internal) timestamp. php::date() returns equivalent Julian date for</span>
+this time stamp.
+
+Direct call:
+<span class="hljs-number">1.</span> Jalali::date( format,[time stamp],[decorate] ) ; <span class="hljs-comment">//using the format outputs the timestamp -- or the current</span>
+<span class="hljs-comment">//   stamp if left blank, in the desired shape. Use decorate to show numbers as digits or Persian string numerals.</span>
+<span class="hljs-number">2.</span> Jalali::timestamp() ; <span class="hljs-comment">//returns the used(internal) timestamp. php::date() returns equivalent Julian date for</span>
+this time stamp.
+</code></pre>
+
+    <p>See also <a href="http://www.php.net/manual/en/function.date.php">http://www.php.net/manual/en/function.date.php</a>.</p></div>
 
 <a id="properties"></a>
-
-<div class="summary doc-property">
-<h2>Public Properties</h2>
-
-<p><a href="#" class="toggle">Hide inherited properties</a></p>
-
-<table class="summary-table table table-striped table-bordered table-hover">
-<colgroup>
-    <col class="col-property" />
-    <col class="col-type" />
-    <col class="col-description" />
-    <col class="col-defined" />
-</colgroup>
-<tr>
-  <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
-</tr>
-                            <tr id="$monthLongName">
-        <td><a href="khans-utils-components-jalali.html#$monthLongName-detail">$monthLongName</a></td>
-        <td><a href="http://www.php.net/language.types.array">array</a></td>
-        <td></td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-                    </table>
-</div>
-
-<div class="summary doc-property">
-<h2>Protected Properties</h2>
-
-<p><a href="#" class="toggle">Hide inherited properties</a></p>
-
-<table class="summary-table table table-striped table-bordered table-hover">
-<colgroup>
-    <col class="col-property" />
-    <col class="col-type" />
-    <col class="col-description" />
-    <col class="col-defined" />
-</colgroup>
-<tr>
-  <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
-</tr>
-        <tr id="$day">
-        <td><a href="khans-utils-components-jalali.html#$day-detail">$day</a></td>
-        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
-        <td></td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-            <tr id="$dayOfYear">
-        <td><a href="khans-utils-components-jalali.html#$dayOfYear-detail">$dayOfYear</a></td>
-        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
-        <td></td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-            <tr id="$hour">
-        <td><a href="khans-utils-components-jalali.html#$hour-detail">$hour</a></td>
-        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
-        <td></td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-            <tr id="$minute">
-        <td><a href="khans-utils-components-jalali.html#$minute-detail">$minute</a></td>
-        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
-        <td></td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-            <tr id="$month">
-        <td><a href="khans-utils-components-jalali.html#$month-detail">$month</a></td>
-        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
-        <td></td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-                <tr id="$second">
-        <td><a href="khans-utils-components-jalali.html#$second-detail">$second</a></td>
-        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
-        <td></td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-            <tr id="$timeStamp">
-        <td><a href="khans-utils-components-jalali.html#$timeStamp-detail">$timeStamp</a></td>
-        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
-        <td></td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-            <tr id="$timeZone">
-        <td><a href="khans-utils-components-jalali.html#$timeZone-detail">$timeZone</a></td>
-        <td><a href="http://www.php.net/language.types.string">string</a></td>
-        <td></td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-            <tr id="$year">
-        <td><a href="khans-utils-components-jalali.html#$year-detail">$year</a></td>
-        <td><a href="http://www.php.net/language.types.integer">integer</a></td>
-        <td></td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-    </table>
-</div>
 
 <a id="methods"></a>
 
@@ -220,79 +127,107 @@ for this time stamp.</li>
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-            <tr id="__construct()">
+        <tr id="__construct()">
         <td><a href="khans-utils-components-jalali.html#__construct()-detail">__construct()</a></td>
-        <td>Jalali::__construct()</td>
+        <td>This class is not designed for instantiating.</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
                     <tr id="date()">
         <td><a href="khans-utils-components-jalali.html#date()-detail">date()</a></td>
-        <td>Jalali::date()
-this is a clone of the internal php function date()
-with a few exceptions in the acceptable parameters</td>
+        <td>This is a clone of the internal php function date().</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
-                            <tr id="getDay()">
+            <tr id="dayName()">
+        <td><a href="khans-utils-components-jalali.html#dayName()-detail">dayName()</a></td>
+        <td>Returns names of the weekday in full</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr id="dayOfWeek()">
+        <td><a href="khans-utils-components-jalali.html#dayOfWeek()-detail">dayOfWeek()</a></td>
+        <td>Get number of days from starting of the current week</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr id="dayOfYear()">
+        <td><a href="khans-utils-components-jalali.html#dayOfYear()-detail">dayOfYear()</a></td>
+        <td>Get value of the day in the year</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr id="dayShortName()">
+        <td><a href="khans-utils-components-jalali.html#dayShortName()-detail">dayShortName()</a></td>
+        <td>Returns abbreviated --single letter-- names of the weekday.</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr id="getDay()">
         <td><a href="khans-utils-components-jalali.html#getDay()-detail">getDay()</a></td>
-        <td></td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-            <tr id="getDoW()">
-        <td><a href="khans-utils-components-jalali.html#getDoW()-detail">getDoW()</a></td>
-        <td></td>
+        <td>Get day in month value</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
             <tr id="getHour()">
         <td><a href="khans-utils-components-jalali.html#getHour()-detail">getHour()</a></td>
-        <td></td>
+        <td>Get hour</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
             <tr id="getMinute()">
         <td><a href="khans-utils-components-jalali.html#getMinute()-detail">getMinute()</a></td>
-        <td></td>
+        <td>Get minute</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
             <tr id="getMonth()">
         <td><a href="khans-utils-components-jalali.html#getMonth()-detail">getMonth()</a></td>
-        <td></td>
+        <td>Get month value</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
             <tr id="getSecond()">
         <td><a href="khans-utils-components-jalali.html#getSecond()-detail">getSecond()</a></td>
-        <td></td>
+        <td>Get second</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr id="getTimestamp()">
+        <td><a href="khans-utils-components-jalali.html#getTimestamp()-detail">getTimestamp()</a></td>
+        <td>Get current value of the timestamp in Unix timestamp format</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr id="getWeekName()">
+        <td><a href="khans-utils-components-jalali.html#getWeekName()-detail">getWeekName()</a></td>
+        <td>Return number of week from beginning of the month in words</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
             <tr id="getYear()">
         <td><a href="khans-utils-components-jalali.html#getYear()-detail">getYear()</a></td>
-        <td></td>
+        <td>Get year value</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
-                <tr id="mktime()">
+            <tr id="isLeap()">
+        <td><a href="khans-utils-components-jalali.html#isLeap()-detail">isLeap()</a></td>
+        <td>Checks the specified year for a leap year.</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr id="mktime()">
         <td><a href="khans-utils-components-jalali.html#mktime()-detail">mktime()</a></td>
-        <td>Jalali::mktime()
-creates timestamp depending on the Persian time parameters</td>
+        <td>Creates timestamp depending on the Persian time parameters</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
-                <tr id="monthName()">
+            <tr id="monthDayString()">
+        <td><a href="khans-utils-components-jalali.html#monthDayString()-detail">monthDayString()</a></td>
+        <td>Returns long text day of the month</td>
+        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+    </tr>
+            <tr id="monthName()">
         <td><a href="khans-utils-components-jalali.html#monthName()-detail">monthName()</a></td>
-        <td>Jalali::monthName()
-returns names of the month</td>
+        <td>Returns names of the month</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
             <tr id="monthShortName()">
         <td><a href="khans-utils-components-jalali.html#monthShortName()-detail">monthShortName()</a></td>
-        <td>Jalali::monthShortName()
-returns abbreviated names of the month</td>
+        <td>Returns abbreviated --three-letters-- names of the month</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
-            <tr id="timestamp()">
-        <td><a href="khans-utils-components-jalali.html#timestamp()-detail">timestamp()</a></td>
-        <td>Jalali::timestamp()
-returns current timestamp of the object
-this time stamp is equivalent to system timestamp; for current time</td>
+            <tr id="weekOfYear()">
+        <td><a href="khans-utils-components-jalali.html#weekOfYear()-detail">weekOfYear()</a></td>
+        <td>Get value of week number in year</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
-        </table>
+    </table>
 </div>
 
 <div class="summary doc-method">
@@ -309,285 +244,127 @@ this time stamp is equivalent to system timestamp; for current time</td>
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-        <tr id="ParsiNumbers()">
-        <td><a href="khans-utils-components-jalali.html#ParsiNumbers()-detail">ParsiNumbers()</a></td>
-        <td>Jalali::ParsiNumbers()
-converts digits to Persian traditional font face and
-corrects the no-width space in words
-use the function on the returned value in the source code</td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-                <tr id="_date()">
+            <tr id="_date()">
         <td><a href="khans-utils-components-jalali.html#_date()-detail">_date()</a></td>
-        <td>Jalali::_date()
-sets the full date data Y;M;D;H;I;S in various class attributes</td>
+        <td>Sets the full date data Y;M;D;H;I;S in various class attributes</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
-            <tr id="calcRasad()">
-        <td><a href="khans-utils-components-jalali.html#calcRasad()-detail">calcRasad()</a></td>
-        <td>Jalali::calcRasad()
-calculates the years from reference Rasad year</td>
+            <tr id="_dayOfWeek()">
+        <td><a href="khans-utils-components-jalali.html#_dayOfWeek()-detail">_dayOfWeek()</a></td>
+        <td>Returns weekday of the specified day of the year</td>
         <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
     </tr>
-                <tr id="dayName()">
-        <td><a href="khans-utils-components-jalali.html#dayName()-detail">dayName()</a></td>
-        <td>Jalali::dayName()
-returns names of the weekday</td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-            <tr id="dayOfWeek()">
-        <td><a href="khans-utils-components-jalali.html#dayOfWeek()-detail">dayOfWeek()</a></td>
-        <td>Jalali::dayOfWeek()
-returns weekday of the specified day of the year</td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-            <tr id="dayOfYear()">
-        <td><a href="khans-utils-components-jalali.html#dayOfYear()-detail">dayOfYear()</a></td>
-        <td>Jalali::dayOfYear()
-get value of the day in the year</td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-            <tr id="dayShortName()">
-        <td><a href="khans-utils-components-jalali.html#dayShortName()-detail">dayShortName()</a></td>
-        <td>Jalali::dayShortName()
-returns abbreviated names of the weekday</td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-                                        <tr id="isLeap()">
-        <td><a href="khans-utils-components-jalali.html#isLeap()-detail">isLeap()</a></td>
-        <td>Jalali::isLeap()
-Checks the specified year for a leap year
-if the second parameter is false the year is assumed to
-be Gregorian otherwise Persian.</td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-                <tr id="monthDayString()">
-        <td><a href="khans-utils-components-jalali.html#monthDayString()-detail">monthDayString()</a></td>
-        <td>Jalali::monthDayString()
-returns long text day of the month</td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-                        <tr id="yearName()">
-        <td><a href="khans-utils-components-jalali.html#yearName()-detail">yearName()</a></td>
-        <td>Jalali::yearName()
-returns ancient names of the year</td>
-        <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
-    </tr>
-    </table>
+                                                                                </table>
 </div>
 
 <a id="events"></a>
 
 <a id="constants"></a>
+<div class="summary doc-const">
+    <h2>Constants</h2>
 
-<h2>Property Details</h2>
+    <p><a href="#" class="toggle">Hide inherited constants</a></p>
 
-<div class="property-doc">
-
-    <div class="detail-header h3" id="$day-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#$day-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $day        <span class="detail-header-tag small">
-            protected            static                                    property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <a href="khans-utils-components-jalali.html#$day-detail">$day</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span></div>
-
-
-    <div class="detail-header h3" id="$dayOfYear-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#$dayOfYear-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $dayOfYear        <span class="detail-header-tag small">
-            protected            static                                    property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <a href="khans-utils-components-jalali.html#$dayOfYear-detail">$dayOfYear</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span></div>
-
-
-    <div class="detail-header h3" id="$hour-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#$hour-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $hour        <span class="detail-header-tag small">
-            protected            static                                    property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <a href="khans-utils-components-jalali.html#$hour-detail">$hour</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span></div>
-
-
-    <div class="detail-header h3" id="$minute-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#$minute-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $minute        <span class="detail-header-tag small">
-            protected            static                                    property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <a href="khans-utils-components-jalali.html#$minute-detail">$minute</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span></div>
-
-
-    <div class="detail-header h3" id="$month-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#$month-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $month        <span class="detail-header-tag small">
-            protected            static                                    property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <a href="khans-utils-components-jalali.html#$month-detail">$month</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span></div>
-
-
-    <div class="detail-header h3" id="$monthLongName-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#$monthLongName-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $monthLongName        <span class="detail-header-tag small">
-            public            static                                    property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="khans-utils-components-jalali.html#$monthLongName-detail">$monthLongName</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #0000BB">1&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'فروردین'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'اردیبهشت'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'خرداد'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'تیر'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'امرداد'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'شهریور'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'مهر'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'آبان'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'آذر'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'دی'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'بهمن'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'اسفند'</span><span style="color: #007700">]</span></div>
-
-
-    <div class="detail-header h3" id="$second-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#$second-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $second        <span class="detail-header-tag small">
-            protected            static                                    property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <a href="khans-utils-components-jalali.html#$second-detail">$second</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span></div>
-
-
-    <div class="detail-header h3" id="$timeStamp-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#$timeStamp-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $timeStamp        <span class="detail-header-tag small">
-            protected            static                                    property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <a href="khans-utils-components-jalali.html#$timeStamp-detail">$timeStamp</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span></div>
-
-
-    <div class="detail-header h3" id="$timeZone-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#$timeZone-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $timeZone        <span class="detail-header-tag small">
-            protected            static                                    property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-components-jalali.html#$timeZone-detail">$timeZone</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">''</span></div>
-
-
-    <div class="detail-header h3" id="$year-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#$year-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $year        <span class="detail-header-tag small">
-            protected            static                                    property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        
-            </div>
-
-    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <a href="khans-utils-components-jalali.html#$year-detail">$year</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span></div>
-
+    <table class="summary-table table table-striped table-bordered table-hover">
+    <colgroup>
+        <col class="col-const" />
+        <col class="col-value" />
+        <col class="col-description" />
+        <col class="col-defined" />
+    </colgroup>
+    <tr>
+        <th>Constant</th><th>Value</th><th>Description</th><th>Defined By</th>
+    </tr>
+            <tr id="ATOM">
+          <td id="ATOM-detail">ATOM</td>
+          <td>"Y-m-d\TH:i:sP"</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+        </tr>
+            <tr id="COOKIE">
+          <td id="COOKIE-detail">COOKIE</td>
+          <td>"l, d-M-Y H:i:s T"</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+        </tr>
+            <tr id="ISO8601">
+          <td id="ISO8601-detail">ISO8601</td>
+          <td>"Y-m-d\TH:i:sO"</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+        </tr>
+            <tr id="RFC1036">
+          <td id="RFC1036-detail">RFC1036</td>
+          <td>"D, d M y H:i:s O"</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+        </tr>
+            <tr id="RFC1123">
+          <td id="RFC1123-detail">RFC1123</td>
+          <td>"D, d M Y H:i:s O"</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+        </tr>
+            <tr id="RFC2822">
+          <td id="RFC2822-detail">RFC2822</td>
+          <td>"D, d M Y H:i:s O"</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+        </tr>
+            <tr id="RFC3339">
+          <td id="RFC3339-detail">RFC3339</td>
+          <td>"Y-m-d\TH:i:sP"</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+        </tr>
+            <tr id="RFC3339_EXTENDED">
+          <td id="RFC3339_EXTENDED-detail">RFC3339_EXTENDED</td>
+          <td>"Y-m-d\TH:i:s.vP"</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+        </tr>
+            <tr id="RFC822">
+          <td id="RFC822-detail">RFC822</td>
+          <td>"D, d M y H:i:s O"</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+        </tr>
+            <tr id="RFC850">
+          <td id="RFC850-detail">RFC850</td>
+          <td>"l, d-M-y H:i:s T"</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+        </tr>
+            <tr id="RSS">
+          <td id="RSS-detail">RSS</td>
+          <td>"D, d M Y H:i:s O"</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+        </tr>
+            <tr id="W3C">
+          <td id="W3C-detail">W3C</td>
+          <td>"Y-m-d\TH:i:sP"</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-components-jalali.html">KHanS\Utils\components\Jalali</a></td>
+        </tr>
+        </table>
 </div>
+
 <h2>Method Details</h2>
 
 <div class="method-doc">
-
-    <div class="detail-header h3" id="ParsiNumbers()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#ParsiNumbers()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        ParsiNumbers()
-        <span class="detail-header-tag small">
-            protected                        static            method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Jalali::ParsiNumbers()
-converts digits to Persian traditional font face and
-corrects the no-width space in words
-use the function on the returned value in the source code</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-jalali.html#ParsiNumbers()-detail">ParsiNumbers</a></strong> ( <span style="color: #0000BB">$phrase</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$phrase</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                                                </table>
-
-<!--	-->
 
     <div class="detail-header h3" id="__construct()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
@@ -601,57 +378,19 @@ use the function on the returned value in the source code</strong></p>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::__construct()</strong></p>
+        <p><strong>This class is not designed for instantiating.</strong></p>
 
-        
+        <p>This method is used to confirm that instantiating Jalali class always fails.</p>
+
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-components-jalali.html#__construct()-detail">__construct</a></strong> ( <span style="color: #0000BB">$year&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span>, <span style="color: #0000BB">$month&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span>, <span style="color: #0000BB">$day&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span>, <span style="color: #0000BB">$hour&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span>, <span style="color: #0000BB">$minute&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span>, <span style="color: #0000BB">$second&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$year</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"><p>--Optional timestamp or hour value</p>
-</td>
-                </tr>
-                            <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$month</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"><p>--Optional</p>
-</td>
-                </tr>
-                            <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$day</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"><p>--Optional</p>
-</td>
-                </tr>
-                            <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$hour</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"><p>--Optional</p>
-</td>
-                </tr>
-                            <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$minute</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"><p>--Optional</p>
-</td>
-                </tr>
-                            <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$second</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"><p>--Optional</p>
-<pre><code class="hljs sql">                   single parameter is supposed to be a valid timestamp
-                   multiple <span class="hljs-comment">--6-- parameters are supposed to be year, month, day, hour, minute, second</span>
-                   values/
-</code></pre>
-</td>
-                </tr>
-                                                    <tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-components-jalali.html#__construct()-detail">__construct</a></strong> ( )</td></tr>
+                                                            <tr>
                   <th class="param-name-col">throws</th>
                   <td class="param-type-col">\yii\db\Exception</td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>Do fail instantiating.</p>
+</td>
                 </tr>
                         </table>
 
@@ -669,8 +408,7 @@ use the function on the returned value in the source code</strong></p>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::_date()
-sets the full date data Y;M;D;H;I;S in various class attributes</strong></p>
+        <p><strong>Sets the full date data Y;M;D;H;I;S in various class attributes</strong></p>
 
         
             </div>
@@ -680,17 +418,18 @@ sets the full date data Y;M;D;H;I;S in various class attributes</strong></p>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$timeStamp</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>Value of time in Unix timestamp format</p>
+</td>
                 </tr>
                                                 </table>
 
 <!--	-->
 
-    <div class="detail-header h3" id="calcRasad()-detail">
+    <div class="detail-header h3" id="_dayOfWeek()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#calcRasad()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-jalali.html#_dayOfWeek()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        calcRasad()
+        _dayOfWeek()
         <span class="detail-header-tag small">
             protected                        static            method
                     </span>
@@ -698,18 +437,24 @@ sets the full date data Y;M;D;H;I;S in various class attributes</strong></p>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::calcRasad()
-calculates the years from reference Rasad year</strong></p>
+        <p><strong>Returns weekday of the specified day of the year</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="khans-utils-components-jalali.html#calcRasad()-detail">calcRasad</a></strong> ( <span style="color: #0000BB">$yearValue</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-components-jalali.html#_dayOfWeek()-detail">_dayOfWeek</a></strong> ( <span style="color: #0000BB">$yearValue</span>, <span style="color: #0000BB">$dayOfYear&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$yearValue</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>Value of a Jalali year.</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$dayOfYear</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Day number.</p>
+</td>
                 </tr>
                                                 </table>
 
@@ -727,33 +472,75 @@ calculates the years from reference Rasad year</strong></p>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::date()
-this is a clone of the internal php function date()
-with a few exceptions in the acceptable parameters</strong></p>
+        <p><strong>This is a clone of the internal php function date().</strong></p>
 
-        
+        <p>See also Constants in Jalali class, which could be used in place of these references.</p>
+<p>This is the list for reference:
+<pre>
+a: Lowercase Ante meridiem and Post meridiem    am or pm
+A: Uppercase Ante meridiem and Post meridiem    AM or PM
+d: days from 01 to 31
+D: days --short-- from ش to آ
+j: days from 1 to 31
+l(lowercase 'L'): days from شنبه to آدینه
+N: number of day in week from 1(شنبه) to 7(آدینه)
+w: number of day in week
+S: month days from یکم to سی‌و‌یکم
+z: day in the year
+W: week in the year
+F: Month name from قروردین to اسفند
+m: Month number from 01 to 12
+M: month from فرو to اسف
+n: Month number from 1 to 12
+Y: full year numeric representation -- 4 digit
+y: year numeric representation -- 2 digit
+g: 12-hour format of an hour without leading zeros    1 through 12
+G: 24-hour format of an hour without leading zeros    0 through 23
+h: 12-hour format of an hour with leading zeros    01 through 12
+H: 24-hour format of an hour with leading zeros    00 through 23
+i: Minutes with leading zeros    00 to 59
+s: Seconds, with leading zeros    00 through 59
+T: Timezone abbreviation    Examples: EST, MDT ...
+U: Seconds since the Unix Epoch(January 1 1970 00:00:00 UTC)    See also time()
+L: whether it's a leap year
+I:(capital i) Whether or not the date is in daylight saving time 1 if Daylight Saving Time, 0 otherwise.
+O: Difference to Greenwich time(UTC) in hours    Example: +0200
+o: year number
+P: Difference to Greenwich time(UTC) with colon between hours and minutes(added in PHP 5.1.3)
+Z: Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of
+UTC is always positive. -43200 through 50400 c: ISO 8601 date(added in PHP 5)    2004-02-12T15:19:21+00:00 r: »
+RFC 2822 formatted date    Example: Thu, 21 Dec 2000 16:01:07 +0200 t: number of days in the given month e:
+Timezone identifier(added in PHP 5.1.0)    Examples: UTC, UTC, Atlantic/Azores u: Microseconds(added in PHP
+5.2.2)    Example: 54321 as PHP::date() function it will set to  000000
+</pre>
+Following types are not recognized:
+<pre>
+B: Swatch Internet time    000 through 999
+</pre></p>
+
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-components-jalali.html#date()-detail">date</a></strong> ( <span style="color: #0000BB">$format</span>, <span style="color: #0000BB">$timestamp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span>, <span style="color: #0000BB">$decorate&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-components-jalali.html#date()-detail">date</a></strong> ( <span style="color: #0000BB">$format</span>, <span style="color: #0000BB">$timestamp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span>, <span style="color: #0000BB">$decorate&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$format</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>The format of the outputted date string. See</p>
+<pre><code class="hljs less"><span class="hljs-attribute">http</span>:<span class="hljs-comment">//www.php.net/manual/en/function.date.php</span>
+</code></pre>
+</td>
                 </tr>
                             <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$timestamp</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"><p>The unix-type timestamp to be used for output</p>
+                  <td class="param-desc-col"><p>The unix-type timestamp to be used for output.</p>
 </td>
                 </tr>
                             <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$decorate</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
-                  <td class="param-desc-col"><p>If true function decorate is used for changing the face of output</p>
-<pre><code class="hljs javascript">                      <span class="hljs-keyword">if</span> <span class="hljs-literal">false</span> the normal face <span class="hljs-keyword">of</span> output is returned. <span class="hljs-keyword">for</span> numbers <span class="hljs-literal">false</span> returns number, <span class="hljs-literal">true</span>
-                      returns string.
-</code></pre>
+                  <td class="param-desc-col"><p>If true function decorate is used for changing the face of output.
+If false the normal face of output is returned. For numbers false returns number, true returns string.</p>
 </td>
                 </tr>
                                                 </table>
@@ -766,24 +553,24 @@ with a few exceptions in the acceptable parameters</strong></p>
         
         dayName()
         <span class="detail-header-tag small">
-            protected                        static            method
+            public                        static            method
                     </span>
     </div>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::dayName()
-returns names of the weekday</strong></p>
+        <p><strong>Returns names of the weekday in full</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-jalali.html#dayName()-detail">dayName</a></strong> ( <span style="color: #0000BB">$dayValue</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-jalali.html#dayName()-detail">dayName</a></strong> ( <span style="color: #0000BB">$dayValue</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$dayValue</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>0-based week-day number</p>
+</td>
                 </tr>
                                                 </table>
 
@@ -795,31 +582,20 @@ returns names of the weekday</strong></p>
         
         dayOfWeek()
         <span class="detail-header-tag small">
-            protected                        static            method
+            public                        static            method
                     </span>
     </div>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::dayOfWeek()
-returns weekday of the specified day of the year</strong></p>
+        <p><strong>Get number of days from starting of the current week</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-components-jalali.html#dayOfWeek()-detail">dayOfWeek</a></strong> ( <span style="color: #0000BB">$yearValue</span>, <span style="color: #0000BB">$dayOfYear&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$yearValue</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                            <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$dayOfYear</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                                                </table>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="khans-utils-components-jalali.html#dayOfWeek()-detail">dayOfWeek</a></strong> ( )</td></tr>
+            </table>
 
 <!--	-->
 
@@ -829,20 +605,19 @@ returns weekday of the specified day of the year</strong></p>
         
         dayOfYear()
         <span class="detail-header-tag small">
-            protected                        static            method
+            public                        static            method
                     </span>
     </div>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::dayOfYear()
-get value of the day in the year</strong></p>
+        <p><strong>Get value of the day in the year</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="khans-utils-components-jalali.html#dayOfYear()-detail">dayOfYear</a></strong> ( )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="khans-utils-components-jalali.html#dayOfYear()-detail">dayOfYear</a></strong> ( )</td></tr>
             </table>
 
 <!--	-->
@@ -853,24 +628,24 @@ get value of the day in the year</strong></p>
         
         dayShortName()
         <span class="detail-header-tag small">
-            protected                        static            method
+            public                        static            method
                     </span>
     </div>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::dayShortName()
-returns abbreviated names of the weekday</strong></p>
+        <p><strong>Returns abbreviated --single letter-- names of the weekday.</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-jalali.html#dayShortName()-detail">dayShortName</a></strong> ( <span style="color: #0000BB">$dayValue</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-jalali.html#dayShortName()-detail">dayShortName</a></strong> ( <span style="color: #0000BB">$dayValue</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$dayValue</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>0-based week-day number</p>
+</td>
                 </tr>
                                                 </table>
 
@@ -888,36 +663,13 @@ returns abbreviated names of the weekday</strong></p>
 
     
     <div class="doc-description">
-        <p><strong></strong></p>
+        <p><strong>Get day in month value</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
         <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="khans-utils-components-jalali.html#getDay()-detail">getDay</a></strong> ( )</td></tr>
-            </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="getDoW()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#getDoW()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        getDoW()
-        <span class="detail-header-tag small">
-            public                        static            method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong></strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="khans-utils-components-jalali.html#getDoW()-detail">getDoW</a></strong> ( )</td></tr>
             </table>
 
 <!--	-->
@@ -934,7 +686,7 @@ returns abbreviated names of the weekday</strong></p>
 
     
     <div class="doc-description">
-        <p><strong></strong></p>
+        <p><strong>Get hour</strong></p>
 
         
             </div>
@@ -957,7 +709,7 @@ returns abbreviated names of the weekday</strong></p>
 
     
     <div class="doc-description">
-        <p><strong></strong></p>
+        <p><strong>Get minute</strong></p>
 
         
             </div>
@@ -980,7 +732,7 @@ returns abbreviated names of the weekday</strong></p>
 
     
     <div class="doc-description">
-        <p><strong></strong></p>
+        <p><strong>Get month value</strong></p>
 
         
             </div>
@@ -1003,7 +755,7 @@ returns abbreviated names of the weekday</strong></p>
 
     
     <div class="doc-description">
-        <p><strong></strong></p>
+        <p><strong>Get second</strong></p>
 
         
             </div>
@@ -1011,6 +763,58 @@ returns abbreviated names of the weekday</strong></p>
     <table class="detail-table table table-striped table-bordered table-hover">
         <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="khans-utils-components-jalali.html#getSecond()-detail">getSecond</a></strong> ( )</td></tr>
             </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getTimestamp()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-jalali.html#getTimestamp()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getTimestamp()
+        <span class="detail-header-tag small">
+            public                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Get current value of the timestamp in Unix timestamp format</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="khans-utils-components-jalali.html#getTimestamp()-detail">getTimestamp</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getWeekName()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-jalali.html#getWeekName()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getWeekName()
+        <span class="detail-header-tag small">
+            public                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Return number of week from beginning of the month in words</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-jalali.html#getWeekName()-detail">getWeekName</a></strong> ( <span style="color: #0000BB">$weekNumber</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$weekNumber</span></td>
+                  <td class="param-type-col"></td>
+                  <td class="param-desc-col"><p>1-based week number in a month</p>
+</td>
+                </tr>
+                                                </table>
 
 <!--	-->
 
@@ -1026,7 +830,7 @@ returns abbreviated names of the weekday</strong></p>
 
     
     <div class="doc-description">
-        <p><strong></strong></p>
+        <p><strong>Get year value</strong></p>
 
         
             </div>
@@ -1043,30 +847,33 @@ returns abbreviated names of the weekday</strong></p>
         
         isLeap()
         <span class="detail-header-tag small">
-            protected                        static            method
+            public                        static            method
                     </span>
     </div>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::isLeap()
-Checks the specified year for a leap year
-if the second parameter is false the year is assumed to
-be Gregorian otherwise Persian.</strong></p>
+        <p><strong>Checks the specified year for a leap year.</strong></p>
 
-        <p>The return value is the number of the leap year (1 - 31)in one cycle
-for leap years and false for normal years</p>
-
+        
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-components-jalali.html#isLeap()-detail">isLeap</a></strong> ( <span style="color: #0000BB">$yearValue</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a>|<a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="khans-utils-components-jalali.html#isLeap()-detail">isLeap</a></strong> ( <span style="color: #0000BB">$yearValue</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$yearValue</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>Value of a Jalali year.</p>
+</td>
                 </tr>
-                                                </table>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a>|<a href="http://www.php.net/language.types.boolean">boolean</a></td>
+                  <td class="param-desc-col"><p>The return value is the number of the leap year(1 - 31) in one cycle
+for leap years and false for normal years.</p>
+</td>
+                </tr>
+                                    </table>
 
 <!--	-->
 
@@ -1082,10 +889,12 @@ for leap years and false for normal years</p>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::mktime()
-creates timestamp depending on the Persian time parameters</strong></p>
+        <p><strong>Creates timestamp depending on the Persian time parameters</strong></p>
 
-        
+        <p>Note that this method does not change internals of Jalali static class. In other words using other static
+methods of this class after using mktime method has unpredicted results. If you need a consistent calendar
+object use <a href="khans-utils-components-jalalix.html">KHanS\Utils\components\JalaliX</a> instead.</p>
+
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
@@ -1093,32 +902,38 @@ creates timestamp depending on the Persian time parameters</strong></p>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$year</span></td>
                   <td class="param-type-col">mixed</td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>Year number in a Jalali calendar</p>
+</td>
                 </tr>
                             <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$month</span></td>
                   <td class="param-type-col">mixed</td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>Month number in a Persian calendar</p>
+</td>
                 </tr>
                             <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$day</span></td>
                   <td class="param-type-col">mixed</td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>Day in the month number in a Persian calendar</p>
+</td>
                 </tr>
                             <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$hour</span></td>
                   <td class="param-type-col">mixed</td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>Hour in a day time</p>
+</td>
                 </tr>
                             <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$minute</span></td>
                   <td class="param-type-col">mixed</td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>Minute in day time</p>
+</td>
                 </tr>
                             <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$second</span></td>
                   <td class="param-type-col">mixed</td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>Second in day time</p>
+</td>
                 </tr>
                                                 </table>
 
@@ -1130,24 +945,24 @@ creates timestamp depending on the Persian time parameters</strong></p>
         
         monthDayString()
         <span class="detail-header-tag small">
-            protected                        static            method
+            public                        static            method
                     </span>
     </div>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::monthDayString()
-returns long text day of the month</strong></p>
+        <p><strong>Returns long text day of the month</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-jalali.html#monthDayString()-detail">monthDayString</a></strong> ( <span style="color: #0000BB">$monthDayValue</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-jalali.html#monthDayString()-detail">monthDayString</a></strong> ( <span style="color: #0000BB">$monthDayValue</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$monthDayValue</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>1-based day number in month</p>
+</td>
                 </tr>
                                                 </table>
 
@@ -1165,8 +980,7 @@ returns long text day of the month</strong></p>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::monthName()
-returns names of the month</strong></p>
+        <p><strong>Returns names of the month</strong></p>
 
         
             </div>
@@ -1176,7 +990,8 @@ returns names of the month</strong></p>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$monthValue</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-desc-col"><p>1-based month number in a year</p>
+</td>
                 </tr>
                                                 </table>
 
@@ -1194,8 +1009,7 @@ returns names of the month</strong></p>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::monthShortName()
-returns abbreviated names of the month</strong></p>
+        <p><strong>Returns abbreviated --three-letters-- names of the month</strong></p>
 
         
             </div>
@@ -1211,11 +1025,11 @@ returns abbreviated names of the month</strong></p>
 
 <!--	-->
 
-    <div class="detail-header h3" id="timestamp()-detail">
+    <div class="detail-header h3" id="weekOfYear()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#timestamp()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-jalali.html#weekOfYear()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        timestamp()
+        weekOfYear()
         <span class="detail-header-tag small">
             public                        static            method
                     </span>
@@ -1223,45 +1037,14 @@ returns abbreviated names of the month</strong></p>
 
     
     <div class="doc-description">
-        <p><strong>Jalali::timestamp()
-returns current timestamp of the object
-this time stamp is equivalent to system timestamp; for current time</strong></p>
+        <p><strong>Get value of week number in year</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="khans-utils-components-jalali.html#timestamp()-detail">timestamp</a></strong> ( )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="khans-utils-components-jalali.html#weekOfYear()-detail">weekOfYear</a></strong> ( )</td></tr>
             </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="yearName()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-components-jalali.html#yearName()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        yearName()
-        <span class="detail-header-tag small">
-            protected                        static            method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Jalali::yearName()
-returns ancient names of the year</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-components-jalali.html#yearName()-detail">yearName</a></strong> ( <span style="color: #0000BB">$yearValue</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$yearValue</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                                                </table>
 
 <!--	-->
 </div>
@@ -1303,7 +1086,7 @@ returns ancient names of the year</strong></p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Mon, 05 Nov 2018 16:36:01 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Wed, 07 Nov 2018 17:20:48 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

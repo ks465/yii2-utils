@@ -39,12 +39,13 @@ final class ArrayHelper extends \yii\helpers\ArrayHelper
      * @see    groupBy
      * @since  0.2-970803
      *
-     * @param  array          $inputArray  A two-dimensional array containing data
-     * @param string|array    $pivotColumn Name(s) of columns in the input array to use as the columns in the output array
-     * @param string|array    $pivotRow    Name(s) of columns in the input array to use as the rows in the output array
-     * @param string|callable $pivotValue  Name of a numerical column in the input array to sum, or a closure
+     * @param  array          $inputArray A two-dimensional array containing data
+     * @param string|array    $pivotColumn Name(s) of columns in the input array to use as the columns in the output
+     *     array
+     * @param string|array    $pivotRow Name(s) of columns in the input array to use as the rows in the output array
+     * @param string|callable $pivotValue Name of a numerical column in the input array to sum, or a closure
      *
-     * @param string          $aggFunc     Type of aggregation used
+     * @param string          $aggFunc Type of aggregation used
      *
      * @return array
      */
@@ -99,9 +100,9 @@ final class ArrayHelper extends \yii\helpers\ArrayHelper
      * @since  0.2-970803
      *
      * @param  array          $inputArray A two-dimensional array containing data
-     * @param string|array    $pivotRow   Name(s) of columns in the input array to use as the rows in the output array
+     * @param string|array    $pivotRow Name(s) of columns in the input array to use as the rows in the output array
      * @param string|callable $pivotValue Name of a numerical column in the input array to sum, or a closure.
-     * @param string          $aggFunc    Type of aggregation used
+     * @param string          $aggFunc Type of aggregation used
      *
      * @return array
      */

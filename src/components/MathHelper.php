@@ -18,7 +18,7 @@ class MathHelper extends BaseObject
      * truncate input in steps and enforce the limit on it
      *
      * @param float $number the actual number
-     * @param float $step   the step to round into
+     * @param float $step the step to round into
      *
      * @return float
      */
@@ -35,7 +35,7 @@ class MathHelper extends BaseObject
      * truncate input in steps and enforce the limit on it
      *
      * @param float $number the actual number
-     * @param float $step   the step to round into
+     * @param float $step the step to round into
      *
      * @return float
      */

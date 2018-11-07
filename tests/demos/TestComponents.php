@@ -45,24 +45,36 @@ class TestComponents extends BaseTester
         echo Jalali::getYear() . "\n";
 
         $this->writeHeader('Jalali::timestamp()');
-        echo Jalali::timestamp() . "\n";
+        echo Jalali::getTimestamp() . "\n";
 
         $this->writeHeader('Jalali::getMinute()');
         echo Jalali::getMinute() . "\n";
 
         $this->writeHeader('Jalali::getDoW()');
-        echo Jalali::getDoW() . "\n";
+        echo Jalali::dayOfWeek() . "\n";
+
+        $time = time();
+        $this->writeHeader('Jalali::date(\'o\', $time)');
+        echo Jalali::date('o', $time) . "\n";
+
+        $this->writeHeader('Jalali::date(\'t\', $time)');
+        echo Jalali::date('t', $time) . "\n";
+
+        $this->writeHeader('Jalali::date(\'u\', $time)');
+        echo Jalali::date('u', $time) . "\n";
 
         echo '</pre>';
     }
 
     public function testJalaliXInstance()
     {
-        try {
-            $j = new JalaliX();
-        } catch (Exception $e) {
-            echo $e->getMessage() . "\n";
-        }
+            $j = new JalaliX(1345, 6, 18);
+
+            $this->writeHeader('new JalaliX(1345, 6, 18)');
+            var_dump($j);
+
+            $this->writeHeader('$j->getIsLeap();');
+            var_dump($j->getIsLeap());
     }
 
     public function testJalaliXStatic()
@@ -70,22 +82,32 @@ class TestComponents extends BaseTester
         echo '<pre>';
 
         $this->writeHeader('JalaliX::date(\'Y/m/d H:i:s\')');
-        echo JalaliX::date('Y/m/d H:i:s') . "\n";
+        try {
+            echo JalaliX::date('Y/m/d H:i:s') . "\n";
+        } catch (\Exception $e) {
+            echo $e->getMessage() . "\n";
+
+        }
 
         $this->writeHeader('JalaliX::date(\'Y/m/d H:i:s\', time())');
-        echo JalaliX::date('Y/m/d H:i:s', time()) . "\n";
+        try {
+            echo JalaliX::date('Y/m/d H:i:s', time()) . "\n";
+        } catch (\Exception $e) {
+            echo $e->getMessage() . "\n";
+
+        }
 
         $this->writeHeader('JalaliX::getYear()');
         echo JalaliX::getYear() . "\n";
 
         $this->writeHeader('JalaliX::timestamp()');
-        echo JalaliX::timestamp() . "\n";
+        echo JalaliX::getTimestamp() . "\n";
 
         $this->writeHeader('JalaliX::getMinute()');
         echo JalaliX::getMinute() . "\n";
 
         $this->writeHeader('JalaliX::getDoW()');
-        echo JalaliX::getDoW() . "\n";
+        echo JalaliX::dayOfWeek() . "\n";
 
         echo '</pre>';
     }

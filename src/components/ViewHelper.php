@@ -25,7 +25,7 @@ class ViewHelper extends BaseObject
      * Implode associative arrays
      *
      * @param array|object $arrayData
-     * @param string       $keySeparator  use to separate key and value
+     * @param string       $keySeparator use to separate key and value
      * @param string       $itemSeparator use to separate individual items
      *
      * @return string
@@ -35,12 +35,12 @@ class ViewHelper extends BaseObject
         if (empty($arrayData)) {
             return '';
         }
-        if(is_string($arrayData)){
+        if (is_string($arrayData)) {
             return $arrayData;
         }
         $result = '';
         foreach ($arrayData as $key => $value) {
-            if(is_array($value)){
+            if (is_array($value)) {
                 $value = self::implode($value);
             }
             $result .= trim($key) . $keySeparator . trim($value) . $itemSeparator;

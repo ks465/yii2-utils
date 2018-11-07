@@ -56,11 +56,11 @@ interface VarDumpTheme
     /**
      * Formats a single value
      *
-     * @param string  $type     Type of the value
-     * @param string  $short    Short display of the value, a preview or teaser
-     * @param string  $full     Full display of the value
+     * @param string  $type Type of the value
+     * @param string  $short Short display of the value, a preview or teaser
+     * @param string  $full Full display of the value
      * @param boolean $showType Flag to see if the type should be displayed
-     * @param boolean $encode   Encode for the output eg htmlentities
+     * @param boolean $encode Encode for the output eg htmlentities
      *
      * @return string Output of the value
      */
@@ -69,7 +69,7 @@ interface VarDumpTheme
     /**
      * Formats a single list item
      *
-     * @param string $key   Formatted display of the key
+     * @param string $key Formatted display of the key
      * @param string $value Formatted display of the value
      *
      * @return string Output of the list item
@@ -197,9 +197,9 @@ class VarDump
      * Constructs a new dump
      *
      * @param integer      $recursiveDepth Maximum level of recursions
-     * @param integer      $stringLength   Maximum length for the preview of a string
+     * @param integer      $stringLength Maximum length for the preview of a string
      * @param boolean      $includeMethods Flag to see if object methods should be included
-     * @param VarDumpTheme $theme          Theme for the output, null for automatic
+     * @param VarDumpTheme $theme Theme for the output, null for automatic
      *
      * @throws InvalidArgumentException
      */
@@ -327,9 +327,9 @@ class VarDump
     /**
      * Gets the output for any value
      *
-     * @param mixed   $value    Value to get the output for
+     * @param mixed   $value Value to get the output for
      * @param boolean $showType Flag to see if the type of value should be showed
-     * @param boolean $encode   Flag to see if the necessary output encoding should be done, set to false when a value
+     * @param boolean $encode Flag to see if the necessary output encoding should be done, set to false when a value
      *                          is formatted twice by the theme
      *
      * @return string Output of the value
@@ -361,9 +361,9 @@ class VarDump
     /**
      * Gets the output for a string value
      *
-     * @param string  $string   String value to get the output for
+     * @param string  $string String value to get the output for
      * @param boolean $showType Flag to see if the type of value should be  showed
-     * @param boolean $encode   Flag to see if the necessairy output encoding
+     * @param boolean $encode Flag to see if the necessairy output encoding
      *                          should be done, set to false when a value is formatted twice by the theme
      *
      * @return string Output of the string
@@ -393,9 +393,9 @@ class VarDump
     /**
      * Gets the output for an array value
      *
-     * @param array   $array    Array value to get the output for
+     * @param array   $array Array value to get the output for
      * @param boolean $showType Flag to see if the type of value should be showed
-     * @param boolean $encode   Flag to see if the necessairy output encoding should be done, set to false when a value
+     * @param boolean $encode Flag to see if the necessairy output encoding should be done, set to false when a value
      *                          is formatted twice by the theme
      *
      * @return string Output of the array
