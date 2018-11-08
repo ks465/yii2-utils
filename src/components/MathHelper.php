@@ -12,8 +12,22 @@ namespace KHanS\Utils\components;
 
 use yii\base\BaseObject;
 
+/**
+ * Class MathHelper contains methods to do some mathematical routines easier.
+ * For examples please see [Math Helper Guide](guide:components-math-helper.md)
+ *
+ *
+ * @package KHanS\Utils
+ * @version 0.1.1-970803
+ * @since   1.0
+ */
 class MathHelper extends BaseObject
 {
+    /**
+     * Default value for stepping functions [[floorBy]] and [[ceilBy]]
+     */
+    const DEFAULT_STEP = 0.5;
+
     /**
      * truncate input in steps and enforce the limit on it
      *
@@ -22,10 +36,10 @@ class MathHelper extends BaseObject
      *
      * @return float
      */
-    public static function floorBy($number, $step = 0.5)
+    public static function floorBy($number, $step = null)
     {
         if (is_null($step)) {
-            $step = 0.5;
+            $step = MathHelper::DEFAULT_STEP;
         }
 
         return $step * floor($number / $step);
@@ -39,10 +53,10 @@ class MathHelper extends BaseObject
      *
      * @return float
      */
-    public static function ceilBy($number, $step = 0.5)
+    public static function ceilBy($number, $step = null)
     {
         if (is_null($step)) {
-            $step = 0.5;
+            $step = MathHelper::DEFAULT_STEP;
         }
 
         return $step * ceil($number / $step);

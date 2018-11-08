@@ -10,7 +10,7 @@
 namespace KHanS\Utils\tests\demos;
 
 
-use KHanS\Utils\components\JalaliX;
+use KHanS\Utils\components\Jalali;
 use KHanS\Utils\widgets\AjaxGridView;
 use KHanS\Utils\widgets\DatePicker;
 use KHanS\Utils\widgets\GridView;
@@ -25,7 +25,7 @@ class TestWidgets extends BaseTester
 
         echo DatePicker::widget([
             'attribute' => 'from_date',
-            'model'     => new DynamicModel(['from_date' => JalaliX::date('Y/m/d', time())]),
+            'model'     => new DynamicModel(['from_date' => Jalali::date('Y/m/d', time())]),
             'options'   => [
                 'startDate' => '1345/01/01',
             ],
@@ -38,7 +38,7 @@ class TestWidgets extends BaseTester
 
         echo DatePicker::widget([
             'attribute' => 'from_date',
-            'model'     => new DynamicModel(['from_date' => JalaliX::date('Y/m', time())]),
+            'model'     => new DynamicModel(['from_date' => Jalali::date('Y/m', time())]),
             'options'   => [
                 'startDate'   => '1345/01/01',
                 'minViewMode' => 'months',

@@ -14,35 +14,29 @@ use yii\base\BaseObject;
 use yii\base\InvalidConfigException;
 
 /**
- * Class StringHelper contains all the utilities for formatting, correcting and ahaping strings for saving or showing.
+ * Class StringHelper contains all the utilities for formatting, correcting and shaping strings for saving or showing.
  *
  * @package KHanS\Utils
- * @version 0.2
+ * @version 0.2.0-970817
  * @since   1.0
  */
 class StringHelper extends BaseObject
 {
     /**
      * preg_match pattern to allow only Persian alphabets -- including half-space
-     * appropriate for names and excluding digits
+     * appropriate for names and excluding digits.
+     * Use `mb_ord(string)` to find the unicode value.
      */
-    const PERSIAN_NAME = '/^[\x{0600}-\x{06FF}\s\x{200C}]+$/u';
+    const PERSIAN_NAME = '/^[\x{0600}-\x{06EF}\s\x{200C}ـ_]+$/u';
     /**
      * preg_match pattern to allow Persian alphabets -- including half-space
      * plus digits -- both Persian and Latin -- and period, dash & underline
      */
-    //todo: include punctuations in the expression
-    const PERSIAN_TITLE = '/^[0-9\x{0600}-\x{06FF}\s\x{200C}_\.\-!():]+$/u';
-
-    /**
-     * preg_match pattern to check date string especially for Jalali dates
-     */
-    const DATE_STRING = '~^\d{4}[-/]\d{1,2}[-/]\d{1,2}$~';
-    const DATE_SHORT = '~^\d{4}[-/]\d{1,2}$~';
+    const PERSIAN_TITLE = '/^[0-9\x{0600}-\x{06FF}\s\x{200C}\s\p{P}<>]+$/u';
 
     /**
      * Make sure all of Persian inputs are corrected for the Ya & Ka before application starts processing the input.
-     * For this to work you should add the folloing to the main config:
+     * For this to work you should add the following to the main config:
      * ```
      *   'on beforeRequest' => [
      *      'KHanS\Utils',

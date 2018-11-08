@@ -61,6 +61,8 @@ class Jalali extends BaseObject
     const RFC3339_EXTENDED = "Y-m-d\TH:i:s.vP";
     const RSS = "D, d M Y H:i:s O";
     const W3C = "Y-m-d\TH:i:sP";
+    const KHAN_SHORT = "Y/m/d H:i:s";
+    const KHAN_LONG = "l S F Y، H و i دقیقه";
 
     /**
      * @var int

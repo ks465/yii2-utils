@@ -22,7 +22,7 @@ use yii\base\BaseObject;
 class ViewHelper extends BaseObject
 {
     /**
-     * Implode associative arrays
+     * Implode associative arrays into simple strings or
      *
      * @param array|object $arrayData
      * @param string       $keySeparator use to separate key and value

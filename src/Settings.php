@@ -27,10 +27,6 @@ class Settings extends BaseObject
     const CACHE_TIMEOUT = 1;
 
     /**
-     * Date format for long detailed date-time
-     */
-    const DATE_LONG_DATE_TIME = 'Y/m/d H:i:s';
-    /**
      * List of icons for navigation keys in the grid view pager
      *
      * @var array

@@ -257,29 +257,29 @@ class TestComponents extends BaseTester
     {
         $inputArray = [
             [
-                'x_active_year' => '91 ',
-                'x_students'    => ' 503',
+                'active_year' => '91 ',
+                'students'    => ' 503',
             ],
             [
-                'x_active_year' => '  92',
-                'x_students'    => '552  ',
+                'active_year' => '  92',
+                'students'    => '552  ',
             ],
             [
-                'x_active_year' => ' 93 ',
-                'x_students'    => '  589  ',
+                'active_year' => ' 93 ',
+                'students'    => '  589  ',
             ],
             [
                 [
-                    'x_active_year' => '91 ',
-                    'x_students'    => ' 503',
+                    'active_year' => '91 ',
+                    'students'    => ' 503',
                 ],
                 [
-                    'x_active_year' => '  92',
-                    'x_students'    => '552  ',
+                    'active_year' => '  92',
+                    'students'    => '552  ',
                 ],
                 [
-                    'x_active_year' => ' 93 ',
-                    'x_students'    => '  589  ',
+                    'active_year' => ' 93 ',
+                    'students'    => '  589  ',
                 ],
             ],
         ];
@@ -334,6 +334,35 @@ class TestComponents extends BaseTester
         echo '</pre>';
     }
 
+    public function testImplode1()
+    {
+        $data = ['titleA' => 'valueA3', 'titleB' => 'valueB3',];
+
+        $this->writeHeader('ViewHelper::implode($data);');
+        echo(ViewHelper::implode($data));
+    }
+    public function testImplode2()
+    {
+        $data = [
+            ['titleA' => 'valueA1', 'titleB' => 'valueB1',],
+            ['titleA' => 'valueA2', 'titleB' => 'valueB2',],
+            ['titleA' => 'valueA3', 'titleB' => 'valueB3',],
+        ];
+
+        $this->writeHeader('ViewHelper::implode($data);');
+        var_dump(ViewHelper::implode($data));
+    }
+    public function testImplode3()
+    {
+        $data = [
+            ['titleA' => 'valueA1', 'titleB' => ['titleC' => 'valueC1', 'titleD' => 'valueD1',],],
+            ['titleA' => 'valueA2', 'titleB' => ['titleC' => 'valueC1', 'titleD' => 'valueD1',],],
+            ['titleA' => 'valueA3', 'titleB' => ['titleC' => 'valueC1', 'titleD' => 'valueD1',],],
+        ];
+
+        $this->writeHeader('ViewHelper::implode($data, \'~\', \'+\');');
+        var_dump(ViewHelper::implode($data, '~', '+'));
+    }
     public function testMobiles()
     {
         $this->writeHeader('ViewHelper::formatPhone(2112345678);');

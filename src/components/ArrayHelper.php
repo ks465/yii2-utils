@@ -14,7 +14,7 @@ namespace KHanS\Utils\components;
  * For convenience this class extends \yii\helpers\ArrayHelper.
  *
  * @package KHanS\Utils
- * @version 0.2-970803
+ * @version 0.2.0-970803
  * @since   1.0
  */
 final class ArrayHelper extends \yii\helpers\ArrayHelper

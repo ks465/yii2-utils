@@ -50,8 +50,10 @@ class KHanSUtilsComponentsViewHelperTest extends \Codeception\Test\Unit
 
     public function testFormatMobile()
     {
-        expect("Tehran, with 2 leading zeros", ViewHelper::formatNID(12345678))->equals('۰۰۱-۲۳۴۵۶۷-۸');
-        expect("Somewhere, with 1 leading zeros", ViewHelper::formatNID(123456789))->equals('۰۱۲-۳۴۵۶۷۸-۹');
-        expect("Anywhere, with no leading zeros", ViewHelper::formatNID(1234567890))->equals('۱۲۳-۴۵۶۷۸۹-۰');
+//        expect("Tehran local", ViewHelper::formatPhone(2112345678))->equals('۰۲۱-۱۲-۳۴-۵۶-۷۸');
+        expect("Mobile Phone", ViewHelper::formatPhone(9001234567))->equals('۰۹۰۰-۱۲۳-۴۵-۶۷');
+        expect("Provincial", ViewHelper::formatPhone(1231234567))->equals('۰۱۲۳-۱۲۳-۴۵-۶۷');
+        expect("International", ViewHelper::formatPhone(989001234567))->equals('۹۸۹۰۰۱۲۳۴۵۶۷');
+        expect("International", ViewHelper::formatPhone(19001234567))->equals('۱۹۰۰-۱۲۳-۴۵-۶۷');
     }
 }

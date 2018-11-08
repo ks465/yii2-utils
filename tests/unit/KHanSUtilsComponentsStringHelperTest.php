@@ -161,4 +161,47 @@ class KHanSUtilsComponentsStringHelperTest extends \Codeception\Test\Unit
         expect('Multi byte with one zero-space join odd numbers of letters -sided', StringHelper::mb_str_pad($text1, 12, '-', STR_PAD_BOTH))->notEquals('--راه‌اندازی-');
         expect('Multi byte with one zero-space join odd numbers of letters', StringHelper::mb_str_pad($text2, 12, '-', STR_PAD_BOTH))->equals('-راه‌اندازی--');
     }
+
+    public function testPregPersianName()
+    {
+        $phrase = 'کیهان صداقت';
+        expect($phrase,preg_match(StringHelper::PERSIAN_NAME, $phrase))->equals(1);
+        $phrase = 'ـآابپتث‌جچحخدذرزژس‌ش صضطظعغفقکگلمنوهیيئ_';
+        expect($phrase,preg_match(StringHelper::PERSIAN_NAME, $phrase))->equals(1);
+        $phrase = 'می‌باشد';
+        expect($phrase,preg_match(StringHelper::PERSIAN_NAME, $phrase))->equals(1);
+        $phrase = '۱۲۳۴۵۶۷۸۹۰';
+        expect($phrase,preg_match(StringHelper::PERSIAN_NAME, $phrase))->equals(0);
+        $phrase = 'می‌باشد ۱';
+        expect($phrase,preg_match(StringHelper::PERSIAN_NAME, $phrase))->equals(0);
+        $phrase = 'می‌باشد 1';
+        expect($phrase,preg_match(StringHelper::PERSIAN_NAME, $phrase))->equals(0);
+        $phrase = 'کیهان - صداقت';
+        expect($phrase,preg_match(StringHelper::PERSIAN_NAME, $phrase))->equals(0);
+    }
+
+    public function testPregPersianTitle()
+    {
+        $phrase = 'کیهان صداقت';
+        expect($phrase,preg_match(StringHelper::PERSIAN_TITLE, $phrase))->equals(1);
+        $phrase = 'ـآابپتث‌جچحخدذرزژس‌ش صضطظعغفقکگلمنوهیيئ_';
+        expect($phrase,preg_match(StringHelper::PERSIAN_TITLE, $phrase))->equals(1);
+        $phrase = 'می‌باشد';
+        expect($phrase,preg_match(StringHelper::PERSIAN_TITLE, $phrase))->equals(1);
+        $phrase = '۱۲۳۴۵۶۷۸۹۰';
+        expect($phrase,preg_match(StringHelper::PERSIAN_TITLE, $phrase))->equals(1);
+        $phrase = 'می‌باشد ۱';
+        expect($phrase,preg_match(StringHelper::PERSIAN_TITLE, $phrase))->equals(1);
+        $phrase = 'می‌باشد 1';
+        expect($phrase,preg_match(StringHelper::PERSIAN_TITLE, $phrase))->equals(1);
+        $phrase = 'کیهان - صداقت';
+        expect($phrase,preg_match(StringHelper::PERSIAN_TITLE, $phrase))->equals(1);
+        $phrase = '﷼';
+        expect($phrase,preg_match(StringHelper::PERSIAN_TITLE, $phrase))->equals(0);
+
+        $phrase = '?/!.,;:"\'<>}{)(][-*&%#@_'; //English keyboard
+        $phrase .= '*ـ}{][)(،.!؟؛٫'; //Persian keyboard
+        expect($phrase,preg_match(StringHelper::PERSIAN_TITLE, $phrase))->equals(1);
+    }
+
 }

@@ -24,7 +24,8 @@ use Exception;
  * @subpackage Jalali Date
  * @access     protected
  * @author     keyhan sedaghat<keyhansedaghat@netscape.net>
- * @version    0.1.0
+ * @version    0.1.0-970816
+ * @since      1.0
  */
 class JalaliX extends Jalali
 {
@@ -113,7 +114,7 @@ class JalaliX extends Jalali
         $this->startWeekOfMonth = parent::date('W', $startOfMonth);
         $this->endWeekOfMonth = parent::date('W', $endOfMonth);
 
-        $this->thisWeek = $this->woy - $this->startWeekOfMonth + 1;
+        $this->thisWeek = (int)($this->woy - $this->startWeekOfMonth + 1);
 
         $this->weekStart = parent::date('Y/m/d', parent::mktime($this->year, $this->month, $this->day - $this->dayOfWeek() + 1));
         $this->weekEnd = parent::date('Y/m/d', parent::mktime($this->year, $this->month, $this->day - $this->dayOfWeek() + 3));

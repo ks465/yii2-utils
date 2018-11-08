@@ -12,7 +12,7 @@ use yii\db\Query;
 
 
 /**
- * Wrapper for all utilities for debuging.
+ * Wrapper for all utilities for debugging.
  *
  * @version 0.1.0
  */
@@ -46,11 +46,11 @@ class Debug extends BaseObject
     /**
      * Shortcut to dump a single variable for debug purposes. This function will stop your script after the dump.
      *
-     * @param mixed        $variable       Variable to print
+     * @param mixed        $variable Variable to print
      * @param integer      $recursiveDepth Maximum level of recursiveness
-     * @param integer      $stringLength   Maximum length for the preview of a string
+     * @param integer      $stringLength Maximum length for the preview of a string
      * @param boolean      $includeMethods Flag to see if object methods should be included
-     * @param VarDumpTheme $theme          Theme for the output
+     * @param VarDumpTheme $theme Theme for the output
      *
      * @return void
      */
@@ -65,11 +65,11 @@ class Debug extends BaseObject
     /**
      * Shortcut to dump a single variable for debug purposes.
      *
-     * @param mixed        $variable       Variable to print
+     * @param mixed        $variable Variable to print
      * @param integer      $recursiveDepth Maximum level of recursiveness
-     * @param integer      $stringLength   Maximum length for the preview of a string
+     * @param integer      $stringLength Maximum length for the preview of a string
      * @param boolean      $includeMethods Flag to see if object methods should be included
-     * @param VarDumpTheme $theme          Theme for the output
+     * @param VarDumpTheme $theme Theme for the output
      *
      * @return void
      */

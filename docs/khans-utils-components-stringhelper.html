@@ -84,7 +84,7 @@ yii\base\BaseObject</td></tr>
             </table>
 
 <div class="class-description">
-    <p><strong>Class StringHelper contains all the utilities for formatting, correcting and ahaping strings for saving or showing.</strong></p>
+    <p><strong>Class StringHelper contains all the utilities for formatting, correcting and shaping strings for saving or showing.</strong></p>
     
     </div>
 
@@ -152,32 +152,19 @@ yii\base\BaseObject</td></tr>
     <tr>
         <th>Constant</th><th>Value</th><th>Description</th><th>Defined By</th>
     </tr>
-            <tr id="DATE_SHORT">
-          <td id="DATE_SHORT-detail">DATE_SHORT</td>
-          <td>'~^\d{4}[-/]\d{1,2}$~'</td>
-          <td>
-                        </td>
-          <td><a href="khans-utils-components-stringhelper.html">KHanS\Utils\components\StringHelper</a></td>
-        </tr>
-            <tr id="DATE_STRING">
-          <td id="DATE_STRING-detail">DATE_STRING</td>
-          <td>'~^\d{4}[-/]\d{1,2}[-/]\d{1,2}$~'</td>
-          <td>Preg_match pattern to check date string especially for Jalali dates
-                        </td>
-          <td><a href="khans-utils-components-stringhelper.html">KHanS\Utils\components\StringHelper</a></td>
-        </tr>
             <tr id="PERSIAN_NAME">
           <td id="PERSIAN_NAME-detail">PERSIAN_NAME</td>
-          <td>'/^[\x{0600}-\x{06FF}\s\x{200C}]+$/u'</td>
+          <td>'/^[\x{0600}-\x{06EF}\s\x{200C}ـ_]+$/u'</td>
           <td>Preg_match pattern to allow only Persian alphabets -- including half-space
-appropriate for names and excluding digits
-                        </td>
+appropriate for names and excluding digits.
+Use <code>mb_ord(string)</code> to find the unicode value.                        </td>
           <td><a href="khans-utils-components-stringhelper.html">KHanS\Utils\components\StringHelper</a></td>
         </tr>
             <tr id="PERSIAN_TITLE">
           <td id="PERSIAN_TITLE-detail">PERSIAN_TITLE</td>
-          <td>'/^[0-9\x{0600}-\x{06FF}\s\x{200C}_\.\-!():]+$/u'</td>
-          <td>
+          <td>'/^[0-9\x{0600}-\x{06FF}\s\x{200C}\s\p{P}<>]+$/u'</td>
+          <td>Preg_match pattern to allow Persian alphabets -- including half-space
+plus digits -- both Persian and Latin -- and period, dash &amp; underline
                         </td>
           <td><a href="khans-utils-components-stringhelper.html">KHanS\Utils\components\StringHelper</a></td>
         </tr>
@@ -338,7 +325,7 @@ width.</p>
     <div class="doc-description">
         <p><strong>Make sure all of Persian inputs are corrected for the Ya &amp; Ka before application starts processing the input.</strong></p>
 
-        <p>For this to work you should add the folloing to the main config:
+        <p>For this to work you should add the following to the main config:
 <code>`</code>
   'on beforeRequest' =&gt; [</p>
 <pre><code class="hljs bash"> <span class="hljs-string">'KHanS\Utils'</span>,
@@ -421,7 +408,7 @@ width.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Wed, 07 Nov 2018 17:20:48 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Thu, 08 Nov 2018 16:41:07 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {
