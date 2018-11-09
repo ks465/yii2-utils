@@ -1,5 +1,7 @@
-#Debug Class
-This class is a wrapper for [[VarDump]] class. It provides following methods for debugging:
+#Admin Class
+
+This class contains methods to make life easier and fun for the admins.
+Debugger part of this class is a wrapper for [[VarDump]] class. It provides following methods for debugging:
 
 1. `vd` Dump one _or more_ variables and continue execution.
 1. `vdd` Dump one *or more* variables. This method will stop your script after the dump.  

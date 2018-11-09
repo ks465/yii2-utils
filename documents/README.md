@@ -13,6 +13,7 @@ Guides, notes, and anything regarding good style programming and documenting:
 All the classes in the component directory of the package:
 
 1. [Array Helper](components-array-helper.md) contains more methods for transforming and reshaping arrays.
+1. [File Helper](components-file-helper.md)
 1. [Jalali and JalaliX](components-jalali.md) contain Jalali date object creation and manipulation.
 1. [Math Helper](components-math-helper.md) contains methods to do some mathematical routines easier. 
 1. [SQL Formatter](components-sql-formatter.md) --a third party class-- formats a given SQL query for better visibility.
@@ -29,14 +30,20 @@ They are specialized versions for Kartik Gridview.
 1. [Base Model](models-khan-model.md) contains basic skeleton for all models.
 1. [Base user](models-khan-user.md) contains basic skeleton for all user models.
 
-
+#RBAC
+1. Helpers:
+   1. view by path
+   1. view by user
+1. Rules predefined rules:
+   1. [Owner Rule](rbac-rule-owner.md)
+   
 #Others
 These are miscellaneous classes for configuring the package or installation.
 
-1. [Debug](debug.md) contains all methods required for debugging and tracing the code.
+1. [Admin](admin.md) contains methods to make life easier and fun for the admins and debugging the code.
 1. [Settings](settings.md) contains all the settings and constant values.
 1. [Migrations](helpers-migrations.md) contains all the migrations required for rising the package up and running.
- 
+1. [Overlay Menu](widgets-menu.md)
  
 #StartUp
 General requirements in application options:
@@ -59,6 +66,15 @@ General requirements in application options:
                 NumberFormatter::MIN_FRACTION_DIGITS => 0,
                 NumberFormatter::MAX_FRACTION_DIGITS => 2,
             ]
+        ],
+        'session' => [
+            'name' => '_staff_session',
+            'savePath' => __DIR__ . '/../runtime/sessions',
+            //'class' => 'yii\web\DbSession',
+            //'sessionTable' => 'sys_session_staff',
+            'cookieParams' => [
+                'httpOnly' => true,
+            ],
         ],
         ...
      ],

@@ -1,8 +1,7 @@
-  [doc_0_9]: https://github.com/nikic/PHP-Parser/tree/0.9/doc
-  [doc_1_x]: https://github.com/nikic/PHP-Parser/tree/1.x/doc
+
 Personal Utilities for Simpler Coding
 =====================================
-A pack of multiple components and widgets, especially designed for simpler and more generic coding [doc_1_x]
+A pack of multiple components and widgets, especially designed for simpler and more generic coding [repository]
 
 
 #Test Install
@@ -24,7 +23,7 @@ composer.phar require khans465/yii2-utils:dev-master
 
 #Installation
 
-The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+The preferred way to install this extension is through [composer].
 
 Either run
 
@@ -58,7 +57,7 @@ which you can use to see everything this class does.
   
 Test debug utilities:
 ```
-$tester = new \KHanS\Utils\tests\TestDebug();
+$tester = new \KHanS\Utils\tests\TestAdmin();
 $tester->runAllTests();
 ```
 
@@ -73,3 +72,6 @@ Test widgets:
 $tester = new \KHanS\Utils\tests\TestWidgets();
 $tester->runAllTests();
 ```
+
+[repository]: https://github.com/ks465/yii2-utils
+[composer]: http://getcomposer.org/download/

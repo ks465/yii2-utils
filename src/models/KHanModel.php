@@ -223,4 +223,31 @@ abstract class KHanModel extends ActiveRecord
 
         return implode('<br />', $errors);
     }
+
+    function upsert($rows)
+    {
+//echo '<pre dir="ltr">';var_dump($rows);echo '</pre>';
+        foreach ($rows as $row){
+            /* @var UpsertData $row */
+            $aggrQuery = UpsertAggr::find()
+                ->andWhere(['grade'=> $row['grade']])
+                ->andWhere(['year'=> $row['year']])
+                ->andWhere(['field'=> $row['field']])
+                ->andWhere(['status'=> $row['status']])
+            ;
+
+            if($aggrQuery->exists()){
+                $upsert = $aggrQuery->one();
+//var_dump('Updating');
+            }else{
+                $upsert = new UpsertAggr();
+//var_dump('Inserting');
+            }
+
+            $upsert->load($row, '');
+//$upsert->validate();
+//var_dump($upsert->errors);
+            $upsert->save();
+        }
+    }
 }

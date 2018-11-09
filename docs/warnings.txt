@@ -2,7 +2,7 @@ Array
 (
     [0] => Array
         (
-            [line] => 44
+            [line] => 54
             [file] => yii2-utils/src/Settings.php
             [message] => No docblock for element 'init'
         )
@@ -450,439 +450,635 @@ Array
 
     [64] => Array
         (
+            [line] => 227
+            [file] => yii2-utils/src/models/KHanModel.php
+            [message] => No docblock for element 'upsert'
+        )
+
+    [65] => Array
+        (
             [line] => 134
             [file] => yii2-utils/src/models/KHanUser.php
             [message] => No docblock for element 'scenarios'
         )
 
-    [65] => Array
+    [66] => Array
         (
             [line] => 141
             [file] => yii2-utils/src/models/KHanUserIdentity.php
             [message] => No docblock for element 'scenarios'
         )
 
-    [66] => Array
+    [67] => Array
         (
             [line] => 24
+            [file] => yii2-utils/src/rbac/OwnerRule.php
+            [message] => No docblock for element '$name'
+        )
+
+    [68] => Array
+        (
+            [line] => 24
+            [file] => yii2-utils/src/rbac/OwnerRule.php
+            [message] => No short description for element '$name'
+        )
+
+    [69] => Array
+        (
+            [line] => 25
             [file] => yii2-utils/src/widgets/DatePicker.php
             [message] => No docblock for element 'init'
         )
 
-    [67] => Array
+    [70] => Array
         (
             [line] => 27
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$title'
         )
 
-    [68] => Array
+    [71] => Array
         (
             [line] => 33
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$footer'
         )
 
-    [69] => Array
+    [72] => Array
         (
             [line] => 39
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$id'
         )
 
-    [70] => Array
+    [73] => Array
         (
             [line] => 45
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$striped'
         )
 
-    [71] => Array
+    [74] => Array
         (
             [line] => 45
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$striped'
         )
 
-    [72] => Array
+    [75] => Array
         (
             [line] => 46
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$condensed'
         )
 
-    [73] => Array
+    [76] => Array
         (
             [line] => 46
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$condensed'
         )
 
-    [74] => Array
+    [77] => Array
         (
             [line] => 47
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$responsive'
         )
 
-    [75] => Array
+    [78] => Array
         (
             [line] => 47
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$responsive'
         )
 
-    [76] => Array
+    [79] => Array
         (
             [line] => 48
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$export'
         )
 
-    [77] => Array
+    [80] => Array
         (
             [line] => 48
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$export'
         )
 
-    [78] => Array
+    [81] => Array
         (
             [line] => 49
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$toggleData'
         )
 
-    [79] => Array
+    [82] => Array
         (
             [line] => 49
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$toggleData'
         )
 
-    [80] => Array
+    [83] => Array
         (
             [line] => 50
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$resizableColumn'
         )
 
-    [81] => Array
+    [84] => Array
         (
             [line] => 50
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$resizableColumn'
         )
 
-    [82] => Array
+    [85] => Array
         (
             [line] => 51
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$before'
         )
 
-    [83] => Array
+    [86] => Array
         (
             [line] => 51
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$before'
         )
 
-    [84] => Array
+    [87] => Array
         (
             [line] => 52
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$formatter'
         )
 
-    [85] => Array
+    [88] => Array
         (
             [line] => 52
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$formatter'
         )
 
-    [86] => Array
+    [89] => Array
         (
             [line] => 53
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$showPageSummary'
         )
 
-    [87] => Array
+    [90] => Array
         (
             [line] => 53
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$showPageSummary'
         )
 
-    [88] => Array
+    [91] => Array
         (
             [line] => 54
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$showCreate'
         )
 
-    [89] => Array
+    [92] => Array
         (
             [line] => 54
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$showCreate'
         )
 
-    [90] => Array
+    [93] => Array
         (
             [line] => 56
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$beforeHeader'
         )
 
-    [91] => Array
+    [94] => Array
         (
             [line] => 56
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$beforeHeader'
         )
 
-    [92] => Array
+    [95] => Array
         (
             [line] => 58
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$dataProvider'
         )
 
-    [93] => Array
+    [96] => Array
         (
             [line] => 58
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$dataProvider'
         )
 
-    [94] => Array
+    [97] => Array
         (
             [line] => 59
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$filterModel'
         )
 
-    [95] => Array
+    [98] => Array
         (
             [line] => 59
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$filterModel'
         )
 
-    [96] => Array
+    [99] => Array
         (
             [line] => 60
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$columns'
         )
 
-    [97] => Array
+    [100] => Array
         (
             [line] => 60
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$columns'
         )
 
-    [98] => Array
+    [101] => Array
         (
             [line] => 61
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$rowOptions'
         )
 
-    [99] => Array
+    [102] => Array
         (
             [line] => 61
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$rowOptions'
         )
 
-    [100] => Array
+    [103] => Array
         (
             [line] => 67
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$createAction'
         )
 
-    [101] => Array
+    [104] => Array
         (
             [line] => 67
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$createAction'
         )
 
-    [102] => Array
+    [105] => Array
         (
             [line] => 68
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$floatHeader'
         )
 
-    [103] => Array
+    [106] => Array
         (
             [line] => 68
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$floatHeader'
         )
 
-    [104] => Array
+    [107] => Array
         (
             [line] => 69
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$createLabel'
         )
 
-    [105] => Array
+    [108] => Array
         (
             [line] => 69
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$createLabel'
         )
 
-    [106] => Array
+    [109] => Array
         (
             [line] => 82
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$createContent'
         )
 
-    [107] => Array
+    [110] => Array
         (
             [line] => 82
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$createContent'
         )
 
-    [108] => Array
+    [111] => Array
         (
             [line] => 83
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$content'
         )
 
-    [109] => Array
+    [112] => Array
         (
             [line] => 83
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$content'
         )
 
-    [110] => Array
+    [113] => Array
         (
             [line] => 234
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$refreshOptions'
         )
 
-    [111] => Array
+    [114] => Array
         (
             [line] => 234
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$refreshOptions'
         )
 
-    [112] => Array
+    [115] => Array
         (
             [line] => 235
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element '$pjax'
         )
 
-    [113] => Array
+    [116] => Array
         (
             [line] => 235
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No short description for element '$pjax'
         )
 
-    [114] => Array
+    [117] => Array
         (
             [line] => 237
             [file] => yii2-utils/src/widgets/GridView.php
             [message] => No docblock for element 'init'
         )
 
-    [115] => Array
+    [118] => Array
         (
-            [line] => 81
+            [line] => 85
             [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
             [message] => No short description for element '$tabs'
         )
 
-    [116] => Array
+    [119] => Array
         (
-            [line] => 90
+            [line] => 95
             [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
             [message] => No short description for element '$label'
         )
 
-    [117] => Array
-        (
-            [line] => 95
-            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
-            [message] => No short description for element '$tag'
-        )
-
-    [118] => Array
-        (
-            [line] => 100
-            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
-            [message] => No short description for element '$options'
-        )
-
-    [119] => Array
-        (
-            [line] => 126
-            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
-            [message] => No docblock for element 'run'
-        )
-
     [120] => Array
         (
-            [line] => 19
-            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
-            [message] => No docblock for element '$sourcePath'
+            [line] => 101
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$title'
         )
 
     [121] => Array
         (
-            [line] => 19
-            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
-            [message] => No short description for element '$sourcePath'
+            [line] => 107
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$tag'
         )
 
     [122] => Array
         (
-            [line] => 21
-            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
-            [message] => No docblock for element '$css'
+            [line] => 113
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$options'
         )
 
     [123] => Array
         (
-            [line] => 21
-            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
-            [message] => No short description for element '$css'
+            [line] => 140
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No docblock for element 'run'
         )
 
     [124] => Array
         (
-            [line] => 25
-            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
-            [message] => No docblock for element '$js'
+            [line] => 85
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$tabs'
         )
 
     [125] => Array
         (
+            [line] => 95
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$label'
+        )
+
+    [126] => Array
+        (
+            [line] => 101
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$title'
+        )
+
+    [127] => Array
+        (
+            [line] => 107
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$tag'
+        )
+
+    [128] => Array
+        (
+            [line] => 113
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$options'
+        )
+
+    [129] => Array
+        (
+            [line] => 140
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No docblock for element 'run'
+        )
+
+    [130] => Array
+        (
+            [line] => 85
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$tabs'
+        )
+
+    [131] => Array
+        (
+            [line] => 95
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$label'
+        )
+
+    [132] => Array
+        (
+            [line] => 101
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$title'
+        )
+
+    [133] => Array
+        (
+            [line] => 107
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$tag'
+        )
+
+    [134] => Array
+        (
+            [line] => 113
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$options'
+        )
+
+    [135] => Array
+        (
+            [line] => 140
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No docblock for element 'run'
+        )
+
+    [136] => Array
+        (
+            [line] => 85
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$tabs'
+        )
+
+    [137] => Array
+        (
+            [line] => 95
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$label'
+        )
+
+    [138] => Array
+        (
+            [line] => 101
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$title'
+        )
+
+    [139] => Array
+        (
+            [line] => 107
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$tag'
+        )
+
+    [140] => Array
+        (
+            [line] => 113
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$options'
+        )
+
+    [141] => Array
+        (
+            [line] => 140
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No docblock for element 'run'
+        )
+
+    [142] => Array
+        (
+            [line] => 85
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$tabs'
+        )
+
+    [143] => Array
+        (
+            [line] => 95
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$label'
+        )
+
+    [144] => Array
+        (
+            [line] => 101
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$title'
+        )
+
+    [145] => Array
+        (
+            [line] => 107
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$tag'
+        )
+
+    [146] => Array
+        (
+            [line] => 113
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No short description for element '$options'
+        )
+
+    [147] => Array
+        (
+            [line] => 140
+            [file] => yii2-utils/src/widgets/menu/OverlayMenu.php
+            [message] => No docblock for element 'run'
+        )
+
+    [148] => Array
+        (
+            [line] => 23
+            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
+            [message] => No docblock for element '$sourcePath'
+        )
+
+    [149] => Array
+        (
+            [line] => 23
+            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
+            [message] => No short description for element '$sourcePath'
+        )
+
+    [150] => Array
+        (
             [line] => 25
+            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
+            [message] => No docblock for element '$css'
+        )
+
+    [151] => Array
+        (
+            [line] => 25
+            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
+            [message] => No short description for element '$css'
+        )
+
+    [152] => Array
+        (
+            [line] => 29
+            [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
+            [message] => No docblock for element '$js'
+        )
+
+    [153] => Array
+        (
+            [line] => 29
             [file] => yii2-utils/src/widgets/menu/OverlayMenuAsset.php
             [message] => No short description for element '$js'
         )
 
-    [126] => Array
+    [154] => Array
         (
             [line] => 59
             [file] => yii2-utils/src/widgets/menu/OverlayMenuFiller.php
