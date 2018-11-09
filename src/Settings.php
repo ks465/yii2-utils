@@ -27,11 +27,20 @@ class Settings extends BaseObject
     const CACHE_TIMEOUT = 1;
 
     /**
+     * Maximum time a connected user is idle in seconds.
+     * After this amount of time the user is considered as logged out or disconnected.
+     * This is primarily used for counting online users.
+     */
+    const MAX_IDLE_TIME = 300;
+
+    /**
      * List of icons for navigation keys in the grid view pager
      *
      * @var array
      */
     private static $_pager;
+
+    private static $_testSetting = 1;
 
     /**
      * @return array
@@ -40,6 +49,7 @@ class Settings extends BaseObject
     {
         return self::$_pager;
     }
+
 
     public function init()
     {
@@ -56,4 +66,25 @@ class Settings extends BaseObject
      * Path to application models repository, this is mainly used for [[AppBuilder]] to create new models.
      */
     const PATH_MODELS_DIRECTORY = '@app\\models';
+
+
+//<editor-fold Desc="Setters">
+
+    /**
+     * @param int $testSetting
+     */
+    public static function setTestSetting($testSetting)
+    {
+        self::$_testSetting = $testSetting;
+    }
+//</editor-fold>
+//<editor-fold Desc="Getters">
+    /**
+     * @return int
+     */
+    public static function getTestSetting()
+    {
+        return self::$_testSetting;
+    }
+//</editor-fold>
 }

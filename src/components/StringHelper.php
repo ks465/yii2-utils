@@ -10,7 +10,6 @@
 namespace KHanS\Utils\components;
 
 use Yii;
-use yii\base\BaseObject;
 use yii\base\InvalidConfigException;
 
 /**
@@ -20,7 +19,7 @@ use yii\base\InvalidConfigException;
  * @version 0.2.0-970817
  * @since   1.0
  */
-class StringHelper extends BaseObject
+class StringHelper extends \yii\helpers\StringHelper
 {
     /**
      * preg_match pattern to allow only Persian alphabets -- including half-space

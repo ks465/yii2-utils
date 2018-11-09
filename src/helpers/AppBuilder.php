@@ -16,7 +16,7 @@ use yii\console\ExitCode;
 use yii\helpers\Console;
 
 /**
- * Class AppBuilder do some cool stuff to make life easier in development period.
+ * Class AppBuilder does some cool stuff to make life easier in development period.
  *
  * @package KHanS\Utils
  * @version 0.3-970803

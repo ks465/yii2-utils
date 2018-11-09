@@ -10,7 +10,9 @@
 namespace KHanS\Utils\tests\demos;
 
 
+use KHanS\Utils\Admin;
 use KHanS\Utils\components\ArrayHelper;
+use KHanS\Utils\components\FileHelper;
 use KHanS\Utils\components\Jalali;
 use KHanS\Utils\components\JalaliX;
 use KHanS\Utils\components\MathHelper;
@@ -381,5 +383,40 @@ class TestComponents extends BaseTester
         echo ViewHelper::formatNID(123456789);
         $this->writeHeader('ViewHelper::formatNID(1234567890);');
         echo ViewHelper::formatNID(1234567890);
+    }
+
+    public function testLoadCSV()
+    {
+        $inputFile = \yii\helpers\Url::to('@khan/tests/demos/input.csv');
+        $outputFile = \yii\helpers\Url::to('@app/runtime/output.csv');
+        $content = FileHelper::loadCSV($inputFile, true);
+        Admin::vd('Reading ' . $inputFile, $content);
+
+        $result = FileHelper::saveCSV($outputFile, $content);
+
+        Admin::vd('Reading ' . $result . ' rows Written to ' . $outputFile , FileHelper::loadCSV($outputFile, false));
+    }
+
+    public function testLoadIni()
+    {
+        $inputFile = \yii\helpers\Url::to('@khan/tests/demos/input.ini');
+        $outputFile = \yii\helpers\Url::to('@app/runtime/output.ini');
+        $content = FileHelper::loadIni($inputFile);
+        Admin::vd('Reading ' . $inputFile, $content);
+
+        $result = FileHelper::saveIni($outputFile, $content);
+
+        Admin::vd('Reading ' . $result . ' rows Written to ' . $outputFile , FileHelper::loadIni($outputFile));
+    }
+    public function testLoadCsvSaveIni()
+    {
+        $inputFile = \yii\helpers\Url::to('@khan/tests/demos/input.csv');
+        $outputFile = \yii\helpers\Url::to('@app/runtime/output.ini');
+        $content = FileHelper::loadCSV($inputFile, true);
+        Admin::vd('Reading ' . $inputFile, $content);
+
+        $result = FileHelper::saveIni($outputFile, $content);
+
+        Admin::vd('Reading ' . $result . ' rows Written to ' . $outputFile , FileHelper::loadIni($outputFile));
     }
 }

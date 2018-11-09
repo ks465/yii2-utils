@@ -1,5 +1,6 @@
 #StringHelper Class
 This class contains all the utilities for formatting, correcting and shaping strings for saving or showing.
+It is extending `\yii\helpers\StringHelper` class to simplify imports.
 
 ## PERSIAN_NAME 
 This constant defines a regular expression pattern to filter alphabet characters which are valid in names.

@@ -2,6 +2,10 @@ Documentation Edition: 1.0-970803
 
 This file contains all the useful and important commands and hints from _manuals_, *guides*, **user documentation**, __etc.__
 
+While Yii2 supports MariaDB through its MySQL driver, the differences between MariaDB and MySQL are increasing. At this time the driver included in Yii2 will not properly detect JSON columns in MariaDB and will not properly store data in them.
+The goal of this library is to implement the MariaDB specific changes required to get all features working in MariaDB that are supported in the Yii2 core library for other DBMSes.
+https://github.com/sam-it/yii2-mariadb
+
 
 #Composer
 1. Use the following command to update class structure of a package in `vendor` directory:
@@ -71,7 +75,7 @@ All the tests in the `tests/demos` are simple calls to utilities. Run as follows
 or you can run individual files like following:
 
 ```php
-$tester_1 = new \KHanS\Utils\tests\TestDebug();
+$tester_1 = new \KHanS\Utils\tests\TestAdmin();
 $tester_2 = new \KHanS\Utils\tests\TestComponents();
 $tester_3 = new \KHanS\Utils\tests\TestWidgets();
 $tester_4 = new \KHanS\Utils\tests\TestOverlayMenuFiller();
