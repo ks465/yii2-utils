@@ -13,8 +13,8 @@ use yii\helpers\Url;
 /**
  * Create a uniform grid view for controllers. This is the common parts for both normal and AJAX grids.
  *
- * @package common\widgets
- * @version 0.1.0
+ * @package KHanS\Utils\widgets
+ * @version 0.1.0-970820
  * @since   1.0.0
  */
 abstract class BaseGridView extends Widget
@@ -83,7 +83,7 @@ abstract class BaseGridView extends Widget
     protected $content = '';
 
     /**
-     * @inheritdoc
+     * Setup custom configuration
      */
     public function init()
     {
@@ -123,7 +123,7 @@ abstract class BaseGridView extends Widget
     }
 
     /**
-     * @inheritdoc
+     * Show the grid by instantiating the widget
      */
     public function run()
     {
@@ -165,7 +165,7 @@ abstract class BaseGridView extends Widget
 /**
  * Create a uniform grid view for controllers
  *
- * @see     \kartik\grid\GridView
+ * @see     http://demos.krajee.com/grid
  *          Example:
  *          ```php
  *          common\widgets\GridView::widget([
@@ -192,19 +192,19 @@ class GridView extends BaseGridView
      */
     public $refreshOptions = ['class' => 'btn btn-default', 'title' => 'بازخوانی داده‌ها با حفظ فیلترها'];
 
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
-    }
+//    /**
+//     * @inheritdoc
+//     */
+//    public function init()
+//    {
+//        parent::init();
+//    }
 }
 
 /**
  * Create a uniform grid view for Ajax controllers along with the required Modal widget required for this to work
  *
- * @see     \kartik\grid\GridView
+ * @see     http://demos.krajee.com/grid
  *          Example:
  *          ```php
  *          common\widgets\AjaxGridView::widget([
@@ -270,7 +270,7 @@ class AjaxGridView extends BaseGridView
     }
 
     /**
-     * @inheritdoc
+     * Show the grid view with Modals
      */
     public function run()
     {

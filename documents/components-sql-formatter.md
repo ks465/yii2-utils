@@ -6,6 +6,11 @@ error or problem.
 
 _**Because this is a third party class, there is no unit test for this class.** For examples see the demo section._
 
+_**There is no need to call methods in this class directly. Just use `explain` or `xd` as following examples show.**_
+
+1. `explain` Show a formatted text of an SQL query.
+1. `xd` Show a formatted text of an SQL query. This method will stop your script after the dump.
+
 
 ```php
 $sql = KHanModel::find()
@@ -35,3 +40,26 @@ ORDER BY
  */
 ```
 
+For simplicity you can use `explain` or `xp` for this purpose:
+
+```php
+explain($sql); //shows the calling file name and line. Then continue the script.
+
+/*
+path/to/calling/file:lineNumber
+
+SELECT 
+  * 
+FROM 
+  `khan_model` 
+WHERE 
+  `i` = 1 
+GROUP BY 
+  `x` 
+HAVING 
+  `z` > 1 
+ORDER BY 
+  `alpha`
+ */
+xd($sql); //this has the same output. But stops the script afterward.
+```

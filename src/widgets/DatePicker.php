@@ -12,36 +12,39 @@ namespace KHanS\Utils\widgets;
 
 use faravaghi\jalaliDatePicker\jalaliDatePicker;
 use kartik\icons\Icon;
-use KHanS\Utils\components\Jalali;
 
 /**
- * Class DatePicker simplifies date picker widget for forms
+ * Class DatePicker simplifies date picker widget for forms, by defining preset values for multiple configs.
+ * [DatePicker Guide](guide:widgets-date-picker.md) contains all required documents for using this widget.
  *
- * @inheritdoc
- * @package common\widgets
+ * @package KHanS\Utils
+ * @version 0.2.1-941201
+ * @since   1.0
  */
 class DatePicker extends jalaliDatePicker
 {
+    /**
+     * Configure widget
+     */
     public function init()
     {
-        $stitch = '/01/01';
-        if (array_key_exists('minViewMode', $this->options) && !is_null($this->options['minViewMode'])) {
+        if (array_key_exists('minViewMode', $this->options) && !empty($this->options['minViewMode'])) {
             if ($this->options['minViewMode'] == 'months') {
-                $stitch = '/01';
                 $this->options['format'] = 'yyyy/mm';
             }
+            if ($this->options['minViewMode'] == 'years') {
+                $this->options['format'] = 'yyyy';
+            }
         }
-        if (!array_key_exists('format', $this->options) || is_null($this->options['format'])) {
+        if (!array_key_exists('format', $this->options) || empty($this->options['format'])) {
             $this->options['format'] = 'yyyy/mm/dd';
         }
-        if (!array_key_exists('startDate', $this->options) || is_null($this->options['startDate'])) {
-            $year = Jalali::date('Y', time(), false) - 50;
-            $this->options['startDate'] = $year . $stitch;
-            $this->options['endDate'] = ($year + 55) . $stitch;
+
+        if (!array_key_exists('todayBtn', $this->options) || is_null($this->options['todayBtn'])) {
+            $this->options['todayBtn'] = 'linked';
         }
 
         $this->options['placement'] = 'right';
-        $this->options['todayBtn'] = 'linked';
         $this->options['startView'] = 'decade';
         $this->options['autoclose'] = true;
 

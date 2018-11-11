@@ -59,6 +59,23 @@ abstract class KHanModel extends ActiveRecord
     ];
 
     /**
+     * Convert array of model's errors into string for display
+     *
+     * @param KHanModel $model
+     *
+     * @return string
+     */
+    public static function getModelErrors(KHanModel $model)
+    {
+        $errors = $model->errors;
+        foreach ($errors as &$error) {
+            $error = ViewHelper::implode($error, '<br />');
+        }
+
+        return implode('<br />', $errors);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function attributeLabels()
@@ -138,16 +155,6 @@ abstract class KHanModel extends ActiveRecord
     }
 
     /**
-     * get list of available statuses defined.
-     *
-     * @return array
-     */
-    public static function getStatuses()
-    {
-        return KHanModel::$_statuses;
-    }
-
-    /**
      * get the title for status of the given record or value
      *
      * @param null|integer $status current status id
@@ -161,6 +168,16 @@ abstract class KHanModel extends ActiveRecord
         }
 
         return ArrayHelper::getValue(static::getStatuses(), $status, 'نامشخص');
+    }
+
+    /**
+     * get list of available statuses defined.
+     *
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return KHanModel::$_statuses;
     }
 
     /**
@@ -207,39 +224,21 @@ abstract class KHanModel extends ActiveRecord
         return Jalali::date(Settings::DATE_LONG_DATE_TIME, $this->updated_at);
     }
 
-    /**
-     * Convert array of model's errors into string for display
-     *
-     * @param KHanModel $model
-     *
-     * @return string
-     */
-    public static function getModelErrors(KHanModel $model)
-    {
-        $errors = $model->errors;
-        foreach ($errors as &$error) {
-            $error = ViewHelper::implode( $error, '<br />');
-        }
-
-        return implode('<br />', $errors);
-    }
-
     function upsert($rows)
     {
 //echo '<pre dir="ltr">';var_dump($rows);echo '</pre>';
-        foreach ($rows as $row){
+        foreach ($rows as $row) {
             /* @var UpsertData $row */
             $aggrQuery = UpsertAggr::find()
-                ->andWhere(['grade'=> $row['grade']])
-                ->andWhere(['year'=> $row['year']])
-                ->andWhere(['field'=> $row['field']])
-                ->andWhere(['status'=> $row['status']])
-            ;
+                ->andWhere(['grade' => $row['grade']])
+                ->andWhere(['year' => $row['year']])
+                ->andWhere(['field' => $row['field']])
+                ->andWhere(['status' => $row['status']]);
 
-            if($aggrQuery->exists()){
+            if ($aggrQuery->exists()) {
                 $upsert = $aggrQuery->one();
 //var_dump('Updating');
-            }else{
+            } else {
                 $upsert = new UpsertAggr();
 //var_dump('Inserting');
             }

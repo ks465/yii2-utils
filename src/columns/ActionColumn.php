@@ -12,31 +12,18 @@ namespace KHanS\Utils\columns;
 
 use kartik\helpers\Html;
 use KHanS\Utils\components\Jalali;
-use KHanS\Utils\models\KHanModel;
+use KHanS\Utils\models\KHanUser;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 /**
- * Show column in grid views for actions on the data
- * Example:
- * ```php
- * ...
- *[
- * 'class' => '\common\widgets\columns\ActionColumn',
- * 'dropdown' => true, //optional defaults to false
- * 'audit' => true, //optional defaults to false
- *],
- * ...
- * ```
- * //disable pjax in ajaxview:
- * 'updateOptions' => [ //or viewOptions
- *      'title' => 'ویرایش',
- *      'data-toggle' => 'tooltip',
- * ],
+ * Show column in grid views for actions on the data.
+ * It includes standard CRUD and custom methods.
+ * See [ActionColumn Guide](guide:columns-action-column.md)
  *
  * @package common\widgets
- * @version 1.0
+ * @version 0.1.0-950430
  * @since   1.0
  */
 class ActionColumn extends \kartik\grid\ActionColumn
@@ -57,7 +44,16 @@ class ActionColumn extends \kartik\grid\ActionColumn
      * @var bool set to true to use in non-AJAX delete request
      */
     public $disableDataMethod = false;
+    /**
+     * @var array List of other items to add to the ActionColumn
+     *
+     * See [ActionColumn Guide](guide:columns-action-column.md) for details
+     */
+    public $extraItems = [];
 
+    /**
+     * Build and configure the widget
+     */
     public function init()
     {
         if (property_exists(Yii::$app->user, 'isSuperAdmin') && Yii::$app->user->isSuperAdmin) {
@@ -119,6 +115,9 @@ class ActionColumn extends \kartik\grid\ActionColumn
         if ($this->audit) {
             $this->_audit();
         }
+        if (!empty($this->extraItems)) {
+            $this->_extraItems();
+        }
 
         parent::init();
     }
@@ -142,11 +141,11 @@ class ActionColumn extends \kartik\grid\ActionColumn
                 $config['label'] = '<span class="glyphicon glyphicon-download-alt"></span> دریافت';
 
                 return '<li>' .
-                    Html::a($config['label'], $url, $config) .
+                    Html::a($config['label'], $this->download, $config) .
                     '</li>';
             }
 
-            return Html::a('<span class="glyphicon glyphicon-download-alt"></span>', $url, $config);
+            return Html::a('<span class="glyphicon glyphicon-download-alt"></span>', $this->download, $config);
         };
     }
 
@@ -174,19 +173,68 @@ class ActionColumn extends \kartik\grid\ActionColumn
             return Html::a('<span class="glyphicon glyphicon-time"></span>', false, $config);
         };
     }
+
+    /**
+     * If more keys and actions are required, Put them in [[extraItems]] property of the [[actionColumn]]:
+     *
+     * ```php
+     * ...
+     * 'extraItems' => [
+     *     'name'=>[ //default action name and name in the template
+     *     'title'=>'Test Me', //default menu title in dropdown or the tooltip of selection
+     *     'icon'=>'edit', //glyphicon name default is link
+     *     'action'=>'anAction', //action of the link
+     *     'config'=>['class'=>'text-danger'], // configuring options of the link tag
+     * ],
+     * ```
+     */
+    private function _extraItems()
+    {
+        foreach ($this->extraItems as $title => $data) {
+            if (is_integer($title) && empty($data)) {
+                continue;
+            }
+            $this->template .= ' {' . $title . '}';
+
+            $this->buttons[$title] = function($url, $model, $key) use ($title, $data) {
+                if (array_key_exists('icon', $data)) {
+                    $icon = '<span class="glyphicon glyphicon-' . $data['icon'] . '"></span>';
+                } else {
+                    $icon = '<span class="glyphicon glyphicon-link"></span>';
+                }
+                if (array_key_exists('title', $data)) {
+                    $data['config']['title'] = ucwords($data['title']);
+                } else {
+                    $data['config']['title'] = ucwords($title);
+                }
+                if (array_key_exists('action', $data)) {
+                    $action = Url::to([$data['action']]);
+                } else {
+                    $action = Url::to([$title]);
+                }
+                if ($this->dropdown) {
+                    $this->dropdownOptions = $data['config'];
+
+                    return '<li>' . Html::a($icon . ' ' . ucwords($data['config']['title']), $action, $data['config']) . '</li>';
+                }
+
+                return Html::a($icon, $action, $data['config']);
+            };
+        }
+    }
 }
 
 /**
- * Build simple text showing the times and persons
+ * Build simple text showing the times and persons committed inserting or editing
  *
- * @param KHanModel $model
+ * @param KHanUser $model
  *
  * @return string
  * @throws \Exception
  */
 function makePopoverContent($model)
 {
-    if ($model instanceof KHanModel) {
+    if ($model instanceof KHanUser) {
         $creator = $model->getCreator($model)->fullName;
         $updater = $model->getUpdater($model)->fullName;
 
@@ -199,7 +247,7 @@ function makePopoverContent($model)
         $createTime = ArrayHelper::getValue($model, 'created_at', 0);
         $updateTime = ArrayHelper::getValue($model, 'updated_at', 0);
     } else {
-        throw new \Exception('Model for ActionColumn should inherit ' . KHanModel::className());
+        throw new \Exception('Model for ActionColumn should inherit ' . KHanUser::className());
     }
 
 

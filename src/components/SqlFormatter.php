@@ -1,4 +1,10 @@
 <?php
+/**
+ *
+ * @package KHanS\Utils
+ * @version 0.1.1-960420
+ * @since   1.0
+ */
 
 
 namespace KHanS\Utils\components;
@@ -21,193 +27,348 @@ class SqlFormatter
      *  Constants for token types
      */
     const TOKEN_TYPE_WHITESPACE = 0;
+    /**
+     *  Constants for token types
+     */
     const TOKEN_TYPE_WORD = 1;
+    /**
+     *  Constants for token types
+     */
     const TOKEN_TYPE_QUOTE = 2;
+    /**
+     *  Constants for token types
+     */
     const TOKEN_TYPE_BACKTICK_QUOTE = 3;
+    /**
+     *  Constants for token types
+     */
     const TOKEN_TYPE_RESERVED = 4;
+    /**
+     *  Constants for token types
+     */
     const TOKEN_TYPE_RESERVED_TOPLEVEL = 5;
+    /**
+     *  Constants for token types
+     */
     const TOKEN_TYPE_RESERVED_NEWLINE = 6;
+    /**
+     *  Constants for token types
+     */
     const TOKEN_TYPE_BOUNDARY = 7;
+    /**
+     *  Constants for token types
+     */
     const TOKEN_TYPE_COMMENT = 8;
+    /**
+     *  Constants for token types
+     */
     const TOKEN_TYPE_BLOCK_COMMENT = 9;
+    /**
+     *  Constants for token types
+     */
     const TOKEN_TYPE_NUMBER = 10;
+    /**
+     *  Constants for token types
+     */
     const TOKEN_TYPE_ERROR = 11;
+    /**
+     *  Constants for token types
+     */
     const TOKEN_TYPE_VARIABLE = 12;
-
     /**
-     * Constants for different components of a token
-     * */
+     *  Constants for different components of a token
+     */
     const TOKEN_TYPE = 0;
+    /**
+     *  Constants for different components of a token
+     */
     const TOKEN_VALUE = 1;
-
     /**
-     * Reserved words (for syntax highlighting)
+     * @var array  Reserved words (for syntax highlighting)
      */
-    public static $quote_attributes = 'style="color: blue;"';
-
-    /**
-     * For SQL formatting
-     * These keywords will all be on their own line
-     */
-    public static $backtick_quote_attributes = 'style="color: purple;"';
-    public static $reserved_attributes = 'style="font-weight:bold;"';
-    public static $boundary_attributes = '';
-
-    /**
-     * Punctuation that can be used as a boundary between other tokens
-     */
-    public static $number_attributes = 'style="color: green;"';
-
-    /**
-     * For HTML syntax highlighting
-     * Styles applied to different token types
-     */
-    public static $word_attributes = 'style="color: #333;"';
-    public static $error_attributes = 'style="background-color: red;"';
-    public static $comment_attributes = 'style="color: #aaa;"';
-    public static $variable_attributes = 'style="color: orange;"';
-    public static $pre_attributes = 'style="color: black; background-color: white;" dir="ltr"';
-    public static $cli;
-    public static $cli_quote = "\x1b[34;1m";
-    public static $cli_backtick_quote = "\x1b[35;1m";
-    public static $cli_reserved = "\x1b[37m";
-    public static $cli_boundary = "";
-
-    /**
-     * Boolean - whether or not the current environment is the CLI
-     * This affects the type of syntax highlighting
-     * If not defined, it will be determined automatically
-     */
-    public static $cli_number = "\x1b[32;1m";
-
-    /**
-     * For CLI syntax highlighting
-     */
-    public static $cli_word = "";
-    public static $cli_error = "\x1b[31;1;7m";
-    public static $cli_comment = "\x1b[30;1m";
-    public static $cli_functions = "\x1b[37m";
-    public static $cli_variable = "\x1b[36;1m";
-    public static $tab = '  ';
-    public static $use_pre = true;
-    public static $max_cachekey_size = 15;
     protected static $reserved = [
         'ACCESSIBLE', 'ACTION', 'AGAINST', 'AGGREGATE', 'ALGORITHM', 'ALL', 'ALTER', 'ANALYSE', 'ANALYZE', 'AS', 'ASC',
         'AUTOCOMMIT', 'AUTO_INCREMENT', 'BACKUP', 'BEGIN', 'BETWEEN', 'BINLOG', 'BOTH', 'CASCADE', 'CASE', 'CHANGE',
-        'CHANGED', 'CHARACTER SET', 'CHARSET', 'CHECK', 'CHECKSUM', 'COLLATE', 'COLLATION', 'COLUMN', 'COLUMNS',
-        'COMMENT', 'COMMIT', 'COMMITTED', 'COMPRESSED', 'CONCURRENT', 'CONSTRAINT', 'CONTAINS', 'CONVERT', 'CREATE',
-        'CROSS', 'CURRENT_TIMESTAMP', 'DATABASE', 'DATABASES', 'DAY', 'DAY_HOUR', 'DAY_MINUTE', 'DAY_SECOND', 'DEFAULT',
-        'DEFINER', 'DELAYED', 'DELETE', 'DESC', 'DESCRIBE', 'DETERMINISTIC', 'DISTINCT', 'DISTINCTROW', 'DIV', 'DO',
-        'DUMPFILE', 'DUPLICATE', 'DYNAMIC', 'ELSE', 'ENCLOSED', 'END', 'ENGINE', 'ENGINE_TYPE', 'ENGINES', 'ESCAPE',
-        'ESCAPED', 'EVENTS', 'EXEC', 'EXECUTE', 'EXISTS', 'EXPLAIN', 'EXTENDED', 'FAST', 'FIELDS', 'FILE', 'FIRST',
-        'FIXED', 'FLUSH', 'FOR', 'FORCE', 'FOREIGN', 'FULL', 'FULLTEXT', 'FUNCTION', 'GLOBAL', 'GRANT', 'GRANTS',
-        'GROUP_CONCAT', 'HEAP', 'HIGH_PRIORITY', 'HOSTS', 'HOUR', 'HOUR_MINUTE', 'HOUR_SECOND', 'IDENTIFIED', 'IF',
-        'IFNULL', 'IGNORE', 'IN', 'INDEX', 'INDEXES', 'INFILE', 'INSERT', 'INSERT_ID', 'INSERT_METHOD', 'INTERVAL',
+        'CHANGED', 'CHARACTER SET',
+        'CHARSET', 'CHECK', 'CHECKSUM', 'COLLATE', 'COLLATION', 'COLUMN', 'COLUMNS', 'COMMENT', 'COMMIT', 'COMMITTED',
+        'COMPRESSED', 'CONCURRENT',
+        'CONSTRAINT', 'CONTAINS', 'CONVERT', 'CREATE', 'CROSS', 'CURRENT_TIMESTAMP', 'DATABASE', 'DATABASES', 'DAY',
+        'DAY_HOUR', 'DAY_MINUTE',
+        'DAY_SECOND', 'DEFAULT', 'DEFINER', 'DELAYED', 'DELETE', 'DESC', 'DESCRIBE', 'DETERMINISTIC', 'DISTINCT',
+        'DISTINCTROW', 'DIV',
+        'DO', 'DUMPFILE', 'DUPLICATE', 'DYNAMIC', 'ELSE', 'ENCLOSED', 'END', 'ENGINE', 'ENGINE_TYPE', 'ENGINES',
+        'ESCAPE', 'ESCAPED', 'EVENTS', 'EXEC',
+        'EXECUTE', 'EXISTS', 'EXPLAIN', 'EXTENDED', 'FAST', 'FIELDS', 'FILE', 'FIRST', 'FIXED', 'FLUSH', 'FOR', 'FORCE',
+        'FOREIGN', 'FULL', 'FULLTEXT',
+        'FUNCTION', 'GLOBAL', 'GRANT', 'GRANTS', 'GROUP_CONCAT', 'HEAP', 'HIGH_PRIORITY', 'HOSTS', 'HOUR',
+        'HOUR_MINUTE',
+        'HOUR_SECOND', 'IDENTIFIED', 'IF', 'IFNULL', 'IGNORE', 'IN', 'INDEX', 'INDEXES', 'INFILE', 'INSERT',
+        'INSERT_ID', 'INSERT_METHOD', 'INTERVAL',
         'INTO', 'INVOKER', 'IS', 'ISOLATION', 'KEY', 'KEYS', 'KILL', 'LAST_INSERT_ID', 'LEADING', 'LEVEL', 'LIKE',
-        'LINEAR', 'LINES', 'LOAD', 'LOCAL', 'LOCK', 'LOCKS', 'LOGS', 'LOW_PRIORITY', 'MARIA', 'MASTER',
-        'MASTER_CONNECT_RETRY', 'MASTER_HOST', 'MASTER_LOG_FILE', 'MATCH', 'MAX_CONNECTIONS_PER_HOUR',
-        'MAX_QUERIES_PER_HOUR', 'MAX_ROWS', 'MAX_UPDATES_PER_HOUR', 'MAX_USER_CONNECTIONS', 'MEDIUM', 'MERGE', 'MINUTE',
-        'MINUTE_SECOND', 'MIN_ROWS', 'MODE', 'MODIFY', 'MONTH', 'MRG_MYISAM', 'MYISAM', 'NAMES', 'NATURAL', 'NOT',
-        'NOW()', 'NULL', 'OFFSET', 'ON', 'OPEN', 'OPTIMIZE', 'OPTION', 'OPTIONALLY', 'ON UPDATE', 'ON DELETE',
-        'OUTFILE', 'PACK_KEYS', 'PAGE', 'PARTIAL', 'PARTITION', 'PARTITIONS', 'PASSWORD', 'PRIMARY', 'PRIVILEGES',
-        'PROCEDURE', 'PROCESS', 'PROCESSLIST', 'PURGE', 'QUICK', 'RANGE', 'RAID0', 'RAID_CHUNKS', 'RAID_CHUNKSIZE',
-        'RAID_TYPE', 'READ', 'READ_ONLY', 'READ_WRITE', 'REFERENCES', 'REGEXP', 'RELOAD', 'RENAME', 'REPAIR',
-        'REPEATABLE', 'REPLACE', 'REPLICATION', 'RESET', 'RESTORE', 'RESTRICT', 'RETURN', 'RETURNS', 'REVOKE', 'RLIKE',
-        'ROLLBACK', 'ROW', 'ROWS', 'ROW_FORMAT', 'SECOND', 'SECURITY', 'SEPARATOR', 'SERIALIZABLE', 'SESSION', 'SHARE',
-        'SHOW', 'SHUTDOWN', 'SLAVE', 'SONAME', 'SOUNDS', 'SQL', 'SQL_AUTO_IS_NULL', 'SQL_BIG_RESULT', 'SQL_BIG_SELECTS',
-        'SQL_BIG_TABLES', 'SQL_BUFFER_RESULT', 'SQL_CALC_FOUND_ROWS', 'SQL_LOG_BIN', 'SQL_LOG_OFF', 'SQL_LOG_UPDATE',
+        'LINEAR',
+        'LINES', 'LOAD', 'LOCAL', 'LOCK', 'LOCKS', 'LOGS', 'LOW_PRIORITY', 'MARIA', 'MASTER', 'MASTER_CONNECT_RETRY',
+        'MASTER_HOST', 'MASTER_LOG_FILE',
+        'MATCH', 'MAX_CONNECTIONS_PER_HOUR', 'MAX_QUERIES_PER_HOUR', 'MAX_ROWS', 'MAX_UPDATES_PER_HOUR',
+        'MAX_USER_CONNECTIONS',
+        'MEDIUM', 'MERGE', 'MINUTE', 'MINUTE_SECOND', 'MIN_ROWS', 'MODE', 'MODIFY',
+        'MONTH', 'MRG_MYISAM', 'MYISAM', 'NAMES', 'NATURAL', 'NOT', 'NOW()', 'NULL', 'OFFSET', 'ON', 'OPEN', 'OPTIMIZE',
+        'OPTION', 'OPTIONALLY',
+        'ON UPDATE', 'ON DELETE', 'OUTFILE', 'PACK_KEYS', 'PAGE', 'PARTIAL', 'PARTITION', 'PARTITIONS', 'PASSWORD',
+        'PRIMARY', 'PRIVILEGES', 'PROCEDURE',
+        'PROCESS', 'PROCESSLIST', 'PURGE', 'QUICK', 'RANGE', 'RAID0', 'RAID_CHUNKS', 'RAID_CHUNKSIZE', 'RAID_TYPE',
+        'READ', 'READ_ONLY',
+        'READ_WRITE', 'REFERENCES', 'REGEXP', 'RELOAD', 'RENAME', 'REPAIR', 'REPEATABLE', 'REPLACE', 'REPLICATION',
+        'RESET', 'RESTORE', 'RESTRICT',
+        'RETURN', 'RETURNS', 'REVOKE', 'RLIKE', 'ROLLBACK', 'ROW', 'ROWS', 'ROW_FORMAT', 'SECOND', 'SECURITY',
+        'SEPARATOR',
+        'SERIALIZABLE', 'SESSION', 'SHARE', 'SHOW', 'SHUTDOWN', 'SLAVE', 'SONAME', 'SOUNDS', 'SQL', 'SQL_AUTO_IS_NULL',
+        'SQL_BIG_RESULT',
+        'SQL_BIG_SELECTS', 'SQL_BIG_TABLES', 'SQL_BUFFER_RESULT', 'SQL_CALC_FOUND_ROWS', 'SQL_LOG_BIN', 'SQL_LOG_OFF',
+        'SQL_LOG_UPDATE',
         'SQL_LOW_PRIORITY_UPDATES', 'SQL_MAX_JOIN_SIZE', 'SQL_QUOTE_SHOW_CREATE', 'SQL_SAFE_UPDATES',
-        'SQL_SELECT_LIMIT', 'SQL_SLAVE_SKIP_COUNTER', 'SQL_SMALL_RESULT', 'SQL_WARNINGS', 'SQL_CACHE', 'SQL_NO_CACHE',
-        'START', 'STARTING', 'STATUS', 'STOP', 'STORAGE', 'STRAIGHT_JOIN', 'STRING', 'STRIPED', 'SUPER', 'TABLE',
-        'TABLES', 'TEMPORARY', 'TERMINATED', 'THEN', 'TO', 'TRAILING', 'TRANSACTIONAL', 'TRUE', 'TRUNCATE', 'TYPE',
-        'TYPES', 'UNCOMMITTED', 'UNIQUE', 'UNLOCK', 'UNSIGNED', 'USAGE', 'USE', 'USING', 'VARIABLES', 'VIEW', 'WHEN',
-        'WITH', 'WORK', 'WRITE', 'YEAR_MONTH',
+        'SQL_SELECT_LIMIT', 'SQL_SLAVE_SKIP_COUNTER',
+        'SQL_SMALL_RESULT', 'SQL_WARNINGS', 'SQL_CACHE', 'SQL_NO_CACHE', 'START', 'STARTING', 'STATUS', 'STOP',
+        'STORAGE',
+        'STRAIGHT_JOIN', 'STRING', 'STRIPED', 'SUPER', 'TABLE', 'TABLES', 'TEMPORARY', 'TERMINATED', 'THEN', 'TO',
+        'TRAILING', 'TRANSACTIONAL', 'TRUE',
+        'TRUNCATE', 'TYPE', 'TYPES', 'UNCOMMITTED', 'UNIQUE', 'UNLOCK', 'UNSIGNED', 'USAGE', 'USE', 'USING',
+        'VARIABLES',
+        'VIEW', 'WHEN', 'WITH', 'WORK', 'WRITE', 'YEAR_MONTH',
     ];
-    protected static $reserved_toplevel = [
-        'SELECT', 'FROM', 'WHERE', 'SET', 'ORDER BY', 'GROUP BY', 'LIMIT', 'DROP', 'VALUES', 'UPDATE', 'HAVING', 'ADD',
-        'AFTER', 'ALTER TABLE', 'DELETE FROM', 'UNION ALL', 'UNION', 'EXCEPT', 'INTERSECT',
-    ];
-
     /**
-     * The tab character to use when formatting SQL
+     * @var array For SQL formatting
+     *  These keywords will all be on their own line
+     */
+    protected static $reserved_toplevel = [
+        'SELECT', 'FROM', 'WHERE', 'SET', 'ORDER BY', 'GROUP BY', 'LIMIT', 'DROP',
+        'VALUES', 'UPDATE', 'HAVING', 'ADD', 'AFTER', 'ALTER TABLE', 'DELETE FROM', 'UNION ALL', 'UNION', 'EXCEPT',
+        'INTERSECT',
+    ];
+    /**
+     * @var array  For SQL formatting
+     *  These keywords will all be on their own line
      */
     protected static $reserved_newline = [
         'LEFT OUTER JOIN', 'RIGHT OUTER JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'OUTER JOIN', 'INNER JOIN', 'JOIN', 'XOR',
         'OR', 'AND',
     ];
-
     /**
-     * This flag tells us if queries need to be enclosed in <pre> tags
+     * @var array  For SQL formatting
+     *  These keywords will all be on their own line
      */
     protected static $functions = [
         'ABS', 'ACOS', 'ADDDATE', 'ADDTIME', 'AES_DECRYPT', 'AES_ENCRYPT', 'AREA', 'ASBINARY', 'ASCII', 'ASIN',
-        'ASTEXT', 'ATAN', 'ATAN2', 'AVG', 'BDMPOLYFROMTEXT', 'BDMPOLYFROMWKB', 'BDPOLYFROMTEXT', 'BDPOLYFROMWKB',
-        'BENCHMARK', 'BIN', 'BIT_AND', 'BIT_COUNT', 'BIT_LENGTH', 'BIT_OR', 'BIT_XOR', 'BOUNDARY', 'BUFFER', 'CAST',
-        'CEIL', 'CEILING', 'CENTROID', 'CHAR', 'CHARACTER_LENGTH', 'CHARSET', 'CHAR_LENGTH', 'COALESCE', 'COERCIBILITY',
-        'COLLATION', 'COMPRESS', 'CONCAT', 'CONCAT_WS', 'CONNECTION_ID', 'CONTAINS', 'CONV', 'CONVERT', 'CONVERT_TZ',
+        'ASTEXT', 'ATAN', 'ATAN2',
+        'AVG', 'BDMPOLYFROMTEXT', 'BDMPOLYFROMWKB', 'BDPOLYFROMTEXT', 'BDPOLYFROMWKB', 'BENCHMARK', 'BIN', 'BIT_AND',
+        'BIT_COUNT', 'BIT_LENGTH',
+        'BIT_OR', 'BIT_XOR', 'BOUNDARY', 'BUFFER', 'CAST', 'CEIL', 'CEILING', 'CENTROID', 'CHAR', 'CHARACTER_LENGTH',
+        'CHARSET', 'CHAR_LENGTH',
+        'COALESCE', 'COERCIBILITY', 'COLLATION', 'COMPRESS', 'CONCAT', 'CONCAT_WS', 'CONNECTION_ID', 'CONTAINS', 'CONV',
+        'CONVERT', 'CONVERT_TZ',
         'CONVEXHULL', 'COS', 'COT', 'COUNT', 'CRC32', 'CROSSES', 'CURDATE', 'CURRENT_DATE', 'CURRENT_TIME',
-        'CURRENT_TIMESTAMP', 'CURRENT_USER', 'CURTIME', 'DATABASE', 'DATE', 'DATEDIFF', 'DATE_ADD', 'DATE_DIFF',
-        'DATE_FORMAT', 'DATE_SUB', 'DAY', 'DAYNAME', 'DAYOFMONTH', 'DAYOFWEEK', 'DAYOFYEAR', 'DECODE', 'DEFAULT',
-        'DEGREES', 'DES_DECRYPT', 'DES_ENCRYPT', 'DIFFERENCE', 'DIMENSION', 'DISJOINT', 'DISTANCE', 'ELT', 'ENCODE',
+        'CURRENT_TIMESTAMP', 'CURRENT_USER',
+        'CURTIME', 'DATABASE', 'DATE', 'DATEDIFF', 'DATE_ADD', 'DATE_DIFF', 'DATE_FORMAT', 'DATE_SUB', 'DAY', 'DAYNAME',
+        'DAYOFMONTH', 'DAYOFWEEK',
+        'DAYOFYEAR', 'DECODE', 'DEFAULT', 'DEGREES', 'DES_DECRYPT', 'DES_ENCRYPT', 'DIFFERENCE', 'DIMENSION',
+        'DISJOINT', 'DISTANCE', 'ELT', 'ENCODE',
         'ENCRYPT', 'ENDPOINT', 'ENVELOPE', 'EQUALS', 'EXP', 'EXPORT_SET', 'EXTERIORRING', 'EXTRACT', 'EXTRACTVALUE',
-        'FIELD', 'FIND_IN_SET', 'FLOOR', 'FORMAT', 'FOUND_ROWS', 'FROM_DAYS', 'FROM_UNIXTIME', 'GEOMCOLLFROMTEXT',
-        'GEOMCOLLFROMWKB', 'GEOMETRYCOLLECTION', 'GEOMETRYCOLLECTIONFROMTEXT', 'GEOMETRYCOLLECTIONFROMWKB',
-        'GEOMETRYFROMTEXT', 'GEOMETRYFROMWKB', 'GEOMETRYN', 'GEOMETRYTYPE', 'GEOMFROMTEXT', 'GEOMFROMWKB', 'GET_FORMAT',
+        'FIELD', 'FIND_IN_SET', 'FLOOR',
+        'FORMAT', 'FOUND_ROWS', 'FROM_DAYS', 'FROM_UNIXTIME', 'GEOMCOLLFROMTEXT', 'GEOMCOLLFROMWKB',
+        'GEOMETRYCOLLECTION', 'GEOMETRYCOLLECTIONFROMTEXT',
+        'GEOMETRYCOLLECTIONFROMWKB', 'GEOMETRYFROMTEXT', 'GEOMETRYFROMWKB', 'GEOMETRYN', 'GEOMETRYTYPE', 'GEOMFROMTEXT',
+        'GEOMFROMWKB', 'GET_FORMAT',
         'GET_LOCK', 'GLENGTH', 'GREATEST', 'GROUP_CONCAT', 'GROUP_UNIQUE_USERS', 'HEX', 'HOUR', 'IF', 'IFNULL',
-        'INET_ATON', 'INET_NTOA', 'INSERT', 'INSTR', 'INTERIORRINGN', 'INTERSECTION', 'INTERSECTS', 'INTERVAL',
-        'ISCLOSED', 'ISEMPTY', 'ISNULL', 'ISRING', 'ISSIMPLE', 'IS_FREE_LOCK', 'IS_USED_LOCK', 'LAST_DAY',
-        'LAST_INSERT_ID', 'LCASE', 'LEAST', 'LEFT', 'LENGTH', 'LINEFROMTEXT', 'LINEFROMWKB', 'LINESTRING',
-        'LINESTRINGFROMTEXT', 'LINESTRINGFROMWKB', 'LN', 'LOAD_FILE', 'LOCALTIME', 'LOCALTIMESTAMP', 'LOCATE', 'LOG',
-        'LOG10', 'LOG2', 'LOWER', 'LPAD', 'LTRIM', 'MAKEDATE', 'MAKETIME', 'MAKE_SET', 'MASTER_POS_WAIT', 'MAX',
-        'MBRCONTAINS', 'MBRDISJOINT', 'MBREQUAL', 'MBRINTERSECTS', 'MBROVERLAPS', 'MBRTOUCHES', 'MBRWITHIN', 'MD5',
-        'MICROSECOND', 'MID', 'MIN', 'MINUTE', 'MLINEFROMTEXT', 'MLINEFROMWKB', 'MOD', 'MONTH', 'MONTHNAME',
-        'MPOINTFROMTEXT', 'MPOINTFROMWKB', 'MPOLYFROMTEXT', 'MPOLYFROMWKB', 'MULTILINESTRING',
-        'MULTILINESTRINGFROMTEXT', 'MULTILINESTRINGFROMWKB', 'MULTIPOINT', 'MULTIPOINTFROMTEXT', 'MULTIPOINTFROMWKB',
-        'MULTIPOLYGON', 'MULTIPOLYGONFROMTEXT', 'MULTIPOLYGONFROMWKB', 'NAME_CONST', 'NULLIF', 'NUMGEOMETRIES',
-        'NUMINTERIORRINGS', 'NUMPOINTS', 'OCT', 'OCTET_LENGTH', 'OLD_PASSWORD', 'ORD', 'OVERLAPS', 'PASSWORD',
-        'PERIOD_ADD', 'PERIOD_DIFF', 'PI', 'POINT', 'POINTFROMTEXT', 'POINTFROMWKB', 'POINTN', 'POINTONSURFACE',
+        'INET_ATON', 'INET_NTOA', 'INSERT', 'INSTR',
+        'INTERIORRINGN', 'INTERSECTION', 'INTERSECTS', 'INTERVAL', 'ISCLOSED', 'ISEMPTY', 'ISNULL', 'ISRING',
+        'ISSIMPLE', 'IS_FREE_LOCK', 'IS_USED_LOCK',
+        'LAST_DAY', 'LAST_INSERT_ID', 'LCASE', 'LEAST', 'LEFT', 'LENGTH', 'LINEFROMTEXT', 'LINEFROMWKB', 'LINESTRING',
+        'LINESTRINGFROMTEXT', 'LINESTRINGFROMWKB',
+        'LN', 'LOAD_FILE', 'LOCALTIME', 'LOCALTIMESTAMP', 'LOCATE', 'LOG', 'LOG10', 'LOG2', 'LOWER', 'LPAD', 'LTRIM',
+        'MAKEDATE', 'MAKETIME', 'MAKE_SET',
+        'MASTER_POS_WAIT', 'MAX', 'MBRCONTAINS', 'MBRDISJOINT', 'MBREQUAL', 'MBRINTERSECTS', 'MBROVERLAPS',
+        'MBRTOUCHES', 'MBRWITHIN', 'MD5', 'MICROSECOND',
+        'MID', 'MIN', 'MINUTE', 'MLINEFROMTEXT', 'MLINEFROMWKB', 'MOD', 'MONTH', 'MONTHNAME', 'MPOINTFROMTEXT',
+        'MPOINTFROMWKB', 'MPOLYFROMTEXT', 'MPOLYFROMWKB',
+        'MULTILINESTRING', 'MULTILINESTRINGFROMTEXT', 'MULTILINESTRINGFROMWKB', 'MULTIPOINT', 'MULTIPOINTFROMTEXT',
+        'MULTIPOINTFROMWKB', 'MULTIPOLYGON',
+        'MULTIPOLYGONFROMTEXT', 'MULTIPOLYGONFROMWKB', 'NAME_CONST', 'NULLIF', 'NUMGEOMETRIES', 'NUMINTERIORRINGS',
+        'NUMPOINTS', 'OCT', 'OCTET_LENGTH',
+        'OLD_PASSWORD', 'ORD', 'OVERLAPS', 'PASSWORD', 'PERIOD_ADD', 'PERIOD_DIFF', 'PI', 'POINT', 'POINTFROMTEXT',
+        'POINTFROMWKB', 'POINTN', 'POINTONSURFACE',
         'POLYFROMTEXT', 'POLYFROMWKB', 'POLYGON', 'POLYGONFROMTEXT', 'POLYGONFROMWKB', 'POSITION', 'POW', 'POWER',
-        'QUARTER', 'QUOTE', 'RADIANS', 'RAND', 'RELATED', 'RELEASE_LOCK', 'REPEAT', 'REPLACE', 'REVERSE', 'RIGHT',
-        'ROUND', 'ROW_COUNT', 'RPAD', 'RTRIM', 'SCHEMA', 'SECOND', 'SEC_TO_TIME', 'SESSION_USER', 'SHA', 'SHA1', 'SIGN',
-        'SIN', 'SLEEP', 'SOUNDEX', 'SPACE', 'SQRT', 'SRID', 'STARTPOINT', 'STD', 'STDDEV', 'STDDEV_POP', 'STDDEV_SAMP',
+        'QUARTER', 'QUOTE', 'RADIANS', 'RAND',
+        'RELATED', 'RELEASE_LOCK', 'REPEAT', 'REPLACE', 'REVERSE', 'RIGHT', 'ROUND', 'ROW_COUNT', 'RPAD', 'RTRIM',
+        'SCHEMA', 'SECOND', 'SEC_TO_TIME',
+        'SESSION_USER', 'SHA', 'SHA1', 'SIGN', 'SIN', 'SLEEP', 'SOUNDEX', 'SPACE', 'SQRT', 'SRID', 'STARTPOINT', 'STD',
+        'STDDEV', 'STDDEV_POP', 'STDDEV_SAMP',
         'STRCMP', 'STR_TO_DATE', 'SUBDATE', 'SUBSTR', 'SUBSTRING', 'SUBSTRING_INDEX', 'SUBTIME', 'SUM', 'SYMDIFFERENCE',
-        'SYSDATE', 'SYSTEM_USER', 'TAN', 'TIME', 'TIMEDIFF', 'TIMESTAMP', 'TIMESTAMPADD', 'TIMESTAMPDIFF',
-        'TIME_FORMAT', 'TIME_TO_SEC', 'TOUCHES', 'TO_DAYS', 'TRIM', 'TRUNCATE', 'UCASE', 'UNCOMPRESS',
-        'UNCOMPRESSED_LENGTH', 'UNHEX', 'UNIQUE_USERS', 'UNIX_TIMESTAMP', 'UPDATEXML', 'UPPER', 'USER', 'UTC_DATE',
-        'UTC_TIME', 'UTC_TIMESTAMP', 'UUID', 'VARIANCE', 'VAR_POP', 'VAR_SAMP', 'VERSION', 'WEEK', 'WEEKDAY',
-        'WEEKOFYEAR', 'WITHIN', 'X', 'Y', 'YEAR', 'YEARWEEK',
+        'SYSDATE', 'SYSTEM_USER', 'TAN',
+        'TIME', 'TIMEDIFF', 'TIMESTAMP', 'TIMESTAMPADD', 'TIMESTAMPDIFF', 'TIME_FORMAT', 'TIME_TO_SEC', 'TOUCHES',
+        'TO_DAYS', 'TRIM', 'TRUNCATE', 'UCASE',
+        'UNCOMPRESS', 'UNCOMPRESSED_LENGTH', 'UNHEX', 'UNIQUE_USERS', 'UNIX_TIMESTAMP', 'UPDATEXML', 'UPPER', 'USER',
+        'UTC_DATE', 'UTC_TIME', 'UTC_TIMESTAMP',
+        'UUID', 'VARIANCE', 'VAR_POP', 'VAR_SAMP', 'VERSION', 'WEEK', 'WEEKDAY', 'WEEKOFYEAR', 'WITHIN', 'X', 'Y',
+        'YEAR', 'YEARWEEK',
     ];
-
     /**
-     * This flag tells us if SqlFormatted has been initialized
+     * @var array  Punctuation that can be used as a boundary between other tokens
      */
     protected static $boundaries = [
         ',', ';', ':', ')', '(', '.', '=', '<', '>', '+', '-', '*', '/', '!', '^', '%', '|', '&', '#',
     ];
 
     /**
-     * Regular expressions for tokenizing
+     * @var string For HTML syntax highlighting
+     *  Styles applied to different token types
+     */
+    public static $quote_attributes = 'style="color: blue;"';
+    /**
+     * @var string For HTML syntax highlighting
+     *  Styles applied to different token types
+     */
+    public static $backtick_quote_attributes = 'style="color: purple;"';
+    /**
+     * @var string For HTML syntax highlighting
+     *  Styles applied to different token types
+     */
+    public static $reserved_attributes = 'style="font-weight:bold;"';
+    /**
+     * @var string For HTML syntax highlighting
+     *  Styles applied to different token types
+     */
+    public static $boundary_attributes = '';
+    /**
+     * @var string For HTML syntax highlighting
+     *  Styles applied to different token types
+     */
+    public static $number_attributes = 'style="color: green;"';
+    /**
+     * @var string For HTML syntax highlighting
+     *  Styles applied to different token types
+     */
+    public static $word_attributes = 'style="color: #333;"';
+    /**
+     * @var string For HTML syntax highlighting
+     *  Styles applied to different token types
+     */
+    public static $error_attributes = 'style="background-color: red;"';
+    /**
+     * @var string For HTML syntax highlighting
+     *  Styles applied to different token types
+     */
+    public static $comment_attributes = 'style="color: #aaa;"';
+    /**
+     * @var string For HTML syntax highlighting
+     *  Styles applied to different token types
+     */
+    public static $variable_attributes = 'style="color: orange;"';
+    /**
+     * @var string For HTML syntax highlighting
+     *  Styles applied to different token types
+     */
+    public static $pre_attributes = 'style="color: black; background-color: white;"';
+    /**
+     * @var boolean whether or not the current environment is the CLI
+     *  This affects the type of syntax highlighting
+     *  If not defined, it will be determined automatically
+     */
+    public static $cli;
+    /**
+     * @var string For CLI syntax highlighting
+     */
+    public static $cli_quote = "\x1b[34;1m";
+    /**
+     * @var string For CLI syntax highlighting
+     */
+    public static $cli_backtick_quote = "\x1b[35;1m";
+    /**
+     * @var string For CLI syntax highlighting
+     */
+    public static $cli_reserved = "\x1b[37m";
+    /**
+     * @var string For CLI syntax highlighting
+     */
+    public static $cli_boundary = "";
+    /**
+     * @var string For CLI syntax highlighting
+     */
+    public static $cli_number = "\x1b[32;1m";
+    /**
+     * @var string For CLI syntax highlighting
+     */
+    public static $cli_word = "";
+    /**
+     * @var string For CLI syntax highlighting
+     */
+    public static $cli_error = "\x1b[31;1;7m";
+    /**
+     * @var string For CLI syntax highlighting
+     */
+    public static $cli_comment = "\x1b[30;1m";
+    /**
+     * @var string For CLI syntax highlighting
+     */
+    public static $cli_functions = "\x1b[37m";
+    /**
+     * @var string For CLI syntax highlighting
+     */
+    public static $cli_variable = "\x1b[36;1m";
+    /**
+     * @var string The tab character to use when formatting SQL
+     */
+    public static $tab = '  ';
+    /**
+     * @var boolean This flag tells us if queries need to be enclosed in <pre> tags
+     */
+    public static $use_pre = true;
+    /**
+     * @var boolean This flag tells us if SqlFormatted has been initialized
      */
     protected static $init;
-    protected static $regex_boundaries;
-    protected static $regex_reserved;
-    protected static $regex_reserved_newline;
-    protected static $regex_reserved_toplevel;
-
     /**
-     * Cache variables
-     * Only tokens shorter than this size will be cached.  Somewhere between 10 and 20 seems to work well for most
-     * cases.
+     * @var string Regular expressions for tokenizing
+     */
+    protected static $regex_boundaries;
+    /**
+     * @var string Regular expressions for tokenizing
+     */
+    protected static $regex_reserved;
+    /**
+     * @var string Regular expressions for tokenizing
+     */
+    protected static $regex_reserved_newline;
+    /**
+     * @var string Regular expressions for tokenizing
+     */
+    protected static $regex_reserved_toplevel;
+    /**
+     * @var string Regular expressions for tokenizing
      */
     protected static $regex_function;
+    /**
+     * @var integer Cache variables
+     *  Only tokens shorter than this size will be cached.  Somewhere between 10 and 20 seems to work well for most
+     *     cases.
+     */
+    public static $max_cachekey_size = 15;
+    /**
+     * @var array Cache variables
+     *  Tokens cached
+     */
     protected static $token_cache = [];
+    /**
+     * @var integer Cache variables
+     */
     protected static $cache_hits = 0;
+    /**
+     * @var integer Cache variables
+     */
     protected static $cache_misses = 0;
 
     /**
      * Get stats about the token cache
      *
-     * @return array containing the keys 'hits', 'misses', 'entries', and 'size' in bytes
+     * @return array An array containing the keys 'hits', 'misses', 'entries', and 'size' in bytes
      */
     public static function getCacheStats()
     {
@@ -217,99 +378,6 @@ class SqlFormatter
             'entries' => count(self::$token_cache),
             'size'    => strlen(serialize(self::$token_cache)),
         ];
-    }
-
-    /**
-     * Add syntax highlighting to a SQL string
-     *
-     * @param String $string The SQL string
-     *
-     * @return String The SQL string with HTML styles applied
-     */
-    public static function highlight($string)
-    {
-        $tokens = self::tokenize($string);
-
-        $return = '';
-
-        foreach ($tokens as $token) {
-            $return .= self::highlightToken($token);
-        }
-
-        return self::output($return);
-    }
-
-    /**
-     * Takes a SQL string and breaks it into tokens.
-     * Each token is an associative array with type and value.
-     *
-     * @param String $string The SQL string
-     *
-     * @return array An array of tokens.
-     */
-    protected static function tokenize($string)
-    {
-        self::init();
-
-        $tokens = [];
-
-        // Used for debugging if there is an error while tokenizing the string
-        $original_length = strlen($string);
-
-        // Used to make sure the string keeps shrinking on each iteration
-        $old_string_len = strlen($string) + 1;
-
-        $token = null;
-
-        $current_length = strlen($string);
-
-        // Keep processing the string until it is empty
-        while ($current_length) {
-            // If the string stopped shrinking, there was a problem
-            if ($old_string_len <= $current_length) {
-                $tokens[] = [
-                    self::TOKEN_VALUE => $string,
-                    self::TOKEN_TYPE  => self::TOKEN_TYPE_ERROR,
-                ];
-
-                return $tokens;
-            }
-            $old_string_len = $current_length;
-
-            // Determine if we can use caching
-            if ($current_length >= self::$max_cachekey_size) {
-                $cacheKey = substr($string, 0, self::$max_cachekey_size);
-            } else {
-                $cacheKey = false;
-            }
-
-            // See if the token is already cached
-            if ($cacheKey && isset(self::$token_cache[$cacheKey])) {
-                // Retrieve from cache
-                $token = self::$token_cache[$cacheKey];
-                $token_length = strlen($token[self::TOKEN_VALUE]);
-                self::$cache_hits++;
-            } else {
-                // Get the next token and the token type
-                $token = self::getNextToken($string, $token);
-                $token_length = strlen($token[self::TOKEN_VALUE]);
-                self::$cache_misses++;
-
-                // If the token is shorter than the max length, store it in cache
-                if ($cacheKey && $token_length < self::$max_cachekey_size) {
-                    self::$token_cache[$cacheKey] = $token;
-                }
-            }
-
-            $tokens[] = $token;
-
-            // Advance the string
-            $string = substr($string, $token_length);
-
-            $current_length -= $token_length;
-        }
-
-        return $tokens;
     }
 
     /**
@@ -330,12 +398,10 @@ class SqlFormatter
         self::$regex_boundaries = '(' . implode('|', array_map([__CLASS__, 'quote_regex'], self::$boundaries)) . ')';
         self::$regex_reserved = '(' . implode('|', array_map([__CLASS__, 'quote_regex'], self::$reserved)) . ')';
         self::$regex_reserved_toplevel = str_replace(' ', '\\s+', '(' . implode('|', array_map([
-                __CLASS__,
-                'quote_regex',
+                __CLASS__, 'quote_regex',
             ], self::$reserved_toplevel)) . ')');
         self::$regex_reserved_newline = str_replace(' ', '\\s+', '(' . implode('|', array_map([
-                __CLASS__,
-                'quote_regex',
+                __CLASS__, 'quote_regex',
             ], self::$reserved_newline)) . ')');
 
         self::$regex_function = '(' . implode('|', array_map([__CLASS__, 'quote_regex'], self::$functions)) . ')';
@@ -479,6 +545,12 @@ class SqlFormatter
         ];
     }
 
+    /**
+     * Get string from quoted string
+     * @param $string
+     *
+     * @return null|string
+     */
     protected static function getQuotedString($string)
     {
         $ret = null;
@@ -496,279 +568,76 @@ class SqlFormatter
     }
 
     /**
-     * Highlights a token depending on its type.
+     * Takes a SQL string and breaks it into tokens.
+     * Each token is an associative array with type and value.
      *
-     * @param array $token An associative array containing type and value.
+     * @param String $string The SQL string
      *
-     * @return String HTML code of the highlighted token.
+     * @return array An array of tokens.
      */
-    protected static function highlightToken($token)
+    protected static function tokenize($string)
     {
-        $type = $token[self::TOKEN_TYPE];
+        self::init();
 
-        if (self::is_cli()) {
-            $token = $token[self::TOKEN_VALUE];
-        } else {
-            if (defined('ENT_IGNORE')) {
-                $token = htmlentities($token[self::TOKEN_VALUE], ENT_COMPAT | ENT_IGNORE, 'UTF-8');
+        $tokens = [];
+
+        // Used for debugging if there is an error while tokenizing the string
+        $original_length = strlen($string);
+
+        // Used to make sure the string keeps shrinking on each iteration
+        $old_string_len = strlen($string) + 1;
+
+        $token = null;
+
+        $current_length = strlen($string);
+
+        // Keep processing the string until it is empty
+        while ($current_length) {
+            // If the string stopped shrinking, there was a problem
+            if ($old_string_len <= $current_length) {
+                $tokens[] = [
+                    self::TOKEN_VALUE => $string,
+                    self::TOKEN_TYPE  => self::TOKEN_TYPE_ERROR,
+                ];
+
+                return $tokens;
+            }
+            $old_string_len = $current_length;
+
+            // Determine if we can use caching
+            if ($current_length >= self::$max_cachekey_size) {
+                $cacheKey = substr($string, 0, self::$max_cachekey_size);
             } else {
-                $token = htmlentities($token[self::TOKEN_VALUE], ENT_COMPAT, 'UTF-8');
-            }
-        }
-
-        if ($type === self::TOKEN_TYPE_BOUNDARY) {
-            return self::highlightBoundary($token);
-        } elseif ($type === self::TOKEN_TYPE_WORD) {
-            return self::highlightWord($token);
-        } elseif ($type === self::TOKEN_TYPE_BACKTICK_QUOTE) {
-            return self::highlightBacktickQuote($token);
-        } elseif ($type === self::TOKEN_TYPE_QUOTE) {
-            return self::highlightQuote($token);
-        } elseif ($type === self::TOKEN_TYPE_RESERVED) {
-            return self::highlightReservedWord($token);
-        } elseif ($type === self::TOKEN_TYPE_RESERVED_TOPLEVEL) {
-            return self::highlightReservedWord($token);
-        } elseif ($type === self::TOKEN_TYPE_RESERVED_NEWLINE) {
-            return self::highlightReservedWord($token);
-        } elseif ($type === self::TOKEN_TYPE_NUMBER) {
-            return self::highlightNumber($token);
-        } elseif ($type === self::TOKEN_TYPE_VARIABLE) {
-            return self::highlightVariable($token);
-        } elseif ($type === self::TOKEN_TYPE_COMMENT || $type === self::TOKEN_TYPE_BLOCK_COMMENT) {
-            return self::highlightComment($token);
-        }
-
-        return $token;
-    }
-
-    private static function is_cli()
-    {
-        if (isset(self::$cli)) {
-            return self::$cli;
-        } else {
-            return php_sapi_name() === 'cli';
-        }
-    }
-
-    /**
-     * Highlights a boundary token
-     *
-     * @param String $value The token's value
-     *
-     * @return String HTML code of the highlighted token.
-     */
-    protected static function highlightBoundary($value)
-    {
-        if ($value === '(' || $value === ')') {
-            return $value;
-        }
-
-        if (self::is_cli()) {
-            return self::$cli_boundary . $value . "\x1b[0m";
-        } else {
-            return '<span ' . self::$boundary_attributes . '>' . $value . '</span>';
-        }
-    }
-
-    /**
-     * Highlights a word token
-     *
-     * @param String $value The token's value
-     *
-     * @return String HTML code of the highlighted token.
-     */
-    protected static function highlightWord($value)
-    {
-        if (self::is_cli()) {
-            return self::$cli_word . $value . "\x1b[0m";
-        } else {
-            return '<span ' . self::$word_attributes . '>' . $value . '</span>';
-        }
-    }
-
-    /**
-     * Highlights a backtick quoted string
-     *
-     * @param String $value The token's value
-     *
-     * @return String HTML code of the highlighted token.
-     */
-    protected static function highlightBacktickQuote($value)
-    {
-        if (self::is_cli()) {
-            return self::$cli_backtick_quote . $value . "\x1b[0m";
-        } else {
-            return '<span ' . self::$backtick_quote_attributes . '>' . $value . '</span>';
-        }
-    }
-
-    /**
-     * Highlights a quoted string
-     *
-     * @param String $value The token's value
-     *
-     * @return String HTML code of the highlighted token.
-     */
-    protected static function highlightQuote($value)
-    {
-        if (self::is_cli()) {
-            return self::$cli_quote . $value . "\x1b[0m";
-        } else {
-            return '<span ' . self::$quote_attributes . '>' . $value . '</span>';
-        }
-    }
-
-    /**
-     * Highlights a reserved word
-     *
-     * @param String $value The token's value
-     *
-     * @return String HTML code of the highlighted token.
-     */
-    protected static function highlightReservedWord($value)
-    {
-        if (self::is_cli()) {
-            return self::$cli_reserved . $value . "\x1b[0m";
-        } else {
-            return '<span ' . self::$reserved_attributes . '>' . $value . '</span>';
-        }
-    }
-
-    /**
-     * Highlights a number
-     *
-     * @param String $value The token's value
-     *
-     * @return String HTML code of the highlighted token.
-     */
-    protected static function highlightNumber($value)
-    {
-        if (self::is_cli()) {
-            return self::$cli_number . $value . "\x1b[0m";
-        } else {
-            return '<span ' . self::$number_attributes . '>' . $value . '</span>';
-        }
-    }
-
-    /**
-     * Highlights a variable token
-     *
-     * @param String $value The token's value
-     *
-     * @return String HTML code of the highlighted token.
-     */
-    protected static function highlightVariable($value)
-    {
-        if (self::is_cli()) {
-            return self::$cli_variable . $value . "\x1b[0m";
-        } else {
-            return '<span ' . self::$variable_attributes . '>' . $value . '</span>';
-        }
-    }
-
-    /**
-     * Highlights a comment
-     *
-     * @param String $value The token's value
-     *
-     * @return String HTML code of the highlighted token.
-     */
-    protected static function highlightComment($value)
-    {
-        if (self::is_cli()) {
-            return self::$cli_comment . $value . "\x1b[0m";
-        } else {
-            return '<span ' . self::$comment_attributes . '>' . $value . '</span>';
-        }
-    }
-
-    /**
-     * Helper function for building string output
-     *
-     * @param String $string The string to be quoted
-     *
-     * @return String The quoted string
-     */
-    private static function output($string)
-    {
-        if (self::is_cli()) {
-            return $string . "\n";
-        } else {
-            $string = trim($string);
-            if (!self::$use_pre) {
-                return $string;
+                $cacheKey = false;
             }
 
-            return '<pre ' . self::$pre_attributes . '>' . $string . '</pre>';
-        }
-    }
+            // See if the token is already cached
+            if ($cacheKey && isset(self::$token_cache[$cacheKey])) {
+                // Retrieve from cache
+                $token = self::$token_cache[$cacheKey];
+                $token_length = strlen($token[self::TOKEN_VALUE]);
+                self::$cache_hits++;
+            } else {
+                // Get the next token and the token type
+                $token = self::getNextToken($string, $token);
+                $token_length = strlen($token[self::TOKEN_VALUE]);
+                self::$cache_misses++;
 
-    /**
-     * Split a SQL string into multiple queries.
-     * Uses ";" as a query delimiter.
-     *
-     * @param String $string The SQL string
-     *
-     * @return array An array of individual query strings without trailing semicolons
-     */
-    public static function splitQuery($string)
-    {
-        $queries = [];
-        $current_query = '';
-        $empty = true;
-
-        $tokens = self::tokenize($string);
-
-        foreach ($tokens as $token) {
-            // If this is a query separator
-            if ($token[self::TOKEN_VALUE] === ';') {
-                if (!$empty) {
-                    $queries[] = $current_query . ';';
+                // If the token is shorter than the max length, store it in cache
+                if ($cacheKey && $token_length < self::$max_cachekey_size) {
+                    self::$token_cache[$cacheKey] = $token;
                 }
-                $current_query = '';
-                $empty = true;
-                continue;
             }
 
-            // If this is a non-empty character
-            if ($token[self::TOKEN_TYPE] !== self::TOKEN_TYPE_WHITESPACE && $token[self::TOKEN_TYPE] !== self::TOKEN_TYPE_COMMENT && $token[self::TOKEN_TYPE] !== self::TOKEN_TYPE_BLOCK_COMMENT) {
-                $empty = false;
-            }
+            $tokens[] = $token;
 
-            $current_query .= $token[self::TOKEN_VALUE];
+            // Advance the string
+            $string = substr($string, $token_length);
+
+            $current_length -= $token_length;
         }
 
-        if (!$empty) {
-            $queries[] = trim($current_query);
-        }
-
-        return $queries;
-    }
-
-    /**
-     * Remove all comments from a SQL string
-     *
-     * @param String $string The SQL string
-     *
-     * @return String The SQL string without comments
-     */
-    public static function removeComments($string)
-    {
-        $result = '';
-
-        $tokens = self::tokenize($string);
-
-        foreach ($tokens as $token) {
-            // Skip comment tokens
-            if ($token[self::TOKEN_TYPE] === self::TOKEN_TYPE_COMMENT || $token[self::TOKEN_TYPE] === self::TOKEN_TYPE_BLOCK_COMMENT) {
-                continue;
-            }
-
-            $result .= $token[self::TOKEN_VALUE];
-        }
-        $result = self::format($result, false);
-
-        return $result;
+        return $tokens;
     }
 
     /**
@@ -1062,19 +931,91 @@ class SqlFormatter
     }
 
     /**
-     * Highlights an error
+     * Add syntax highlighting to a SQL string
      *
-     * @param String $value The token's value
+     * @param String $string The SQL string
      *
-     * @return String HTML code of the highlighted token.
+     * @return String The SQL string with HTML styles applied
      */
-    protected static function highlightError($value)
+    public static function highlight($string)
     {
-        if (self::is_cli()) {
-            return self::$cli_error . $value . "\x1b[0m";
-        } else {
-            return '<span ' . self::$error_attributes . '>' . $value . '</span>';
+        $tokens = self::tokenize($string);
+
+        $return = '';
+
+        foreach ($tokens as $token) {
+            $return .= self::highlightToken($token);
         }
+
+        return self::output($return);
+    }
+
+    /**
+     * Split a SQL string into multiple queries.
+     * Uses ";" as a query delimiter.
+     *
+     * @param String $string The SQL string
+     *
+     * @return array An array of individual query strings without trailing semicolons
+     */
+    public static function splitQuery($string)
+    {
+        $queries = [];
+        $current_query = '';
+        $empty = true;
+
+        $tokens = self::tokenize($string);
+
+        foreach ($tokens as $token) {
+            // If this is a query separator
+            if ($token[self::TOKEN_VALUE] === ';') {
+                if (!$empty) {
+                    $queries[] = $current_query . ';';
+                }
+                $current_query = '';
+                $empty = true;
+                continue;
+            }
+
+            // If this is a non-empty character
+            if ($token[self::TOKEN_TYPE] !== self::TOKEN_TYPE_WHITESPACE && $token[self::TOKEN_TYPE] !== self::TOKEN_TYPE_COMMENT && $token[self::TOKEN_TYPE] !== self::TOKEN_TYPE_BLOCK_COMMENT) {
+                $empty = false;
+            }
+
+            $current_query .= $token[self::TOKEN_VALUE];
+        }
+
+        if (!$empty) {
+            $queries[] = trim($current_query);
+        }
+
+        return $queries;
+    }
+
+    /**
+     * Remove all comments from a SQL string
+     *
+     * @param String $string The SQL string
+     *
+     * @return String The SQL string without comments
+     */
+    public static function removeComments($string)
+    {
+        $result = '';
+
+        $tokens = self::tokenize($string);
+
+        foreach ($tokens as $token) {
+            // Skip comment tokens
+            if ($token[self::TOKEN_TYPE] === self::TOKEN_TYPE_COMMENT || $token[self::TOKEN_TYPE] === self::TOKEN_TYPE_BLOCK_COMMENT) {
+                continue;
+            }
+
+            $result .= $token[self::TOKEN_VALUE];
+        }
+        $result = self::format($result, false);
+
+        return $result;
     }
 
     /**
@@ -1120,6 +1061,200 @@ class SqlFormatter
     }
 
     /**
+     * Highlights a token depending on its type.
+     *
+     * @param array $token An associative array containing type and value.
+     *
+     * @return String HTML code of the highlighted token.
+     */
+    protected static function highlightToken($token)
+    {
+        $type = $token[self::TOKEN_TYPE];
+
+        if (self::is_cli()) {
+            $token = $token[self::TOKEN_VALUE];
+        } else {
+            if (defined('ENT_IGNORE')) {
+                $token = htmlentities($token[self::TOKEN_VALUE], ENT_COMPAT | ENT_IGNORE, 'UTF-8');
+            } else {
+                $token = htmlentities($token[self::TOKEN_VALUE], ENT_COMPAT, 'UTF-8');
+            }
+        }
+
+        if ($type === self::TOKEN_TYPE_BOUNDARY) {
+            return self::highlightBoundary($token);
+        } elseif ($type === self::TOKEN_TYPE_WORD) {
+            return self::highlightWord($token);
+        } elseif ($type === self::TOKEN_TYPE_BACKTICK_QUOTE) {
+            return self::highlightBacktickQuote($token);
+        } elseif ($type === self::TOKEN_TYPE_QUOTE) {
+            return self::highlightQuote($token);
+        } elseif ($type === self::TOKEN_TYPE_RESERVED) {
+            return self::highlightReservedWord($token);
+        } elseif ($type === self::TOKEN_TYPE_RESERVED_TOPLEVEL) {
+            return self::highlightReservedWord($token);
+        } elseif ($type === self::TOKEN_TYPE_RESERVED_NEWLINE) {
+            return self::highlightReservedWord($token);
+        } elseif ($type === self::TOKEN_TYPE_NUMBER) {
+            return self::highlightNumber($token);
+        } elseif ($type === self::TOKEN_TYPE_VARIABLE) {
+            return self::highlightVariable($token);
+        } elseif ($type === self::TOKEN_TYPE_COMMENT || $type === self::TOKEN_TYPE_BLOCK_COMMENT) {
+            return self::highlightComment($token);
+        }
+
+        return $token;
+    }
+
+    /**
+     * Highlights a quoted string
+     *
+     * @param String $value The token's value
+     *
+     * @return String HTML code of the highlighted token.
+     */
+    protected static function highlightQuote($value)
+    {
+        if (self::is_cli()) {
+            return self::$cli_quote . $value . "\x1b[0m";
+        } else {
+            return '<span ' . self::$quote_attributes . '>' . $value . '</span>';
+        }
+    }
+
+    /**
+     * Highlights a backtick quoted string
+     *
+     * @param String $value The token's value
+     *
+     * @return String HTML code of the highlighted token.
+     */
+    protected static function highlightBacktickQuote($value)
+    {
+        if (self::is_cli()) {
+            return self::$cli_backtick_quote . $value . "\x1b[0m";
+        } else {
+            return '<span ' . self::$backtick_quote_attributes . '>' . $value . '</span>';
+        }
+    }
+
+    /**
+     * Highlights a reserved word
+     *
+     * @param String $value The token's value
+     *
+     * @return String HTML code of the highlighted token.
+     */
+    protected static function highlightReservedWord($value)
+    {
+        if (self::is_cli()) {
+            return self::$cli_reserved . $value . "\x1b[0m";
+        } else {
+            return '<span ' . self::$reserved_attributes . '>' . $value . '</span>';
+        }
+    }
+
+    /**
+     * Highlights a boundary token
+     *
+     * @param String $value The token's value
+     *
+     * @return String HTML code of the highlighted token.
+     */
+    protected static function highlightBoundary($value)
+    {
+        if ($value === '(' || $value === ')') {
+            return $value;
+        }
+
+        if (self::is_cli()) {
+            return self::$cli_boundary . $value . "\x1b[0m";
+        } else {
+            return '<span ' . self::$boundary_attributes . '>' . $value . '</span>';
+        }
+    }
+
+    /**
+     * Highlights a number
+     *
+     * @param String $value The token's value
+     *
+     * @return String HTML code of the highlighted token.
+     */
+    protected static function highlightNumber($value)
+    {
+        if (self::is_cli()) {
+            return self::$cli_number . $value . "\x1b[0m";
+        } else {
+            return '<span ' . self::$number_attributes . '>' . $value . '</span>';
+        }
+    }
+
+    /**
+     * Highlights an error
+     *
+     * @param String $value The token's value
+     *
+     * @return String HTML code of the highlighted token.
+     */
+    protected static function highlightError($value)
+    {
+        if (self::is_cli()) {
+            return self::$cli_error . $value . "\x1b[0m";
+        } else {
+            return '<span ' . self::$error_attributes . '>' . $value . '</span>';
+        }
+    }
+
+    /**
+     * Highlights a comment
+     *
+     * @param String $value The token's value
+     *
+     * @return String HTML code of the highlighted token.
+     */
+    protected static function highlightComment($value)
+    {
+        if (self::is_cli()) {
+            return self::$cli_comment . $value . "\x1b[0m";
+        } else {
+            return '<span ' . self::$comment_attributes . '>' . $value . '</span>';
+        }
+    }
+
+    /**
+     * Highlights a word token
+     *
+     * @param String $value The token's value
+     *
+     * @return String HTML code of the highlighted token.
+     */
+    protected static function highlightWord($value)
+    {
+        if (self::is_cli()) {
+            return self::$cli_word . $value . "\x1b[0m";
+        } else {
+            return '<span ' . self::$word_attributes . '>' . $value . '</span>';
+        }
+    }
+
+    /**
+     * Highlights a variable token
+     *
+     * @param String $value The token's value
+     *
+     * @return String HTML code of the highlighted token.
+     */
+    protected static function highlightVariable($value)
+    {
+        if (self::is_cli()) {
+            return self::$cli_variable . $value . "\x1b[0m";
+        } else {
+            return '<span ' . self::$variable_attributes . '>' . $value . '</span>';
+        }
+    }
+
+    /**
      * Helper function for building regular expressions for reserved words and boundary characters
      *
      * @param String $a The string to be quoted
@@ -1129,5 +1264,39 @@ class SqlFormatter
     private static function quote_regex($a)
     {
         return preg_quote($a, '/');
+    }
+
+    /**
+     * Helper function for building string output
+     *
+     * @param String $string The string to be quoted
+     *
+     * @return String The quoted string
+     */
+    private static function output($string)
+    {
+        if (self::is_cli()) {
+            return $string . "\n";
+        } else {
+            $string = trim($string);
+            if (!self::$use_pre) {
+                return $string;
+            }
+
+            return '<pre ' . self::$pre_attributes . '>' . $string . '</pre>';
+        }
+    }
+
+    /**
+     * Check to see if the program is running from CLI
+     * @return bool
+     */
+    private static function is_cli()
+    {
+        if (isset(self::$cli)) {
+            return self::$cli;
+        } else {
+            return php_sapi_name() === 'cli';
+        }
     }
 }

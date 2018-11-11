@@ -32,14 +32,16 @@ class Settings extends BaseObject
      * This is primarily used for counting online users.
      */
     const MAX_IDLE_TIME = 300;
-
+    /**
+     * Path to application models repository, this is mainly used for [[helpers\AppBuilder]] to create new models.
+     */
+    const PATH_MODELS_DIRECTORY = '@app\\models';
     /**
      * List of icons for navigation keys in the grid view pager
      *
      * @var array
      */
     private static $_pager;
-
     private static $_testSetting = 1;
 
     /**
@@ -50,22 +52,13 @@ class Settings extends BaseObject
         return self::$_pager;
     }
 
-
-    public function init()
-    {
-        Settings::$_pager = [
-            'firstPageLabel' => '<i class="glyphicon glyphicon-fast-backward"> </i>',
-            'prevPageLabel'  => '<i class="glyphicon glyphicon-chevron-left"> </i>',
-            'nextPageLabel'  => '<i class="glyphicon glyphicon-chevron-right"> </i>',
-            'lastPageLabel'  => '<i class="glyphicon glyphicon-fast-forward"> </i>',
-            //'maxButtonCount' => 5,
-        ];
-    }
-
     /**
-     * Path to application models repository, this is mainly used for [[AppBuilder]] to create new models.
+     * @return int
      */
-    const PATH_MODELS_DIRECTORY = '@app\\models';
+    public static function getTestSetting()
+    {
+        return self::$_testSetting;
+    }
 
 
 //<editor-fold Desc="Setters">
@@ -79,12 +72,19 @@ class Settings extends BaseObject
     }
 //</editor-fold>
 //<editor-fold Desc="Getters">
+
     /**
-     * @return int
+     * Setup required settings to default value.
      */
-    public static function getTestSetting()
+    public function init()
     {
-        return self::$_testSetting;
+        Settings::$_pager = [
+            'firstPageLabel' => '<i class="glyphicon glyphicon-fast-backward"> </i>',
+            'prevPageLabel'  => '<i class="glyphicon glyphicon-chevron-left"> </i>',
+            'nextPageLabel'  => '<i class="glyphicon glyphicon-chevron-right"> </i>',
+            'lastPageLabel'  => '<i class="glyphicon glyphicon-fast-forward"> </i>',
+            //'maxButtonCount' => 5,
+        ];
     }
 //</editor-fold>
 }

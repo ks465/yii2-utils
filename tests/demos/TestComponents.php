@@ -70,13 +70,13 @@ class TestComponents extends BaseTester
 
     public function testJalaliXInstance()
     {
-            $j = new JalaliX(1345, 6, 18);
+        $j = new JalaliX(1345, 6, 18);
 
-            $this->writeHeader('new JalaliX(1345, 6, 18)');
-            var_dump($j);
+        $this->writeHeader('new JalaliX(1345, 6, 18)');
+        var_dump($j);
 
-            $this->writeHeader('$j->getIsLeap();');
-            var_dump($j->getIsLeap());
+        $this->writeHeader('$j->getIsLeap();');
+        var_dump($j->getIsLeap());
     }
 
     public function testJalaliXStatic()
@@ -215,7 +215,7 @@ class TestComponents extends BaseTester
 
     public function testSqlFormatter()
     {
-        $sql = 'select * from table where i = 1 group by x having z > 1 order by alpha';
+        $sql = 'SELECT * FROM table WHERE i = 1 GROUP BY x HAVING z > 1 ORDER BY alpha';
         $this->writeHeader($sql);
 
         $this->writeHeader('SqlFormatter::format($sql);');
@@ -343,6 +343,7 @@ class TestComponents extends BaseTester
         $this->writeHeader('ViewHelper::implode($data);');
         echo(ViewHelper::implode($data));
     }
+
     public function testImplode2()
     {
         $data = [
@@ -354,6 +355,7 @@ class TestComponents extends BaseTester
         $this->writeHeader('ViewHelper::implode($data);');
         var_dump(ViewHelper::implode($data));
     }
+
     public function testImplode3()
     {
         $data = [
@@ -365,6 +367,7 @@ class TestComponents extends BaseTester
         $this->writeHeader('ViewHelper::implode($data, \'~\', \'+\');');
         var_dump(ViewHelper::implode($data, '~', '+'));
     }
+
     public function testMobiles()
     {
         $this->writeHeader('ViewHelper::formatPhone(2112345678);');
@@ -394,7 +397,7 @@ class TestComponents extends BaseTester
 
         $result = FileHelper::saveCSV($outputFile, $content);
 
-        Admin::vd('Reading ' . $result . ' rows Written to ' . $outputFile , FileHelper::loadCSV($outputFile, false));
+        Admin::vd('Reading ' . $result . ' rows Written to ' . $outputFile, FileHelper::loadCSV($outputFile, false));
     }
 
     public function testLoadIni()
@@ -406,8 +409,9 @@ class TestComponents extends BaseTester
 
         $result = FileHelper::saveIni($outputFile, $content);
 
-        Admin::vd('Reading ' . $result . ' rows Written to ' . $outputFile , FileHelper::loadIni($outputFile));
+        Admin::vd('Reading ' . $result . ' rows Written to ' . $outputFile, FileHelper::loadIni($outputFile));
     }
+
     public function testLoadCsvSaveIni()
     {
         $inputFile = \yii\helpers\Url::to('@khan/tests/demos/input.csv');
@@ -417,6 +421,6 @@ class TestComponents extends BaseTester
 
         $result = FileHelper::saveIni($outputFile, $content);
 
-        Admin::vd('Reading ' . $result . ' rows Written to ' . $outputFile , FileHelper::loadIni($outputFile));
+        Admin::vd('Reading ' . $result . ' rows Written to ' . $outputFile, FileHelper::loadIni($outputFile));
     }
 }

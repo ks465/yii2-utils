@@ -13,7 +13,7 @@ Guides, notes, and anything regarding good style programming and documenting:
 All the classes in the component directory of the package:
 
 1. [Array Helper](components-array-helper.md) contains more methods for transforming and reshaping arrays.
-1. [File Helper](components-file-helper.md)
+1. [File Helper](components-file-helper.md) contains methods to read and write data in different formats.
 1. [Jalali and JalaliX](components-jalali.md) contain Jalali date object creation and manipulation.
 1. [Math Helper](components-math-helper.md) contains methods to do some mathematical routines easier. 
 1. [SQL Formatter](components-sql-formatter.md) --a third party class-- formats a given SQL query for better visibility.
@@ -24,7 +24,8 @@ All the classes in the component directory of the package:
 Columns are classes extending \kartik\grid\ActionColumn instead of \yii\grid\ActionColumn.
 They are specialized versions for Kartik Gridview.
 
-1. [ActionColumn](columns-action-column.md)
+1. [Action Column](columns-action-column.md) contains ActionColumn for GridViews.
+1. [Data Column](columns-data-column.md) contains DataColumn for GridViews.
 
 #Models
 1. [Base Model](models-khan-model.md) contains basic skeleton for all models.
@@ -40,10 +41,12 @@ They are specialized versions for Kartik Gridview.
 #Others
 These are miscellaneous classes for configuring the package or installation.
 
-1. [Admin](admin.md) contains methods to make life easier and fun for the admins and debugging the code.
+1. [VarDump](components-var-dump.md) contains methods to make life easier and fun for the admins in debugging the code objects.
+1. [SqlFormatter](components-sql-formatter.md) contains methods to make life easier and fun for the admins in debugging the SQL queries.
 1. [Settings](settings.md) contains all the settings and constant values.
 1. [Migrations](helpers-migrations.md) contains all the migrations required for rising the package up and running.
-1. [Overlay Menu](widgets-menu.md)
+1. [Overlay Menu](widgets-menu.md) contains description of an overlay menu, which covers all the browser page.
+This can be used inside _**NavBar**_ menu or as a button on the page.
  
 #StartUp
 General requirements in application options:
@@ -51,8 +54,13 @@ General requirements in application options:
 ```php
     'language' => 'fa-IR',
     'timeZone' => 'Asia/Tehran',
-     'aliases'    => [
+     'aliases' => [
         '@khan' => '@vendor/khans465/yii2-utils',
+     ],
+     'modules' => [
+         'gridview' => [
+             'class' => '\kartik\grid\Module',
+         ],
      ],
      'components' => [
         'formatter' => [
@@ -122,4 +130,4 @@ Add following code to `component` section of application options in order to set
 ],
 ```
 
-Run ./yii migrate/up --migrationPath=@yii/rbac to build required tables with the given names.
+Run `./yii migrate/up --migrationPath=@yii/rbac` to build required tables with the given names.

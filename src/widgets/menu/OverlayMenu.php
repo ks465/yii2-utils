@@ -78,48 +78,43 @@ class OverlayMenu extends \yii\base\Widget
      */
     public $csvFileUrl = '';
     /**
-     * List of tabs and view parameters
-     *
      * @var array
+     * List of tabs and view parameters
      */
     public $tabs = [];
     /**
-     * @var OverlayMenuAsset
-     */
-    private $bundle;
-    /**
-     * Label for the created button
-     *
      * @var string
+     * Label for the created button
      */
     public $label = 'Offnen';
     /**
-     * Title for the created view
-     *
      * @var string
+     * Title for the created view
      */
     public $title = 'Menu';
     /**
-     * Html tag used for rendering the launcher
-     *
      * @var string
+     * Html tag used for rendering the launcher
      */
     public $tag = 'a';
     /**
-     * List of options passed to the created tag
-     *
      * @var array
+     * List of options passed to the created tag
      */
     public $options = [];
     /**
-     * Object to find and format menu items
-     *
+     * @var OverlayMenuAsset
+     * Asset bundle
+     */
+    private $bundle;
+    /**
      * @var OverlayMenuFiller
+     * Object to find and format menu items
      */
     private $menuFiller;
 
     /**
-     * @inheritDoc
+     * Build and configure the widget
      */
     public function init()
     {
@@ -137,6 +132,10 @@ class OverlayMenu extends \yii\base\Widget
         parent::init();
     }
 
+    /**
+     * Render the widget
+     * @return string
+     */
     public function run()
     {
         return $this->render('menu', ['title' => $this->title]);

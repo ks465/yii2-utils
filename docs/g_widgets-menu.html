@@ -17,8 +17,7 @@
     <nav id="w31" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w31-collapse"><span class="sr-only">Toggle navigation</span>
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
-<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">KHanUtilsGuide</a></div><div id="w31-collapse" class="collapse navbar-collapse"><ul id="w32" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
-<li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">KHanUtilsGuide</a></div><div id="w31-collapse" class="collapse navbar-collapse"><ul id="w32" class="navbar-nav nav"><li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
   <div class="form-group">
     <input id="searchbox" type="text" class="form-control" placeholder="Search">
   </div>
@@ -40,11 +39,13 @@
 <a class="list-group-item" href="./g_components-sql-formatter.html">SQL Formatter</a>
 <a class="list-group-item" href="./g_components-string-helper.html">String Helper</a>
 <a class="list-group-item" href="./g_components-view-helper.html">View Helper</a></div>
-<a class="list-group-item" href="#navigation-24" data-toggle="collapse" data-parent="#navigation">Columns <b class="caret"></b></a><div id="navigation-24" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_columns-action-column.html">ActionColumn</a></div>
+<a class="list-group-item" href="#navigation-24" data-toggle="collapse" data-parent="#navigation">Columns <b class="caret"></b></a><div id="navigation-24" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_columns-action-column.html">Action Column</a>
+<a class="list-group-item" href="./g_columns-data-column.html">Data Column</a></div>
 <a class="list-group-item" href="#navigation-25" data-toggle="collapse" data-parent="#navigation">Models <b class="caret"></b></a><div id="navigation-25" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_models-khan-model.html">Base Model</a>
 <a class="list-group-item" href="./g_models-khan-user.html">Base user</a></div>
 <a class="list-group-item" href="#navigation-26" data-toggle="collapse" data-parent="#navigation">RBAC <b class="caret"></b></a><div id="navigation-26" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_rbac-rule-owner.html">Owner Rule</a></div>
-<a class="list-group-item active" href="#navigation-27" data-toggle="collapse" data-parent="#navigation">Others <b class="caret"></b></a><div id="navigation-27" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./g_admin.html">Admin</a>
+<a class="list-group-item active" href="#navigation-27" data-toggle="collapse" data-parent="#navigation">Others <b class="caret"></b></a><div id="navigation-27" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./g_components-var-dump.html">VarDump</a>
+<a class="list-group-item" href="./g_components-sql-formatter.html">SqlFormatter</a>
 <a class="list-group-item" href="./g_settings.html">Settings</a>
 <a class="list-group-item" href="./g_helpers-migrations.html">Migrations</a>
 <a class="list-group-item active" href="./g_widgets-menu.html">Overlay Menu</a></div>
@@ -52,8 +53,54 @@
 <a class="list-group-item" href="#navigation-29" data-toggle="collapse" data-parent="#navigation">Sanitizing User Input <b class="caret"></b></a><div id="navigation-29" class="submenu panel-collapse collapse"></div>
 <a class="list-group-item" href="#navigation-30" data-toggle="collapse" data-parent="#navigation">RBAC Setup <b class="caret"></b></a><div id="navigation-30" class="submenu panel-collapse collapse"></div></div>    </div>
     <div class="col-md-9 guide-content" role="main">
-        <div class="toc"><ol><li><a href="#csv-structure">CSV structure</a></li>
-<li><a href="#subsection">subsection</a></li></ol></div>
+        <h1>OverlayMenu Class <span id="overlaymenu-class"></span><a href="#overlaymenu-class" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#subsection">subsection</a></li>
+<li><a href="#overlaymenufiller">OverlayMenuFiller</a></li>
+<li><a href="#overlaymenuasset">OverlayMenuAsset</a></li>
+<li><a href="#csv-structure">CSV structure</a></li></ol></div>
+<p>This is a simple widget class to render the menu. It consists of: </p>
+<ul>
+<li>OverlayMenuFiller</li>
+<li>OverlayMenuAsset</li>
+<li>views/menu</li>
+</ul>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> OverlayMenu::widget([
+    <span class="hljs-string">'title'</span>      =&gt; <span class="hljs-string">'General Menu'</span>,
+    <span class="hljs-string">'label'</span>      =&gt; <span class="hljs-string">'This Is the Output'</span>,
+    <span class="hljs-string">'tag'</span>        =&gt; <span class="hljs-string">'button'</span>,
+    <span class="hljs-string">'csvFileUrl'</span> =&gt; <span class="hljs-string">'@khan/tests/demos/sample-menu.csv'</span>,
+    <span class="hljs-string">'options'</span>    =&gt; [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'btn btn-danger'</span>],
+    <span class="hljs-string">'tabs'</span>       =&gt; [
+        <span class="hljs-string">'general'</span>    =&gt; [
+            <span class="hljs-string">'id'</span>    =&gt; <span class="hljs-string">'general'</span>,
+            <span class="hljs-string">'title'</span> =&gt; <span class="hljs-string">'General'</span>,
+            <span class="hljs-string">'icon'</span>  =&gt; <span class="hljs-string">'heart'</span>,
+            <span class="hljs-string">'admin'</span> =&gt; <span class="hljs-keyword">false</span>,
+        ],
+        <span class="hljs-string">'others'</span>     =&gt; [
+            <span class="hljs-string">'id'</span>    =&gt; <span class="hljs-string">'others'</span>,
+            <span class="hljs-string">'title'</span> =&gt; <span class="hljs-string">'Others'</span>,
+            <span class="hljs-string">'icon'</span>  =&gt; <span class="hljs-string">'user'</span>,
+            <span class="hljs-string">'admin'</span> =&gt; <span class="hljs-keyword">false</span>,
+        ],
+        <span class="hljs-string">'management'</span> =&gt; [
+            <span class="hljs-string">'id'</span>    =&gt; <span class="hljs-string">'management'</span>,
+            <span class="hljs-string">'title'</span> =&gt; <span class="hljs-string">'Manager'</span>,
+            <span class="hljs-string">'icon'</span>  =&gt; <span class="hljs-string">'alert'</span>,
+            <span class="hljs-string">'admin'</span> =&gt; <span class="hljs-keyword">true</span>,
+        ],
+    ],
+]);
+</code></pre>
+<p>The above code renders a button on the page to activate the overlay menu.
+By rendering the widget, a button is placed on the page. You can render the button in the <code>NavBar</code>.
+The <code>tabs</code> section is optional. The <span class="broken-link">\KHanS\Utils\widgets\menu\OverlayFiller</span> creates it if omitted.</p>
+<h2>subsection <span id="subsection"></span><a href="#subsection" class="hashlink">&para;</a></h2><p>put generic images in package as default.</p>
+<p>create a CRUD for the csv content.</p>
+<p>use cache for holding the menu items.</p>
+<h2>OverlayMenuFiller <span id="overlaymenufiller"></span><a href="#overlaymenufiller" class="hashlink">&para;</a></h2><p>This is the part which builds the data array, which later is rendered in the views/menu.
+It is not necessary to build the filler separately. You can configure the main class.</p>
+<h2>OverlayMenuAsset <span id="overlaymenuasset"></span><a href="#overlaymenuasset" class="hashlink">&para;</a></h2><p>This an AssetBundle class which publishes the required CSS and JS files to the web root.</p>
 <h2>CSV structure <span id="csv-structure"></span><a href="#csv-structure" class="hashlink">&para;</a></h2><p>Current implementation requires the following fields to be present in the CSV file. </p>
 <ol>
 <li>id Primary key of the data</li>
@@ -64,9 +111,6 @@
 <li>tab Id of the section --also column-- of the menu.</li>
 <li>order Sorting number.</li>
 </ol>
-<p>put generic images in package as default.
-create a CRUD for the csv content.</p>
-<h2>subsection <span id="subsection"></span><a href="#subsection" class="hashlink">&para;</a></h2><p>use cache for holding the menu items.</p>
         <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
     </div>
 </div>
@@ -75,7 +119,7 @@ create a CRUD for the csv content.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Fri, 09 Nov 2018 15:45:50 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sun, 11 Nov 2018 17:01:27 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

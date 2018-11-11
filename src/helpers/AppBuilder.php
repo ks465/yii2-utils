@@ -29,7 +29,7 @@ final class AppBuilder extends \yii\console\Controller
      *
      * @param string $tableName name of table in the database
      * @param string $modelName desired name of model
-     * @param string $modelsNS  path to models repository for the new model
+     * @param string $modelsNS path to models repository for the new model
      *
      * @return int ExitCode If completed successfully
      * @throws \Exception When the namespace is not declared and no default value was found.

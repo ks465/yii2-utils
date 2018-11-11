@@ -32,9 +32,9 @@
     
 <div class="row">
     <div class="col-md-3">
-                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-280" data-toggle="collapse" data-parent="#navigation">KHanS\Utils <b class="caret"></b></a><div id="navigation-280" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-admin.html">Admin</a>
-<a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
-<a class="list-group-item" href="#navigation-281" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\columns <b class="caret"></b></a><div id="navigation-281" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-actioncolumn.html">ActionColumn</a></div>
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-280" data-toggle="collapse" data-parent="#navigation">KHanS\Utils <b class="caret"></b></a><div id="navigation-280" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-281" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\columns <b class="caret"></b></a><div id="navigation-281" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-actioncolumn.html">ActionColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-datacolumn.html">DataColumn</a></div>
 <a class="list-group-item" href="#navigation-282" data-toggle="collapse" data-parent="#navigation">KHanS\Utils\components <b class="caret"></b></a><div id="navigation-282" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
 <a class="list-group-item" href="./khans-utils-components-batmanhtmlvardumptheme.html">BatmanHtmlVarDumpTheme</a>
 <a class="list-group-item" href="./khans-utils-components-clivardumptheme.html">CliVarDumpTheme</a>
@@ -88,7 +88,7 @@ kartik\widgets\Widget</td></tr>
 <div class="class-description">
     <p><strong>Create a uniform grid view for controllers</strong></p>
     
-    <p>See also <span class="broken-link">\kartik\grid\GridView</span> Example:
+    <p>See also <a href="http://demos.krajee.com/grid">http://demos.krajee.com/grid</a> Example:
          <code>`</code>php
          common\widgets\GridView::widget([
          'dataProvider' => $dataProvider,
@@ -328,14 +328,14 @@ Because this requires a modal window, for simplicity it extends Widget and not G
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-        <tr id="init()">
-        <td><a href="khans-utils-widgets-gridview.html#init()-detail">init()</a></td>
-        <td></td>
-        <td><a href="khans-utils-widgets-gridview.html">KHanS\Utils\widgets\GridView</a></td>
+        <tr class="inherited" id="init()">
+        <td><a href="khans-utils-widgets-basegridview.html#init()-detail">init()</a></td>
+        <td>Setup custom configuration</td>
+        <td><a href="khans-utils-widgets-basegridview.html">KHanS\Utils\widgets\BaseGridView</a></td>
     </tr>
             <tr class="inherited" id="run()">
         <td><a href="khans-utils-widgets-basegridview.html#run()-detail">run()</a></td>
-        <td></td>
+        <td>Show the grid by instantiating the widget</td>
         <td><a href="khans-utils-widgets-basegridview.html">KHanS\Utils\widgets\BaseGridView</a></td>
     </tr>
     </table>
@@ -366,33 +366,6 @@ Because this requires a modal window, for simplicity it extends Widget and not G
 
     <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="khans-utils-widgets-gridview.html#$refreshOptions-detail">$refreshOptions</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'class'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'btn&nbsp;btn-default'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'title'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'بازخوانی&nbsp;داده‌ها&nbsp;با&nbsp;حفظ&nbsp;فیلترها'</span><span style="color: #007700">]</span></div>
 
-</div>
-<h2>Method Details</h2>
-
-<div class="method-doc">
-
-    <div class="detail-header h3" id="init()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-widgets-gridview.html#init()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        init()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong></strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-widgets-gridview.html#init()-detail">init</a></strong> ( )</td></tr>
-            </table>
-
-<!--	-->
 </div>
         </div>
 </div>
@@ -432,7 +405,7 @@ Because this requires a modal window, for simplicity it extends Widget and not G
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Fri, 09 Nov 2018 15:45:51 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sun, 11 Nov 2018 17:01:30 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

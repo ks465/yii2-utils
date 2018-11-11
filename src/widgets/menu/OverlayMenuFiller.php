@@ -52,21 +52,18 @@ class OverlayMenuFiller extends BaseObject
      */
     public $csvFileUrl = '';
     /**
-     * List of tabs and view parameters
-     *
      * @var array
+     * List of tabs and view parameters
      */
     public $tabs = [];
     /**
-     * Data ready for rendering the menu
-     *
      * @var array
+     * Data ready for rendering the menu
      */
     private $menuData = [];
 
     /**
-     * @inheritDoc
-     * @throws \Exception
+     * @throws \Exception when the file name is empty or the file is not found.
      */
     public function init()
     {

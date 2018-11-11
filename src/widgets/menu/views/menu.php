@@ -16,7 +16,7 @@ $columns = floor(12 / count($this->context->getMenu()->getTabs()));
 
 $html = '';
 foreach ($this->context->getMenu()->getTabs() as $tabID => $tabData) {
-    if(!array_key_exists('items', $tabData)){
+    if (!array_key_exists('items', $tabData)) {
         continue;
     }
     $icon = empty($tabData['icon']) ? '<i class="glyphicon glyphicon-plus"></i>&nbsp;' :

@@ -9,7 +9,7 @@
 <link href="./assets/47da18fa/style.css" rel="stylesheet">
 <script src="./assets/e36a8b07/jquery.js"></script>
 <script src="./assets/b01f69f9/js/bootstrap.js"></script>
-<script src="./assets/b3d3834e/jssearch.js"></script>    <title>ActionColumn - Columns - KHanUtilsGuide</title>
+<script src="./assets/b3d3834e/jssearch.js"></script>    <title>Action Column - Columns - KHanUtilsGuide</title>
 </head>
 <body>
 
@@ -17,8 +17,7 @@
     <nav id="w42" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w42-collapse"><span class="sr-only">Toggle navigation</span>
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
-<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">KHanUtilsGuide</a></div><div id="w42-collapse" class="collapse navbar-collapse"><ul id="w43" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
-<li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">KHanUtilsGuide</a></div><div id="w42-collapse" class="collapse navbar-collapse"><ul id="w43" class="navbar-nav nav"><li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
   <div class="form-group">
     <input id="searchbox" type="text" class="form-control" placeholder="Search">
   </div>
@@ -40,11 +39,13 @@
 <a class="list-group-item" href="./g_components-sql-formatter.html">SQL Formatter</a>
 <a class="list-group-item" href="./g_components-string-helper.html">String Helper</a>
 <a class="list-group-item" href="./g_components-view-helper.html">View Helper</a></div>
-<a class="list-group-item active" href="#navigation-35" data-toggle="collapse" data-parent="#navigation">Columns <b class="caret"></b></a><div id="navigation-35" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./g_columns-action-column.html">ActionColumn</a></div>
+<a class="list-group-item active" href="#navigation-35" data-toggle="collapse" data-parent="#navigation">Columns <b class="caret"></b></a><div id="navigation-35" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./g_columns-action-column.html">Action Column</a>
+<a class="list-group-item" href="./g_columns-data-column.html">Data Column</a></div>
 <a class="list-group-item" href="#navigation-36" data-toggle="collapse" data-parent="#navigation">Models <b class="caret"></b></a><div id="navigation-36" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_models-khan-model.html">Base Model</a>
 <a class="list-group-item" href="./g_models-khan-user.html">Base user</a></div>
 <a class="list-group-item" href="#navigation-37" data-toggle="collapse" data-parent="#navigation">RBAC <b class="caret"></b></a><div id="navigation-37" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_rbac-rule-owner.html">Owner Rule</a></div>
-<a class="list-group-item" href="#navigation-38" data-toggle="collapse" data-parent="#navigation">Others <b class="caret"></b></a><div id="navigation-38" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_admin.html">Admin</a>
+<a class="list-group-item" href="#navigation-38" data-toggle="collapse" data-parent="#navigation">Others <b class="caret"></b></a><div id="navigation-38" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_components-var-dump.html">VarDump</a>
+<a class="list-group-item" href="./g_components-sql-formatter.html">SqlFormatter</a>
 <a class="list-group-item" href="./g_settings.html">Settings</a>
 <a class="list-group-item" href="./g_helpers-migrations.html">Migrations</a>
 <a class="list-group-item" href="./g_widgets-menu.html">Overlay Menu</a></div>
@@ -52,7 +53,80 @@
 <a class="list-group-item" href="#navigation-40" data-toggle="collapse" data-parent="#navigation">Sanitizing User Input <b class="caret"></b></a><div id="navigation-40" class="submenu panel-collapse collapse"></div>
 <a class="list-group-item" href="#navigation-41" data-toggle="collapse" data-parent="#navigation">RBAC Setup <b class="caret"></b></a><div id="navigation-41" class="submenu panel-collapse collapse"></div></div>    </div>
     <div class="col-md-9 guide-content" role="main">
-        <h1>ActionColumn Class <span id="actioncolumn-class"></span><a href="#actioncolumn-class" class="hashlink">&para;</a></h1>        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+        <h1>ActionColumn Class <span id="actioncolumn-class"></span><a href="#actioncolumn-class" class="hashlink">&para;</a></h1><p><span class="broken-link">KHanS\Utils\columns\ActionColumn</span> extends \kartik\grid\ActionColumn only to simplify routine, uniform development.
+As it is seen in the example, there is no limit in numbers of <strong>ActionColumn</strong>s in a <em>GridView</em>.
+By setting the visibility of standard action in one and adding <em>extraColumns</em>, there would be two distinctive columns.</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> KHanS\Utils\widgets\GridView::widget([
+...
+    <span class="hljs-string">'columns'</span> =&gt; [
+        ...,
+        [
+            <span class="hljs-string">'class'</span>          =&gt; <span class="hljs-string">'KHanS\Utils\columns\ActionColumn'</span>,
+            <span class="hljs-string">'audit'</span>          =&gt; <span class="hljs-keyword">true</span>,
+            <span class="hljs-string">'dropdown'</span>       =&gt; <span class="hljs-keyword">true</span>,
+            
+            <span class="hljs-string">'header'</span>         =&gt; <span class="hljs-string">'Pure Custom Actions'</span>,
+            <span class="hljs-string">'visibleButtons'</span> =&gt; [
+                <span class="hljs-string">'view'</span>     =&gt; <span class="hljs-keyword">false</span>,
+                <span class="hljs-string">'update'</span>   =&gt; <span class="hljs-keyword">false</span>,
+                <span class="hljs-string">'delete'</span>   =&gt; <span class="hljs-keyword">false</span>,
+                <span class="hljs-string">'download'</span> =&gt; <span class="hljs-keyword">false</span>,
+                <span class="hljs-string">'audit'</span>    =&gt; <span class="hljs-keyword">false</span>,
+            ],
+            <span class="hljs-string">'extraItems'</span>     =&gt; <span class="hljs-variable">$extraColumns</span>,
+            <span class="hljs-string">'dropdownButton'</span> =&gt; [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'btn btn-default alert-success'</span>, <span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'GoOn'</span>],
+        ],
+        [
+            <span class="hljs-string">'class'</span>          =&gt; <span class="hljs-string">'KHanS\Utils\columns\ActionColumn'</span>,
+            <span class="hljs-string">'audit'</span>          =&gt; <span class="hljs-keyword">false</span>,
+            <span class="hljs-string">'dropdown'</span>       =&gt; <span class="hljs-keyword">true</span>,
+            <span class="hljs-string">'dropdownButton'</span> =&gt; [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'btn btn-danger'</span>],
+        ],
+        [
+            <span class="hljs-string">'class'</span>          =&gt; <span class="hljs-string">'KHanS\Utils\columns\ActionColumn'</span>,
+            <span class="hljs-string">'audit'</span>          =&gt; <span class="hljs-keyword">true</span>,
+            <span class="hljs-string">'dropdown'</span>       =&gt; <span class="hljs-keyword">false</span>,
+            <span class="hljs-string">'download'</span>       =&gt; Url::to([<span class="hljs-string">'/some-action'</span>, <span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">124</span>]),
+            <span class="hljs-string">'dropdownButton'</span> =&gt; [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'btn btn-danger'</span>],
+        ],
+    ],
+    ...
+]);
+</code></pre>
+<ul>
+<li><em>class</em> It is of course mandatory and should always set to <em><strong>'KHanS\Utils\columns\ActionColumn'</strong></em>.</li>
+<li><em>audit</em> Adds an icon to each row that shows _created<em>by</em>, _created<em>at</em>, _created<em>by</em>, and _updated<em>by</em> of each reord.</li>
+<li><em>download</em> is the URL to the download action. This is usually built using <code>yii\helpers\Url::to()</code> or similar.
+It will directly fed into the <code>Html::a()</code>.</li>
+</ul>
+<h3>Extra Columns <span id="extra-columns"></span><a href="#extra-columns" class="hashlink">&para;</a></h3><p>This config adds one or more options to the <code>ActionColumn</code>.
+Column without key and with empty body will be dropped.</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$extraColumns</span> = [
+    <span class="hljs-string">'name'</span>   =&gt; [
+        <span class="hljs-string">'icon'</span>   =&gt; <span class="hljs-string">'edit'</span>,
+        <span class="hljs-string">'action'</span> =&gt; <span class="hljs-string">'my-action'</span>,
+        <span class="hljs-string">'config'</span> =&gt; [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'alert-danger'</span>], <span class="hljs-comment">// Use alert-* class with dropDown =&gt; dropDown =&gt; true</span>
+    ],
+    [],
+    <span class="hljs-string">'rename'</span> =&gt; [
+        <span class="hljs-string">'title'</span>  =&gt; <span class="hljs-string">'Test Me'</span>,
+        <span class="hljs-string">'icon'</span>   =&gt; <span class="hljs-string">'pencil'</span>,
+        <span class="hljs-string">'config'</span> =&gt; [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'text-success'</span>], <span class="hljs-comment">// Use text-* class with dropDown =&gt; false</span>
+    ],
+    <span class="hljs-string">'reset'</span>  =&gt; [],
+];
+</code></pre>
+<p><em>Array Key</em> will be used in the template. If action is not present, it would serve as the action of the link
+in <code>Url::to</code>.</p>
+<p><em>Array Values</em></p>
+<ul>
+<li><strong>title</strong> In dropdown menu it is the title in the selection menu. In any case it will be used as the tooltip.</li>
+<li><strong>icon</strong> Type of glyphicon to use. Class glyphicon will be added automatically.
+   It is optional and default is <em>link</em>.</li>
+<li><strong>action</strong> Name of action in the receiving controller. It is optional and default is array key of the item.</li>
+<li><strong>config</strong> Configuration array which will directly fed into the <code>Html::a()</code> config part.</li>
+</ul>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
     </div>
 </div>
 
@@ -60,7 +134,7 @@
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Fri, 09 Nov 2018 15:45:50 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sun, 11 Nov 2018 17:01:27 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

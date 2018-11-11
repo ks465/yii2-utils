@@ -14,7 +14,6 @@ use KHanS\Utils\components\StringHelper;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\db\Expression;
-use yii\helpers\ArrayHelper;
 
 /**
  * User model
@@ -34,131 +33,26 @@ use yii\helpers\ArrayHelper;
  * @property integer $update_time           زمان آخرین ویرایش رکورد کاربر
  * @property integer $delete_time           زمان پاک کردن رکورد کاربر از سامانه
  * @property integer $last_login_time         زمان آخرین ورود کاربر به سامانه
+ *
+ * @property string  $fullName             نام کامل کاربر
  */
 class KHanUser extends KHanModel
 {
     /**
-     * @var string Raw password set by the user
-     */
-    public $password;
-    /**
      * the user has leaved the duties in the site. It is required only to reference older data.
      */
     const STATUS_RETIRED = 2;
-
     /**
-     * get list of available statuses defined.
-     *
-     * @return array
+     * @var string Raw password set by the user
      */
-    public static function getStatuses()
-    {
-        return parent::getStatuses() + [KHanUser::STATUS_RETIRED => 'بازنشسته'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        $module = Yii::$app->getModule('khan');
-        if(empty($module)){
-            return '{{%user}}';
-        }
-        return $module->tableMap['User'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'timestamp' => [
-                'class' => 'yii\behaviors\TimestampBehavior',
-                'attributes' => [
-                    KHanUser::EVENT_BEFORE_INSERT => ['create_time', 'update_time'],
-                    KHanUser::EVENT_BEFORE_DELETE => 'delete_time',
-                ],
-//                'value' => function () {
-//                    return new Expression('CURRENT_TIMESTAMP');
-//                }
-            ],
-            'record-login' => [
-                'class' => 'yii\behaviors\AttributeBehavior',
-                'attributes' => [
-                    \yii\web\User::EVENT_AFTER_LOGIN => ['last_login_time'],
-                ],
-                'value' => function () {
-                    return new Expression('CURRENT_TIMESTAMP');
-                }
-            ],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
-        return [
-            [['username','name', 'family', 'email', 'auth_key', 'password_hash'], 'required'],
-            [['username','id','password_reset_token'], 'unique'],
-            ['username', 'string', 'min' => 6, 'max' => 63],
-            ['status', 'default', 'value' => KHanUser::STATUS_ACTIVE],
-            ['status', 'in', 'range' => array_keys(KHanUser::getStatuses())],
-
-            [['email', 'name', 'family'], 'required'],
-            [['username','email', 'family', 'name'], 'filter', 'filter' => 'trim'],
-            ['email', 'email'],
-            [['username','password','name'], 'string', 'length' => [3, 63]],
-            [['family', 'email','password_hash','access_token','password_reset_token'], 'string', 'length' => [2, 128]],
-            [
-                ['name', 'family'],
-                'match',
-                'pattern' => '/[0-9\x{06F0}-\x{06F9}]/u',
-                'not'     => true,
-                'message' => '{attribute} نمی‌تواند شامل اعداد باشد',
-            ],
-            [
-                ['name', 'family'],
-                'match',
-                'pattern' => StringHelper::PERSIAN_NAME,
-                'message' => '{attribute} بایستی به فارسی باشد',
-            ],
-            [['id','status','create_time','update_time','last_login_time','delete_time'], 'integer'],
-            [['auth_key'], 'string', 'max' => 32],
-            ['email', 'exist', 'message' => 'There is no user with such email.', 'on' => 'requestPasswordResetToken'],
-        ];
-    }
-    public function scenarios()
-    {
-        return [
-                'profile' => ['username', 'email', 'password_hash', 'password'],
-                'resetPassword' => ['password_hash'],
-                'requestPasswordResetToken' => ['email'],
-                'login' => ['last_login_time'],
-            ] + parent::scenarios();
-    }
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id'       => 'شماره کاربر',
-            'username' => 'شناسه کاربر',
-            'email'    => 'نشانی ایمیل',
-            'status'   => 'وضعیت کاربر',
-        ];
-    }
+    public $password;
 
     /**
      * {@inheritdoc}
      */
     public static function findIdentity($id)
     {
-        return $this->hasOne(KHanUserIdentity::className(), ['id' => 'user_id', 'user_table'=>self::tableName()]);
+//        return $this->hasOne(KHanUserIdentity::className(), ['id' => 'user_id', 'user_table'=>self::tableName()]);
         return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
@@ -232,17 +126,17 @@ class KHanUser extends KHanModel
     /**
      * {@inheritdoc}
      */
-    public function getAuthKey()
+    public function validateAuthKey($authKey)
     {
-        return $this->auth_key;
+        return $this->getAuthKey() === $authKey;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function validateAuthKey($authKey)
+    public function getAuthKey()
     {
-        return $this->getAuthKey() === $authKey;
+        return $this->auth_key;
     }
 
     /**
@@ -296,11 +190,125 @@ class KHanUser extends KHanModel
     {
         $this->password_reset_token = null;
     }
+
     /**
      *
      */
     public function getLoginHistory()
     {
-        return $this->hasMany(KHanUserHistory::className(), ['id' => 'user_id', 'user_table'=>self::tableName()]);
+        return $this->hasMany(KHanUserHistory::className(), ['id' => 'user_id', 'user_table' => self::tableName()]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        $module = Yii::$app->getModule('khan');
+        if (empty($module)) {
+            return '{{%user}}';
+        }
+
+        return $module->tableMap['User'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'timestamp'    => [
+                'class'      => 'yii\behaviors\TimestampBehavior',
+                'attributes' => [
+                    KHanUser::EVENT_BEFORE_INSERT => ['create_time', 'update_time'],
+                    KHanUser::EVENT_BEFORE_DELETE => 'delete_time',
+                ],
+//                'value' => function () {
+//                    return new Expression('CURRENT_TIMESTAMP');
+//                }
+            ],
+            'record-login' => [
+                'class'      => 'yii\behaviors\AttributeBehavior',
+                'attributes' => [
+                    \yii\web\User::EVENT_AFTER_LOGIN => ['last_login_time'],
+                ],
+                'value'      => function() {
+                    return new Expression('CURRENT_TIMESTAMP');
+                },
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['username', 'name', 'family', 'email', 'auth_key', 'password_hash'], 'required'],
+            [['username', 'id', 'password_reset_token'], 'unique'],
+            ['username', 'string', 'min' => 6, 'max' => 63],
+            ['status', 'default', 'value' => KHanUser::STATUS_ACTIVE],
+            ['status', 'in', 'range' => array_keys(KHanUser::getStatuses())],
+
+            [['email', 'name', 'family'], 'required'],
+            [['username', 'email', 'family', 'name'], 'filter', 'filter' => 'trim'],
+            ['email', 'email'],
+            [['username', 'password', 'name'], 'string', 'length' => [3, 63]],
+            [
+                ['family', 'email', 'password_hash', 'access_token', 'password_reset_token'], 'string',
+                'length' => [2, 128],
+            ],
+            [
+                ['name', 'family'],
+                'match',
+                'pattern' => '/[0-9\x{06F0}-\x{06F9}]/u',
+                'not'     => true,
+                'message' => '{attribute} نمی‌تواند شامل اعداد باشد',
+            ],
+            [
+                ['name', 'family'],
+                'match',
+                'pattern' => StringHelper::PERSIAN_NAME,
+                'message' => '{attribute} بایستی به فارسی باشد',
+            ],
+            [['id', 'status', 'create_time', 'update_time', 'last_login_time', 'delete_time'], 'integer'],
+            [['auth_key'], 'string', 'max' => 32],
+            ['email', 'exist', 'message' => 'There is no user with such email.', 'on' => 'requestPasswordResetToken'],
+        ];
+    }
+
+    /**
+     * get list of available statuses defined.
+     *
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return parent::getStatuses() + [KHanUser::STATUS_RETIRED => 'بازنشسته'];
+    }
+
+    public function scenarios()
+    {
+        return [
+                'profile'                   => ['username', 'email', 'password_hash', 'password'],
+                'resetPassword'             => ['password_hash'],
+                'requestPasswordResetToken' => ['email'],
+                'login'                     => ['last_login_time'],
+            ] + parent::scenarios();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id'       => 'شماره کاربر',
+            'username' => 'شناسه کاربر',
+            'email'    => 'نشانی ایمیل',
+            'status'   => 'وضعیت کاربر',
+        ];
     }
 }

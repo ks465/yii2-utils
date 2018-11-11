@@ -39,20 +39,20 @@ class m170405_115550_createUserStaffTable extends KHanMigration
     private function createStaffTable()
     {
         $this->createTable($this->staffUserTable, [
-            'id' => $this->primaryKey(),
-            'name' => $this->string(64)->notNull()->comment('نام'),
-            'family' => $this->string(128)->notNull()->comment('نام خانوادگی'),
-            'username' => $this->string(64)->notNull()->unique()->comment('شناسه کاربری'),
-            'email' => $this->string(64)->notNull()->unique()->comment('نشانی الکترونیکی'),
-            'grade' => $this->string(64)->comment('مقطع(های) مجاز') . ' COLLATE latin1_general_ci',
-            'auth_key' => $this->string(40)->notNull(),
-            'password_hash' => $this->string()->notNull(),
+            'id'                   => $this->primaryKey(),
+            'name'                 => $this->string(64)->notNull()->comment('نام'),
+            'family'               => $this->string(128)->notNull()->comment('نام خانوادگی'),
+            'username'             => $this->string(64)->notNull()->unique()->comment('شناسه کاربری'),
+            'email'                => $this->string(64)->notNull()->unique()->comment('نشانی الکترونیکی'),
+            'grade'                => $this->string(64)->comment('مقطع(های) مجاز') . ' COLLATE latin1_general_ci',
+            'auth_key'             => $this->string(40)->notNull(),
+            'password_hash'        => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique(),
-            'status' => $this->smallInteger()->notNull()->defaultValue(UserStaff::STATUS_ACTIVE)->comment('وضعیت کاربر'),
-            'last_visit_time' => Schema::TYPE_TIMESTAMP,
-            'create_time' => $this->timestamp()->notNull(),
-            'update_time' => $this->timestamp(),
-            'delete_time' => $this->timestamp(),
+            'status'               => $this->smallInteger()->notNull()->defaultValue(UserStaff::STATUS_ACTIVE)->comment('وضعیت کاربر'),
+            'last_visit_time'      => Schema::TYPE_TIMESTAMP,
+            'create_time'          => $this->timestamp()->notNull(),
+            'update_time'          => $this->timestamp(),
+            'delete_time'          => $this->timestamp(),
         ], $this->tableOptions);
 
         $this->createIndex('Staff_status_ix', $this->staffUserTable, 'status');
@@ -73,35 +73,6 @@ class m170405_115550_createUserStaffTable extends KHanMigration
             throw new \yii\console\Exception('Error when creating admin user.');
         }
         echo 'User created successfully.' . PHP_EOL;
-    }
-
-    private function createDepartmentsTable()
-    {
-        $fields = [
-            'staff_id' => $this->Integer()->comment('نام همکار'),
-            'department_id' => $this->tinyInteger(4)->unsigned()->notNull()->comment('نام دانشکده'),
-        ];
-        $this->createTableWithLoggers($this->staffDepartmentsTable, $fields, $this->comment('رابطه همکاران با دانشکده'));
-
-        $this->addPrimaryKey('StaffDept_pk', $this->staffDepartmentsTable, ['staff_id', 'department_id']);
-        $this->addForeignKey('fk_staff_dept_department', $this->staffDepartmentsTable, 'staff_id',
-            $this->staffUserTable, 'id', 'RESTRICT', 'RESTRICT');
-
-    }
-
-    private function createGradesTable()
-    {
-        $fields = [
-            'staff_id' => $this->Integer()->comment('نام همکار'),
-            'degree' => $this->latinChar(5)->notNull()->comment('مقطع(های) تحصیلی مجاز'),
-        ];
-        $this->createTableWithLoggers($this->staffGradesTable, $fields, $this->comment('مقطعهای تحصیلی مجاز همکاران'));
-
-        $this->addPrimaryKey('StaffGrade_pk', $this->staffGradesTable, ['staff_id', 'degree']);
-
-        $this->addForeignKey('fk_dept_staff_grade', $this->staffGradesTable, 'staff_id',
-            $this->staffUserTable, 'id',
-            'RESTRICT', 'RESTRICT');
     }
 
     /**
@@ -126,5 +97,34 @@ class m170405_115550_createUserStaffTable extends KHanMigration
         }
 
         return $input;
+    }
+
+    private function createGradesTable()
+    {
+        $fields = [
+            'staff_id' => $this->Integer()->comment('نام همکار'),
+            'degree'   => $this->latinChar(5)->notNull()->comment('مقطع(های) تحصیلی مجاز'),
+        ];
+        $this->createTableWithLoggers($this->staffGradesTable, $fields, $this->comment('مقطعهای تحصیلی مجاز همکاران'));
+
+        $this->addPrimaryKey('StaffGrade_pk', $this->staffGradesTable, ['staff_id', 'degree']);
+
+        $this->addForeignKey('fk_dept_staff_grade', $this->staffGradesTable, 'staff_id',
+            $this->staffUserTable, 'id',
+            'RESTRICT', 'RESTRICT');
+    }
+
+    private function createDepartmentsTable()
+    {
+        $fields = [
+            'staff_id'      => $this->Integer()->comment('نام همکار'),
+            'department_id' => $this->tinyInteger(4)->unsigned()->notNull()->comment('نام دانشکده'),
+        ];
+        $this->createTableWithLoggers($this->staffDepartmentsTable, $fields, $this->comment('رابطه همکاران با دانشکده'));
+
+        $this->addPrimaryKey('StaffDept_pk', $this->staffDepartmentsTable, ['staff_id', 'department_id']);
+        $this->addForeignKey('fk_staff_dept_department', $this->staffDepartmentsTable, 'staff_id',
+            $this->staffUserTable, 'id', 'RESTRICT', 'RESTRICT');
+
     }
 }
