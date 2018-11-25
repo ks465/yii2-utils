@@ -3,279 +3,123 @@
 
 namespace KHanS\Utils\widgets;
 
-use johnitvn\ajaxcrud\CrudAsset;
 use kartik\helpers\Html;
-use kartik\widgets\Widget;
+use kartik\icons\Icon;
+use KHanS\Utils\components\Jalali;
 use Yii;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+use yii\i18n\Formatter;
 
 /**
- * Create a uniform grid view for controllers. This is the common parts for both normal and AJAX grids.
+ * Create a uniform grid view for controllers. This is also the common parts for both normal and AJAX grids.
+ *
+ * @see     http://demos.krajee.com/grid
+ * Example:
+ *
+ * ```php
+ * KHanS\Utils\widgets\GridView::widget([
+ *    'dataProvider' => $dataProvider,
+ *    'filterModel' => $searchModel,
+ *    'columns' => require(__DIR__ . '/_columns.php'),
+ *    'title' => false,
+ *    'footer' => false,
+ *    'rowOptions' => function ($model, $index, $widget, $grid) {
+ *       if ($model->id % 2) // change to your needs
+ *           return ['class' => 'alert-danger', 'style' => 'background-color: #f2dede;'];
+ *       return [];
+ *    },
+ * ])
+ * ```
+ * GridView 1.* and AjaxGridView 1.* are merged together, and there is no AjaxGridView in the 2.* version.
  *
  * @package KHanS\Utils\widgets
- * @version 0.1.0-970820
+ * @version 2.1.1-970904
  * @since   1.0.0
  */
-abstract class BaseGridView extends Widget
+class GridView extends \kartik\grid\GridView
 {
     /**
-     * Shortcut for panel.heading option
-     *
-     * @var string
+     * @var string Shortcut for panel.heading option
      */
     public $title = '';
     /**
-     * Shrotcut for panel.footer
-     *
-     * @var string
+     * @var string Shortcut for panel.footer
      */
     public $footer = '';
     /**
-     * Shortcut to options.id and ID of the grid view container
-     *
-     * @var string
+     * @var string Shortcut for panel.before
+     */
+    public $before = '';
+    /**
+     * @var string Shortcut for panel.after
+     */
+    public $after = '';
+    /**
+     * @var string Shortcut to options.id and ID of the grid view container
      */
     public $id = 'datatable';
-
     /**
-     * @var array settings for pagination
+     * @var array|Formatter the formatter used to format model attribute values into displayable texts.
+     * This can be either an instance of Formatter or an configuration array for creating the Formatter
+     * instance. If this property is not set, the "formatter" application component will be used.
      */
-    public $pager;
-    public $striped;
-    public $condensed;
-    public $responsive;
-    public $export;
-    public $toggleData;
-    public $resizableColumn;
-    public $before = '';
-    public $formatter;
-    public $showPageSummary = false;
-    public $showCreate = true;
-
-    public $beforeHeader = [];
-
-    public $dataProvider;
-    public $filterModel;
-    public $columns;
-    public $rowOptions = null;
+    public $formatter = ['class' => 'yii\i18n\Formatter', 'nullDisplay' => ''];
     /**
-     * @var array settings for pagination
+     * @var array Configuration parameters to put a button in the panel to collect selected data in
+     * CheckboxColumn and RadioColumn and call an action on all of them.
+     *    + action is the URL to the target action,
+     *    + label is the label of the created button
+     *    + icon is tag of the glyphicon-* to use
+     *    + class is the tag of the bootstrap btn-* class
+     *    + message is the text of the message to show as confirmation of action.
      */
-
-    public $bulkAction = [];
-    public $createAction = false;
-    public $floatHeader = false;
-    public $createLabel;
+    public $bulkAction = [
+        'action'  => '',
+        'label'   => '',
+        'icon'    => '',
+        'class'   => '',
+        'message' => '',
+    ];
+    /**
+     * @var boolean Defaults to `true`. The entire GridView widget will be parsed via Pjax and auto-rendered
+     * inside a yii\widgets\Pjax widget container. Individual actions can be disabled in
+     *     [[\KHanS\Utils\columns\ActionColumn]]
+     */
+    public $pjax = true;
     /**
      * @var bool used for refreshing the grid in modal form. If true, the refresh button refreshes the modal grid
      */
     public $gridIsModal = false;
     /**
-     * @var array settings for refresh button
+     * @var boolean|string Content of refresh buttons in the panel. If set to `true` default buttons are shown, one
+     *     preserving the filters, the other clear filters. If set to `false` --the default--, no button is shown. If
+     *     it is string, it will appear in the table panel.
      */
-    public $refreshOptions = [];
+    public $showRefreshButtons = false;
     /**
-     * @var bool use \yii\widgets\Pjax]]
+     * @var string Shortcut for panel.type option
      */
-    protected $pjax = false;
-    protected $createContent = '';
+    public $type = 'primary';
+    /**
+     * @var array|boolean the grid export menu settings. If set to true widget defaults are applied. If set to false
+     * --the default-- export menu is not activated. This export menu only prepares the items already displayed on the
+     *     page.
+     */
+    public $export = false;
+    /**
+     * @var string Arbitrary string to appear in the panel.
+     */
     protected $content = '';
 
     /**
      * Setup custom configuration
+     *
+     * @throws \yii\base\InvalidConfigException
      */
     public function init()
     {
-        if (Yii::$app->user->isGuest) {
-            $this->showCreate = false;
-        }
-        if ($this->showCreate && $this->createAction !== false) {
-            if (!is_array($this->createAction)) {
-                $this->createAction = [$this->createAction];
-            }
-            $this->createContent = Html::a('<i class="glyphicon glyphicon-plus"></i>', $this->createAction, [
-                'role'  => 'modal-remote',
-                'title' => $this->createLabel,
-                'class' => 'btn btn-default',
-            ]);
-        }
-        $this->pager = Yii::$app->params['pager'];
-        if ($this->dataProvider->totalCount <= 25) {
-            $this->dataProvider->pagination = ['pageSize' => 25];
-        }
-
-        if (!empty($this->title)) {
-            $this->title = '<div class="pull-left">' . '<i class="glyphicon glyphicon-list"></i>&nbsp;' . $this->title . '</div>';
-        }
-
-        $this->content = '{toggleData}' . $this->export . '{export}';
-        if ($this->refreshOptions !== false) {
-            $this->refreshOptions =
-                Html::a('<i class="glyphicon glyphicon-refresh"></i>', Url::current(), [
-                    'class' => 'btn btn-default', 'title' => 'بازخوانی داده‌ها با حفظ فیلترها',
-                ]) .
-                Html::a('<i class="glyphicon glyphicon-repeat"></i>', Url::to(['']), [
-                    'class' => 'btn btn-danger', 'title' => 'بازخوانی صفحه و پاک نمودن فیلترها',
-                ]);
-        }
-        $this->content = $this->createContent . $this->refreshOptions . $this->content;
-    }
-
-    /**
-     * Show the grid by instantiating the widget
-     */
-    public function run()
-    {
-        echo \kartik\grid\GridView::widget([
-            'id'               => $this->id,
-            'beforeHeader'     => $this->beforeHeader,
-            'dataProvider'     => $this->dataProvider,
-            'filterModel'      => $this->filterModel,
-            'floatHeader'      => $this->floatHeader,
-            'formatter'        => $this->formatter,
-            'pager'            => $this->pager,
-            'pjax'             => $this->pjax,
-            'pjaxSettings'     => ['options' => ['id' => $this->id]],
-            'columns'          => $this->columns,
-            'toolbar'          => [
-                [
-                    'content' => $this->content,
-                ],
-            ],
-            'showPageSummary'  => $this->showPageSummary,
-            'rowOptions'       => $this->rowOptions,
-            'striped'          => true,
-            'condensed'        => true,
-            'responsive'       => true,
-            'export'           => false,
-            'toggleData'       => false,
-            'resizableColumns' => false,
-            'panel'            => [
-                'type'    => 'primary',
-                'heading' => $this->title,
-                'after'   => false,
-                'before'  => $this->before,
-                'footer'  => $this->footer,
-            ],
-        ]);
-    }
-}
-
-/**
- * Create a uniform grid view for controllers
- *
- * @see     http://demos.krajee.com/grid
- *          Example:
- *          ```php
- *          common\widgets\GridView::widget([
- *          'dataProvider' => $dataProvider,
- *          'filterModel' => $searchModel,
- *          'export' => <instance_of_ExportMenu>,
- *          'columns' => require(__DIR__ . '/_columns.php'),
- *          'title' => false,
- *          'footer' => false,
- *          'rowOptions' => function ($model, $index, $widget, $grid) {
- *          if ($model->id % 2) // change to your needs
- *              return ['class' => 'alert-danger', 'style' => 'background-color: #f2dede;'];
- *          return [];
- *          },
- *          ])
- *          ```
- * Because this requires a modal window, for simplicity it extends Widget and not GridView
- * @package common\widgets
- */
-class GridView extends BaseGridView
-{
-    /**
-     * @var array settings for refresh button
-     */
-    public $refreshOptions = ['class' => 'btn btn-default', 'title' => 'بازخوانی داده‌ها با حفظ فیلترها'];
-
-//    /**
-//     * @inheritdoc
-//     */
-//    public function init()
-//    {
-//        parent::init();
-//    }
-}
-
-/**
- * Create a uniform grid view for Ajax controllers along with the required Modal widget required for this to work
- *
- * @see     http://demos.krajee.com/grid
- *          Example:
- *          ```php
- *          common\widgets\AjaxGridView::widget([
- *          'dataProvider' => $dataProvider,
- *          'filterModel' => $searchModel,
- * 'export' => instance_of_ExportMenu,
- *          'columns' => require(__DIR__ . '/_columns.php'),
- *          'createAction' => ['create', 'id' => $itemID],
- *          'createLabel' => 'Create New Item',
- *          'title' => false,
- *          'footer' => false,
- *          'gridIsModal' => true,
- *          'bulkAction' => [
- *          'action' => 'bulk-delete',
- *          'label' => 'Delete',
- *          'icon' => 'trash',
- *          'class' => 'danger',
- *          'message' => 'Some alert',
- *          ],
- *          ])
- *          ```
- * Because this requires a modal window, for simplicity it extends Widget and not GridView
- * @package common\widgets
- */
-class AjaxGridView extends BaseGridView
-{
-    public $refreshOptions = ['class' => 'btn btn-default', 'title' => 'بازخوانی داده‌ها با حفظ فیلترها'];
-    protected $pjax = true;
-
-    public function init()
-    {
-        CrudAsset::register($this->getView());
-
-        if ($this->gridIsModal) {
-            $this->refreshOptions['role'] = 'modal-remote';
-        }
-
-        if (!empty($this->bulkAction) && is_array($this->bulkAction)) {
-            $this->before .= BulkButtonWidget::widget([
-                    'buttons' =>
-                        Html::a('<i class="glyphicon glyphicon-' . $this->bulkAction['icon'] . '"></i>&nbsp;' . $this->bulkAction['label'],
-                            [$this->bulkAction['action']],
-                            [
-                                "class"                => 'btn btn-' . $this->bulkAction['class'],
-                                'role'                 => 'modal-remote-bulk',
-                                'data-confirm'         => false,
-                                'data-method'          => false,// for overide yii data api
-                                'data-request-method'  => 'post',
-                                'data-confirm-title'   => ' آیا اطمینان دارید؟',
-                                'data-confirm-message' => $this->bulkAction['message'],
-                            ]),
-                ]) .
-                '<div class="clearfix"></div>';
-        }
-
-        if (!empty($this->title)) {
-            $this->title = '<div class="pull-left">' . '<i class="glyphicon glyphicon-list"></i>&nbsp;' . $this->title . '</div>';
-        }
-
-        $this->id .= '-pjax';
-
-        parent::init();
-    }
-
-    /**
-     * Show the grid view with Modals
-     */
-    public function run()
-    {
-        parent::run();
-
+        GridAsset::register($this->getView());
         Modal::begin([
             "id"      => "ajaxCrudModal",
             "footer"  => "",// always need it for jquery plugin
@@ -284,5 +128,117 @@ class AjaxGridView extends BaseGridView
             ],
         ]);
         Modal::end();
+
+        $this->pager = Yii::$app->params['pager'];
+        if ($this->dataProvider->totalCount <= 25) {
+            $this->dataProvider->pagination = ['pageSize' => 25];
+        }
+
+        if (empty($this->title)) {
+            $this->title = $this->getView()->title;
+        }
+        if ($this->export !== false) {
+            $this->loadExportSegment();
+        }
+
+        if ($this->showRefreshButtons === true) {
+            $this->showRefreshButtons =
+                Html::a('<i class="glyphicon glyphicon-refresh"></i>', Url::current(), [
+                    'class' => 'btn btn-default', 'title' => 'بازخوانی داده‌ها با حفظ فیلترها',
+                ]) .
+                Html::a('<i class="glyphicon glyphicon-repeat"></i>', Url::to(['']), [
+                    'class' => 'btn btn-danger', 'title' => 'بازخوانی صفحه و پاک نمودن فیلترها',
+                ]);
+        }
+        $this->toolbar['content'] = $this->showRefreshButtons . $this->content;
+        $this->pjaxSettings['options']['id'] = $this->id;
+
+        $this->panel['heading'] = '<div class="pull-left">' . '<i class="glyphicon glyphicon-list"></i>&nbsp;' . $this->title . '</div>';
+        $this->panel['type'] = $this->type;
+        $this->panel['before'] = $this->before;
+        $this->panel['after'] = $this->after;
+        $this->panel['footer'] = $this->footer;
+
+        $this->resizableColumns = false;
+        $this->toggleData = false;
+        $this->striped = true;
+        $this->condensed = true;
+        $this->responsive = true;
+
+
+        if (!empty($this->bulkAction) && is_array($this->bulkAction) && !empty($this->bulkAction['action'])) {
+            $this->loadBulkSegment();
+        }
+
+        parent::init();
+    }
+
+    /**
+     * If export component of the grid is active load and place it.
+     */
+    private function loadExportSegment()
+    {
+        Icon::map($this->getView(), Icon::FA); //required for font awesome
+        if ($this->export === true) {
+            $this->export = [
+                'icon'        => 'download',
+                'fontAwesome' => true,
+                'options'     => [
+                    'class' => 'btn btn-info',
+                    'title' => 'دریافت داده‌های نمایش داده شده در صفحه به صورت فایل',
+                ],
+                'header'      => '<li role="presentation" class="dropdown-header">دریافت داده‌های صفحه</li>',
+                'messages'    => [
+                    'allowPopups'      => 'مرورگر شما می‌بایست برای باز شدن پنجره‌های دیگر (Popups) مجاز باشد.',
+                    'confirmDownload'  => 'آیا ساخت فایل برای دریافت آغاز گردد؟',
+                    'downloadProgress' => 'در حال ساخت و دریافت فایل ...',
+                    'downloadComplete' => 'دریافت فایل به پایان رسید.',
+                ],
+            ];
+        }
+        $this->export['icon'] = 'fa fa-' . $this->export['icon'];
+
+        $filename = str_replace(' ', '_', $this->title . '_' . Jalali::date(Jalali::KHAN_SHORT));
+        $this->exportConfig = [
+            GridView::PDF => [
+                'label'    => 'دریافت پی‌دی‌اف',
+                'alertMsg' => 'يک فایل PDF برای دریافت آماده خواهد شد.',
+                'filename' => $filename,
+            ],
+            GridView::CSV => [
+                'label'    => 'دریافت برای اکسل',
+                'alertMsg' => 'يک فایل CSV برای دریافت آماده خواهد شد.',
+                'filename' => $filename,
+            ],
+        ];
+
+    }
+
+    /**
+     * If bulk action button is requested, configure it and add it to the panel.
+     */
+    private function loadBulkSegment()
+    {
+        if (empty($this->bulkAction['class'])) {
+            $this->bulkAction['class'] = 'default';
+        }
+        if (empty($this->bulkAction['message'])) {
+            $this->bulkAction['message'] = 'از انجام این دستور اطمینان دارید؟';
+        }
+
+        $this->panel['before'] .= '<div class="pull-left rtl">' .
+            '&nbsp;&nbsp;با همه انتخاب شده‌ها&nbsp;&nbsp;<i class="glyphicon glyphicon-arrow-left"></i>&nbsp;&nbsp;' .
+            Html::a('<i class="glyphicon glyphicon-' . $this->bulkAction['icon'] . '"></i>&nbsp;' . $this->bulkAction['label'],
+                [$this->bulkAction['action']],
+                [
+                    "class"                => 'btn btn-' . $this->bulkAction['class'],
+                    'role'                 => 'modal-remote-bulk',
+                    'data-confirm'         => false,
+                    'data-method'          => false,// for overide yii data api
+                    'data-request-method'  => 'post',
+                    'data-confirm-title'   => ' آیا اطمینان دارید؟',
+                    'data-confirm-message' => $this->bulkAction['message'],
+                ]) .
+            '</div>';
     }
 }

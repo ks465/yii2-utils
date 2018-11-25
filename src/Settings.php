@@ -35,7 +35,7 @@ class Settings extends BaseObject
     /**
      * Path to application models repository, this is mainly used for [[helpers\AppBuilder]] to create new models.
      */
-    const PATH_MODELS_DIRECTORY = '@app\\models';
+    const PATH_MODELS_DIRECTORY = '@app/models/';
     /**
      * List of icons for navigation keys in the grid view pager
      *

@@ -6,9 +6,9 @@
  * Time: 12:47
  */
 
+
 namespace {
 
-    use KHanS\Utils\components\HulkHtmlVarDumpTheme;
     use KHanS\Utils\components\SqlFormatter;
     use KHanS\Utils\components\VarDump;
     use KHanS\Utils\Settings;
@@ -24,7 +24,7 @@ namespace {
          */
         function vd($variable)
         {
-            $varDump = new VarDump(null, null, null, new HulkHtmlVarDumpTheme());
+            $varDump = new VarDump(null, null, null);
             $variables = func_get_args();
             foreach ($variables as $variable) {
                 $varDump->dump($variable);
@@ -55,12 +55,16 @@ namespace {
          */
         function explain($query)
         {
-            echo '<p dir="ltr">' . getTrace() . '</p>';
             if ($query instanceof Query) {
                 $query = $query->createCommand()->rawSql;
             }
+            if (php_sapi_name() === 'cli') {
+                echo getTrace() . "\n" . SqlFormatter::format($query);
+            } else {
+                echo '<p dir="ltr">' . getTrace() . '</p>';
+                echo '<span dir="ltr">' . SqlFormatter::format($query) . '</span>';
+            }
 
-            echo '<span dir="ltr">' . SqlFormatter::format($query) . '</span>';
         }
     }
     if (!function_exists('xd')) {
@@ -136,6 +140,7 @@ namespace {
         }
     }
 }
+
 
 namespace KHanS\Utils\components {
 
@@ -255,7 +260,7 @@ namespace KHanS\Utils\components {
          *
          * @var string
          */
-        const DEFAULT_THEME_HTML = 'SpidermanHtmlVarDumpTheme';
+        const DEFAULT_THEME_HTML = 'BlackHtmlVarDumpTheme';
 
         /**
          * Current recursion level in process
@@ -366,7 +371,6 @@ namespace KHanS\Utils\components {
 
             $this->includeMethods = $includeMethods;
             $this->objects = [];
-//        $this->objectId = 0;
 
             $this->isFirst = true;
             $this->isPhp7 = version_compare(PHP_VERSION, '7.0.0') >= 0;
@@ -525,8 +529,8 @@ namespace KHanS\Utils\components {
          *
          * @param array   $array Array value to get the output for
          * @param boolean $showType Flag to see if the type of value should be showed
-         * @param boolean $encode Flag to see if the necessairy output encoding should be done, set to false when a value
-         *                          is formatted twice by the theme
+         * @param boolean $encode Flag to see if the necessairy output encoding should be done, set to false when a
+         *     value is formatted twice by the theme
          *
          * @return string Output of the array
          */
@@ -608,7 +612,7 @@ namespace KHanS\Utils\components {
                         $items[] = $this->theme->formatListItem($this->getValue($this->getMethodSignature($method), false), null);
                     }
                 } catch (ReflectionException $e) {
-                    echo 'Could not get methods, because of: ' . $e->getMessage();
+                    $items[] = 'Could not get methods, because of: ' . $e->getMessage();
                 }
 
             }
@@ -642,14 +646,9 @@ namespace KHanS\Utils\components {
                 $value .= '$' . $parameter->getName();
 
                 if ($parameter->isOptional()) {
-//                try {
                     $defaultValue = $this->getValue($parameter->getDefaultValue(), false, false);
                     $value .= ' = ' . $defaultValue;
-//                } catch (ReflectionException $e) {
-//                    // ignore if not retrievable
-//                }
                 }
-
                 $parameters[$index] = $value;
             }
 
@@ -1058,12 +1057,12 @@ namespace KHanS\Utils\components {
     }
 
     /**
-     * Batman HTML dump theme
+     * Black HTML dump theme
      */
-    class BatmanHtmlVarDumpTheme extends HtmlVarDumpTheme
+    class BlackHtmlVarDumpTheme extends HtmlVarDumpTheme
     {
         /**
-         * BatmanHtmlVarDumpTheme constructor.
+         * BlackHtmlVarDumpTheme constructor.
          */
         public function __construct()
         {
@@ -1081,12 +1080,12 @@ namespace KHanS\Utils\components {
     }
 
     /**
-     * Hulk HTML dump theme
+     * Green HTML dump theme
      */
-    class HulkHtmlVarDumpTheme extends HtmlVarDumpTheme
+    class GreenHtmlVarDumpTheme extends HtmlVarDumpTheme
     {
         /**
-         * HulkHtmlVarDumpTheme constructor.
+         * GreenHtmlVarDumpTheme constructor.
          */
         public function __construct()
         {
@@ -1104,12 +1103,12 @@ namespace KHanS\Utils\components {
     }
 
     /**
-     * Ironman HTML dump theme
+     * Red HTML dump theme
      */
-    class IronmanHtmlVarDumpTheme extends HtmlVarDumpTheme
+    class RedHtmlVarDumpTheme extends HtmlVarDumpTheme
     {
         /**
-         * IronmanHtmlVarDumpTheme constructor.
+         * RedHtmlVarDumpTheme constructor.
          */
         public function __construct()
         {
@@ -1127,35 +1126,12 @@ namespace KHanS\Utils\components {
     }
 
     /**
-     * Spiderman HTML dump theme
+     * Blue HTML dump theme
      */
-    class SpidermanHtmlVarDumpTheme extends HtmlVarDumpTheme
+    class BlueHtmlVarDumpTheme extends HtmlVarDumpTheme
     {
         /**
-         * SpidermanHtmlVarDumpTheme constructor.
-         */
-        public function __construct()
-        {
-            $this->colors = [
-                'general-background' => 'aliceblue',
-                'general-text'       => 'blue',
-                'general-link'       => 'darkblue',
-                'general-border'     => 'blue',
-                'code-background'    => 'white',
-                'code-text'          => 'red',
-            ];
-
-            parent::__construct();
-        }
-    }
-
-    /**
-     * Superman HTML dump theme
-     */
-    class SupermanHtmlVarDumpTheme extends HtmlVarDumpTheme
-    {
-        /**
-         * SupermanHtmlVarDumpTheme constructor.
+         * BlueHtmlVarDumpTheme constructor.
          */
         public function __construct()
         {

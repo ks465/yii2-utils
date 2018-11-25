@@ -28,7 +28,23 @@ CREATE TABLE `user` (
   `status`               TINYINT(1)   NOT NULL,
   `create_time`          INT(11)      NOT NULL,
   `update_time`          INT(11)      NOT NULL,
-  `last_login_time`      INT(11)      NOT NULL,
-  `delete_time`          INT(11)      NOT NULL
+  `delete_time`          INT(11)      NOT NULL,
+  `last_login_time`      INT(11)      NOT NULL
 )
 ```
+
+set `Yii::$app->params['user.passwordResetTokenExpire']`
+```php
+'user' => [
+    'class' => '\KHanS\Utils\models\KHanUser',
+    'identityClass'   => '\KHanS\Utils\models\KHanIdentity',
+    'userTable' => 'a_user',
+    'superAdmins' => ['keyhan'],
+    'enableAutoLogin' => true,
+    'identityCookie' => [
+        'name' => '_identity_name_',
+        'httpOnly' => true,
+        'path' => '_path_to_application_',
+    ],
+],
+``` 

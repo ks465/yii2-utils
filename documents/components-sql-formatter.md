@@ -11,6 +11,15 @@ _**There is no need to call methods in this class directly. Just use `explain` o
 1. `explain` Show a formatted text of an SQL query.
 1. `xd` Show a formatted text of an SQL query. This method will stop your script after the dump.
 
+**_Important Notice:
+You should require the containing class early in your scripts, in order to activate these shortcuts._**
+
+```php
+require_once \Yii::getAlias('@khan/src/components/VarDump.php');
+```
+
+Examples:
+
 
 ```php
 $sql = KHanModel::find()

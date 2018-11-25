@@ -8,7 +8,7 @@ use yii\db\Schema;
 /**
  * Create `user_staff` table for list of staff users and create the admin user
  */
-class m170405_115550_createUserStaffTable extends KHanMigration
+class m170405_115550_createUserStaffTables extends KHanMigration
 {
     /**
      * @inheritdoc

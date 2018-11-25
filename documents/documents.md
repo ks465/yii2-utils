@@ -75,14 +75,17 @@ All the tests in the `tests/demos` are simple calls to utilities. Run as follows
 or you can run individual files like following:
 
 ```php
-$tester_1 = new \KHanS\Utils\tests\TestAdmin();
+$tester_1 = new \KHanS\Utils\tests\TestVarDump();
+$tester_1 = new \KHanS\Utils\tests\TestUser();
 $tester_2 = new \KHanS\Utils\tests\TestComponents();
 $tester_3 = new \KHanS\Utils\tests\TestWidgets();
 $tester_4 = new \KHanS\Utils\tests\TestOverlayMenuFiller();
+$tester_5 = new \KHanS\Utils\tests\TestModels();
 
 
 $tester_1->runTests();
 $tester_2->runTests();
 $tester_3->runTests();
 $tester_4->runTests();
+$tester_5->runTests();
 ```

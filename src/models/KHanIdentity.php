@@ -12,17 +12,15 @@ namespace KHanS\Utils\models;
 
 use KHanS\Utils\components\StringHelper;
 use Yii;
-use yii\base\NotSupportedException;
+use yii\base\InvalidConfigException;
+use yii\db\conditions\AndCondition;
+use yii\db\conditions\OrCondition;
 use yii\db\Expression;
-use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
 
 /**
- * User model
+ * User Identity model holds required parts for Yii::$app->user->identity
  *
- * @package KHanS\Utils
- * @version 0.3-970803
- * @since   1.0
  *
  * @property string  $fullName             read-only نام کامل کاربر
  * @property string  $name                 نام کاربر
@@ -31,62 +29,59 @@ use yii\web\IdentityInterface;
  * @property integer $id                   شناسه کاربر
  * @property string  $password_hash        رمز گذرواژه
  * @property string  $password_reset_token بلیت بازنشانی گذرواژه
+ * @property string  $access_token         کلید دسترسی خودکار
  * @property string  $email                ایمیل کاربر
  * @property string  $auth_key             کلید تشخیص هویت
  * @property string  $password             write-only password گذرواژّ کاربر
+ *
+ * @property boolean $isSuperAdmin         یک مدیر سیستم است
+ *
+ * @package KHanS\Utils\models
+ * @version 0.3.1-970803
+ * @since   1.0
  */
-class KHanUserIdentity extends KHanModel implements IdentityInterface
+class KHanIdentity extends KHanModel implements IdentityInterface
 {
     /**
      * the user has leaved the duties in the site. It is required only to reference older data.
      */
     const STATUS_RETIRED = 2;
+    /**
+     * @var string name of table holding the user data
+     */
+    private static $_tableName = 'generic_user';
+    /**
+     * @var boolean if the user's username is in the superAdmins configuration of the user component
+     */
+    private $_isSuperAdmin = null;
 
     /**
-     * get list of available statuses defined.
-     *
-     * @return array
+     * @param string $tableName
      */
-    public static function getStatuses()
+    public static function setTableName($tableName)
     {
-        return parent::getStatuses() + [KHanUser::STATUS_RETIRED => 'بازنشسته'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function findIdentity($id)
-    {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
-    }
-
-    /**
-     * {@inheritdoc}
-     * @throws NotSupportedException
-     */
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getId()
-    {
-        return $this->getPrimaryKey();
+        static::$_tableName = $tableName;
     }
 
     /**
      * Finds user by email -- email is used as username
      *
-     * @param string $email
+     * @param string $username
      *
-     * @return static|null
+     * @return KHanIdentity|null
      */
-    public static function findByUsername($email)
+    public static function findByUsername($username)
     {
-        return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
+        $lookupItems = new OrCondition([
+            ['username' => $username],
+            ['email' => $username],
+        ]);
+        $condition = new AndCondition([
+            $lookupItems,
+            'status' => static::STATUS_ACTIVE,
+        ]);
+
+        return static::findOne($condition);
     }
 
     /**
@@ -109,6 +104,16 @@ class KHanUserIdentity extends KHanModel implements IdentityInterface
     }
 
     /**
+     * get list of available statuses defined.
+     *
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return parent::getStatuses() + [static::STATUS_RETIRED => 'بازنشسته'];
+    }
+
+    /**
      * Finds out if password reset token is valid
      *
      * @param string $token password reset token
@@ -122,9 +127,63 @@ class KHanUserIdentity extends KHanModel implements IdentityInterface
         }
 
         $timestamp = (int)substr($token, strrpos($token, '_') + 1);
+
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
 
         return $timestamp + $expire >= time();
+    }
+
+    /**
+     * Returns whether the logged in user is an administrator.
+     *
+     * @return boolean the result.
+     */
+    public function getIsSuperAdmin()
+    {
+        if ($this->_isSuperAdmin !== null) {
+            return $this->_isSuperAdmin;
+        }
+
+        try {
+            $this->_isSuperAdmin = in_array($this->username, Yii::$app->get('user')->superAdmins);
+        } catch (InvalidConfigException $e) {
+            return false;
+        }
+
+        return $this->_isSuperAdmin;
+    }
+
+    /**
+     * Get id of this identity which is equal to primary key of the table
+     */
+    public function getId()
+    {
+        return $this->getPrimaryKey();
+    }
+
+    /**
+     * Find identity model
+     *
+     * @param integer $id user id
+     *
+     * @return KHanIdentity|null
+     */
+    public static function findIdentity($id)
+    {
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+    }
+
+    /**
+     * Finds an identity by the given token.
+     *
+     * @param mixed $token the token to be looked for
+     * @param mixed $type the type of the token.
+     *
+     * @return KHanIdentity
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::findOne(['access_token' => $token, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -134,8 +193,17 @@ class KHanUserIdentity extends KHanModel implements IdentityInterface
      */
     public function getFullName()
     {
-        return ArrayHelper::getValue($this, 'name', 'نامشخص') . ' ' .
-            ArrayHelper::getValue($this, 'family', 'نامشخص');
+        return $this->name . ' ' . $this->family;
+    }
+
+    /**
+     * Get full name of persons from model data along with id number in table
+     *
+     * @return string
+     */
+    public function getFullId()
+    {
+        return $this->fullName . ' (' . $this->id . ')';
     }
 
     /**
@@ -183,6 +251,16 @@ class KHanUserIdentity extends KHanModel implements IdentityInterface
     }
 
     /**
+     * Generates new access token
+     *
+     * @throws \yii\base\Exception
+     */
+    public function generateAccessToken()
+    {
+        $this->access_token = Yii::$app->security->generateRandomString(128);
+    }
+
+    /**
      * Removes password reset token
      */
     public function removePasswordResetToken()
@@ -191,13 +269,29 @@ class KHanUserIdentity extends KHanModel implements IdentityInterface
     }
 
     /**
-     *
+     * Get list of recorded login tryings for the given user
      */
     public function getLoginHistory()
     {
-        return $this->hasMany(UsersLogins::className(), ['id' => 'user_id', 'user_table' => self::tableName()]);
-    }    /**
-     * {@inheritdoc}
+        return $this->hasMany(KHanLoginHistory::className(), ['id' => 'user_id', 'user_table' => self::tableName()]);
+    }
+
+    /**
+     * Get name of table containing list of users for this application.
+     * @return string
+     */
+    public static function tableName()
+    {
+        return static::$_tableName;
+    }
+
+
+    /**
+     * Returns a key that can be used to check the validity of a given identity ID.
+     *
+     * @return string a key that is used to check the validity of a given identity ID.
+     *
+     * @see validateAuthKey()
      */
     public function getAuthKey()
     {
@@ -205,18 +299,14 @@ class KHanUserIdentity extends KHanModel implements IdentityInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        $module = Yii::$app->getModule('khan');
-        if (empty($module)) {
-            return '{{%user}}';
-        }
-
-        return $module->tableMap['User'];
-    }    /**
-     * {@inheritdoc}
+     * Validates the given auth key.
+     *
+     * This is required if [[KHanUser::enableAutoLogin]] is enabled.
+     *
+     * @param string $authKey the given auth key
+     *
+     * @return bool whether the given auth key is valid.
+     * @see getAuthKey()
      */
     public function validateAuthKey($authKey)
     {
@@ -224,7 +314,8 @@ class KHanUserIdentity extends KHanModel implements IdentityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Returns a list of behaviors that this component should behave as.
+     * Add timestamp, blameable and record-login behavior to inhabitant
      */
     public function behaviors()
     {
@@ -232,8 +323,9 @@ class KHanUserIdentity extends KHanModel implements IdentityInterface
             'timestamp'    => [
                 'class'      => 'yii\behaviors\TimestampBehavior',
                 'attributes' => [
-                    KHanUser::EVENT_BEFORE_INSERT => ['create_time', 'update_time'],
-                    KHanUser::EVENT_BEFORE_DELETE => 'delete_time',
+                    KHanIdentity::EVENT_BEFORE_INSERT => ['create_time', 'update_time'],
+                    KHanIdentity::EVENT_BEFORE_UPDATE => 'update_time',
+                    KHanIdentity::EVENT_BEFORE_DELETE => 'delete_time',
                 ],
                 'value'      => function() {
                     return new Expression('CURRENT_TIMESTAMP');
@@ -252,7 +344,9 @@ class KHanUserIdentity extends KHanModel implements IdentityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Return validation rules
+     *
+     * @return array
      */
     public function rules()
     {
@@ -260,8 +354,8 @@ class KHanUserIdentity extends KHanModel implements IdentityInterface
             [['username', 'name', 'family', 'email', 'auth_key', 'password_hash'], 'required'],
             [['username', 'id', 'password_reset_token'], 'unique'],
             ['username', 'string', 'min' => 6, 'max' => 63],
-            ['status', 'default', 'value' => KHanUser::STATUS_ACTIVE],
-            ['status', 'in', 'range' => array_keys(KHanUser::getStatuses())],
+            ['status', 'default', 'value' => KHanIdentity::STATUS_ACTIVE],
+            ['status', 'in', 'range' => array_keys(KHanIdentity::getStatuses())],
 
             [['email', 'name', 'family'], 'required'],
             [['username', 'email', 'family', 'name'], 'filter', 'filter' => 'trim'],
@@ -290,6 +384,10 @@ class KHanUserIdentity extends KHanModel implements IdentityInterface
         ];
     }
 
+    /**
+     * @return array list of KHanIdentity scenarios
+     * @return array
+     */
     public function scenarios()
     {
         return [
@@ -301,7 +399,9 @@ class KHanUserIdentity extends KHanModel implements IdentityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Return labels for the model
+     *
+     * @return array
      */
     public function attributeLabels()
     {
@@ -314,8 +414,6 @@ class KHanUserIdentity extends KHanModel implements IdentityInterface
             'status'   => 'وضعیت کاربر',
         ];
     }
-
-
 
 
 }

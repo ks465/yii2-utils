@@ -7,8 +7,11 @@ Documentation Edition: 1.0-970803
 Guides, notes, and anything regarding good style programming and documenting:
 
  1. [Document Tips and Tricks](documents.md)
+ 2. [Setup for Persian](persian.md)
  
- 
+#Actions
+1. [CSV Grid View](actions-csv-grid-view.md) shows data saved in a CSV file as a [[\KHanS\Utils\widgets\GridView]]. 
+
 #Components
 All the classes in the component directory of the package:
 
@@ -20,16 +23,23 @@ All the classes in the component directory of the package:
 1. [String Helper](components-string-helper.md) contains all the utilities for formatting, correcting and shaping strings for saving or showing.
 1. [View Helper](components-view-helper.md) contains all the utilities required for simpler and better view of objects in output. 
 
+
 #Columns
 Columns are classes extending \kartik\grid\ActionColumn instead of \yii\grid\ActionColumn.
 They are specialized versions for Kartik Gridview.
 
 1. [Action Column](columns-action-column.md) contains ActionColumn for GridViews.
+1. [Boolean Column](columns-boolean-column.md) contains BooleanColumn for GridViews.
 1. [Data Column](columns-data-column.md) contains DataColumn for GridViews.
+1. [Enum Column](columns-enum-column.md) contains EnumColumn for GridViews.
+1. [Radio Column](columns-radio-column.md) contains RadioColumn for GridViews to select row and work with bulk action.
+
 
 #Models
 1. [Base Model](models-khan-model.md) contains basic skeleton for all models.
 1. [Base user](models-khan-user.md) contains basic skeleton for all user models.
+1. [CSV DataProvider](models-csv-data-provider.md)
+
 
 #RBAC
 1. Helpers:
@@ -37,6 +47,14 @@ They are specialized versions for Kartik Gridview.
    1. view by user
 1. Rules predefined rules:
    1. [Owner Rule](rbac-rule-owner.md)
+
+
+#Widgets
+1. [Date Picker](widgets-date-picker.md)
+1. [Date Range Picker](widgets-date-range-picker.md)
+1. [Grid View](widgets-grid-view.md)
+1. [Export Menu](widgets-export-menu.md)
+
    
 #Others
 These are miscellaneous classes for configuring the package or installation.
@@ -84,6 +102,18 @@ General requirements in application options:
                 'httpOnly' => true,
             ],
         ],
+        'i18n' => [
+            'translations' => [
+                'app' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                ],
+                'kvgrid' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                ],
+            ],
+        ],
         ...
      ],
 ```
@@ -109,11 +139,14 @@ Add following code to application options in order to filter or otherwise saniti
 ```
 ###RBAC Setup
 Add following code to `component` section of application options in order to setup AuthManager tables:
+   + Setting `identityClass` is not necessary, `KHanUser` has set this value to `\KHanS\Utils\models\KHanIdentity`
+   + `class` should be set to one of the child classes of `\KHanS\Utils\models\KHanUser` and **NOT** itself.
+   This class should implement `public static function tableName()`
  
 ```php
 'user' => [
-    'class' => '\KHanS\Utils\models\KHanUser',
-    'identityClass'   => '\KHanS\Utils\models\KHanIdentity',
+    'class' => '\app\models\UserTable',
+    //'identityClass'   => '\KHanS\Utils\models\KHanIdentity',
     'enableAutoLogin' => true,
     'identityCookie' => [
         'name' => '_identity_name_',

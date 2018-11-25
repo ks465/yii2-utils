@@ -10,11 +10,12 @@
 namespace KHanS\Utils\models;
 
 
+use app\models\UserFaculty;
+use app\models\UserStaff;
+use app\models\UserStudent;
 use KHanS\Utils\components\Jalali;
 use KHanS\Utils\components\ViewHelper;
-use KHanS\Utils\Settings;
 use Yii;
-use yii\base\Model;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -25,7 +26,7 @@ use yii\helpers\ArrayHelper;
  * Thus it is marked as `abstract` to avoid instantiating a model without table.
  *
  * @package KHanS\Utils
- * @version 0.4-970803
+ * @version 0.4.2-970803
  * @since   1.0
  *
  * @property integer $status     وضعیت فعال بودن رکورد
@@ -53,7 +54,7 @@ abstract class KHanModel extends ActiveRecord
      * @var array $_statuses list of available statuses for users
      */
     private static $_statuses = [
-        KHanModel::STATUS_DELETED => 'غیرفعال',
+        KHanModel::STATUS_DELETED => 'پاک شده',
         KHanModel::STATUS_PENDING => 'معلق',
         KHanModel::STATUS_ACTIVE  => 'فعال',
     ];
@@ -73,85 +74,6 @@ abstract class KHanModel extends ActiveRecord
         }
 
         return implode('<br />', $errors);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'status'     => 'وضعیت',
-            'created_by' => 'سازنده',
-            'created_at' => 'زمان ساخت',
-            'updated_by' => 'آخرین ویراینده',
-            'updated_at' => 'زمان آخرین ویرایش',
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     * Add timestamp and blameable behavior to inhabitant
-     */
-    public function behaviors()
-    {
-        return [
-            'timestamp' => [
-                'class'      => TimestampBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-                ],
-            ],
-            'blameable' => [
-                'class'              => BlameableBehavior::className(),
-                'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'updated_by',
-            ],
-//            'history'   => [
-//                'class'        => \nhkey\arh\ActiveRecordHistoryBehavior::className(),
-//                'ignoreFields' => ['created_at', 'created_by', 'updated_at', 'updated_by'],
-//            ],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function delete()
-    {
-        $this->setAttribute('status', self::STATUS_DELETED);
-        $this->save();
-    }
-
-    /**
-     * Check the record is marked as [[KHanModel::STATUS_ACTIVE]].
-     * All records are always active for `Super Admin`
-     *
-     * @return bool true if record is marked as active or the current user is `Super Admin`
-     */
-    public function isActive()
-    {
-        if (Yii::$app->user->isSuperAdmin) {
-            return true;
-        }
-
-        return $this->status === KHanModel::STATUS_ACTIVE;
-    }
-
-    /**
-     * Check the record is marked as anything other than [[KHanModel::STATUS_DELETED]].
-     * All records are always visible to `Super Admin`
-     *
-     * @return bool true if record is not marked as deleted or the current user is `Super Admin`
-     */
-    public function isVisible()
-    {
-        if (Yii::$app->user->isSuperAdmin) {
-            return true;
-        }
-
-        return $this->status !== KHanModel::STATUS_DELETED;
     }
 
     /**
@@ -181,27 +103,151 @@ abstract class KHanModel extends ActiveRecord
     }
 
     /**
+     * Return labels for the model
+     *
+     * @return array
+     */
+    public function attributeLabels()
+    {
+        return [
+            'status'     => 'وضعیت',
+            'created_by' => 'سازنده',
+            'created_at' => 'زمان ساخت',
+            'updated_by' => 'آخرین ویرایشگر',
+            'updated_at' => 'زمان آخرین ویرایش',
+        ];
+    }
+
+    /**
+     * Returns a list of behaviors that this component should behave as.
+     * Add timestamp and blameable behavior to inhabitant
+     */
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class'      => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+            ],
+            'blameable' => [
+                'class'              => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+//            'history'   => [
+//                'class'        => \nhkey\arh\ActiveRecordHistoryBehavior::className(),
+//                'ignoreFields' => ['created_at', 'created_by', 'updated_at', 'updated_by'],
+//            ],
+        ];
+    }
+
+    /**
+     *Creates an [[queries\KHanQuery]] instance for query purpose.
+     *
+     * @return queries\KHanQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new queries\KHanQuery(get_called_class());
+    }
+
+    /**
+     * Mark the record as deleted
+     */
+    public function delete()
+    {
+        $this->setAttribute('status', self::STATUS_DELETED);
+        $this->save();
+    }
+
+    /**
+     * Check the record is marked as [[KHanModel::STATUS_ACTIVE]].
+     * All records are always active for `Super Admin`
+     *
+     * @return bool true if record is marked as active or the current user is `Super Admin`
+     */
+    public function isActive()
+    {
+        if (property_exists(Yii::$app, 'user') && Yii::$app->user->isSuperAdmin) {
+            return true;
+        }
+
+        return $this->status === KHanModel::STATUS_ACTIVE;
+    }
+
+    /**
+     * Check the record is marked as anything other than [[KHanModel::STATUS_DELETED]].
+     * All records are always visible to `Super Admin`
+     *
+     * @return bool true if record is not marked as deleted or the current user is `Super Admin`
+     */
+    public function isVisible()
+    {
+        if (property_exists(Yii::$app, 'user') && Yii::$app->user->isSuperAdmin) {
+            return true;
+        }
+
+        return $this->status !== KHanModel::STATUS_DELETED;
+    }
+
+    /**
      * Get active record for the creator of the record from the given user table
      *
-     * @param Model|ActiveRecord $ownerModel the class responsible for holding data of the log-ins to the applications.
-     *
-     * @return \yii\db\ActiveQuery
+     * @return KHanIdentity
      */
-    public function getCreator($ownerModel)
+    public function getCreator()
     {
-        return $this->hasOne($ownerModel::className(), ['id' => 'created_by']);
+        return $this->getResponsibleUser($this->created_by);
+    }
+
+    /**
+     * Get active record for the given user id in all of the instances of KHanUser.
+     * If the given id can not be found, an empty model will be returned.
+     *
+     * @param integer $ownerID requested Id
+     *
+     * @return KHanIdentity
+     */
+    private function getResponsibleUser($ownerID)
+    {
+        $userModel = KHanIdentity::findOne($ownerID);
+        if (!empty($userModel)) {
+//            return $this->hasOne(UserStaff::className(), ['id' => 'created_by']);
+            return $userModel;
+        }
+//        $userModel = UserStaff::findOne($ownerID);
+//        if (!empty($userModel)) {
+////            return $this->hasOne(UserStaff::className(), ['id' => 'created_by']);
+//            return $userModel;
+//        }
+//        $userModel = UserFaculty::findOne($ownerID);
+//        if (!empty($userModel)) {
+////            return $this->hasOne(UserFaculty::className(), ['id' => 'created_by']);
+//            return $userModel;
+//        }
+//        $userModel = UserStudent::findOne($ownerID);
+//        if (!empty($userModel)) {
+////            return $this->hasOne(UserStudent::className(), ['id' => 'created_by']);
+//            return $userModel;
+//        }
+//
+////            return $this->hasOne(UserStaff::className(), ['id' => 'created_by']);
+//        return new UserStaff();
+
+        return null;
     }
 
     /**
      * Get active record for the updater of the record from the given user table
      *
-     * @param Model|ActiveRecord $ownerModel the class responsible for holding data of the log-ins to the applications.
-     *
-     * @return \yii\db\ActiveQuery
+     * @return KHanIdentity
      */
-    public function getUpdater($ownerModel)
+    public function getUpdater()
     {
-        return $this->hasOne($ownerModel::className(), ['id' => 'updated_by']);
+        return $this->getResponsibleUser($this->updated_by);
     }
 
     /**
@@ -211,7 +257,7 @@ abstract class KHanModel extends ActiveRecord
      */
     public function getCreatedTime()
     {
-        return Jalali::date(Settings::DATE_LONG_DATE_TIME, $this->created_at);
+        return Jalali::date(Jalali::KHAN_LONG, $this->created_at);
     }
 
     /**
@@ -221,59 +267,6 @@ abstract class KHanModel extends ActiveRecord
      */
     public function getUpdatedTime()
     {
-        return Jalali::date(Settings::DATE_LONG_DATE_TIME, $this->updated_at);
-    }
-
-    function upsert($rows)
-    {
-//echo '<pre dir="ltr">';var_dump($rows);echo '</pre>';
-        foreach ($rows as $row) {
-            /* @var UpsertData $row */
-            $aggrQuery = UpsertAggr::find()
-                ->andWhere(['grade' => $row['grade']])
-                ->andWhere(['year' => $row['year']])
-                ->andWhere(['field' => $row['field']])
-                ->andWhere(['status' => $row['status']]);
-
-            if ($aggrQuery->exists()) {
-                $upsert = $aggrQuery->one();
-//var_dump('Updating');
-            } else {
-                $upsert = new UpsertAggr();
-//var_dump('Inserting');
-            }
-
-            $upsert->load($row, '');
-//$upsert->validate();
-//var_dump($upsert->errors);
-            $upsert->save();
-        }
-    }
-
-    function upsert($rows)
-    {
-//echo '<pre dir="ltr">';var_dump($rows);echo '</pre>';
-        foreach ($rows as $row){
-            /* @var UpsertData $row */
-            $aggrQuery = UpsertAggr::find()
-                ->andWhere(['grade'=> $row['grade']])
-                ->andWhere(['year'=> $row['year']])
-                ->andWhere(['field'=> $row['field']])
-                ->andWhere(['status'=> $row['status']])
-            ;
-
-            if($aggrQuery->exists()){
-                $upsert = $aggrQuery->one();
-//var_dump('Updating');
-            }else{
-                $upsert = new UpsertAggr();
-//var_dump('Inserting');
-            }
-
-            $upsert->load($row, '');
-//$upsert->validate();
-//var_dump($upsert->errors);
-            $upsert->save();
-        }
+        return Jalali::date(Jalali::KHAN_LONG, $this->updated_at);
     }
 }

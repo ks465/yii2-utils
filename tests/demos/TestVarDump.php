@@ -9,6 +9,15 @@
 
 namespace KHanS\Utils\tests\demos;
 
+use KHanS\Utils\components\BlackHtmlVarDumpTheme;
+use KHanS\Utils\components\CliVarDumpTheme;
+use KHanS\Utils\components\FileVarDumpTheme;
+use KHanS\Utils\components\GreenHtmlVarDumpTheme;
+use KHanS\Utils\components\RedHtmlVarDumpTheme;
+use KHanS\Utils\components\BlueHtmlVarDumpTheme;
+use KHanS\Utils\components\VarDump;
+
+require_once \Yii::getAlias('@khan/src/components/VarDump.php');
 
 /**
  * Class TestDebug shows and tests the KHanS\Utils\Debug methods
@@ -26,6 +35,13 @@ class TestVarDump extends BaseTester
         'subArray' => [
         ],
     ];
+
+    public function zero()
+    {
+        echo '<p class="alert alert-danger ltr">' .
+            'Remember: You need to add <code>require_once \Yii::getAlias(\'@khan/src/components/VarDump.php\');</code> somewhere in your scripts.' .
+            '</p>';
+    }
 
     public function testWho()
     {
@@ -68,5 +84,38 @@ class TestVarDump extends BaseTester
 
         $this->writeHeader('xd(new (\yii\db\Query())->from([\'test\'])->where([1=>2])->groupBy([\'id\', \'time\'])); to stop script afterward');
 //        xd($sql);
+    }
+    public function testThemes(){
+        $outputFile = \yii\helpers\Url::to('@app/runtime/vd-output.log');
+
+        $this->writeHeader('$varDump = new VarDump(null, null, null, new CliVarDumpTheme());');
+        $varDump = new VarDump(null, null, null, new CliVarDumpTheme());
+        echo '<pre class="ltr">';
+        $varDump->dump($this->testSample);
+        echo '</pre>';
+
+        $this->writeHeader('$varDump = new VarDump(null, null, null, new FileVarDumpTheme(\yii\helpers\Url::to(\'@app/runtime/vd-output.log\')));');
+        $varDump = new VarDump(null, null, null, new FileVarDumpTheme($outputFile));
+        $varDump->dump($this->testSample);
+        $this->writeHeader('Content of the log file:');
+        echo '<pre class="ltr">';
+        $this->writeHeader(file_get_contents($outputFile));
+        echo '</pre>';
+
+        $this->writeHeader('$varDump = new VarDump(null, null, null, new GreenHtmlVarDumpTheme());');
+        $varDump = new VarDump(null, null, null, new GreenHtmlVarDumpTheme());
+        $varDump->dump($this->testSample);
+
+        $this->writeHeader('$varDump = new VarDump(null, null, null, new BlackHtmlVarDumpTheme());');
+        $varDump = new VarDump(null, null, null, new BlackHtmlVarDumpTheme());
+        $varDump->dump($this->testSample);
+
+        $this->writeHeader('$varDump = new VarDump(null, null, null, new RedHtmlVarDumpTheme());');
+        $varDump = new VarDump(null, null, null, new RedHtmlVarDumpTheme());
+        $varDump->dump($this->testSample);
+
+        $this->writeHeader('$varDump = new VarDump(null, null, null, new BlueHtmlVarDumpTheme());');
+        $varDump = new VarDump(null, null, null, new BlueHtmlVarDumpTheme());
+        $varDump->dump($this->testSample);
     }
 }

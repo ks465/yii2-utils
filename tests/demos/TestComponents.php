@@ -393,11 +393,11 @@ class TestComponents extends BaseTester
         $inputFile = \yii\helpers\Url::to('@khan/tests/demos/input.csv');
         $outputFile = \yii\helpers\Url::to('@app/runtime/output.csv');
         $content = FileHelper::loadCSV($inputFile, true);
-        Admin::vd('Reading ' . $inputFile, $content);
+        vd('Reading ' . $inputFile, $content);
 
         $result = FileHelper::saveCSV($outputFile, $content);
 
-        Admin::vd('Reading ' . $result . ' rows Written to ' . $outputFile, FileHelper::loadCSV($outputFile, false));
+        vd('Reading ' . $result . ' rows Written to ' . $outputFile, FileHelper::loadCSV($outputFile, false));
     }
 
     public function testLoadIni()
@@ -405,11 +405,11 @@ class TestComponents extends BaseTester
         $inputFile = \yii\helpers\Url::to('@khan/tests/demos/input.ini');
         $outputFile = \yii\helpers\Url::to('@app/runtime/output.ini');
         $content = FileHelper::loadIni($inputFile);
-        Admin::vd('Reading ' . $inputFile, $content);
+        vd('Reading ' . $inputFile, $content);
 
         $result = FileHelper::saveIni($outputFile, $content);
 
-        Admin::vd('Reading ' . $result . ' rows Written to ' . $outputFile, FileHelper::loadIni($outputFile));
+        vd('Reading ' . $result . ' rows Written to ' . $outputFile, FileHelper::loadIni($outputFile));
     }
 
     public function testLoadCsvSaveIni()
@@ -417,10 +417,10 @@ class TestComponents extends BaseTester
         $inputFile = \yii\helpers\Url::to('@khan/tests/demos/input.csv');
         $outputFile = \yii\helpers\Url::to('@app/runtime/output.ini');
         $content = FileHelper::loadCSV($inputFile, true);
-        Admin::vd('Reading ' . $inputFile, $content);
+        vd('Reading ' . $inputFile, $content);
 
         $result = FileHelper::saveIni($outputFile, $content);
 
-        Admin::vd('Reading ' . $result . ' rows Written to ' . $outputFile, FileHelper::loadIni($outputFile));
+        vd('Reading ' . $result . ' rows Written to ' . $outputFile, FileHelper::loadIni($outputFile));
     }
 }

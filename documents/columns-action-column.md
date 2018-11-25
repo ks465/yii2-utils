@@ -27,14 +27,17 @@ echo KHanS\Utils\widgets\GridView::widget([
         [
             'class'          => 'KHanS\Utils\columns\ActionColumn',
             'audit'          => false,
+            'runAsAjax'      => true,
             'dropdown'       => true,
             'dropdownButton' => ['class' => 'btn btn-danger'],
         ],
         [
             'class'          => 'KHanS\Utils\columns\ActionColumn',
+            'runAsAjax'      => false,
             'audit'          => true,
             'dropdown'       => false,
             'download'       => Url::to(['/some-action', 'id' => 124]),
+            'deleteAlert'=>'رکورد انتخاب شده از فهرست داده‌ها پاک خواهد شد.',
             'dropdownButton' => ['class' => 'btn btn-danger'],
         ],
     ],
@@ -46,6 +49,10 @@ echo KHanS\Utils\widgets\GridView::widget([
 + _audit_ Adds an icon to each row that shows _created_by_, _created_at_, _created_by_, and _updated_by_ of each reord.
 + _download_ is the URL to the download action. This is usually built using `yii\helpers\Url::to()` or similar.
 It will directly fed into the `Html::a()`.
++ _runAsAjax_ In the new version of [[\KHanS\Utils\widgets\GridView]] this is th key to run the grid view as AJAX.
+The old `AjaxGridView` is dropped.
+This value is available for the column and the unique actions (see below).
++ _deleteAlert_ text used in the alert popup. defaults to `از پاک نمودن این {item} اطمینان دارید؟` 
 
 ###Extra Columns
 This config adds one or more options to the `ActionColumn`.
@@ -64,7 +71,9 @@ $extraColumns = [
         'icon'   => 'pencil',
         'config' => ['class' => 'text-success'], // Use text-* class with dropDown => false
     ],
-    'reset'  => [],
+    'reset'  => [
+        'runAsAjax'=>false,
+    ],
 ];
 ```
 
@@ -77,3 +86,4 @@ _Array Values_
    It is optional and default is _link_.
    + **action** Name of action in the receiving controller. It is optional and default is array key of the item.
    + **config** Configuration array which will directly fed into the `Html::a()` config part.
+   + **runAsAjax** Whether the related action shoud run as AJAX request or full page reload. 

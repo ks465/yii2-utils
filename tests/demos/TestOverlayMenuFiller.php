@@ -24,7 +24,7 @@ class TestOverlayMenuFiller extends BaseTester
             'csvFileUrl' => '@khan/tests/demos/sample-menu.csv',
         ]);
 
-        Admin::vd($menu);
+        vd($menu);
     }
 
     public function testOverlayMenu()

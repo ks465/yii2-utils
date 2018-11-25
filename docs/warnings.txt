@@ -2,373 +2,58 @@ Array
 (
     [0] => Array
         (
-            [line] => 227
-            [file] => yii2-utils/src/models/KHanModel.php
-            [message] => No docblock for element 'upsert'
+            [line] => 14
+            [file] => yii2-utils/src/controllers/ConsoleController.php
+            [message] => No docblock for element 'KHanS\Utils\controllers\ConsoleController'
         )
 
     [1] => Array
         (
-            [line] => 292
-            [file] => yii2-utils/src/models/KHanUser.php
-            [message] => No docblock for element 'scenarios'
+            [line] => 14
+            [file] => yii2-utils/src/controllers/RestController.php
+            [message] => No docblock for element 'KHanS\Utils\controllers\RestController'
         )
 
     [2] => Array
         (
-            [line] => 293
-            [file] => yii2-utils/src/models/KHanUserIdentity.php
-            [message] => No docblock for element 'scenarios'
+            [line] => 14
+            [file] => yii2-utils/src/controllers/WebController.php
+            [message] => No docblock for element 'KHanS\Utils\controllers\WebController'
         )
 
     [3] => Array
+        (
+            [line] => 68
+            [file] => yii2-utils/src/helpers/AppBuilder.php
+            [message] => No docblock for element 'actionGenerateController'
+        )
+
+    [4] => Array
+        (
+            [line] => 37
+            [file] => yii2-utils/src/models/CsvDataProvider.php
+            [message] => No short description for element '$fileObject'
+        )
+
+    [5] => Array
         (
             [line] => 26
             [file] => yii2-utils/src/rbac/OwnerRule.php
             [message] => No docblock for element '$name'
         )
 
-    [4] => Array
+    [6] => Array
         (
             [line] => 26
             [file] => yii2-utils/src/rbac/OwnerRule.php
             [message] => No short description for element '$name'
         )
 
-    [5] => Array
-        (
-            [line] => 27
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$title'
-        )
-
-    [6] => Array
-        (
-            [line] => 33
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$footer'
-        )
-
     [7] => Array
         (
-            [line] => 39
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$id'
-        )
-
-    [8] => Array
-        (
-            [line] => 45
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$striped'
-        )
-
-    [9] => Array
-        (
-            [line] => 45
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$striped'
-        )
-
-    [10] => Array
-        (
-            [line] => 46
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$condensed'
-        )
-
-    [11] => Array
-        (
-            [line] => 46
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$condensed'
-        )
-
-    [12] => Array
-        (
-            [line] => 47
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$responsive'
-        )
-
-    [13] => Array
-        (
-            [line] => 47
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$responsive'
-        )
-
-    [14] => Array
-        (
-            [line] => 48
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$export'
-        )
-
-    [15] => Array
-        (
-            [line] => 48
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$export'
-        )
-
-    [16] => Array
-        (
-            [line] => 49
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$toggleData'
-        )
-
-    [17] => Array
-        (
-            [line] => 49
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$toggleData'
-        )
-
-    [18] => Array
-        (
-            [line] => 50
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$resizableColumn'
-        )
-
-    [19] => Array
-        (
-            [line] => 50
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$resizableColumn'
-        )
-
-    [20] => Array
-        (
-            [line] => 51
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$before'
-        )
-
-    [21] => Array
-        (
-            [line] => 51
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$before'
-        )
-
-    [22] => Array
-        (
-            [line] => 52
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$formatter'
-        )
-
-    [23] => Array
-        (
-            [line] => 52
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$formatter'
-        )
-
-    [24] => Array
-        (
-            [line] => 53
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$showPageSummary'
-        )
-
-    [25] => Array
-        (
-            [line] => 53
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$showPageSummary'
-        )
-
-    [26] => Array
-        (
-            [line] => 54
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$showCreate'
-        )
-
-    [27] => Array
-        (
-            [line] => 54
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$showCreate'
-        )
-
-    [28] => Array
-        (
-            [line] => 56
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$beforeHeader'
-        )
-
-    [29] => Array
-        (
-            [line] => 56
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$beforeHeader'
-        )
-
-    [30] => Array
-        (
-            [line] => 58
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$dataProvider'
-        )
-
-    [31] => Array
-        (
-            [line] => 58
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$dataProvider'
-        )
-
-    [32] => Array
-        (
-            [line] => 59
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$filterModel'
-        )
-
-    [33] => Array
-        (
-            [line] => 59
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$filterModel'
-        )
-
-    [34] => Array
-        (
-            [line] => 60
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$columns'
-        )
-
-    [35] => Array
-        (
-            [line] => 60
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$columns'
-        )
-
-    [36] => Array
-        (
-            [line] => 61
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$rowOptions'
-        )
-
-    [37] => Array
-        (
-            [line] => 61
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$rowOptions'
-        )
-
-    [38] => Array
-        (
-            [line] => 67
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$createAction'
-        )
-
-    [39] => Array
-        (
-            [line] => 67
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$createAction'
-        )
-
-    [40] => Array
-        (
-            [line] => 68
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$floatHeader'
-        )
-
-    [41] => Array
-        (
-            [line] => 68
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$floatHeader'
-        )
-
-    [42] => Array
-        (
-            [line] => 69
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$createLabel'
-        )
-
-    [43] => Array
-        (
-            [line] => 69
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$createLabel'
-        )
-
-    [44] => Array
-        (
-            [line] => 82
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$createContent'
-        )
-
-    [45] => Array
-        (
-            [line] => 82
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$createContent'
-        )
-
-    [46] => Array
-        (
-            [line] => 83
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$content'
-        )
-
-    [47] => Array
-        (
-            [line] => 83
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$content'
-        )
-
-    [48] => Array
-        (
-            [line] => 234
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$refreshOptions'
-        )
-
-    [49] => Array
-        (
-            [line] => 234
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$refreshOptions'
-        )
-
-    [50] => Array
-        (
-            [line] => 235
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element '$pjax'
-        )
-
-    [51] => Array
-        (
-            [line] => 235
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No short description for element '$pjax'
-        )
-
-    [52] => Array
-        (
-            [line] => 237
-            [file] => yii2-utils/src/widgets/GridView.php
-            [message] => No docblock for element 'init'
+            [line] => 13
+            [file] => yii2-utils/src/widgets/ExportMenu.php
+            [message] => No docblock for element 'KHanS\Utils\widgets\ExportMenu'
         )
 
 )

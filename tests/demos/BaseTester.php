@@ -15,6 +15,10 @@ use yii\helpers\FileHelper;
 class BaseTester
 {
     /**
+     * @var array List of tests in each Test* class to skip for debuging purposes.
+     */
+    protected $skipTests = [];
+    /**
      * A helper static method to run all of tests in all of files.
      */
     public static function runAllTests()
@@ -22,7 +26,12 @@ class BaseTester
         foreach (BaseTester::getAllTests() as $testClass => $allTest) {
             /* @var $tester BaseTester */
             $testClass = __NAMESPACE__ . '\\' . $testClass;
-            $tester = new $testClass();
+
+            iF(class_exists($testClass)) {
+                $tester = new $testClass();
+            } else {
+                echo $testClass . ' does not exist.';
+            }
 
             $tester->runTests();
         }
@@ -54,6 +63,9 @@ class BaseTester
 
         foreach ($methods as $method) {
             if (in_array($method, ['runAllTests', 'runTests', 'getAllTests', 'writeHeader'])) {
+                continue;
+            }
+            if (in_array($method, $this->skipTests)) {
                 continue;
             }
             call_user_func([$this, $method]);

@@ -10,28 +10,69 @@
 namespace KHanS\Utils\tests\demos;
 
 
+use app\models\UpsertAggr;
+use app\models\UpsertAggrSearch;
+use kartik\export\ExportMenu;
+use kartik\form\ActiveForm;
 use KHanS\Utils\components\Jalali;
-use KHanS\Utils\widgets\AjaxGridView;
 use KHanS\Utils\widgets\DatePicker;
+use KHanS\Utils\widgets\DateRangePicker;
 use KHanS\Utils\widgets\GridView;
+use Yii;
 use yii\base\DynamicModel;
 use yii\data\ArrayDataProvider;
+use yii\helpers\Html;
 use yii\helpers\Url;
+
+require_once Yii::getAlias('@vendor/fzaninotto/faker/src/autoload.php');
 
 class TestWidgets extends BaseTester
 {
+//    protected $skipTests = [
+//        'testDatePicker1', 'testDatePicker1_1', 'testDatePicker2', 'testDatePicker3', 'testDatePicker4',
+//        'testDatePicker5', 'testDatePicker6', 'testDatePicker7', 'testDatePicker8', 'testDatePicker9',
+//        'testDatePicker10', 'testDatePicker11', 'testDatePicker12', 'testDateRangePicker1',
+//        'testDateRangePicker2', 'testGridView', 'testAjaxGridView',
+//    ];
+
     //<editor-fold Desc="DatePicker">
     public function testDatePicker1()
     {
-        $this->writeHeader('1. Only attribute and model are set.');
+        $this->writeHeader('1. Only attribute and model are set. Without a form');
 
         echo DatePicker::widget([
+            'id'        => 'test-picker-id',
             'attribute' => 'from_date',
             'model'     => new DynamicModel(['from_date' => Jalali::date('Y/m/d', time())]),
             'options'   => [
                 'todayBtn' => false,
             ],
         ]);
+    }
+
+    public function testDatePicker1_1()
+    {
+        $this->writeHeader('1. Only attribute and model are set. With a form');
+
+        $form = ActiveForm::begin();
+        echo $form->field(
+            new DynamicModel(['from_date' => Jalali::date('Y/m', time())]),
+            'from_date'
+        )
+            ->widget(
+                DatePicker::className(), [
+                'options'     => [
+                    'format'     => 'yyyy/mm/dd',
+                    'viewformat' => 'yyyy/mm/dd',
+                    'placement'  => 'left',
+                    'todayBtn'   => 'linked',
+                ],
+                'htmlOptions' => [
+                    'id'    => 'date',
+                    'class' => 'form-control',
+                ],
+            ]);
+        $form->end();
     }
 
     public function testDatePicker2()
@@ -183,16 +224,210 @@ class TestWidgets extends BaseTester
     }
     //</editor-fold>
 
-    //<editor-fold Desc="Columns">
-    public function testColumns()
+    //<editor-fold Desc="DateRangePicker">
+    public function testDateRangePicker1()
     {
-        $this->writeHeader('Testing Columns');
-        $dataProvider = new ArrayDataProvider(['allModels' => $this->buildGridData()]);
-        echo GridView::widget([
-            'id'             => 'normal-test',
-            'refreshOptions' => false,
-            'dataProvider'   => $dataProvider,
-            'columns'        => [
+        $this->writeHeader('1. DateRangePicker without a form');
+
+        echo DateRangePicker::widget([
+            'id'        => 'attribute-one',
+            'attribute' => 'from_date',
+            'model'     => new DynamicModel(['from_date' => Jalali::date('Y/m/d', time())]),
+            'options'   => [
+                'minDate' => '1395/01/01',
+                'maxDate' => '1398/12/29',
+            ],
+        ]);
+    }
+
+    public function testDateRangePicker2()
+    {
+        $this->writeHeader('2. DateRangePicker with a form');
+        $form = ActiveForm::begin();
+        $model = new DynamicModel(['date_range']);
+        if (Yii::$app->request->isPost) {
+            $value = Yii::$app->request->post();
+            $model->load($value);
+            $this->writeHeader('[DynamicModel] => [ [date_range] => 1397/08/01 - 1397/09/31]');
+        }
+
+        echo $form->field($model, 'date_range')->widget(DateRangePicker::classname(), [
+            'id'      => 'form-one',
+            'options' => [
+                'minDate' => '1395/01/01',
+                'maxDate' => '1398/12/29',
+            ],
+        ]);
+        echo Html::submitButton('view');
+        $form->end();
+    }
+    //</editor-fold>
+
+    //<editor-fold Desc="GridView">
+    private function buildGridData()
+    {
+        $faker = \Faker\Factory::create();
+        $faker->seed(26465);
+        $output = [];
+        for ($i = 0; $i < 100; $i++) {
+            $output[] = [
+                'a'          => $faker->name,
+                'b'          => $faker->year,
+                'c'          => $faker->text(5),
+                'd'          => $faker->numberBetween(6, 9),
+                'e'          => $faker->boolean(75),
+                'created_by' => $faker->firstName,
+                'created_at' => $faker->unixTime,
+                'updated_by' => $faker->firstName,
+                'updated_at' => $faker->unixTime,
+            ];
+        }
+
+        return $output;
+    }
+
+    private function firstRow()
+    {
+        return [
+            [
+                'content' => 'Group 1',
+                'options' => [
+                    'colspan' => 3,
+                    'class'   => 'text-center skip-export',
+                ],
+            ],
+            [
+                'content' => 'Group 2',
+                'options' => [
+                    'colspan' => 2,
+                    'class'   => 'text-center',
+                ],
+            ],
+            [
+                'content' => 'Group 3',
+                'options' => [
+                    'colspan' => 2,
+                    'class'   => 'text-center',
+                ],
+            ],
+            [
+                'content' => 'Group 4',
+                'options' => [
+                    'colspan' => 2,
+                    'class'   => 'text-center skip-export',
+                ],
+            ],
+        ];
+    }
+
+    private function configWidgetModel($id, $dropdown1, $dropdown2)
+    {
+        $model = new UpsertAggrSearch();
+
+        return [
+            'id'           => $id,
+            'dataProvider' => $model->search(Yii::$app->request->queryParams),
+            'filterModel'  => $model,
+            'columns'      => [
+                [
+                    'class' => 'kartik\grid\CheckboxColumn',
+                ],
+                [
+                    'class' => 'KHanS\Utils\columns\RadioColumn',
+                ],
+                [
+                    'class' => 'kartik\grid\SerialColumn',
+                ],
+                [
+                    'attribute' => 'field',
+                    'class'     => 'KHanS\Utils\columns\DataColumn',
+                ],
+                [
+                    'attribute'  => 'year',
+                    'class'      => 'KHanS\Utils\columns\DataColumn',
+                    'filterType' => 'KHanS\Utils\widgets\DatePicker',
+                ],
+                [
+                    'class'     => 'KHanS\Utils\columns\DataColumn',
+                    'attribute' => 'grade',
+                    ],
+                [
+                    'class'     => 'KHanS\Utils\columns\EnumColumn',
+                    'attribute' => 'status',
+                    'enum'      => UpsertAggr::getStatuses(),
+                ],
+                [
+                    'class'          => 'KHanS\Utils\columns\ActionColumn',
+                    'runAsAjax'      => $dropdown1,
+                    'dropdown'       => $dropdown1,
+                    'dropdownButton' => ['class' => 'btn btn-default alert-success', 'label' => 'GoOn'],
+                    'header'         => 'Extra Actions',
+                    'visibleButtons' => [
+                        'view'     => false,
+                        'update'   => false,
+                        'delete'   => false,
+                        'download' => false,
+                        'audit'    => true,
+                    ],
+                    'extraItems'     => $this->buildExtras(),
+                ],
+                [
+                    'class'          => 'KHanS\Utils\columns\ActionColumn',
+                    'audit'          => true,
+                    'runAsAjax'      => $dropdown2,
+                    'viewOptions'    => [
+                        'runAsAjax' => $dropdown1,
+                    ],
+                    'dropdown'       => $dropdown2,
+                    'download'       => Url::to(['/my-action', 'id' => 124]),
+                    'dropdownButton' => ['class' => 'btn btn-danger'],
+                ],
+            ],
+            'title'        => 'Testing Action Columns -- Model',
+            'footer'       => 'Data is generated using `Fake` extension.',
+            'before'       => 'This is `before` place holder.',
+            'after'        => 'This is `after` place holder.',
+            'rowOptions'   => function($model, $index, $widget, $grid) {
+                if ($model['field'] == 2012) {
+                    return ['class' => 'alert-danger', 'style' => 'background-color: #f2dede;'];
+                }
+
+                return [];
+            },
+            'beforeHeader' => [
+                [
+                    'columns' => $this->firstRow(),
+                ],
+            ],
+            'bulkAction'   => [
+                'action'  => 'some-action',
+                'label'   => 'Do Somthing',
+                'icon'    => 'send',
+                'class'   => '',
+                'message' => '',
+            ],
+        ];
+    }
+
+    private function configWidget($id, $dropdown1, $dropdown2)
+    {
+        $model = new DynamicModel(['a', 'b', 'c', 'd', 'e']);
+        $model->addRule(['a', 'b', 'c', 'd', 'e'], 'safe');
+
+        return [
+            'id'           => $id,
+            'dataProvider' => new ArrayDataProvider(['allModels' => $this->buildGridData()]),
+            'filterModel'  => $model,
+            'columns'      => [
+                [
+                    'class' => 'kartik\grid\CheckboxColumn',
+                ],
+                [
+                    'class' => 'KHanS\Utils\columns\RadioColumn',
+                ],
+                [
+                    'class' => 'kartik\grid\SerialColumn',
+                ],
                 [
                     'attribute' => 'a',
                     'class'     => 'KHanS\Utils\columns\DataColumn',
@@ -202,64 +437,78 @@ class TestWidgets extends BaseTester
                     'class'     => 'KHanS\Utils\columns\DataColumn',
                 ],
                 [
+                    'class'      => 'KHanS\Utils\columns\BooleanColumn',
+                    'attribute'  => 'e',
+                    'trueIcon'  => 'PhD',
+                    'trueLabel'  => 'PhD',
+                    'falseLabel' => 'MSc',
+                ],
+                [
+                    'class'  => 'kartik\grid\FormulaColumn',
+                    'header' => 'Formula Column',
+                    'vAlign' => 'middle',
+                    'hAlign' => 'right',
+                    'width'  => '7%',
+                    'value'  => function($model, $key, $index, $widget) {
+                        $p = compact('model', 'key', 'index');
+
+                        return $widget->col(4, $p) % 100;
+                    },
+                ],
+                [
                     'class'          => 'KHanS\Utils\columns\ActionColumn',
+                    'runAsAjax'      => $dropdown1,
                     'audit'          => true,
-                    'dropdown'       => true,
+                    'dropdown'       => $dropdown1,
                     'dropdownButton' => ['class' => 'btn btn-default alert-success', 'label' => 'GoOn'],
-                    'header'         => 'Extra Action',
+                    'header'         => 'Extra Actions',
                     'visibleButtons' => [
                         'view'     => false,
                         'update'   => false,
                         'delete'   => false,
                         'download' => false,
-                        'audit'    => false,
+                        'audit'    => true,
                     ],
                     'extraItems'     => $this->buildExtras(),
                 ],
                 [
                     'class'          => 'KHanS\Utils\columns\ActionColumn',
-                    'audit'          => false,
-                    'dropdown'       => true,
+                    'runAsAjax'      => $dropdown2,
+                    'audit'          => true,
+                    'viewOptions'    => [
+                        'runAsAjax' => $dropdown1,
+                    ],
+                    'deleteAlert'    => 'رکورد انتخاب شده از فهرست داده‌ها پاک خواهد شد.',
+                    'dropdown'       => $dropdown2,
                     'download'       => Url::to(['/my-action', 'id' => 124]),
                     'dropdownButton' => ['class' => 'btn btn-danger'],
                 ],
             ],
-            'title'          => 'This is a Title',
-            'footer'         => false,
-            'rowOptions'     => function($model, $index, $widget, $grid) {
-                if ($model['a'] == 'Three') {
-                    return ['class' => 'alert-danger', 'style' => 'background-color: #f2dede;'];
+            'title'        => 'Testing Action Columns -- Array',
+            'rowOptions'   => function($model, $index, $widget, $grid) {
+                if ($model['b'] == 1993) {
+                    return ['class' => 'alert-danger text-danger'];
+                }
+                if ($model['b'] > 2000) {
+                    return ['class' => 'alert-success text-success'];
                 }
 
                 return [];
             },
-        ]);
-    }
-
-    private function buildGridData()
-    {
-        return [
-            [
-                'a'          => 'One', 'b' => 1.1, 'c' => 'Eins', 'd' => 101, 'created_by' => 'کاربر یکم',
-                'created_at' => 26465, 'updated_by' => 'کاربر دوم', 'updated_at' => 264650,
+            'beforeHeader' => [
+                [
+                    'columns' => $this->firstRow(),
+                ],
             ],
-            [
-                'a'          => 'Two', 'b' => 2.2, 'c' => 'Zwei', 'd' => 202, 'created_by' => 'کاربر یکم',
-                'created_at' => 26465, 'updated_by' => 'کاربر دوم', 'updated_at' => 264650,
-            ],
-            [
-                'a'          => 'Three', 'b' => 3.3, 'c' => 'Drei', 'd' => 303, 'created_by' => 'کاربر یکم',
-                'created_at' => 26465, 'updated_by' => 'کاربر دوم', 'updated_at' => 264650,
-            ],
-            [
-                'a'          => 'Four', 'b' => 4.4, 'c' => 'Vier', 'd' => 404, 'created_by' => 'کاربر یکم',
-                'created_at' => 26465, 'updated_by' => 'کاربر دوم', 'updated_at' => 264650,
+            'bulkAction'   => [
+                'action'  => 'some-action',
+                'label'   => 'Do Somthing',
+                'icon'    => 'send',
+                'class'   => '',
+                'message' => '',
             ],
         ];
     }
-    //</editor-fold>
-
-    //<editor-fold Desc="GridView">
 
     private function buildExtras()
     {
@@ -275,70 +524,70 @@ class TestWidgets extends BaseTester
                 'icon'   => 'pencil',
                 'config' => ['class' => 'alert-success text-success'],
             ],
-            'reset'  => [],
+            'reset'  => [
+                'runAsAjax' => false,
+            ],
         ];
     }
 
     public function testGridView()
     {
-        $this->writeHeader('Normal GridView');
-        $dataProvider = new ArrayDataProvider(['allModels' => $this->buildGridData()]);
-        echo GridView::widget([
-            'id'             => 'normal-test',
-            'refreshOptions' => false,
-            'dataProvider'   => $dataProvider,
-            'columns'        => [
-                [
-                    'attribute' => 'a',
-                    'class'     => 'KHanS\Utils\columns\DataColumn',
-                ],
-                [
-                    'attribute' => 'b',
-                    'class'     => 'KHanS\Utils\columns\DataColumn',
-                ],
-                [
-                    'class' => 'KHanS\Utils\columns\ActionColumn',
-                ],
-            ],
-            'title'          => 'This is a Title',
-            'footer'         => false,
-            'rowOptions'     => function($model, $index, $widget, $grid) {
-                if ($model['a'] == 'Three') {
-                    return ['class' => 'alert-danger', 'style' => 'background-color: #f2dede;'];
-                }
+        $this->writeHeader('GridView; ExtraActions in dropdown & run as ajax; Actions as icons & run normal; Reset extra action never runs as ajax. View runs as ajax.');
+        $config = $this->configWidget('normal-test', true, false);
+        $config['showRefreshButtons'] = true;
+        $config['type'] = 'primary';
+        $config['itemLabelSingle'] = 'primary';
 
-                return [];
-            },
-        ]);
+        echo GridView::widget($config);
     }
 
     public function testAjaxGridView()
     {
-        $this->writeHeader('AJAX GridView');
-        $dataProvider = new ArrayDataProvider(['allModels' => $this->buildGridData()]);
-        echo AjaxGridView::widget([
-            'id'           => 'pjax-test',
-            'dataProvider' => $dataProvider,
-            'columns'      => [
-                [
-                    'attribute' => 'c',
-                    'class'     => 'KHanS\Utils\columns\DataColumn',
-                ],
-                [
-                    'attribute' => 'd',
-                    'class'     => 'KHanS\Utils\columns\DataColumn',
-                ],
-            ],
-            'title'        => false,
-            'footer'       => 'This is a footer.',
-            'rowOptions'   => function($model, $index, $widget, $grid) {
-                if ($model['a'] == 'Three') {
-                    return ['class' => 'alert-danger', 'style' => 'background-color: #f2dede;'];
-                }
+        $this->writeHeader('GridView; ExtraActions as icons & run normal; Actions in dropdowns & run as ajax; Reset extra action never runs as ajax. View runs normal.');
+        $config = $this->configWidgetModel('pjax-test', false, true);
+        $config['type'] = 'danger';
+        $config['itemLabelSingle'] = 'danger';
+        $config['itemLabelMany'] = 'dangerMM';
+        $config['itemLabelPlural'] = 'dangerSS';
+        $config['itemLabelFew'] = 'dangerFF';
+        $config['showRefreshButtons'] = true;
 
-                return [];
-            },
+        echo GridView::widget($config);
+    }
+    //</editor-fold>
+
+    //<editor-fold Desc="Export Component">
+    public function testExportArray()
+    {
+        $this->writeHeader('Stand alone export menu with array data.');
+        echo ExportMenu::widget([
+            'dataProvider' => new ArrayDataProvider(['allModels' => $this->buildGridData()]),
+//            'columns' => $this->columns,
         ]);
+    }
+
+    public function testExportModel()
+    {
+        $this->writeHeader('Stand alone export menu with model data.');
+        $model = new UpsertAggrSearch();
+        echo ExportMenu::widget([
+            'dataProvider' => $model->search(Yii::$app->request->queryParams),
+//            'columns' => $this->columns,
+        ]);
+    }
+
+    public function testGridViewExport()
+    {
+        $this->writeHeader('GridView; ExtraActions as icons & run normal; Actions in dropdowns & run as ajax; Reset extra action never runs as ajax. View runs normal.');
+        $config = $this->configWidget('pjax-test', false, true);
+        $config['title'] = 'Testing Export Component';
+        $config['afterHeader'] = $config['beforeHeader'];
+        $config['afterHeader'][0]['options'] = ['class' => ' skip-export '];
+        //$config['beforeFooter'] = $config['beforeHeader'];
+        //$config['afterFooter'] = $config['beforeHeader'];
+
+        $config['export'] = true;
+        echo GridView::widget($config);
     }
     //</editor-fold>
 }

@@ -134,6 +134,7 @@ class OverlayMenu extends \yii\base\Widget
 
     /**
      * Render the widget
+     *
      * @return string
      */
     public function run()

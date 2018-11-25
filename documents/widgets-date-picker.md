@@ -1,5 +1,5 @@
 #DatePicker Widget
-This class extends faravaghi\jalaliDatePicker\jalaliDatePicker. 
+This class extends [[\faravaghi\jalaliDatePicker\jalaliDatePicker]]. 
 Idea of creating this widget is to simplify creating date picker widgets.
 There is three attribute to set and the widget works:
 + **model**: _required_ data model,
@@ -10,6 +10,7 @@ Example 1 - Use the widget directly:
 
 ```php
 echo KHanS\Utils\widgets\DatePicker::widget([
+    'id'      => 'test-picker-id',
     'attribute' => 'from_date',
     'model'     => new DynamicModel(['from_date' => Jalali::date('Y/m', time())]),
     'options'   => [
@@ -25,13 +26,18 @@ Example 2 - Use as a form field widget:
 
 ```php
 echo $form->field($model, 'date_finish')->widget(KHanS\Utils\widgets\DatePicker::className(), [
+    'id'      => 'test-picker-id',
     'options' => ['minViewMode' => 'months'],
 ]);
 ```
 
-**Important: This widget only works with model+attribute set**.
-
 This widget has only the following settings to setup:
+
+
++ **id**:
+This string is used as id option of the input without model and form. When model and form are used,
+attribute name is the id.
+
 
 + **todayBtn**:
 Boolean value to set showing a button link to today date at the bottom of the widget.

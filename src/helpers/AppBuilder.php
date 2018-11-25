@@ -11,7 +11,6 @@ namespace KHanS\Utils\helpers;
 
 
 use KHanS\Utils\models\KHanUser;
-use KHanS\Utils\Settings;
 use yii\console\ExitCode;
 use yii\helpers\Console;
 
@@ -22,7 +21,7 @@ use yii\helpers\Console;
  * @version 0.3-970803
  * @since   1.0
  */
-final class AppBuilder extends \yii\console\Controller
+class AppBuilder extends \yii\console\Controller
 {
     /**
      * Create or overwrite model and query for the given table in the given namespace
@@ -36,15 +35,27 @@ final class AppBuilder extends \yii\console\Controller
      */
     public function actionGenerateModel($tableName, $modelName, $modelsNS = null)
     {
-        $modelsNS = is_null($modelsNS) ? is_null(Settings::PATH_MODELS_DIRECTORY) : $modelsNS;
+//        if (is_null($modelsNS)) {
+//            if(is_null(Settings::PATH_MODELS_DIRECTORY)){
+//                $modelsNS = '@app\\models';
+//            }else{
+//                $modelsNS = str_replace(['@','/'],'\\', Settings::PATH_MODELS_DIRECTORY);
+//            }
+//            if (is_null($modelsNS)) {
+//                throw new \Exception('Name space for the model is not set, and default value is also missing.');
+//            }
+//        }
         if (is_null($modelsNS)) {
             throw new \Exception('Name space for the model is not set, and default value is also missing.');
         }
+
         \Yii::$app->runAction('gii/model', [
             'generateQuery'              => true,
             'tableName'                  => $tableName,
             'modelClass'                 => $modelName,
             'queryClass'                 => $modelName . 'Query',
+            'baseClass'                  => '\\KHanS\\Utils\\models\\KHanModel',
+            'queryBaseClass'             => '\\KHanS\\Utils\\models\\queries\\KHanQuery',
             'ns'                         => $modelsNS,
             'queryNs'                    => $modelsNS . '\\queries',
             'generateLabelsFromComments' => true,
@@ -52,6 +63,13 @@ final class AppBuilder extends \yii\console\Controller
         ]);
 
         return ExitCode::OK;
+    }
+
+    public function actionGenerateController()
+    {
+//        yii gii/crud --controllerClass="backend\\controllers\PostController" \
+//    --modelClass="common\\models\\Post" \
+//    --enablePjax=1
     }
 
     /**

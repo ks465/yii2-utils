@@ -12,6 +12,7 @@ namespace KHanS\Utils\columns;
 
 use kartik\helpers\Html;
 use KHanS\Utils\components\Jalali;
+use KHanS\Utils\models\KHanModel;
 use KHanS\Utils\models\KHanUser;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -23,7 +24,7 @@ use yii\helpers\Url;
  * See [ActionColumn Guide](guide:columns-action-column.md)
  *
  * @package common\widgets
- * @version 0.1.0-950430
+ * @version 2.1.1-970904
  * @since   1.0
  */
 class ActionColumn extends \kartik\grid\ActionColumn
@@ -39,11 +40,11 @@ class ActionColumn extends \kartik\grid\ActionColumn
     /**
      * @var string message to show as alert for deletion
      */
-    public $deleteAlert = 'رکورد انتخاب شده پاک خواهد شد.';
+    public $deleteAlert = 'از پاک نمودن این {item} اطمینان دارید؟';
     /**
-     * @var bool set to true to use in non-AJAX delete request
+     * @var bool set to true to use in non-AJAX action request
      */
-    public $disableDataMethod = false;
+    public $runAsAjax = false;
     /**
      * @var array List of other items to add to the ActionColumn
      *
@@ -53,6 +54,8 @@ class ActionColumn extends \kartik\grid\ActionColumn
 
     /**
      * Build and configure the widget
+     *
+     * @throws \yii\base\InvalidConfigException
      */
     public function init()
     {
@@ -62,6 +65,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
 
         $this->hiddenFromExport = true;
         $this->vAlign = 'middle';
+        $this->hAlign = 'center';
 
         if (empty($this->urlCreator)) {
             $this->urlCreator = function($action, $model, $key, $index) {
@@ -73,35 +77,37 @@ class ActionColumn extends \kartik\grid\ActionColumn
             };
         }
 
-        if (empty($this->viewOptions)) {
+        if (empty($this->viewOptions) || empty($this->viewOptions['runAsAjax'])) {
             $this->viewOptions = [
-                'role'        => 'modal-remote',
+                'role'        => $this->runAsAjax ? 'modal-remote' : null,
                 'title'       => 'تماشا',
                 'data-toggle' => 'tooltip',
             ];
+        } else {
+            $this->viewOptions['role'] = $this->viewOptions['runAsAjax'] ? 'modal-remote' : null;
         }
 
-        if (empty($this->updateOptions)) {
+        if (empty($this->updateOptions) || empty($this->updateOptions['runAsAjax'])) {
             $this->updateOptions = [
-                'role'        => 'modal-remote',
+                'role'        => $this->runAsAjax ? 'modal-remote' : null,
                 'title'       => 'ویرایش',
                 'data-toggle' => 'tooltip',
             ];
+        } else {
+            $this->updateOptions['role'] = $this->updateOptions['runAsAjax'] ? 'modal-remote' : null;
         }
 
         $this->deleteOptions = [
             'role'         => 'modal-remote',
             'title'        => 'پاک‌کن',
-            'data-confirm' => false,
+            'data-confirm' => $this->deleteAlert,
 
             'data-request-method'  => 'post',
             'data-toggle'          => 'tooltip',
             'data-confirm-title'   => 'آیا اطمینان دارید؟',
             'data-confirm-message' => $this->deleteAlert,
         ];
-        if (!$this->disableDataMethod) {
-            $this->deleteOptions['data-method'] = false;
-        }
+
 
         if ($this->dropdown) {
             $this->dropdownMenu = ['class' => 'text-right'];
@@ -123,8 +129,8 @@ class ActionColumn extends \kartik\grid\ActionColumn
     }
 
     /**
-     * Show additional icon for downloading the relevant dat for the model
-     * Given action is responsible for figuring how and what to download
+     * Show additional icon for downloading the relevant data for the model.
+     * Given action is responsible for figuring how and what to be downloaded.
      */
     private function _download()
     {
@@ -135,6 +141,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
                 'target'    => '_blank',
                 'style'     => 'cursor: pointer;',
                 'title'     => 'دریافت',
+                'role'      => 'modal-remote',
                 'data-pjax' => '0',
             ];
             if ($this->dropdown) {
@@ -175,7 +182,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
     }
 
     /**
-     * If more keys and actions are required, Put them in [[extraItems]] property of the [[actionColumn]]:
+     * If more keys and actions are required, Put them in [[extraItems]] property of the [[ActionColumn]]:
      *
      * ```php
      * ...
@@ -212,6 +219,12 @@ class ActionColumn extends \kartik\grid\ActionColumn
                 } else {
                     $action = Url::to([$title]);
                 }
+
+                if ($this->runAsAjax && ArrayHelper::getValue($data, 'runAsAjax') !== false) {
+                    $data['config']['data-toggle'] = 'tooltip';
+                    $data['config']['role'] = 'modal-remote';
+                    $data['config']['data-pjax'] = '0';
+                }
                 if ($this->dropdown) {
                     $this->dropdownOptions = $data['config'];
 
@@ -227,16 +240,24 @@ class ActionColumn extends \kartik\grid\ActionColumn
 /**
  * Build simple text showing the times and persons committed inserting or editing
  *
- * @param KHanUser $model
+ * @param KHanModel $model
  *
  * @return string
  * @throws \Exception
  */
 function makePopoverContent($model)
 {
-    if ($model instanceof KHanUser) {
-        $creator = $model->getCreator($model)->fullName;
-        $updater = $model->getUpdater($model)->fullName;
+    if ($model instanceof KHanModel) {
+        try {
+            $creator = $model->getCreator()->fullName;
+        } catch (\Exception $e) {
+            $creator = 'ناشناس';
+        }
+        try {
+            $updater = $model->getUpdater()->fullName;
+        } catch (\Exception $e) {
+            $updater = 'ناشناس';
+        }
 
         $createTime = $model->created_at;
         $updateTime = $model->updated_at;
