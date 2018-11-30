@@ -57,19 +57,19 @@ which you can use to see everything this class does.
   
 Test debug utilities:
 ```
-$tester = new \KHanS\Utils\tests\TestAdmin();
+$tester = new \khans\utils\tests\TestAdmin();
 $tester->runAllTests();
 ```
 
 Test components:
 ```
-$tester = new \KHanS\Utils\tests\TestComponents();
+$tester = new \khans\utils\tests\TestComponents();
 $tester->runAllTests();
 ```
 
 Test widgets:
 ```
-$tester = new \KHanS\Utils\tests\TestWidgets();
+$tester = new \khans\utils\tests\TestWidgets();
 $tester->runAllTests();
 ```
 

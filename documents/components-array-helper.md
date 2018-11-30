@@ -7,7 +7,7 @@ This class contains more methods for transforming and reshaping arrays.
 It extends \yii\helpers\ArrayHelper so there is only one class to import into namespace.
 
 
-##[[KHanS\Utils\components\ArrayHelper::pivot|Pivot]]
+##[[khans\utils\components\ArrayHelper::pivot|Pivot]]
 This static method is a transformer, which accepts an array and some row and column identifiers plus a numeric field.
 In simple call the output is an array containing sum of all values of the numeric field --pivotValue.
 Currently the only aggregating function available is `summation`.
@@ -65,7 +65,7 @@ If called with a closure instead of a field name, the output is the result of th
 ];
 ```
 
-##[[KHanS\Utils\components\ArrayHelper::groupBy|GroupBy]]
+##[[khans\utils\components\ArrayHelper::groupBy|GroupBy]]
 This static method is very similar to [Pivot](#pivot) method above. The only difference is that there is no pivoting columns
 here. For the current version when using closure, the output array contains one addition column named `_data_`. 
 This column contains the result of the closure function. If the `$pivotValue` is string, the same field contains the output value.

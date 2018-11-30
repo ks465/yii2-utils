@@ -7,7 +7,7 @@
  */
 
 
-namespace KHanS\Utils\columns;
+namespace khans\utils\columns;
 
 
 use kartik\grid\GridView;
@@ -16,7 +16,7 @@ use kartik\grid\GridView;
  * Class DataColumn holds the desired defaults for the GridView columns.
  * See [DataColumn Guide](guide:columns-data-column.md)
  *
- * @package KHanS\Utils\columns
+ * @package khans\utils\columns
  * @version 0.1.0-970820
  * @since 1.0
  */
@@ -24,6 +24,8 @@ class DataColumn extends \kartik\grid\DataColumn
 {
     /**
      * Build and configure the widget
+     *
+     * @throws \yii\base\InvalidConfigException
      */
     public function init()
     {

@@ -1,6 +1,6 @@
 <?php
 
-use KHanS\Utils\components\Jalali;
+use khans\utils\components\Jalali;
 use yii\db\Exception;
 
 class KHanSUtilsComponentsJalaliTest extends \Codeception\Test\Unit

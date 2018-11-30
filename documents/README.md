@@ -10,7 +10,7 @@ Guides, notes, and anything regarding good style programming and documenting:
  2. [Setup for Persian](persian.md)
  
 #Actions
-1. [CSV Grid View](actions-csv-grid-view.md) shows data saved in a CSV file as a [[\KHanS\Utils\widgets\GridView]]. 
+1. [CSV Grid View](actions-csv-grid-view.md) shows data saved in a CSV file as a [[\khans\utils\widgets\GridView]]. 
 
 #Components
 All the classes in the component directory of the package:
@@ -72,15 +72,20 @@ General requirements in application options:
 ```php
     'language' => 'fa-IR',
     'timeZone' => 'Asia/Tehran',
-     'aliases' => [
+    'aliases' => [
         '@khan' => '@vendor/khans465/yii2-utils',
-     ],
-     'modules' => [
-         'gridview' => [
-             'class' => '\kartik\grid\Module',
-         ],
-     ],
-     'components' => [
+        '@mdm/admin' => '@vendor/mdmsoft/yii2-admin',
+    ],
+    'modules' => [
+        'gridview' => [
+            'class' => '\kartik\grid\Module',
+        ],
+        'admin' => [
+            'class' => 'mdm\admin\Module',
+            'layout' => 'left-menu',
+        ],
+    ],
+    'components' => [
         'formatter' => [
             'class' => 'yii\i18n\Formatter',
             'nullDisplay' => '_NULL_value_to_display_',
@@ -113,11 +118,61 @@ General requirements in application options:
                     'basePath' => '@app/messages',
                 ],
             ],
+            'authManager' => [
+                'class' => 'yii\rbac\DbManager',
+                'ruleTable' => 'sys_auth_rule',
+                'itemTable' => 'sys_auth_item',
+                'itemChildTable' => 'sys_auth_item_child',
+                'assignmentTable' => 'sys_auth_assignment',
+            ],
+            'user'         => [
+                'identityClass'   => 'app\models\User',
+                'enableAutoLogin' => true,
+            ],
+            'user' => [
+                'identityClass' => 'mdm\admin\models\User',
+                'loginUrl' => ['admin/user/login'],
+            ]
+            //'user' => [
+                //'class' => '\khans\utils\models\KHanUser',
+                //'identityClass'   => '\khans\utils\models\KHanIdentity',
+                //'userTable' => 'a_user',
+                //'superAdmins' => ['keyhan'],
+                //'enableAutoLogin' => true,
+                //'identityCookie' => [
+                    //'name' => '_identity_name_',
+                    //'httpOnly' => true,
+                    //'path' => '_path_to_application_',
+                //],
+            //],
+        ],
+        'as access' => [
+            'class' => 'mdm\admin\components\AccessControl',
+            'allowActions' => [
+                'site/index',
+                'site/login',
+                'site/error',
+            ]
         ],
         ...
      ],
 ```
-
+params:
+```php
+'mdm.admin.configs' => [
+        'menuTable' => 'sys_menu',
+        'userTable' => 'sys_user',
+    ],
+```
+config.console
+```php
+ 'controllerMap' => [
+        'migrate' => [
+            'class' => 'yii\console\controllers\MigrateController',
+            'migrationTable' => 'sys_migration',
+        ],
+    ],
+```
 Add following code to console options in order to setup migrations table:
 
 ```php
@@ -133,20 +188,20 @@ Add following code to application options in order to filter or otherwise saniti
 
 ```php
 'on beforeRequest' => [
-    '\KHanS\Utils\components\StringHelper',
+    '\khans\utils\components\StringHelper',
     'screenInput',
 ],
 ```
 ###RBAC Setup
 Add following code to `component` section of application options in order to setup AuthManager tables:
-   + Setting `identityClass` is not necessary, `KHanUser` has set this value to `\KHanS\Utils\models\KHanIdentity`
-   + `class` should be set to one of the child classes of `\KHanS\Utils\models\KHanUser` and **NOT** itself.
+   + Setting `identityClass` is not necessary, `KHanUser` has set this value to `\khans\utils\models\KHanIdentity`
+   + `class` should be set to one of the child classes of `\khans\utils\models\KHanUser` and **NOT** itself.
    This class should implement `public static function tableName()`
  
 ```php
 'user' => [
     'class' => '\app\models\UserTable',
-    //'identityClass'   => '\KHanS\Utils\models\KHanIdentity',
+    //'identityClass'   => '\khans\utils\models\KHanIdentity',
     'enableAutoLogin' => true,
     'identityCookie' => [
         'name' => '_identity_name_',
@@ -163,4 +218,4 @@ Add following code to `component` section of application options in order to set
 ],
 ```
 
-Run `./yii migrate/up --migrationPath=@yii/rbac` to build required tables with the given names.
+Run `./yii migrate/up --migrationPath=@khan/src/helpers/migrations ` to build required tables with the given names.

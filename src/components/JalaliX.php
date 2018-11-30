@@ -7,7 +7,7 @@
  */
 
 
-namespace KHanS\Utils\components;
+namespace khans\utils\components;
 
 use Exception;
 

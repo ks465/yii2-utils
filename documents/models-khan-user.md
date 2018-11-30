@@ -36,8 +36,8 @@ CREATE TABLE `user` (
 set `Yii::$app->params['user.passwordResetTokenExpire']`
 ```php
 'user' => [
-    'class' => '\KHanS\Utils\models\KHanUser',
-    'identityClass'   => '\KHanS\Utils\models\KHanIdentity',
+    'class' => '\khans\utils\models\KHanUser',
+    'identityClass'   => '\khans\utils\models\KHanIdentity',
     'userTable' => 'a_user',
     'superAdmins' => ['keyhan'],
     'enableAutoLogin' => true,

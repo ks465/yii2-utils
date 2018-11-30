@@ -1,13 +1,13 @@
 <?php
 /**
  *
- * @package KHanS\Utils
+ * @package khans\utils
  * @version 0.1.1-960420
  * @since   1.0
  */
 
 
-namespace KHanS\Utils\components;
+namespace khans\utils\components;
 
 /**
  * SQL Formatter is a collection of utilities for debugging SQL queries.

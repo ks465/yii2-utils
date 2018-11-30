@@ -7,7 +7,7 @@
  */
 
 
-namespace KHanS\Utils\widgets;
+namespace khans\utils\widgets;
 
 
 use faravaghi\jalaliDatePicker\jalaliDatePicker;
@@ -17,7 +17,7 @@ use kartik\icons\Icon;
  * Class DatePicker simplifies date picker widget for forms, by defining preset values for multiple configs.
  * [DatePicker Guide](guide:widgets-date-picker.md) contains all required documents for using this widget.
  *
- * @package KHanS\Utils
+ * @package khans\utils
  * @version 0.2.1-941201
  * @since   1.0
  */

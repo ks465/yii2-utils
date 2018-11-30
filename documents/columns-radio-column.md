@@ -1,5 +1,5 @@
 #RadioColumn Class
-[[KHanS\Utils\columns\RadioColumn|This class]] extends \kartik\grid\RadioColumn only to simplify routine, uniform development.
+[[khans\utils\columns\RadioColumn|This class]] extends \kartik\grid\RadioColumn only to simplify routine, uniform development.
 Vertical alignment is set to _middle_, and horizontal alignment is set to _center_.
 This is true for both the header and the content. 
 
@@ -9,6 +9,6 @@ This column has nothing to configure. If any radio column is required for the mo
 
 ```php
 [
-    'class' => 'KHanS\Utils\columns\RadioColumn',
+    'class' => 'khans\utils\columns\RadioColumn',
 ],
 ```

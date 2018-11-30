@@ -9,7 +9,7 @@ There is three attribute to set and the widget works:
 Example 1 - Use the widget directly:
 
 ```php
-echo KHanS\Utils\widgets\DatePicker::widget([
+echo khans\utils\widgets\DatePicker::widget([
     'id'      => 'test-picker-id',
     'attribute' => 'from_date',
     'model'     => new DynamicModel(['from_date' => Jalali::date('Y/m', time())]),
@@ -25,7 +25,7 @@ echo KHanS\Utils\widgets\DatePicker::widget([
 Example 2 - Use as a form field widget:
 
 ```php
-echo $form->field($model, 'date_finish')->widget(KHanS\Utils\widgets\DatePicker::className(), [
+echo $form->field($model, 'date_finish')->widget(khans\utils\widgets\DatePicker::className(), [
     'id'      => 'test-picker-id',
     'options' => ['minViewMode' => 'months'],
 ]);

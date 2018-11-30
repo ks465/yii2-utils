@@ -7,7 +7,7 @@
  */
 
 
-namespace KHanS\Utils\components;
+namespace khans\utils\components;
 
 
 use yii\base\BaseObject;
@@ -17,7 +17,7 @@ use yii\base\BaseObject;
  * For examples please see [Math Helper Guide](guide:components-math-helper.md)
  *
  *
- * @package KHanS\Utils
+ * @package khans\utils
  * @version 0.1.1-970803
  * @since   1.0
  */

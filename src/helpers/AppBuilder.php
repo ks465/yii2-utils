@@ -7,17 +7,17 @@
  */
 
 
-namespace KHanS\Utils\helpers;
+namespace khans\utils\helpers;
 
 
-use KHanS\Utils\models\KHanUser;
+use khans\utils\models\KHanIdentity;
 use yii\console\ExitCode;
 use yii\helpers\Console;
 
 /**
  * Class AppBuilder does some cool stuff to make life easier in development period.
  *
- * @package KHanS\Utils
+ * @package khans\utils
  * @version 0.3-970803
  * @since   1.0
  */
@@ -54,8 +54,8 @@ class AppBuilder extends \yii\console\Controller
             'tableName'                  => $tableName,
             'modelClass'                 => $modelName,
             'queryClass'                 => $modelName . 'Query',
-            'baseClass'                  => '\\KHanS\\Utils\\models\\KHanModel',
-            'queryBaseClass'             => '\\KHanS\\Utils\\models\\queries\\KHanQuery',
+            'baseClass'                  => '\\khans\\utils\\models\\KHanModel',
+            'queryBaseClass'             => '\\khans\\utils\\models\\queries\\KHanQuery',
             'ns'                         => $modelsNS,
             'queryNs'                    => $modelsNS . '\\queries',
             'generateLabelsFromComments' => true,
@@ -83,16 +83,16 @@ class AppBuilder extends \yii\console\Controller
      */
     public function actionSetPasswords()
     {
-        $query = KHanUser::find()->where(['>', 'id', 1])->orderBy(['id' => SORT_ASC]);
+        $query = KHanIdentity::find()->where(['>', 'id', 1])->orderBy(['id' => SORT_ASC]);
         $count = $query->count();
         Console::startProgress(0, $count, 'Change Staff User Passwords ', 0.5);
         $counter = 0;
 
         $result = ExitCode::OK;
         foreach ($query->all() as $i => $user) {
-            /* @var KHanUser $user */
+            /* @var KHanIdentity $user */
             $user->setPassword('123456');
-            $user->status = KHanUser::STATUS_ACTIVE;
+            $user->status = KHanIdentity::STATUS_ACTIVE;
 
             if ($user->save()) {
                 Console::updateProgress($i, $count);

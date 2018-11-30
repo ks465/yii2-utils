@@ -7,7 +7,7 @@
  */
 
 
-namespace KHanS\Utils\components;
+namespace khans\utils\components;
 
 use Yii;
 use yii\base\InvalidConfigException;
@@ -15,7 +15,7 @@ use yii\base\InvalidConfigException;
 /**
  * Class StringHelper contains all the utilities for formatting, correcting and shaping strings for saving or showing.
  *
- * @package KHanS\Utils
+ * @package khans\utils
  * @version 0.2.0-970817
  * @since   1.0
  */
@@ -38,7 +38,7 @@ class StringHelper extends \yii\helpers\StringHelper
      * For this to work you should add the following to the main config:
      * ```
      *   'on beforeRequest' => [
-     *      'KHanS\Utils',
+     *      'khans\utils',
      *      'screenInput',
      *    ],
      * ```

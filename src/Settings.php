@@ -7,7 +7,7 @@
  */
 
 
-namespace KHanS\Utils;
+namespace khans\utils;
 
 
 use yii\base\BaseObject;
@@ -15,7 +15,7 @@ use yii\base\BaseObject;
 /**
  * Class Settings
  *
- * @package KHanS\Utils
+ * @package khans\utils
  * @version 0.1-970803
  * @since   1.0
  */

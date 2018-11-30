@@ -7,13 +7,14 @@
  */
 
 
-namespace KHanS\Utils\columns;
-
+namespace khans\utils\columns;
+//todo tune access checks for 1. RBAC enabled, 2. RBAC disabled.
 
 use kartik\helpers\Html;
-use KHanS\Utils\components\Jalali;
-use KHanS\Utils\models\KHanModel;
-use KHanS\Utils\models\KHanUser;
+use khans\utils\components\Jalali;
+use khans\utils\models\KHanModel;
+use khans\utils\models\KHanUser;
+use mdm\admin\components\Helper;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -68,7 +69,10 @@ class ActionColumn extends \kartik\grid\ActionColumn
         $this->hAlign = 'center';
 
         if (empty($this->urlCreator)) {
-            $this->urlCreator = function($action, $model, $key, $index) {
+            $this->urlCreator = function($action, $model, $key, $index, $actionColumn) {
+//if (!Helper::checkRoute($action)) {
+//    return '';
+//}
                 if (is_array($key)) {
                     return Url::to([$action] + $key);
                 }
@@ -125,6 +129,8 @@ class ActionColumn extends \kartik\grid\ActionColumn
             $this->_extraItems();
         }
 
+//        $this->template = Helper::filterActionColumn($this->template);
+
         parent::init();
     }
 
@@ -134,6 +140,9 @@ class ActionColumn extends \kartik\grid\ActionColumn
      */
     private function _download()
     {
+//        if(!\Yii::$app->user->can('download')){
+//            return;
+//        }
         $this->template .= ' {download}';
 
         $this->buttons['download'] = function($url, $model, $key) {
@@ -161,6 +170,9 @@ class ActionColumn extends \kartik\grid\ActionColumn
      */
     private function _audit()
     {
+//        if(!\Yii::$app->user->can('audit')){
+//            return;
+//        }
         $this->template .= ' {audit}';
 
         $this->buttons['audit'] = function($url, $model, $key) {
@@ -201,6 +213,9 @@ class ActionColumn extends \kartik\grid\ActionColumn
             if (is_integer($title) && empty($data)) {
                 continue;
             }
+//            if(!\Yii::$app->user->can($title)){
+//                continue;
+//            }
             $this->template .= ' {' . $title . '}';
 
             $this->buttons[$title] = function($url, $model, $key) use ($title, $data) {

@@ -7,7 +7,7 @@
  */
 
 
-namespace KHanS\Utils\columns;
+namespace khans\utils\columns;
 
 
 use kartik\grid\GridView;
@@ -17,7 +17,7 @@ use kartik\select2\Select2;
  * Class BooleanColumn holds the desired defaults for the GridView BooleanColumn.
  * See [BooleanColumn Guide](guide:columns-boolean-column.md)
  *
- * @package KHanS\Utils\columns
+ * @package khans\utils\columns
  * @version 0.1.0-970904
  * @since 1.0
  */

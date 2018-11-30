@@ -3,19 +3,19 @@
 /**
  * @package app\widgets\menu
  * @author Keyhan Sedaghat <keyhansedaghat@netscape.net>
- * @copyright KHanS 2018
+ * @copyright khans 2018
  * @version 0.1.0-970717
  */
 
 
-namespace KHanS\Utils\widgets\menu;
+namespace khans\utils\widgets\menu;
 
 /**
  * Asset bundle for overlay menu
  *
- * @package KHanS\Utils\widgets\menu
+ * @package khans\utils\widgets\menu
  * @author Keyhan Sedaghat <keyhansedaghat@netscape.net>
- * @copyright KHanS 2018
+ * @copyright khans 2018
  * @version 0.1.0-970717
  * @since 1.0
  */

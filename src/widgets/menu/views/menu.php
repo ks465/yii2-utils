@@ -2,14 +2,14 @@
 /**
  * @package app\widgets\menu
  * @author Keyhan Sedaghat <keyhansedaghat@netscape.net>
- * @copyright KHanS 2018
+ * @copyright khans 2018
  * @version 0.1.0-970717
  */
 
 use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
-/* @var $this ->context KHanS\Utils\widgets\menuOverlayMenu */
+/* @var $this ->context khans\utils\widgets\menuOverlayMenu */
 
 $baseUrl = $this->context->getBundleUrl();
 $columns = floor(12 / count($this->context->getMenu()->getTabs()));

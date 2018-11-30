@@ -1,7 +1,7 @@
 <?php
 
 
-namespace KHanS\Utils\components;
+namespace khans\utils\components;
 
 use yii\base\BaseObject;
 use yii\db\Exception;

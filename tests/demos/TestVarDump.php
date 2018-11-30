@@ -7,22 +7,22 @@
  */
 
 
-namespace KHanS\Utils\tests\demos;
+namespace khans\utils\tests\demos;
 
-use KHanS\Utils\components\BlackHtmlVarDumpTheme;
-use KHanS\Utils\components\CliVarDumpTheme;
-use KHanS\Utils\components\FileVarDumpTheme;
-use KHanS\Utils\components\GreenHtmlVarDumpTheme;
-use KHanS\Utils\components\RedHtmlVarDumpTheme;
-use KHanS\Utils\components\BlueHtmlVarDumpTheme;
-use KHanS\Utils\components\VarDump;
+use khans\utils\components\BlackHtmlVarDumpTheme;
+use khans\utils\components\CliVarDumpTheme;
+use khans\utils\components\FileVarDumpTheme;
+use khans\utils\components\GreenHtmlVarDumpTheme;
+use khans\utils\components\RedHtmlVarDumpTheme;
+use khans\utils\components\BlueHtmlVarDumpTheme;
+use khans\utils\components\VarDump;
 
 require_once \Yii::getAlias('@khan/src/components/VarDump.php');
 
 /**
- * Class TestDebug shows and tests the KHanS\Utils\Debug methods
+ * Class TestDebug shows and tests the khans\utils\Debug methods
  *
- * @package KHanS\Utils\tests
+ * @package khans\utils\tests
  */
 class TestVarDump extends BaseTester
 {
@@ -59,7 +59,7 @@ class TestVarDump extends BaseTester
         vd($this->testSample);
 
         $this->writeHeader('vdd($this->test); to stop script afterward');
-//        \KHanS\Utils\Debug::vdd($this->test);
+//        \khans\utils\Debug::vdd($this->test);
     }
 
     public function testSQL()

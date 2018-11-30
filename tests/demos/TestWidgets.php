@@ -7,17 +7,17 @@
  */
 
 
-namespace KHanS\Utils\tests\demos;
+namespace khans\utils\tests\demos;
 
 
 use app\models\UpsertAggr;
 use app\models\UpsertAggrSearch;
 use kartik\export\ExportMenu;
 use kartik\form\ActiveForm;
-use KHanS\Utils\components\Jalali;
-use KHanS\Utils\widgets\DatePicker;
-use KHanS\Utils\widgets\DateRangePicker;
-use KHanS\Utils\widgets\GridView;
+use khans\utils\components\Jalali;
+use khans\utils\widgets\DatePicker;
+use khans\utils\widgets\DateRangePicker;
+use khans\utils\widgets\GridView;
 use Yii;
 use yii\base\DynamicModel;
 use yii\data\ArrayDataProvider;
@@ -333,31 +333,31 @@ class TestWidgets extends BaseTester
                     'class' => 'kartik\grid\CheckboxColumn',
                 ],
                 [
-                    'class' => 'KHanS\Utils\columns\RadioColumn',
+                    'class' => 'khans\utils\columns\RadioColumn',
                 ],
                 [
                     'class' => 'kartik\grid\SerialColumn',
                 ],
                 [
                     'attribute' => 'field',
-                    'class'     => 'KHanS\Utils\columns\DataColumn',
+                    'class'     => 'khans\utils\columns\DataColumn',
                 ],
                 [
                     'attribute'  => 'year',
-                    'class'      => 'KHanS\Utils\columns\DataColumn',
-                    'filterType' => 'KHanS\Utils\widgets\DatePicker',
+                    'class'      => 'khans\utils\columns\DataColumn',
+                    'filterType' => 'khans\utils\widgets\DatePicker',
                 ],
                 [
-                    'class'     => 'KHanS\Utils\columns\DataColumn',
+                    'class'     => 'khans\utils\columns\DataColumn',
                     'attribute' => 'grade',
                     ],
                 [
-                    'class'     => 'KHanS\Utils\columns\EnumColumn',
+                    'class'     => 'khans\utils\columns\EnumColumn',
                     'attribute' => 'status',
                     'enum'      => UpsertAggr::getStatuses(),
                 ],
                 [
-                    'class'          => 'KHanS\Utils\columns\ActionColumn',
+                    'class'          => 'khans\utils\columns\ActionColumn',
                     'runAsAjax'      => $dropdown1,
                     'dropdown'       => $dropdown1,
                     'dropdownButton' => ['class' => 'btn btn-default alert-success', 'label' => 'GoOn'],
@@ -372,7 +372,7 @@ class TestWidgets extends BaseTester
                     'extraItems'     => $this->buildExtras(),
                 ],
                 [
-                    'class'          => 'KHanS\Utils\columns\ActionColumn',
+                    'class'          => 'khans\utils\columns\ActionColumn',
                     'audit'          => true,
                     'runAsAjax'      => $dropdown2,
                     'viewOptions'    => [
@@ -423,21 +423,21 @@ class TestWidgets extends BaseTester
                     'class' => 'kartik\grid\CheckboxColumn',
                 ],
                 [
-                    'class' => 'KHanS\Utils\columns\RadioColumn',
+                    'class' => 'khans\utils\columns\RadioColumn',
                 ],
                 [
                     'class' => 'kartik\grid\SerialColumn',
                 ],
                 [
                     'attribute' => 'a',
-                    'class'     => 'KHanS\Utils\columns\DataColumn',
+                    'class'     => 'khans\utils\columns\DataColumn',
                 ],
                 [
                     'attribute' => 'b',
-                    'class'     => 'KHanS\Utils\columns\DataColumn',
+                    'class'     => 'khans\utils\columns\DataColumn',
                 ],
                 [
-                    'class'      => 'KHanS\Utils\columns\BooleanColumn',
+                    'class'      => 'khans\utils\columns\BooleanColumn',
                     'attribute'  => 'e',
                     'trueIcon'  => 'PhD',
                     'trueLabel'  => 'PhD',

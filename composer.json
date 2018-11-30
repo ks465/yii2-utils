@@ -46,8 +46,16 @@
   },
   "autoload": {
     "psr-4": {
-      "khans\\utils\\": "src"
+      "khans\\utils\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "khans\\utils\\tests\\": "tests/"
+    },
+    "files": [
+      "src/components/VarDump.php"
+    ]
   },
   "extra": {
     "branch-alias": {

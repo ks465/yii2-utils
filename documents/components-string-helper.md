@@ -15,7 +15,7 @@ In order to make sure all of Persian inputs are corrected for the Ya & Ka before
 
 ```php
     'on beforeRequest' => [
-    'KHanS\Utils',
+    'khans\utils',
     'screenInput',
 ],
 * ```

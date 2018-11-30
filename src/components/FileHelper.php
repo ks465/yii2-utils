@@ -7,7 +7,7 @@
  */
 
 
-namespace KHanS\Utils\components;
+namespace khans\utils\components;
 
 
 use yii\base\BaseObject;
@@ -15,7 +15,7 @@ use yii\base\BaseObject;
 /**
  * make reading and writing file formats simpler
  *
- * @package KHanS\Utils
+ * @package khans\utils
  * @version 1.2.1-950423
  * @since   1.35
  */

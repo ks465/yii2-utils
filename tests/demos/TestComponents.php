@@ -7,19 +7,19 @@
  */
 
 
-namespace KHanS\Utils\tests\demos;
+namespace khans\utils\tests\demos;
 
 
-use KHanS\Utils\Admin;
-use KHanS\Utils\components\ArrayHelper;
-use KHanS\Utils\components\FileHelper;
-use KHanS\Utils\components\Jalali;
-use KHanS\Utils\components\JalaliX;
-use KHanS\Utils\components\MathHelper;
-use KHanS\Utils\components\SqlFormatter;
-use KHanS\Utils\components\StringHelper;
-use KHanS\Utils\components\ViewHelper;
-use KHanS\Utils\models\KHanModel;
+use khans\utils\Admin;
+use khans\utils\components\ArrayHelper;
+use khans\utils\components\FileHelper;
+use khans\utils\components\Jalali;
+use khans\utils\components\JalaliX;
+use khans\utils\components\MathHelper;
+use khans\utils\components\SqlFormatter;
+use khans\utils\components\StringHelper;
+use khans\utils\components\ViewHelper;
+use khans\utils\models\KHanModel;
 use yii\db\Exception;
 
 class TestComponents extends BaseTester

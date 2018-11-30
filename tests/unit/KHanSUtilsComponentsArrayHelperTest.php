@@ -1,6 +1,6 @@
 <?php
 
-use KHanS\Utils\components\ArrayHelper;
+use khans\utils\components\ArrayHelper;
 
 class KHanSUtilsComponentsArrayHelperTest extends \Codeception\Test\Unit
 {
@@ -10,6 +10,80 @@ class KHanSUtilsComponentsArrayHelperTest extends \Codeception\Test\Unit
     protected $tester;
 
     private $inputArray;
+
+    public function testAffixElementsToSimpleString()
+    {
+        $array = ['a', 'b', 'c', 'd'];
+        expect(ArrayHelper::appendTo($array, '_'))->equals(['a_', 'b_', 'c_', 'd_']);
+        expect(ArrayHelper::prependTo($array, '_'))->equals(['_a', '_b', '_c', '_d']);
+
+        $appended = ArrayHelper::appendTo($array, '_');
+        expect(ArrayHelper::prependTo($appended, '_'))->equals(['_a_', '_b_', '_c_', '_d_']);
+    }
+
+    public function testAffixElementsToSimpleNumbers()
+    {
+        $array = [1, 2, 3, 4];
+        expect(ArrayHelper::appendTo($array, '_'))->equals(['1_', '2_', '3_', '4_']);
+        expect(ArrayHelper::prependTo($array, '_'))->equals(['_1', '_2', '_3', '_4']);
+    }
+
+    public function testAffixElementsToAssociative()
+    {
+        $array = ['a' => 'A', 'b' => 'B'];
+        expect(ArrayHelper::appendTo($array, '_'))->equals(['a' => 'A_', 'b' => 'B_']);
+        expect(ArrayHelper::prependTo($array, '_'))->equals(['a' => '_A', 'b' => '_B']);
+    }
+
+    public function testAffixElementsToRecursive()
+    {
+        $array = ['a' => ['a', 'b', 'c', 'd'], 'b' => [1, 2, 3, 4]];
+        expect(ArrayHelper::appendTo($array, '_'))->equals([
+            'a' => ['a_', 'b_', 'c_', 'd_'], 'b' => ['1_', '2_', '3_', '4_'],
+        ]);
+        expect(ArrayHelper::prependTo($array, '_'))->equals([
+            'a' => ['_a', '_b', '_c', '_d'], 'b' => ['_1', '_2', '_3', '_4'],
+        ]);
+    }
+
+    public function testAffixKeysToSimpleString()
+    {
+        $array = ['a', 'b', 'c', 'd'];
+        expect(ArrayHelper::appendToKeys($array, '_'))->equals(['0_' => 'a', '1_' => 'b', '2_' => 'c', '3_' => 'd']);
+        expect(ArrayHelper::prependToKeys($array, '_'))->equals(['_0' => 'a', '_1' => 'b', '_2' => 'c', '_3' => 'd']);
+
+        $appended = ArrayHelper::appendToKeys($array, '_');
+        expect(ArrayHelper::prependToKeys($appended, '_'))->equals([
+            '_0_' => 'a', '_1_' => 'b', '_2_' => 'c', '_3_' => 'd',
+        ]);
+    }
+
+    public function testAffixKeysToAssociative()
+    {
+        $array = ['a' => 'A', 'b' => 'B'];
+        expect(ArrayHelper::appendToKeys($array, '_'))->equals(['a_' => 'A', 'b_' => 'B']);
+        expect(ArrayHelper::prependToKeys($array, '_'))->equals(['_a' => 'A', '_b' => 'B']);
+    }
+
+    public function testAffixKeysToRecursive()
+    {
+        try {
+            $array = ['a' => ['a', 'b', 'c', 'd'], 'b' => [1, 2, 3, 4]];
+            expect(ArrayHelper::appendToKeys($array, '_'))->equals([
+                'a' => ['a_', 'b_', 'c_', 'd_'], 'b' => ['1_', '2_', '3_', '4_'],
+            ]);
+            expect('Can only flip STRING and INTEGER values!', true)->false();
+        } catch (Exception $e) {
+        }
+
+        try {
+            expect(ArrayHelper::prependToKeys($array, '_'))->equals([
+                'a' => ['_a', '_b', '_c', '_d'], 'b' => ['_1', '_2', '_3', '_4'],
+            ]);
+            expect('Can only flip STRING and INTEGER values!', true)->false();
+        } catch (Exception $e) {
+        }
+    }
 
     public function testPivotingWithSingleColumnAndRow()
     {

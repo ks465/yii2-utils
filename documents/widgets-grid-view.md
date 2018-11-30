@@ -1,6 +1,6 @@
 #GridView Class
 GridView 1.* and AjaxGridView 1.* are merged together, and there is no AjaxGridView in the 2.* version.
-In order to reach AJAX activity, use [[\KHanS\Utils\columns\ActionColumn|ActionColumn]] and set `runAsAjax = true,` for
+In order to reach AJAX activity, use [[\khans\utils\columns\ActionColumn|ActionColumn]] and set `runAsAjax = true,` for
 individual button or for all the column. 
 
 ```php
@@ -46,13 +46,13 @@ $columns = [
         'class' => 'kartik\grid\CheckboxColumn',
     ],
     [
-        'class' => 'KHanS\Utils\columns\RadioColumn',
+        'class' => 'khans\utils\columns\RadioColumn',
     ],
     [
         'class' => 'kartik\grid\SerialColumn',
     ],
     [
-        'class'          => 'KHanS\Utils\columns\ActionColumn',
+        'class'          => 'khans\utils\columns\ActionColumn',
         'runAsAjax'      => true,
         'dropdownButton' => ['class' => 'btn btn-default alert-success', 'label' => 'GoOn'],
         'header'         => 'Extra Actions',
@@ -66,7 +66,7 @@ $columns = [
         'extraItems'     => $this->buildExtras(),
     ],
     [
-        'class'          => 'KHanS\Utils\columns\ActionColumn',
+        'class'          => 'khans\utils\columns\ActionColumn',
         'audit'          => true,
         'runAsAjax'      => false,
         'viewOptions'    => [

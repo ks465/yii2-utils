@@ -7,7 +7,7 @@
  */
 
 
-namespace KHanS\Utils\widgets;
+namespace khans\utils\widgets;
 
 
 use faravaghi\jalaliDateRangePicker\jalaliDateRangePicker;
@@ -17,7 +17,7 @@ use kartik\icons\Icon;
  * Class DateRangePicker simplifies date range picker widget for forms, by defining preset values for multiple configs.
  * [DateRangePicker Guide](guide:widgets-date-range-picker.md) contains all required documents for using this widget.
  *
- * @package KHanS\Utils
+ * @package khans\utils
  * @version 0.1.0-980802-dev
  * @since   1.0
  */

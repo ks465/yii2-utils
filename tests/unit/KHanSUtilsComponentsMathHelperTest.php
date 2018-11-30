@@ -1,6 +1,6 @@
 <?php
 
-use KHanS\Utils\components\MathHelper;
+use khans\utils\components\MathHelper;
 
 class KHanSUtilsComponentsMathHelperTest extends \Codeception\Test\Unit
 {

@@ -7,10 +7,11 @@
  */
 
 
-namespace KHanS\Utils\models;
+namespace khans\utils\models;
 
 
-use KHanS\Utils\components\StringHelper;
+use khans\utils\components\StringHelper;
+use mdm\admin\components\Configs;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\db\conditions\AndCondition;
@@ -36,7 +37,7 @@ use yii\web\IdentityInterface;
  *
  * @property boolean $isSuperAdmin         یک مدیر سیستم است
  *
- * @package KHanS\Utils\models
+ * @package khans\utils\models
  * @version 0.3.1-970803
  * @since   1.0
  */
@@ -49,7 +50,7 @@ class KHanIdentity extends KHanModel implements IdentityInterface
     /**
      * @var string name of table holding the user data
      */
-    private static $_tableName = 'generic_user';
+    private static $_tableName = 'sys_user';
     /**
      * @var boolean if the user's username is in the superAdmins configuration of the user component
      */
@@ -360,7 +361,7 @@ class KHanIdentity extends KHanModel implements IdentityInterface
             [['email', 'name', 'family'], 'required'],
             [['username', 'email', 'family', 'name'], 'filter', 'filter' => 'trim'],
             ['email', 'email'],
-            [['username', 'password', 'name'], 'string', 'length' => [3, 63]],
+            [['username', 'password_hash', 'name'], 'string', 'length' => [3, 63]],
             [
                 ['family', 'email', 'password_hash', 'access_token', 'password_reset_token'], 'string',
                 'length' => [2, 128],

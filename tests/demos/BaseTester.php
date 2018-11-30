@@ -7,7 +7,7 @@
  */
 
 
-namespace KHanS\Utils\tests\demos;
+namespace khans\utils\tests\demos;
 
 
 use yii\helpers\FileHelper;

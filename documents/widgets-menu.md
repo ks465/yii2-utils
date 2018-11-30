@@ -36,7 +36,7 @@ echo OverlayMenu::widget([
 
 The above code renders a button on the page to activate the overlay menu.
 By rendering the widget, a button is placed on the page. You can render the button in the `NavBar`.
-The `tabs` section is optional. The [[\KHanS\Utils\widgets\menu\OverlayFiller]] creates it if omitted.
+The `tabs` section is optional. The [[\khans\utils\widgets\menu\OverlayFiller]] creates it if omitted.
 
 ##subsection
 put generic images in package as default.

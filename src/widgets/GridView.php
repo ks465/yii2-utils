@@ -1,11 +1,11 @@
 <?php
 
 
-namespace KHanS\Utils\widgets;
+namespace khans\utils\widgets;
 
 use kartik\helpers\Html;
 use kartik\icons\Icon;
-use KHanS\Utils\components\Jalali;
+use khans\utils\components\Jalali;
 use Yii;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
@@ -18,7 +18,7 @@ use yii\i18n\Formatter;
  * Example:
  *
  * ```php
- * KHanS\Utils\widgets\GridView::widget([
+ * khans\utils\widgets\GridView::widget([
  *    'dataProvider' => $dataProvider,
  *    'filterModel' => $searchModel,
  *    'columns' => require(__DIR__ . '/_columns.php'),
@@ -33,7 +33,7 @@ use yii\i18n\Formatter;
  * ```
  * GridView 1.* and AjaxGridView 1.* are merged together, and there is no AjaxGridView in the 2.* version.
  *
- * @package KHanS\Utils\widgets
+ * @package khans\utils\widgets
  * @version 2.1.1-970904
  * @since   1.0.0
  */
@@ -84,7 +84,7 @@ class GridView extends \kartik\grid\GridView
     /**
      * @var boolean Defaults to `true`. The entire GridView widget will be parsed via Pjax and auto-rendered
      * inside a yii\widgets\Pjax widget container. Individual actions can be disabled in
-     *     [[\KHanS\Utils\columns\ActionColumn]]
+     *     [[\khans\utils\columns\ActionColumn]]
      */
     public $pjax = true;
     /**

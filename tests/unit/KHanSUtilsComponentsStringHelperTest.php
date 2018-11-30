@@ -1,6 +1,6 @@
 <?php
 
-use KHanS\Utils\components\StringHelper;
+use khans\utils\components\StringHelper;
 
 class KHanSUtilsComponentsStringHelperTest extends \Codeception\Test\Unit
 {
@@ -203,5 +203,4 @@ class KHanSUtilsComponentsStringHelperTest extends \Codeception\Test\Unit
         $phrase .= '*ـ}{][)(،.!؟؛٫'; //Persian keyboard
         expect($phrase,preg_match(StringHelper::PERSIAN_TITLE, $phrase))->equals(1);
     }
-
 }

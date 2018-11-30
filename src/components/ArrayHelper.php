@@ -7,14 +7,14 @@
  */
 
 
-namespace KHanS\Utils\components;
+namespace khans\utils\components;
 
 /**
  * Class ArrayHelper contains all methods for simplifying work with arrays.
  * For convenience this class extends \yii\helpers\ArrayHelper.
  *
  * @package KHanS\Utils
- * @version 0.2.0-970803
+ * @version 0.3.0-970908
  * @since   1.0
  */
 final class ArrayHelper extends \yii\helpers\ArrayHelper
@@ -137,5 +137,109 @@ final class ArrayHelper extends \yii\helpers\ArrayHelper
         }
 
         return $groups;
+    }
+
+    /**
+     * Append the given string to all elements of the specified array
+     * Example:
+     *
+     * ```
+     * echo ArrayHelper::appendTo(['a', 'b', 'c', 'd'], '_");
+     * // ['a_', 'b_', 'c_', 'd_']
+     * echo ArrayHelper::appendTo(['a'=>'A', 'b'=>'B'], '_");
+     * // ['a' => 'A_', 'b' => 'B_']
+     * echo ArrayHelper::appendTo(['a'=>['a', 'b', 'c', 'd'], 'b'=>[1, 2, 3, 4]], '_");
+     * // ['a'=>['a_', 'b_', 'c_', 'd_'], 'b'=>['1_', '2_', '3_', '4_']]
+     * ```
+     *
+     * @param array  $array
+     * @param string $string
+     *
+     * @return array
+     */
+    public final static function appendTo($array, $string): array
+    {
+        return array_map(function($item) use ($string) {
+            if (is_array($item)) {
+                return ArrayHelper::appendTo($item, $string);
+            }
+
+            return $item . $string;
+        }, $array);
+    }
+
+    /**
+     * Prepend the given string to all elements of the specified array
+     * Example:
+     *
+     * ```
+     * echo ArrayHelper::prependTo(['a', 'b', 'c', 'd'], '_");
+     * // ['_a', '_b', '_c', '_d']
+     * echo ArrayHelper::prependTo(['a'=>'A', 'b'=>'B'], '_");
+     * // ['a' => '_A', 'b' => '_B']
+     * echo ArrayHelper::prependTo(['a'=>['a', 'b', 'c', 'd'], 'b'=>[1, 2, 3, 4]], '_");
+     * // ['a'=>['_a', '_b', '_c', '_d'], 'b'=>['_1', '_2', '_3', '_4']]
+     * ```
+     *
+     * @param array  $array
+     * @param string $string
+     *
+     * @return array
+     */
+    public final static function prependTo($array, $string): array
+    {
+        return array_map(function($item) use ($string) {
+            if (is_array($item)) {
+                return ArrayHelper::prependTo($item, $string);
+            }
+
+            return $string . $item;
+        }, $array);
+    }
+
+    /**
+     * Appends the given string to all keys of the specified array
+     * Example:
+     *
+     * ```
+     * echo ArrayHelper::appendToKeys(['a', 'b', 'c', 'd'], '_");
+     * // ['0_' => 'a', '1_' => 'b', '2_' => 'c', '3_' => 'd']
+     * echo ArrayHelper::appendToKeys(['a'=>'A', 'b'=>'B'], '_");
+     * // ['a_' => 'A', 'b_' => 'B']
+     * echo ArrayHelper::appendToKeys(['a'=>['a', 'b', 'c', 'd'], 'b'=>[1, 2, 3, 4]], '_");
+     * // ['a_'=>['a', 'b', 'c', 'd'], 'b'=>['1', '2', '3', '4']]
+     * ```
+     *
+     * @param array  $array
+     * @param string $string
+     *
+     * @return array
+     */
+    public final static function appendToKeys($array, $string): array
+    {
+        return array_flip(ArrayHelper::appendTo(array_flip($array), $string));
+    }
+
+    /**
+     * Prepend the given string to all keys of the specified array
+     * Example:
+     *
+     * ```
+     * echo ArrayHelper::prependToKeys(['a', 'b', 'c', 'd'], '_");
+     * // ['_0' => 'a', '_1' => 'b', '_2' => 'c', '_3' => 'd']
+     * echo ArrayHelper::prependToKeys(['a'=>'A', 'b'=>'B'], '_");
+     * // ['_a' => 'A', '_b' => 'B']
+     * echo ArrayHelper::prependToKeys(['a'=>['a', 'b', 'c', 'd'], 'b'=>[1, 2, 3, 4]], '_");
+     * // ['a_'=>['a', 'b', 'c', 'd'], 'b'=>['1', '2', '3', '4']]
+     * ```
+     *
+     * @param array  $array
+     * @param string $string
+     *
+     * @return array
+     */
+    public final static function prependToKeys($array, $string): array
+    {
+        return array_flip(ArrayHelper::prependTo(array_flip($array), $string));
     }
 }

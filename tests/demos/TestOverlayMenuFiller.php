@@ -7,12 +7,12 @@
  */
 
 
-namespace KHanS\Utils\tests\demos;
+namespace khans\utils\tests\demos;
 
 
-use KHanS\Utils\Admin;
-use KHanS\Utils\widgets\menu\OverlayMenu;
-use KHanS\Utils\widgets\menu\OverlayMenuFiller;
+use khans\utils\Admin;
+use khans\utils\widgets\menu\OverlayMenu;
+use khans\utils\widgets\menu\OverlayMenuFiller;
 
 class TestOverlayMenuFiller extends BaseTester
 {

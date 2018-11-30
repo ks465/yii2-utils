@@ -34,7 +34,7 @@ try {
 } catch (Exception $e) {
     echo $e->getMessage() . "\n";
 }
-//Class KHanS\Utils\components\Jalali should not be instantiated. Use static methods only.
+//Class khans\utils\components\Jalali should not be instantiated. Use static methods only.
 
 echo Jalali::date('Y/m/d H:i:s');
 //1397/08/17 08:40:03
@@ -91,10 +91,10 @@ var_export($jalali->getIsLeap());
 //false
 
 echo JalaliX::date('Y/m/d H:i:s');
-//Class KHanS\Utils\components\JalaliX should not be called statically. use parent class Jalali.
+//Class khans\utils\components\JalaliX should not be called statically. use parent class Jalali.
 
 echo JalaliX::date('Y/m/d H:i:s', time());
-//Class KHanS\Utils\components\JalaliX should not be called statically. use parent class Jalali
+//Class khans\utils\components\JalaliX should not be called statically. use parent class Jalali
 
 echo $j->getStartWeekOfMonth(); //Shahrivar 1, 1345 was in the 22th week of the year .
 //22

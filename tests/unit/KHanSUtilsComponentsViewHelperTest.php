@@ -1,7 +1,7 @@
 <?php
 
 
-use KHanS\Utils\components\ViewHelper;
+use khans\utils\components\ViewHelper;
 
 class KHanSUtilsComponentsViewHelperTest extends \Codeception\Test\Unit
 {

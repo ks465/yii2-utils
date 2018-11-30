@@ -7,7 +7,7 @@
  */
 
 
-namespace KHanS\Utils\columns;
+namespace khans\utils\columns;
 
 
 use kartik\grid\GridView;
@@ -16,7 +16,7 @@ use kartik\grid\GridView;
  * Class RadioColumn holds the desired defaults for the GridView radio columns.
  * See [RadioColumn Guide](guide:columns-radio-column.md)
  *
- * @package KHanS\Utils\columns
+ * @package khans\utils\columns
  * @version 0.1.0-970904
  * @since 1.0
  */

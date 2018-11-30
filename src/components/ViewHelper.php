@@ -7,7 +7,7 @@
  */
 
 
-namespace KHanS\Utils\components;
+namespace khans\utils\components;
 
 
 use yii\base\BaseObject;
@@ -15,7 +15,7 @@ use yii\base\BaseObject;
 /**
  * Class ViewHelper contains all the utilities required for simpler and better view of objects in output.
  *
- * @package KHanS\Utils
+ * @package khans\utils
  * @version 0.2
  * @since   1.0
  */

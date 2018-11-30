@@ -9,9 +9,9 @@
 
 namespace {
 
-    use KHanS\Utils\components\SqlFormatter;
-    use KHanS\Utils\components\VarDump;
-    use KHanS\Utils\Settings;
+    use khans\utils\components\SqlFormatter;
+    use khans\utils\components\VarDump;
+    use khans\utils\Settings;
     use yii\db\Query;
 
     if (!function_exists('vd')) {
@@ -142,7 +142,7 @@ namespace {
 }
 
 
-namespace KHanS\Utils\components {
+namespace khans\utils\components {
 
     use Exception;
     use InvalidArgumentException;

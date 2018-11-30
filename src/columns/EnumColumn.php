@@ -7,7 +7,7 @@
  */
 
 
-namespace KHanS\Utils\columns;
+namespace khans\utils\columns;
 
 
 use kartik\grid\GridView;
@@ -17,7 +17,7 @@ use kartik\select2\Select2;
  * Class EnumColumn holds the desired defaults for the GridView EnumColumn.
  * See [EnumColumn Guide](guide:columns-enum-column.md)
  *
- * @package KHanS\Utils\columns
+ * @package khans\utils\columns
  * @version 0.1.0-970904
  * @since 1.0
  */
@@ -25,6 +25,8 @@ class EnumColumn extends \kartik\grid\EnumColumn
 {
     /**
      * Build and configure the widget
+     *
+     * @throws \yii\base\InvalidConfigException
      */
     public function init()
     {

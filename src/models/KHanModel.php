@@ -7,14 +7,14 @@
  */
 
 
-namespace KHanS\Utils\models;
+namespace khans\utils\models;
 
 
 use app\models\UserFaculty;
 use app\models\UserStaff;
 use app\models\UserStudent;
-use KHanS\Utils\components\Jalali;
-use KHanS\Utils\components\ViewHelper;
+use khans\utils\components\Jalali;
+use khans\utils\components\ViewHelper;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -25,7 +25,7 @@ use yii\helpers\ArrayHelper;
  * Class KHanModel holds the basic structure of all database models.
  * Thus it is marked as `abstract` to avoid instantiating a model without table.
  *
- * @package KHanS\Utils
+ * @package khans\utils
  * @version 0.4.2-970803
  * @since   1.0
  *

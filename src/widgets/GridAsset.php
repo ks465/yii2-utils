@@ -1,7 +1,7 @@
 <?php
 
 
-namespace KHanS\Utils\widgets;
+namespace khans\utils\widgets;
 
 use yii\web\AssetBundle;
 

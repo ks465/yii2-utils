@@ -1,6 +1,6 @@
 <?php
 
-use KHanS\Utils\components\JalaliX;
+use khans\utils\components\JalaliX;
 
 class KHanSUtilsComponentsJalaliXTest extends \Codeception\Test\Unit
 {

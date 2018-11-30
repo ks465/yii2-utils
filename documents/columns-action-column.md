@@ -1,15 +1,15 @@
 #ActionColumn Class
-[[KHanS\Utils\columns\ActionColumn|This class]] extends \kartik\grid\ActionColumn only to simplify routine, uniform development.
+[[khans\utils\columns\ActionColumn|This class]] extends \kartik\grid\ActionColumn only to simplify routine, uniform development.
 As it is seen in the example, there is no limit in numbers of **ActionColumn**s in a _GridView_.
 By setting the visibility of standard action in one and adding _extraColumns_, there would be two distinctive columns.
 
 ```php
-echo KHanS\Utils\widgets\GridView::widget([
+echo khans\utils\widgets\GridView::widget([
 ...
     'columns' => [
         ...,
         [
-            'class'          => 'KHanS\Utils\columns\ActionColumn',
+            'class'          => 'khans\utils\columns\ActionColumn',
             'audit'          => true,
             'dropdown'       => true,
             
@@ -25,14 +25,14 @@ echo KHanS\Utils\widgets\GridView::widget([
             'dropdownButton' => ['class' => 'btn btn-default alert-success', 'label' => 'GoOn'],
         ],
         [
-            'class'          => 'KHanS\Utils\columns\ActionColumn',
+            'class'          => 'khans\utils\columns\ActionColumn',
             'audit'          => false,
             'runAsAjax'      => true,
             'dropdown'       => true,
             'dropdownButton' => ['class' => 'btn btn-danger'],
         ],
         [
-            'class'          => 'KHanS\Utils\columns\ActionColumn',
+            'class'          => 'khans\utils\columns\ActionColumn',
             'runAsAjax'      => false,
             'audit'          => true,
             'dropdown'       => false,
@@ -45,11 +45,11 @@ echo KHanS\Utils\widgets\GridView::widget([
 ]);
 ```
 
-+ _class_ It is of course mandatory and should always set to _**'KHanS\Utils\columns\ActionColumn'**_.
++ _class_ It is of course mandatory and should always set to _**'khans\utils\columns\ActionColumn'**_.
 + _audit_ Adds an icon to each row that shows _created_by_, _created_at_, _created_by_, and _updated_by_ of each reord.
 + _download_ is the URL to the download action. This is usually built using `yii\helpers\Url::to()` or similar.
 It will directly fed into the `Html::a()`.
-+ _runAsAjax_ In the new version of [[\KHanS\Utils\widgets\GridView]] this is th key to run the grid view as AJAX.
++ _runAsAjax_ In the new version of [[\khans\utils\widgets\GridView]] this is th key to run the grid view as AJAX.
 The old `AjaxGridView` is dropped.
 This value is available for the column and the unique actions (see below).
 + _deleteAlert_ text used in the alert popup. defaults to `از پاک نمودن این {item} اطمینان دارید؟` 

@@ -4,7 +4,7 @@ Documentation Edition: 1.0-970825
 Class Version: 0.4.2-970803
 
 All of the standard globally required methods and properties are set here for simplicity.
-Some of these methods are gathered in the main model, and some are in the accompanied [[KHanS\Utils\models\queries\KHanQuery|query]]
+Some of these methods are gathered in the main model, and some are in the accompanied [[khans\utils\models\queries\KHanQuery|query]]
 The most important items are:
 
 1. Disabling **Delete** method and replace it with status-changing method.
@@ -17,10 +17,10 @@ data is available.
    + **KHanModel::STATUS_ACTIVE**  shows data is completely available for updating, using in other data sets, etc.
 1. Methods to find the creater, last updater, and time of each.
    + If there is more than one table holding users --like pGrad-- change:
-       - [[KHanS\Utils\models\KHanModel::getResponsibleUser]] to be able to see all the users in the above methods, 
-       - [[KHanS\Utils\helpers\migrations\KHanMigration::$user_models]] to create all the tables and models,
+       - [[khans\utils\models\KHanModel::getResponsibleUser]] to be able to see all the users in the above methods, 
+       - [[khans\utils\helpers\migrations\KHanMigration::$user_models]] to create all the tables and models,
 
-For details see [[KHanS\Utils\models\KHanModel]] and [[KHanS\Utils\models\queries\KHanQuery]]
+For details see [[khans\utils\models\KHanModel]] and [[khans\utils\models\queries\KHanQuery]]
 
 A `sqlite` database is ready in the `demos` directory, which contains all models needed for the demos. In order to activate it,
 load `db` component as follows:

@@ -52,7 +52,7 @@ There are two sets of tests for this package. One is standard tests in `Codecept
 1. Run all codeception unit tests from the package root *vendor/khans465/yii2-utils:
 
 ```bash
-../../bin/codecept generate:test unit KHanS\Utils\ViewHelper
+../../bin/codecept generate:test unit khans\utils\ViewHelper
 ```
 2. Create tests using  `_create-tests.sh_` in the `_khans465_` directory:
 
@@ -60,7 +60,7 @@ There are two sets of tests for this package. One is standard tests in `Codecept
 #!/bin/bash
 cd yii2-utils
 
-echo ../../bin/codecept generate:test unit KHanS\Utils\components\ArrayHelper
+echo ../../bin/codecept generate:test unit khans\utils\components\ArrayHelper
 
 ../../bin/codecept run unit KHanSUtilsComponentsArrayHelperTest
 ```
@@ -69,18 +69,18 @@ echo ../../bin/codecept generate:test unit KHanS\Utils\components\ArrayHelper
 All the tests in the `tests/demos` are simple calls to utilities. Run as follows for yourself:
 
 ```php
-\KHanS\Utils\tests\demos\BaseTester::runAllTests();
+\khans\utils\tests\demos\BaseTester::runAllTests();
 ```
 
 or you can run individual files like following:
 
 ```php
-$tester_1 = new \KHanS\Utils\tests\TestVarDump();
-$tester_1 = new \KHanS\Utils\tests\TestUser();
-$tester_2 = new \KHanS\Utils\tests\TestComponents();
-$tester_3 = new \KHanS\Utils\tests\TestWidgets();
-$tester_4 = new \KHanS\Utils\tests\TestOverlayMenuFiller();
-$tester_5 = new \KHanS\Utils\tests\TestModels();
+$tester_1 = new \khans\utils\tests\TestVarDump();
+$tester_1 = new \khans\utils\tests\TestUser();
+$tester_2 = new \khans\utils\tests\TestComponents();
+$tester_3 = new \khans\utils\tests\TestWidgets();
+$tester_4 = new \khans\utils\tests\TestOverlayMenuFiller();
+$tester_5 = new \khans\utils\tests\TestModels();
 
 
 $tester_1->runTests();
