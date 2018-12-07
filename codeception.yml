@@ -8,8 +8,3 @@ actor_suffix: Tester
 extensions:
     enabled:
         - Codeception\Extension\RunFailed
-modules:
-    config:
-        Yii2:
-            configFile: 'config/test.php'
-            cleanup: false

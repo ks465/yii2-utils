@@ -114,11 +114,11 @@ class KHanMigration extends Migration
     protected function addLoggersFields()
     {
         $item = [
-            'status'     => $this->tinyInteger(4)->unsigned()->notNull()->comment('وضعیت رکورد'),
-            'created_by' => $this->integer(11)->unsigned()->notNull()->comment('سازنده'),
-            'updated_by' => $this->integer(11)->unsigned()->notNull()->comment('ویرایشگر'),
-            'created_at' => $this->integer(11)->unsigned()->notNull()->comment('زمان افزودن'),
-            'updated_at' => $this->integer(11)->unsigned()->notNull()->comment('زمان آخرین ویرایش'),
+            'status'     => $this->tinyInteger(4)->unsigned()->null()->comment('وضعیت رکورد'),
+            'created_by' => $this->integer(11)->unsigned()->null()->comment('سازنده'),
+            'updated_by' => $this->integer(11)->unsigned()->null()->comment('ویرایشگر'),
+            'created_at' => $this->integer(11)->unsigned()->null()->comment('زمان افزودن'),
+            'updated_at' => $this->integer(11)->unsigned()->null()->comment('زمان آخرین ویرایش'),
         ];
 
         return $item;

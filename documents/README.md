@@ -59,6 +59,7 @@ They are specialized versions for Kartik Gridview.
 #Others
 These are miscellaneous classes for configuring the package or installation.
 
+1. [App Builder Controller](helpers-app-builder-controller.md) contains methods useful for creating models, controllers, CRUD packages. 
 1. [VarDump](components-var-dump.md) contains methods to make life easier and fun for the admins in debugging the code objects.
 1. [SqlFormatter](components-sql-formatter.md) contains methods to make life easier and fun for the admins in debugging the SQL queries.
 1. [Settings](settings.md) contains all the settings and constant values.
@@ -130,21 +131,17 @@ General requirements in application options:
                 'enableAutoLogin' => true,
             ],
             'user' => [
-                'identityClass' => 'mdm\admin\models\User',
-                'loginUrl' => ['admin/user/login'],
-            ]
-            //'user' => [
-                //'class' => '\khans\utils\models\KHanUser',
-                //'identityClass'   => '\khans\utils\models\KHanIdentity',
-                //'userTable' => 'a_user',
-                //'superAdmins' => ['keyhan'],
-                //'enableAutoLogin' => true,
-                //'identityCookie' => [
-                    //'name' => '_identity_name_',
-                    //'httpOnly' => true,
-                    //'path' => '_path_to_application_',
-                //],
-            //],
+                'class' => '\khans\utils\models\KHanUser',
+                'identityClass'   => '\khans\utils\models\KHanIdentity', // or any child
+                'userTable' => 'a_user',
+                'superAdmins' => ['keyhan'],
+                'enableAutoLogin' => true,
+                'identityCookie' => [
+                    'name' => '_identity_name_',
+                    'httpOnly' => true,
+                    'path' => '_path_to_application_',
+                ],
+            ],
         ],
         'as access' => [
             'class' => 'mdm\admin\components\AccessControl',
@@ -172,6 +169,37 @@ config.console
             'migrationTable' => 'sys_migration',
         ],
     ],
+    ...
+    
+if (YII_ENV_DEV) {
+    // configuration adjustments for 'dev' environment
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+        'class'      => 'yii\gii\Module',
+        'generators' => [
+            'model'      => [
+                'class'     => 'khans\utils\helpers\generators\model\Generator',
+                'templates' => ['khanGii' => '@khan/src/helpers/generators/model'],
+            ],
+            'crud-ajax'       => [
+                'class'     => 'khans\utils\helpers\generators\crudAjax\Generator',
+                'templates' => ['khanGii' => '@khan/src/helpers/generators/crudAjax'],
+            ],
+            'crud-list'       => [
+                'class'     => 'khans\utils\helpers\generators\crudList\Generator',
+                'templates' => ['khanGii' => '@khan/src/helpers/generators/crudList'],
+            ],
+            'controller' => [
+                'class'     => 'khans\utils\helpers\generators\controller\Generator',
+                'templates' => ['khanGii' => '@khan/src/helpers/generators/controller'],
+            ],
+            'form'       => [
+                'class'     => 'khans\utils\helpers\generators\form\Generator',
+                'templates' => ['khanGii' => '@khan/src/helpers/generators/form'],
+            ],
+        ],
+    ];
+}
 ```
 Add following code to console options in order to setup migrations table:
 

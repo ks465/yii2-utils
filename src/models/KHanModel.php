@@ -10,9 +10,6 @@
 namespace khans\utils\models;
 
 
-use app\models\UserFaculty;
-use app\models\UserStaff;
-use app\models\UserStudent;
 use khans\utils\components\Jalali;
 use khans\utils\components\ViewHelper;
 use Yii;
@@ -66,11 +63,11 @@ abstract class KHanModel extends ActiveRecord
      *
      * @return string
      */
-    public static function getModelErrors(KHanModel $model)
+    public function getModelErrors()
     {
-        $errors = $model->errors;
-        foreach ($errors as &$error) {
-            $error = ViewHelper::implode($error, '<br />');
+        $errors = [];
+        foreach ($this->errors as &$error) {
+            $errors[] = ViewHelper::implode($error, '<br />');
         }
 
         return implode('<br />', $errors);
@@ -204,40 +201,17 @@ abstract class KHanModel extends ActiveRecord
     }
 
     /**
-     * Get active record for the given user id in all of the instances of KHanUser.
+     * Get active record for the given user id in all of the instances of [[KHanIdentity]].
      * If the given id can not be found, an empty model will be returned.
+     * This method should be overridden in the child classes to meet their structure requirements.
      *
      * @param integer $ownerID requested Id
      *
      * @return KHanIdentity
      */
-    private function getResponsibleUser($ownerID)
+    protected function getResponsibleUser($ownerID)
     {
-        $userModel = KHanIdentity::findOne($ownerID);
-        if (!empty($userModel)) {
-//            return $this->hasOne(UserStaff::className(), ['id' => 'created_by']);
-            return $userModel;
-        }
-//        $userModel = UserStaff::findOne($ownerID);
-//        if (!empty($userModel)) {
-////            return $this->hasOne(UserStaff::className(), ['id' => 'created_by']);
-//            return $userModel;
-//        }
-//        $userModel = UserFaculty::findOne($ownerID);
-//        if (!empty($userModel)) {
-////            return $this->hasOne(UserFaculty::className(), ['id' => 'created_by']);
-//            return $userModel;
-//        }
-//        $userModel = UserStudent::findOne($ownerID);
-//        if (!empty($userModel)) {
-////            return $this->hasOne(UserStudent::className(), ['id' => 'created_by']);
-//            return $userModel;
-//        }
-//
-////            return $this->hasOne(UserStaff::className(), ['id' => 'created_by']);
-//        return new UserStaff();
-
-        return null;
+        return new KHanIdentity();
     }
 
     /**
@@ -268,5 +242,15 @@ abstract class KHanModel extends ActiveRecord
     public function getUpdatedTime()
     {
         return Jalali::date(Jalali::KHAN_LONG, $this->updated_at);
+    }
+
+    /**
+     * Return the timestamp of last activity for workflow status of the given record
+     *
+     * @return integer value of the latest activity in [[updated_at]] field
+     */
+    public function getLastFlow()
+    {
+        return $this->updated_at;
     }
 }

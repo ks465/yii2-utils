@@ -10,30 +10,38 @@
 namespace khans\utils\models;
 
 
+use khans\utils\components\rest\Authenticate;
 use khans\utils\components\StringHelper;
-use mdm\admin\components\Configs;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\db\conditions\AndCondition;
 use yii\db\conditions\OrCondition;
 use yii\db\Expression;
+use yii\db\Query;
 use yii\web\IdentityInterface;
 
 /**
  * User Identity model holds required parts for Yii::$app->user->identity
  *
- *
- * @property string  $fullName             read-only نام کامل کاربر
- * @property string  $name                 نام کاربر
- * @property string  $family               نام خانوادگی کاربر
- * @property string  $gender               جنسیت کاربر
- * @property integer $id                   شناسه کاربر
+ * @property integer $id                   شماره کاربر
+ * @property string  $username             شناسه کاربر
+ * @property string  $auth_key             کلید تشخیص هویت
  * @property string  $password_hash        رمز گذرواژه
  * @property string  $password_reset_token بلیت بازنشانی گذرواژه
  * @property string  $access_token         کلید دسترسی خودکار
+ *
+ * @property string  $name                  نام کاربر
+ * @property string  $family                نام خانوادگی کاربر
  * @property string  $email                ایمیل کاربر
- * @property string  $auth_key             کلید تشخیص هویت
- * @property string  $password             write-only password گذرواژّ کاربر
+ *
+ * @property integer $status               وضعیت فعال بودن کاربر
+ * @property integer $last_visit_time       زمان آخرین ورود کاربر به سامانه
+ * @property integer $create_time           زمان ساخت رکورد کاربر
+ * @property integer $update_time           زمان آخرین ویرایش رکورد کاربر
+ * @property integer $delete_time           زمان پاک کردن رکورد کاربر از سامانه
+ *
+ * @property string  $fullName             نام کامل کاربر
+ * @property string  $fullId               نام کامل کاربر و کد شناسایی
  *
  * @property boolean $isSuperAdmin         یک مدیر سیستم است
  *
@@ -69,7 +77,7 @@ class KHanIdentity extends KHanModel implements IdentityInterface
      *
      * @param string $username
      *
-     * @return KHanIdentity|null
+     * @return KHanIdentity|null|\yii\db\ActiveRecord
      */
     public static function findByUsername($username)
     {
@@ -78,11 +86,11 @@ class KHanIdentity extends KHanModel implements IdentityInterface
             ['email' => $username],
         ]);
         $condition = new AndCondition([
-            $lookupItems,
             'status' => static::STATUS_ACTIVE,
+            $lookupItems,
         ]);
 
-        return static::findOne($condition);
+        return static::find()->where($condition)->one();
     }
 
     /**
@@ -176,14 +184,27 @@ class KHanIdentity extends KHanModel implements IdentityInterface
 
     /**
      * Finds an identity by the given token.
+     * This method is only applicable for a REST server ran using [[rest\controllers\RestController]]
      *
      * @param mixed $token the token to be looked for
      * @param mixed $type the type of the token.
      *
      * @return KHanIdentity
+     * @throws InvalidConfigException
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
+        throw new \Exception('attach to database table');
+        if (Authenticate::unlock($token)) {
+            return new static([
+                'id'          => '0',
+                'username'    => 'system',
+                'password'    => 'system',
+                'authKey'     => 'as_per_token',
+                'accessToken' => 'system-token',
+            ]);
+        }
+
         return static::findOne(['access_token' => $token, 'status' => self::STATUS_ACTIVE]);
     }
 
@@ -279,6 +300,7 @@ class KHanIdentity extends KHanModel implements IdentityInterface
 
     /**
      * Get name of table containing list of users for this application.
+     *
      * @return string
      */
     public static function tableName()
@@ -335,7 +357,7 @@ class KHanIdentity extends KHanModel implements IdentityInterface
             'record-login' => [
                 'class'      => 'yii\behaviors\TimestampBehavior',
                 'attributes' => [
-                    \yii\web\User::EVENT_AFTER_LOGIN => ['last_login_time'],
+                    \yii\web\User::EVENT_AFTER_LOGIN => ['last_visit_time'],
                 ],
                 'value'      => function() {
                     return new Expression('CURRENT_TIMESTAMP');
@@ -379,7 +401,7 @@ class KHanIdentity extends KHanModel implements IdentityInterface
                 'pattern' => StringHelper::PERSIAN_NAME,
                 'message' => '{attribute} بایستی به فارسی باشد',
             ],
-            [['id', 'status', 'create_time', 'update_time', 'last_login_time', 'delete_time'], 'integer'],
+            [['id', 'status', 'create_time', 'update_time', 'last_visit_time', 'delete_time'], 'integer'],
             [['auth_key'], 'string', 'max' => 32],
             ['email', 'exist', 'message' => 'There is no user with such email.', 'on' => 'requestPasswordResetToken'],
         ];

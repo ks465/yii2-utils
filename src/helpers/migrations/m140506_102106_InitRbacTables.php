@@ -5,6 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
+namespace khans\utils\helpers\migrations;
 
 use yii\base\InvalidConfigException;
 use yii\rbac\DbManager;
@@ -18,7 +19,7 @@ use yii\rbac\DbManager;
  * @version 0.3.2-970804
  * @since   1.0
  */
-class m140506_102106_InitRbacTables extends khans\utils\helpers\migrations\KHanMigration
+class m140506_102106_InitRbacTables extends KHanMigration
 {
 
     /**

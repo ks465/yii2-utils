@@ -9,8 +9,7 @@
 
 namespace {
 
-    use khans\utils\components\SqlFormatter;
-    use khans\utils\components\VarDump;
+    use khans\utils\components\{SqlFormatter, VarDump};
     use khans\utils\Settings;
     use yii\db\Query;
 
@@ -22,7 +21,7 @@ namespace {
          *
          * @return void
          */
-        function vd($variable)
+        function vd($variable): void
         {
             $varDump = new VarDump(null, null, null);
             $variables = func_get_args();
@@ -39,7 +38,7 @@ namespace {
          *
          * @return void
          */
-        function vdd($variables)
+        function vdd($variables): void
         {
             call_user_func_array('vd', func_get_args());
             exit;
@@ -53,7 +52,7 @@ namespace {
          *
          * @return void
          */
-        function explain($query)
+        function explain($query): void
         {
             if ($query instanceof Query) {
                 $query = $query->createCommand()->rawSql;
@@ -75,7 +74,7 @@ namespace {
          *
          * @return void
          */
-        function xd($query)
+        function xd($query): void
         {
             explain($query);
 
@@ -85,13 +84,12 @@ namespace {
     if (!function_exists('who')) {
         /**
          * Count online users by checking last modified time of session files.
-         *
          * Make sure session save path is accessible.
          * If the counting idle time has passed, it may drop the current user in counting.
          *
          * @return bool|int
          */
-        function who()
+        function who(): int
         {
             $path = session_save_path();
 
@@ -121,7 +119,7 @@ namespace {
          *
          * @return string File name and line number
          */
-        function getTrace()
+        function getTrace(): string
         {
             $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
 

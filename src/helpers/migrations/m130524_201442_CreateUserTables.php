@@ -1,7 +1,11 @@
 <?php
 
+
+namespace khans\utils\helpers\migrations;
+
 use khans\utils\models\KHanIdentity;
 use mdm\admin\components\Configs;
+use yii\helpers\Console;
 
 
 /**
@@ -11,7 +15,7 @@ use mdm\admin\components\Configs;
  * @version 0.3.2-970804
  * @since   1.0
  */
-class m130524_201442_CreateUserTables extends \khans\utils\helpers\migrations\KHanMigration
+class m130524_201442_CreateUserTables extends KHanMigration
 {
     /**
      * remove th user table
@@ -54,8 +58,8 @@ class m130524_201442_CreateUserTables extends \khans\utils\helpers\migrations\KH
             'username' => $this->string(64)->notNull()->unique()->comment('شناسه کاربر'),
 
             'auth_key'             => $this->string(40)->notNull()->comment('کلید شناسایی'),
-            'password_hash'        => $this->string()->notNull()->comment('گذرواژّ رمز شده'),
-            'password_reset_token' => $this->string()->unique()->comment('توکن بازیابی گذرواژّ'),
+            'password_hash'        => $this->string()->notNull()->comment('گذرواژه رمز شده'),
+            'password_reset_token' => $this->string()->unique()->comment('توکن بازیابی گذرواژه'),
 
             'access_token' => $this->string()->unique()->comment('توکن دسترسی'),
 
@@ -72,6 +76,38 @@ class m130524_201442_CreateUserTables extends \khans\utils\helpers\migrations\KH
     }
 
     /**
+     * Write the system user for situations that the actor is automatic script.
+     *
+     * @param string $tableName name of table
+     *
+     * @throws \yii\base\Exception
+     */
+    protected function insertSystemUser($tableName)
+    {
+        /* @var KHanIdentity $systemUser */
+        KHanIdentity::setTableName($tableName);
+        $systemUser = new KHanIdentity();
+
+        $systemUser->setAttributes([
+            'username'      => 'SYSTEM',
+            'auth_key'      => '!',
+            'password_hash' => '~!~',
+            'name'          => 'سامانه',
+            'family'        => 'خودکار',
+            'email'         => 'noreply@khan.org',
+            'status'        => KHanIdentity::STATUS_PENDING,
+        ], false);
+
+        if (!$systemUser->save(false)) {
+            throw new \yii\base\Exception('Error when creating system user:' . $systemUser->getFirstErrors());
+        }
+        $systemUser->setAttribute('id', 0);
+        $systemUser->save(false);
+
+        Console::stdout('System user created successfully for ' . $tableName . PHP_EOL);
+    }
+
+    /**
      * Write the very first user --admin-- in each user model created.
      *
      * @param string $tableName name of table
@@ -84,13 +120,13 @@ class m130524_201442_CreateUserTables extends \khans\utils\helpers\migrations\KH
         KHanIdentity::setTableName($tableName);
         $adminUser = new KHanIdentity();
 
-        echo 'Please type the admin user info for ' . $tableName . ': ' . PHP_EOL;
+        Console::stdout('Please type the admin user info for ' . $tableName . ':' . PHP_EOL);
         $this->readStdIn('Type Name', $adminUser, 'name', 'مدیر');
         $this->readStdIn('Type Family', $adminUser, 'family', 'سیستم');
 
         $this->readStdIn('Email (e.g. admin@mydomain.com)', $adminUser, 'email', 'admin@khan.org');
 
-        $this->readStdIn('Type Username', $adminUser, 'username', $adminUser->email);
+        $this->readStdIn('Type Username', $adminUser, 'username', 'keyhan');
         $this->readStdIn('Type Password', $adminUser, 'password_hash', 'admin');
 
         $adminUser->status = KHanIdentity::STATUS_ACTIVE;
@@ -102,6 +138,6 @@ class m130524_201442_CreateUserTables extends \khans\utils\helpers\migrations\KH
             throw new \yii\base\Exception('Error when creating admin user:' . $adminUser->getFirstErrors());
         }
 
-        echo 'User created successfully for ' . $tableName . PHP_EOL;
+        Console::stdout('User created successfully for ' . $tableName . PHP_EOL);
     }
 }

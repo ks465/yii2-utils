@@ -1,5 +1,7 @@
 <?php
 
+namespace khans\utils\helpers\migrations;
+
 use mdm\admin\components\Configs;
 
 /**
@@ -10,7 +12,7 @@ use mdm\admin\components\Configs;
  * @version 0.3.2-970804
  * @since   1.0
  */
-class m140602_111327_CreateMenuTable extends khans\utils\helpers\migrations\KHanMigration
+class m140602_111327_CreateMenuTable extends KHanMigration
 {
     /**
      * Create a single menu to hold all the menus

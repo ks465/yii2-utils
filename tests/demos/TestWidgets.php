@@ -28,12 +28,12 @@ require_once Yii::getAlias('@vendor/fzaninotto/faker/src/autoload.php');
 
 class TestWidgets extends BaseTester
 {
-//    protected $skipTests = [
+    protected $skipTests = [
 //        'testDatePicker1', 'testDatePicker1_1', 'testDatePicker2', 'testDatePicker3', 'testDatePicker4',
 //        'testDatePicker5', 'testDatePicker6', 'testDatePicker7', 'testDatePicker8', 'testDatePicker9',
 //        'testDatePicker10', 'testDatePicker11', 'testDatePicker12', 'testDateRangePicker1',
 //        'testDateRangePicker2', 'testGridView', 'testAjaxGridView',
-//    ];
+    ];
 
     //<editor-fold Desc="DatePicker">
     public function testDatePicker1()
@@ -350,7 +350,7 @@ class TestWidgets extends BaseTester
                 [
                     'class'     => 'khans\utils\columns\DataColumn',
                     'attribute' => 'grade',
-                    ],
+                ],
                 [
                     'class'     => 'khans\utils\columns\EnumColumn',
                     'attribute' => 'status',
@@ -439,9 +439,9 @@ class TestWidgets extends BaseTester
                 [
                     'class'      => 'khans\utils\columns\BooleanColumn',
                     'attribute'  => 'e',
-                    'trueIcon'  => 'PhD',
-                    'trueLabel'  => 'PhD',
-                    'falseLabel' => 'MSc',
+//                    'trueIcon'  => 'PhD',
+//                    'trueLabel'  => 'PhD',
+//                    'falseLabel' => 'MSc',
                 ],
                 [
                     'class'  => 'kartik\grid\FormulaColumn',
@@ -456,7 +456,7 @@ class TestWidgets extends BaseTester
                     },
                 ],
                 [
-                    'class'          => 'KHanS\Utils\columns\ActionColumn',
+                    'class'          => 'khans\utils\columns\ActionColumn',
                     'runAsAjax'      => $dropdown1,
                     'audit'          => true,
                     'dropdown'       => $dropdown1,
@@ -472,7 +472,7 @@ class TestWidgets extends BaseTester
                     'extraItems'     => $this->buildExtras(),
                 ],
                 [
-                    'class'          => 'KHanS\Utils\columns\ActionColumn',
+                    'class'          => 'khans\utils\columns\ActionColumn',
                     'runAsAjax'      => $dropdown2,
                     'audit'          => true,
                     'viewOptions'    => [
@@ -535,9 +535,11 @@ class TestWidgets extends BaseTester
         $this->writeHeader('GridView; ExtraActions in dropdown & run as ajax; Actions as icons & run normal; Reset extra action never runs as ajax. View runs as ajax.');
         $config = $this->configWidget('normal-test', true, false);
         $config['showRefreshButtons'] = true;
+        $config['createAction'] = true;
         $config['type'] = 'primary';
         $config['itemLabelSingle'] = 'primary';
 
+        vd($config);
         echo GridView::widget($config);
     }
 
@@ -551,7 +553,9 @@ class TestWidgets extends BaseTester
         $config['itemLabelPlural'] = 'dangerSS';
         $config['itemLabelFew'] = 'dangerFF';
         $config['showRefreshButtons'] = true;
+        $config['createAction'] = false;
 
+        vd($config);
         echo GridView::widget($config);
     }
     //</editor-fold>
@@ -579,12 +583,18 @@ class TestWidgets extends BaseTester
     public function testGridViewExport()
     {
         $this->writeHeader('GridView; ExtraActions as icons & run normal; Actions in dropdowns & run as ajax; Reset extra action never runs as ajax. View runs normal.');
-        $config = $this->configWidget('pjax-test', false, true);
+        $config = $this->configWidget('export-test', false, true);
         $config['title'] = 'Testing Export Component';
         $config['afterHeader'] = $config['beforeHeader'];
         $config['afterHeader'][0]['options'] = ['class' => ' skip-export '];
         //$config['beforeFooter'] = $config['beforeHeader'];
         //$config['afterFooter'] = $config['beforeHeader'];
+        $config['createAction'] = [
+            'action'  => 'create',
+            'ajax'=> false,
+        ];
+
+        vd($config);
 
         $config['export'] = true;
         echo GridView::widget($config);

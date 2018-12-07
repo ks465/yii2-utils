@@ -16,7 +16,6 @@ use yii\i18n\Formatter;
  *
  * @see     http://demos.krajee.com/grid
  * Example:
- *
  * ```php
  * khans\utils\widgets\GridView::widget([
  *    'dataProvider' => $dataProvider,
@@ -32,9 +31,8 @@ use yii\i18n\Formatter;
  * ])
  * ```
  * GridView 1.* and AjaxGridView 1.* are merged together, and there is no AjaxGridView in the 2.* version.
- *
  * @package khans\utils\widgets
- * @version 2.1.1-970904
+ * @version 2.2.1-970916
  * @since   1.0.0
  */
 class GridView extends \kartik\grid\GridView
@@ -80,6 +78,24 @@ class GridView extends \kartik\grid\GridView
         'icon'    => '',
         'class'   => '',
         'message' => '',
+    ];
+    /**
+     * @var array|boolean Configuration parameters to put a button in the panel to trige createAction or equivalent.
+     *    + action is the URL to the target action, default is create.
+     *    + title is the text of the tooltip for created button
+     *    + icon is tag of the glyphicon-* to use
+     *    + class is the tag of the bootstrap btn-* class
+     *    + ajax boolean if `true` which is default, `role => modal-remote` will be set, if it is false `role` is empty.
+     * If this attribute is set to `true` the default settings will be enables.
+     * If this attribute is set to `false` the button will not rendered.
+     */
+    public $createAction;
+    private $_createAction = [
+        'action' => 'create',
+        'title'  => 'افزودن',
+        'icon'   => 'plus',
+        'class'  => 'btn btn-success btn-xs',
+        'ajax'   => true,
     ];
     /**
      * @var boolean Defaults to `true`. The entire GridView widget will be parsed via Pjax and auto-rendered
@@ -168,6 +184,20 @@ class GridView extends \kartik\grid\GridView
 
         if (!empty($this->bulkAction) && is_array($this->bulkAction) && !empty($this->bulkAction['action'])) {
             $this->loadBulkSegment();
+        }
+
+        if (!empty($this->createAction) && $this->createAction !== false) {
+            if ($this->createAction === true) {
+                $this->createAction = $this->_createAction;
+            } else {
+                $this->createAction = array_merge($this->_createAction, $this->createAction);
+            }
+//todo include AAA and RBAC check for showing this
+            $this->toolbar['content'] .= Html::a('<i class="glyphicon glyphicon-' . $this->createAction['icon'] . '"></i>',
+                [$this->createAction['action']],
+                ['role'  => $this->createAction['ajax'] === true ? 'modal-remote' : '',
+                 'title' => $this->createAction['title'], 'class' => 'btn btn-success',
+                ]);
         }
 
         parent::init();

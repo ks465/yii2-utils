@@ -44,6 +44,29 @@ class Settings extends BaseObject
     private static $_pager;
     private static $_testSetting = 1;
 
+
+    /**
+     * Setting for [[QueryParamAuth::tokenParam]]
+     */
+    const REST_TOKEN_PARAM = 'access-token';
+    /**
+     * Address for the REST server used by the REST client
+     * Be sure to end this with /
+     */
+    const REST_SERVER_URL = '/';
+
+
+//<editor-fold Desc="Setters">
+
+    /**
+     * @param int $testSetting
+     */
+    public static function setTestSetting($testSetting)
+    {
+        self::$_testSetting = $testSetting;
+    }
+//</editor-fold>
+//<editor-fold Desc="Getters">
     /**
      * @return array
      */
@@ -59,19 +82,7 @@ class Settings extends BaseObject
     {
         return self::$_testSetting;
     }
-
-
-//<editor-fold Desc="Setters">
-
-    /**
-     * @param int $testSetting
-     */
-    public static function setTestSetting($testSetting)
-    {
-        self::$_testSetting = $testSetting;
-    }
 //</editor-fold>
-//<editor-fold Desc="Getters">
 
     /**
      * Setup required settings to default value.
@@ -86,5 +97,4 @@ class Settings extends BaseObject
             //'maxButtonCount' => 5,
         ];
     }
-//</editor-fold>
 }

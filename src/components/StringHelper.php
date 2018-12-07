@@ -103,7 +103,7 @@ class StringHelper extends \yii\helpers\StringHelper
      *
      * @return array|string
      */
-    public static function trimAll($data)
+    public static function trimAll($data):string
     {
         if (is_array($data)) {
             array_walk($data, function(&$value) {

@@ -89,7 +89,7 @@ class OverlayMenuFiller extends BaseObject
      * Shape data for output very simple.
      * When [[tabs]] data is not present, build it from menu data.
      */
-    private function generateTabsData()
+    private function generateTabsData():void
     {
         foreach (ArrayHelper::map($this->menuData, 'url', function($item) {
             return $item;

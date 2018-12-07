@@ -8,13 +8,11 @@
 
 
 namespace khans\utils\columns;
-//todo tune access checks for 1. RBAC enabled, 2. RBAC disabled.
 
 use kartik\helpers\Html;
 use khans\utils\components\Jalali;
+use khans\utils\models\KHanIdentity;
 use khans\utils\models\KHanModel;
-use khans\utils\models\KHanUser;
-use mdm\admin\components\Helper;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -52,7 +50,10 @@ class ActionColumn extends \kartik\grid\ActionColumn
      * See [ActionColumn Guide](guide:columns-action-column.md) for details
      */
     public $extraItems = [];
-
+    /**
+     * @var string the header cell content. Note that it will not be HTML-encoded.
+     */
+    public $header = 'عملیات';
     /**
      * Build and configure the widget
      *
@@ -283,7 +284,7 @@ function makePopoverContent($model)
         $createTime = ArrayHelper::getValue($model, 'created_at', 0);
         $updateTime = ArrayHelper::getValue($model, 'updated_at', 0);
     } else {
-        throw new \Exception('Model for ActionColumn should inherit ' . KHanUser::className());
+        throw new \Exception('Model for ActionColumn should inherit ' . KHanIdentity::className());
     }
 
 

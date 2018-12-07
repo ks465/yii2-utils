@@ -103,9 +103,28 @@ echo GridView::widget([
         'class'   => '',
         'message' => '',
     ],
+    'createAction' => [
+         'action' => 'create',
+         'title'  => 'افزودن',
+         'icon'   => 'plus',
+         'class'  => 'btn btn-success btn-xs',
+         'ajax'   => true,
+     ],
 ]);
 ```
 Adding extra actions to the column definition of the grid is very similar to the usage of bulk action with [[RadioColumn]].
 Setting footer to `false` removes the pager segment too.
 Add `skip-export` to options.class of virtually any row or column to remove it from export.
 Default `title` of the grid is View::title of the page.
+
+createAction can be
+ + _true_: Show a create button in the toolbar content with default configuration.
+ + _false_: Remove the button completely.
+ + _array_: [
+ 
+        'action' => 'create', //target action
+        'title'  => 'افزودن', //tooltip text of the button
+        'icon'   => 'plus', //glyphicon tag
+        'class'  => 'btn btn-success btn-xs', //class of shown link
+        'ajax'   => true, //true adds `role => modal-remote` will be set in button options.
+                          //false makes `role => ''`.
