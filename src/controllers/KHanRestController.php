@@ -26,7 +26,7 @@ use yii\web\Response;
 /**
  * Class KHanRestController offers common behavior for REST controllers
  *
- * @package khans\utils\components\rest
+ * @package khans\utils\controllers
  * @version 2.0.0-970912
  * @since 1.0
  */

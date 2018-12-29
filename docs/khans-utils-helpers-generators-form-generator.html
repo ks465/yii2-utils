@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/afbdca15/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/34135542/style.css" rel="stylesheet">
+<script src="./assets/84a200c2/jquery.js"></script>
+<script src="./assets/afbdca15/js/bootstrap.js"></script>
+<script src="./assets/96f6715f/jssearch.js"></script>    <title>Generator, khans\utils\helpers\generators\form\Generator - KHanUtilsAPI</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w340" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w340-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">KHanUtilsAPI</a></div><div id="w340-collapse" class="collapse navbar-collapse"><ul id="w341" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-323" data-toggle="collapse" data-parent="#navigation">common\actions <b class="caret"></b></a><div id="navigation-323" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-actions-helpaction.html">HelpAction</a></div>
+<a class="list-group-item" href="#navigation-324" data-toggle="collapse" data-parent="#navigation">common\widgets\columns <b class="caret"></b></a><div id="navigation-324" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-widgets-columns-progresscolumn.html">ProgressColumn</a></div>
+<a class="list-group-item" href="#navigation-325" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-325" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-326" data-toggle="collapse" data-parent="#navigation">khans\utils\columns <b class="caret"></b></a><div id="navigation-326" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-booleancolumn.html">BooleanColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-datacolumn.html">DataColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-enumcolumn.html">EnumColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-jalalicolumn.html">JalaliColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-radiocolumn.html">RadioColumn</a></div>
+<a class="list-group-item" href="#navigation-327" data-toggle="collapse" data-parent="#navigation">khans\utils\components <b class="caret"></b></a><div id="navigation-327" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
+<a class="list-group-item" href="./khans-utils-components-filehelper.html">FileHelper</a>
+<a class="list-group-item" href="./khans-utils-components-jalali.html">Jalali</a>
+<a class="list-group-item" href="./khans-utils-components-jalalix.html">JalaliX</a>
+<a class="list-group-item" href="./khans-utils-components-mathhelper.html">MathHelper</a>
+<a class="list-group-item" href="./khans-utils-components-sqlformatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./khans-utils-components-stringhelper.html">StringHelper</a>
+<a class="list-group-item" href="./khans-utils-components-viewhelper.html">ViewHelper</a></div>
+<a class="list-group-item" href="#navigation-328" data-toggle="collapse" data-parent="#navigation">khans\utils\components\rest <b class="caret"></b></a><div id="navigation-328" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-rest-authenticate.html">Authenticate</a>
+<a class="list-group-item" href="./khans-utils-components-rest-client.html">Client</a>
+<a class="list-group-item" href="./khans-utils-components-rest-security.html">Security</a></div>
+<a class="list-group-item" href="#navigation-329" data-toggle="collapse" data-parent="#navigation">khans\utils\components\workflow <b class="caret"></b></a><div id="navigation-329" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-workflow-wizflowmanager.html">WizflowManager</a></div>
+<a class="list-group-item" href="#navigation-330" data-toggle="collapse" data-parent="#navigation">khans\utils\controllers <b class="caret"></b></a><div id="navigation-330" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-controllers-khanconsolecontroller.html">KHanConsoleController</a>
+<a class="list-group-item" href="./khans-utils-controllers-khanrestcontroller.html">KHanRestController</a>
+<a class="list-group-item" href="./khans-utils-controllers-khanwebcontroller.html">KHanWebController</a></div>
+<a class="list-group-item" href="#navigation-331" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\controller <b class="caret"></b></a><div id="navigation-331" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-controller-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-332" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\crud <b class="caret"></b></a><div id="navigation-332" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-crud-generator.html">Generator</a></div>
+<a class="list-group-item active" href="#navigation-333" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\form <b class="caret"></b></a><div id="navigation-333" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./khans-utils-helpers-generators-form-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-334" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\model <b class="caret"></b></a><div id="navigation-334" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-model-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-335" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\migrations <b class="caret"></b></a><div id="navigation-335" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-migrations-khanmigration.html">KHanMigration</a></div>
+<a class="list-group-item" href="#navigation-336" data-toggle="collapse" data-parent="#navigation">khans\utils\models <b class="caret"></b></a><div id="navigation-336" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-khanuser.html">KHanUser</a></div>
+<a class="list-group-item" href="#navigation-337" data-toggle="collapse" data-parent="#navigation">khans\utils\models\queries <b class="caret"></b></a><div id="navigation-337" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-queries-khanquery.html">KHanQuery</a></div>
+<a class="list-group-item" href="#navigation-338" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets <b class="caret"></b></a><div id="navigation-338" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-captcha.html">Captcha</a>
+<a class="list-group-item" href="./khans-utils-widgets-confirmbutton.html">ConfirmButton</a>
+<a class="list-group-item" href="./khans-utils-widgets-datepicker.html">DatePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-daterangepicker.html">DateRangePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridasset.html">GridAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-khdropdown.html">KHDropdown</a></div>
+<a class="list-group-item" href="#navigation-339" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets\menu <b class="caret"></b></a><div id="navigation-339" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Class khans\utils\helpers\generators\form\Generator</h1>
+<div class="top-nav">
+    <a href="index.html">All Classes</a>
+            | <a href="#properties">Properties</a>
+                | <a href="#methods">Methods</a>
+            </div>
+
+<table class="summaryTable docClass table table-bordered">
+    <colgroup>
+        <col class="col-name" />
+        <col class="col-value" />
+    </colgroup>
+            <tr><th>Inheritance</th><td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a> &raquo;
+yii\gii\Generator</td></tr>
+                                        <tr><th>Available since version</th><td>2.0</td></tr>
+            </table>
+
+<div class="class-description">
+    <p><strong>This generator will generate an action view file based on the specified model class.</strong></p>
+    
+    </div>
+
+<a id="properties"></a>
+
+<div class="summary doc-property">
+<h2>Public Properties</h2>
+
+<p><a href="#" class="toggle">Hide inherited properties</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-property" />
+    <col class="col-type" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="$modelClass">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#$modelClass-detail">$modelClass</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>FQN for the model which this controller acts upon</td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+            <tr id="$scenarioName">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#$scenarioName-detail">$scenarioName</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>Scenario of the model in the form</td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+            <tr id="$viewName">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#$viewName-detail">$viewName</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>Filename for the generated view</td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+            <tr id="$viewPath">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#$viewPath-detail">$viewPath</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>Path to generated view files</td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="methods"></a>
+
+<div class="summary doc-method">
+<h2>Public Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="attributeLabels()">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#attributeLabels()-detail">attributeLabels()</a></td>
+        <td>Returns the attribute labels.</td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+            <tr id="generate()">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#generate()-detail">generate()</a></td>
+        <td>Generates the code based on the current user input and the specified code template files.</td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+            <tr id="getDescription()">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#getDescription()-detail">getDescription()</a></td>
+        <td></td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+            <tr id="getModelAttributes()">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#getModelAttributes()-detail">getModelAttributes()</a></td>
+        <td></td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+            <tr id="getName()">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#getName()-detail">getName()</a></td>
+        <td></td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+            <tr id="hints()">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#hints()-detail">hints()</a></td>
+        <td>Returns the list of hint messages.</td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+            <tr id="requiredTemplates()">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#requiredTemplates()-detail">requiredTemplates()</a></td>
+        <td>Returns a list of code template files that are required.</td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+            <tr id="rules()">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#rules()-detail">rules()</a></td>
+        <td>Returns the validation rules for attributes</td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+            <tr id="stickyAttributes()">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#stickyAttributes()-detail">stickyAttributes()</a></td>
+        <td>Returns the list of sticky attributes.</td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+            <tr id="successMessage()">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#successMessage()-detail">successMessage()</a></td>
+        <td>Returns the message to be displayed when the newly generated code is saved successfully.</td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+            <tr id="validateViewPath()">
+        <td><a href="khans-utils-helpers-generators-form-generator.html#validateViewPath()-detail">validateViewPath()</a></td>
+        <td>Validates <a href="khans-utils-helpers-generators-form-generator.html#$viewPath-detail">$viewPath</a> to make sure it is a valid path or path alias and exists.</td>
+        <td><a href="khans-utils-helpers-generators-form-generator.html">khans\utils\helpers\generators\form\Generator</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="events"></a>
+
+<a id="constants"></a>
+
+<h2>Property Details</h2>
+
+<div class="property-doc">
+
+    <div class="detail-header h3" id="$modelClass-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#$modelClass-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $modelClass        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>FQN for the model which this controller acts upon</p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-helpers-generators-form-generator.html#$modelClass-detail">$modelClass</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+
+    <div class="detail-header h3" id="$scenarioName-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#$scenarioName-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $scenarioName        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>Scenario of the model in the form</p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-helpers-generators-form-generator.html#$scenarioName-detail">$scenarioName</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+
+    <div class="detail-header h3" id="$viewName-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#$viewName-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $viewName        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>Filename for the generated view</p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-helpers-generators-form-generator.html#$viewName-detail">$viewName</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+
+    <div class="detail-header h3" id="$viewPath-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#$viewPath-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $viewPath        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>Path to generated view files</p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-helpers-generators-form-generator.html#$viewPath-detail">$viewPath</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'@app/views'</span></div>
+
+</div>
+<h2>Method Details</h2>
+
+<div class="method-doc">
+
+    <div class="detail-header h3" id="attributeLabels()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#attributeLabels()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        attributeLabels()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Returns the attribute labels.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-form-generator.html#attributeLabels()-detail">attributeLabels</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>Attribute labels (name =&gt; label)</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="generate()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#generate()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        generate()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Generates the code based on the current user input and the specified code template files.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">\yii\gii\CodeFile[]</span> <strong><a href="khans-utils-helpers-generators-form-generator.html#generate()-detail">generate</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">\yii\gii\CodeFile[]</td>
+                  <td class="param-desc-col"><p>A list of code files to be created.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getDescription()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#getDescription()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getDescription()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-helpers-generators-form-generator.html#getDescription()-detail">getDescription</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>The detailed description of the generator.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getModelAttributes()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#getModelAttributes()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getModelAttributes()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-form-generator.html#getModelAttributes()-detail">getModelAttributes</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>List of safe attributes of <a href="khans-utils-helpers-generators-form-generator.html#$modelClass-detail">$modelClass</a></p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getName()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#getName()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getName()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-helpers-generators-form-generator.html#getName()-detail">getName</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Name of the code generator</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="hints()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#hints()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        hints()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Returns the list of hint messages.</strong></p>
+
+        <p>The array keys are the attribute names, and the array values are the corresponding hint messages.
+Hint messages will be displayed to end users when they are filling the form for the generator.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-form-generator.html#hints()-detail">hints</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>The list of hint messages</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="requiredTemplates()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#requiredTemplates()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        requiredTemplates()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Returns a list of code template files that are required.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-form-generator.html#requiredTemplates()-detail">requiredTemplates</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>List of code template files that are required.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="rules()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#rules()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        rules()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Returns the validation rules for attributes</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-form-generator.html#rules()-detail">rules</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>Validation rules</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="stickyAttributes()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#stickyAttributes()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        stickyAttributes()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Returns the list of sticky attributes.</strong></p>
+
+        <p>A sticky attribute will remember its value and will initialize the attribute with this value
+when the generator is restarted.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-form-generator.html#stickyAttributes()-detail">stickyAttributes</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>List of sticky attributes</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="successMessage()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#successMessage()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        successMessage()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Returns the message to be displayed when the newly generated code is saved successfully.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-helpers-generators-form-generator.html#successMessage()-detail">successMessage</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>The message to be displayed when the newly generated code is saved successfully.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="validateViewPath()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-form-generator.html#validateViewPath()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        validateViewPath()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Validates <a href="khans-utils-helpers-generators-form-generator.html#$viewPath-detail">$viewPath</a> to make sure it is a valid path or path alias and exists.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-helpers-generators-form-generator.html#validateViewPath()-detail">validateViewPath</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+</div>
+        </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Sat, 29 Dec 2018 08:56:11 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

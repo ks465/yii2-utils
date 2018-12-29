@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/afbdca15/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/34135542/style.css" rel="stylesheet">
+<script src="./assets/84a200c2/jquery.js"></script>
+<script src="./assets/afbdca15/js/bootstrap.js"></script>
+<script src="./assets/96f6715f/jssearch.js"></script>    <title>ArrayHelper, khans\utils\components\ArrayHelper - KHanUtilsAPI</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w93" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w93-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">KHanUtilsAPI</a></div><div id="w93-collapse" class="collapse navbar-collapse"><ul id="w94" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-76" data-toggle="collapse" data-parent="#navigation">common\actions <b class="caret"></b></a><div id="navigation-76" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-actions-helpaction.html">HelpAction</a></div>
+<a class="list-group-item" href="#navigation-77" data-toggle="collapse" data-parent="#navigation">common\widgets\columns <b class="caret"></b></a><div id="navigation-77" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-widgets-columns-progresscolumn.html">ProgressColumn</a></div>
+<a class="list-group-item" href="#navigation-78" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-78" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-79" data-toggle="collapse" data-parent="#navigation">khans\utils\columns <b class="caret"></b></a><div id="navigation-79" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-booleancolumn.html">BooleanColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-datacolumn.html">DataColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-enumcolumn.html">EnumColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-jalalicolumn.html">JalaliColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-radiocolumn.html">RadioColumn</a></div>
+<a class="list-group-item active" href="#navigation-80" data-toggle="collapse" data-parent="#navigation">khans\utils\components <b class="caret"></b></a><div id="navigation-80" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
+<a class="list-group-item" href="./khans-utils-components-filehelper.html">FileHelper</a>
+<a class="list-group-item" href="./khans-utils-components-jalali.html">Jalali</a>
+<a class="list-group-item" href="./khans-utils-components-jalalix.html">JalaliX</a>
+<a class="list-group-item" href="./khans-utils-components-mathhelper.html">MathHelper</a>
+<a class="list-group-item" href="./khans-utils-components-sqlformatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./khans-utils-components-stringhelper.html">StringHelper</a>
+<a class="list-group-item" href="./khans-utils-components-viewhelper.html">ViewHelper</a></div>
+<a class="list-group-item" href="#navigation-81" data-toggle="collapse" data-parent="#navigation">khans\utils\components\rest <b class="caret"></b></a><div id="navigation-81" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-rest-authenticate.html">Authenticate</a>
+<a class="list-group-item" href="./khans-utils-components-rest-client.html">Client</a>
+<a class="list-group-item" href="./khans-utils-components-rest-security.html">Security</a></div>
+<a class="list-group-item" href="#navigation-82" data-toggle="collapse" data-parent="#navigation">khans\utils\components\workflow <b class="caret"></b></a><div id="navigation-82" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-workflow-wizflowmanager.html">WizflowManager</a></div>
+<a class="list-group-item" href="#navigation-83" data-toggle="collapse" data-parent="#navigation">khans\utils\controllers <b class="caret"></b></a><div id="navigation-83" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-controllers-khanconsolecontroller.html">KHanConsoleController</a>
+<a class="list-group-item" href="./khans-utils-controllers-khanrestcontroller.html">KHanRestController</a>
+<a class="list-group-item" href="./khans-utils-controllers-khanwebcontroller.html">KHanWebController</a></div>
+<a class="list-group-item" href="#navigation-84" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\controller <b class="caret"></b></a><div id="navigation-84" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-controller-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-85" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\crud <b class="caret"></b></a><div id="navigation-85" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-crud-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-86" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\form <b class="caret"></b></a><div id="navigation-86" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-form-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-87" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\model <b class="caret"></b></a><div id="navigation-87" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-model-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-88" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\migrations <b class="caret"></b></a><div id="navigation-88" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-migrations-khanmigration.html">KHanMigration</a></div>
+<a class="list-group-item" href="#navigation-89" data-toggle="collapse" data-parent="#navigation">khans\utils\models <b class="caret"></b></a><div id="navigation-89" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-khanuser.html">KHanUser</a></div>
+<a class="list-group-item" href="#navigation-90" data-toggle="collapse" data-parent="#navigation">khans\utils\models\queries <b class="caret"></b></a><div id="navigation-90" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-queries-khanquery.html">KHanQuery</a></div>
+<a class="list-group-item" href="#navigation-91" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets <b class="caret"></b></a><div id="navigation-91" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-captcha.html">Captcha</a>
+<a class="list-group-item" href="./khans-utils-widgets-confirmbutton.html">ConfirmButton</a>
+<a class="list-group-item" href="./khans-utils-widgets-datepicker.html">DatePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-daterangepicker.html">DateRangePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridasset.html">GridAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-khdropdown.html">KHDropdown</a></div>
+<a class="list-group-item" href="#navigation-92" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets\menu <b class="caret"></b></a><div id="navigation-92" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Final Class khans\utils\components\ArrayHelper</h1>
+<div class="top-nav">
+    <a href="index.html">All Classes</a>
+                | <a href="#methods">Methods</a>
+                    | <a href="#constants">Constants</a>
+    </div>
+
+<table class="summaryTable docClass table table-bordered">
+    <colgroup>
+        <col class="col-name" />
+        <col class="col-value" />
+    </colgroup>
+            <tr><th>Inheritance</th><td><a href="khans-utils-components-arrayhelper.html">khans\utils\components\ArrayHelper</a> &raquo;
+yii\helpers\ArrayHelper</td></tr>
+                                        <tr><th>Available since version</th><td>1.0</td></tr>
+            </table>
+
+<div class="class-description">
+    <p><strong>Class ArrayHelper contains all methods for simplifying work with arrays.</strong></p>
+    <p>For convenience this class extends \yii\helpers\ArrayHelper.</p>
+
+    </div>
+
+<a id="properties"></a>
+
+<a id="methods"></a>
+
+<div class="summary doc-method">
+<h2>Public Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="appendTo()">
+        <td><a href="khans-utils-components-arrayhelper.html#appendTo()-detail">appendTo()</a></td>
+        <td>Append the given string to all elements of the specified array
+Example:</td>
+        <td><a href="khans-utils-components-arrayhelper.html">khans\utils\components\ArrayHelper</a></td>
+    </tr>
+            <tr id="appendToKeys()">
+        <td><a href="khans-utils-components-arrayhelper.html#appendToKeys()-detail">appendToKeys()</a></td>
+        <td>Appends the given string to all keys of the specified array
+Example:</td>
+        <td><a href="khans-utils-components-arrayhelper.html">khans\utils\components\ArrayHelper</a></td>
+    </tr>
+            <tr id="groupBy()">
+        <td><a href="khans-utils-components-arrayhelper.html#groupBy()-detail">groupBy()</a></td>
+        <td>Convert an array to a pivot one based on at least one row. There is no need to a column attribute.</td>
+        <td><a href="khans-utils-components-arrayhelper.html">khans\utils\components\ArrayHelper</a></td>
+    </tr>
+            <tr id="pivot()">
+        <td><a href="khans-utils-components-arrayhelper.html#pivot()-detail">pivot()</a></td>
+        <td>Convert an array to a pivot one based on at least one column and one row.</td>
+        <td><a href="khans-utils-components-arrayhelper.html">khans\utils\components\ArrayHelper</a></td>
+    </tr>
+            <tr id="prependTo()">
+        <td><a href="khans-utils-components-arrayhelper.html#prependTo()-detail">prependTo()</a></td>
+        <td>Prepend the given string to all elements of the specified array
+Example:</td>
+        <td><a href="khans-utils-components-arrayhelper.html">khans\utils\components\ArrayHelper</a></td>
+    </tr>
+            <tr id="prependToKeys()">
+        <td><a href="khans-utils-components-arrayhelper.html#prependToKeys()-detail">prependToKeys()</a></td>
+        <td>Prepend the given string to all keys of the specified array
+Example:</td>
+        <td><a href="khans-utils-components-arrayhelper.html">khans\utils\components\ArrayHelper</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="events"></a>
+
+<a id="constants"></a>
+<div class="summary doc-const">
+    <h2>Constants</h2>
+
+    <p><a href="#" class="toggle">Hide inherited constants</a></p>
+
+    <table class="summary-table table table-striped table-bordered table-hover">
+    <colgroup>
+        <col class="col-const" />
+        <col class="col-value" />
+        <col class="col-description" />
+        <col class="col-defined" />
+    </colgroup>
+    <tr>
+        <th>Constant</th><th>Value</th><th>Description</th><th>Defined By</th>
+    </tr>
+            <tr id="FUNC_AVG">
+          <td id="FUNC_AVG-detail">FUNC_AVG</td>
+          <td>'average'</td>
+          <td>Aggregating function to average values
+                        </td>
+          <td><a href="khans-utils-components-arrayhelper.html">khans\utils\components\ArrayHelper</a></td>
+        </tr>
+            <tr id="FUNC_COUNT">
+          <td id="FUNC_COUNT-detail">FUNC_COUNT</td>
+          <td>'count'</td>
+          <td>Aggregating function to count values
+                        </td>
+          <td><a href="khans-utils-components-arrayhelper.html">khans\utils\components\ArrayHelper</a></td>
+        </tr>
+            <tr id="FUNC_SUM">
+          <td id="FUNC_SUM-detail">FUNC_SUM</td>
+          <td>'sum'</td>
+          <td>Aggregating function to sum values
+                        </td>
+          <td><a href="khans-utils-components-arrayhelper.html">khans\utils\components\ArrayHelper</a></td>
+        </tr>
+        </table>
+</div>
+
+<h2>Method Details</h2>
+
+<div class="method-doc">
+
+    <div class="detail-header h3" id="appendTo()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-arrayhelper.html#appendTo()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        appendTo()
+        <span class="detail-header-tag small">
+            public                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Append the given string to all elements of the specified array
+Example:</strong></p>
+
+        <pre><code class="hljs bash"><span class="hljs-built_in">echo</span> ArrayHelper::appendTo([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>], <span class="hljs-string">'_");
+// ['</span>a_<span class="hljs-string">', '</span>b_<span class="hljs-string">', '</span>c_<span class="hljs-string">', '</span>d_<span class="hljs-string">']
+echo ArrayHelper::appendTo(['</span>a<span class="hljs-string">'=&gt;'</span>A<span class="hljs-string">', '</span>b<span class="hljs-string">'=&gt;'</span>B<span class="hljs-string">'], '</span>_<span class="hljs-string">");
+// ['a' =&gt; 'A_', 'b' =&gt; 'B_']
+echo ArrayHelper::appendTo(['a'=&gt;['a', 'b', 'c', 'd'], 'b'=&gt;[1, 2, 3, 4]], '_"</span>);
+// [<span class="hljs-string">'a'</span>=&gt;[<span class="hljs-string">'a_'</span>, <span class="hljs-string">'b_'</span>, <span class="hljs-string">'c_'</span>, <span class="hljs-string">'d_'</span>], <span class="hljs-string">'b'</span>=&gt;[<span class="hljs-string">'1_'</span>, <span class="hljs-string">'2_'</span>, <span class="hljs-string">'3_'</span>, <span class="hljs-string">'4_'</span>]]
+</code></pre>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-components-arrayhelper.html#appendTo()-detail">appendTo</a></strong> ( <span style="color: #0000BB">$array</span>, <span style="color: #0000BB">$string</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$array</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$string</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="appendToKeys()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-arrayhelper.html#appendToKeys()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        appendToKeys()
+        <span class="detail-header-tag small">
+            public                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Appends the given string to all keys of the specified array
+Example:</strong></p>
+
+        <pre><code class="hljs bash"><span class="hljs-built_in">echo</span> ArrayHelper::appendToKeys([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>], <span class="hljs-string">'_");
+// ['</span><span class="hljs-number">0</span>_<span class="hljs-string">' =&gt; '</span>a<span class="hljs-string">', '</span><span class="hljs-number">1</span>_<span class="hljs-string">' =&gt; '</span>b<span class="hljs-string">', '</span><span class="hljs-number">2</span>_<span class="hljs-string">' =&gt; '</span>c<span class="hljs-string">', '</span><span class="hljs-number">3</span>_<span class="hljs-string">' =&gt; '</span>d<span class="hljs-string">']
+echo ArrayHelper::appendToKeys(['</span>a<span class="hljs-string">'=&gt;'</span>A<span class="hljs-string">', '</span>b<span class="hljs-string">'=&gt;'</span>B<span class="hljs-string">'], '</span>_<span class="hljs-string">");
+// ['a_' =&gt; 'A', 'b_' =&gt; 'B']
+echo ArrayHelper::appendToKeys(['a'=&gt;['a', 'b', 'c', 'd'], 'b'=&gt;[1, 2, 3, 4]], '_"</span>);
+// [<span class="hljs-string">'a_'</span>=&gt;[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>], <span class="hljs-string">'b'</span>=&gt;[<span class="hljs-string">'1'</span>, <span class="hljs-string">'2'</span>, <span class="hljs-string">'3'</span>, <span class="hljs-string">'4'</span>]]
+</code></pre>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-components-arrayhelper.html#appendToKeys()-detail">appendToKeys</a></strong> ( <span style="color: #0000BB">$array</span>, <span style="color: #0000BB">$string</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$array</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$string</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="groupBy()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-arrayhelper.html#groupBy()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        groupBy()
+        <span class="detail-header-tag small">
+            public                        static            method
+                            (available since version 0.2-970803)
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Convert an array to a pivot one based on at least one row. There is no need to a column attribute.</strong></p>
+
+        <p>If $pivotValue is a closure, output data would contain a new column named <code>_data_</code> containing results of the
+closure. Note that the closure output of multiple rows are not aggregated.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-components-arrayhelper.html#groupBy()-detail">groupBy</a></strong> ( <span style="color: #0000BB">$inputArray</span>, <span style="color: #0000BB">$pivotRow</span>, <span style="color: #0000BB">$pivotValue</span>, <span style="color: #0000BB">$aggFunc&nbsp;</span><span style="color: #007700">=&nbsp;\</span><span style="color: #0000BB">khans</span><span style="color: #007700">\</span><span style="color: #0000BB">utils</span><span style="color: #007700">\</span><span style="color: #0000BB">components</span><span style="color: #007700">\</span><span style="color: #0000BB">ArrayHelper</span><span style="color: #007700">::</span><span style="color: #0000BB">FUNC_SUM</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$inputArray</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>A two-dimensional array containing data</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$pivotRow</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a>|<a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>Name(s) of columns in the input array to use as the rows in the output array</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$pivotValue</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a>|<a href="http://www.php.net/language.types.callable">callable</a></td>
+                  <td class="param-desc-col"><p>Name of a numerical column in the input array to sum, or a closure.</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$aggFunc</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Type of aggregation used</p>
+</td>
+                </tr>
+                                                </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="pivot()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-arrayhelper.html#pivot()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        pivot()
+        <span class="detail-header-tag small">
+            public                        static            method
+                            (available since version 0.2-970803)
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Convert an array to a pivot one based on at least one column and one row.</strong></p>
+
+        <p>Note that the closure output of multiple rows are not aggregated.</p>
+
+        <p>See also <a href="khans-utils-components-arrayhelper.html#groupBy()-detail">groupBy()</a>.</p>    </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-components-arrayhelper.html#pivot()-detail">pivot</a></strong> ( <span style="color: #0000BB">$inputArray</span>, <span style="color: #0000BB">$pivotColumn</span>, <span style="color: #0000BB">$pivotRow</span>, <span style="color: #0000BB">$pivotValue</span>, <span style="color: #0000BB">$aggFunc&nbsp;</span><span style="color: #007700">=&nbsp;\</span><span style="color: #0000BB">khans</span><span style="color: #007700">\</span><span style="color: #0000BB">utils</span><span style="color: #007700">\</span><span style="color: #0000BB">components</span><span style="color: #007700">\</span><span style="color: #0000BB">ArrayHelper</span><span style="color: #007700">::</span><span style="color: #0000BB">FUNC_SUM</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$inputArray</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>A two-dimensional array containing data</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$pivotColumn</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a>|<a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>Name(s) of columns in the input array to use as the columns in the output</p>
+<pre><code class="hljs nginx"><span class="hljs-title">array</span>
+</code></pre>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$pivotRow</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a>|<a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>Name(s) of columns in the input array to use as the rows in the output array</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$pivotValue</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a>|<a href="http://www.php.net/language.types.callable">callable</a></td>
+                  <td class="param-desc-col"><p>Name of a numerical column in the input array to sum, or a closure</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$aggFunc</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Type of aggregation used</p>
+</td>
+                </tr>
+                                                </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="prependTo()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-arrayhelper.html#prependTo()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        prependTo()
+        <span class="detail-header-tag small">
+            public                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Prepend the given string to all elements of the specified array
+Example:</strong></p>
+
+        <pre><code class="hljs bash"><span class="hljs-built_in">echo</span> ArrayHelper::prependTo([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>], <span class="hljs-string">'_");
+// ['</span>_a<span class="hljs-string">', '</span>_b<span class="hljs-string">', '</span>_c<span class="hljs-string">', '</span>_d<span class="hljs-string">']
+echo ArrayHelper::prependTo(['</span>a<span class="hljs-string">'=&gt;'</span>A<span class="hljs-string">', '</span>b<span class="hljs-string">'=&gt;'</span>B<span class="hljs-string">'], '</span>_<span class="hljs-string">");
+// ['a' =&gt; '_A', 'b' =&gt; '_B']
+echo ArrayHelper::prependTo(['a'=&gt;['a', 'b', 'c', 'd'], 'b'=&gt;[1, 2, 3, 4]], '_"</span>);
+// [<span class="hljs-string">'a'</span>=&gt;[<span class="hljs-string">'_a'</span>, <span class="hljs-string">'_b'</span>, <span class="hljs-string">'_c'</span>, <span class="hljs-string">'_d'</span>], <span class="hljs-string">'b'</span>=&gt;[<span class="hljs-string">'_1'</span>, <span class="hljs-string">'_2'</span>, <span class="hljs-string">'_3'</span>, <span class="hljs-string">'_4'</span>]]
+</code></pre>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-components-arrayhelper.html#prependTo()-detail">prependTo</a></strong> ( <span style="color: #0000BB">$array</span>, <span style="color: #0000BB">$string</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$array</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$string</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="prependToKeys()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-arrayhelper.html#prependToKeys()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        prependToKeys()
+        <span class="detail-header-tag small">
+            public                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Prepend the given string to all keys of the specified array
+Example:</strong></p>
+
+        <pre><code class="hljs bash"><span class="hljs-built_in">echo</span> ArrayHelper::prependToKeys([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>], <span class="hljs-string">'_");
+// ['</span>_0<span class="hljs-string">' =&gt; '</span>a<span class="hljs-string">', '</span>_1<span class="hljs-string">' =&gt; '</span>b<span class="hljs-string">', '</span>_2<span class="hljs-string">' =&gt; '</span>c<span class="hljs-string">', '</span>_3<span class="hljs-string">' =&gt; '</span>d<span class="hljs-string">']
+echo ArrayHelper::prependToKeys(['</span>a<span class="hljs-string">'=&gt;'</span>A<span class="hljs-string">', '</span>b<span class="hljs-string">'=&gt;'</span>B<span class="hljs-string">'], '</span>_<span class="hljs-string">");
+// ['_a' =&gt; 'A', '_b' =&gt; 'B']
+echo ArrayHelper::prependToKeys(['a'=&gt;['a', 'b', 'c', 'd'], 'b'=&gt;[1, 2, 3, 4]], '_"</span>);
+// [<span class="hljs-string">'a_'</span>=&gt;[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>], <span class="hljs-string">'b'</span>=&gt;[<span class="hljs-string">'1'</span>, <span class="hljs-string">'2'</span>, <span class="hljs-string">'3'</span>, <span class="hljs-string">'4'</span>]]
+</code></pre>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-components-arrayhelper.html#prependToKeys()-detail">prependToKeys</a></strong> ( <span style="color: #0000BB">$array</span>, <span style="color: #0000BB">$string</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$array</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$string</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                </table>
+
+<!--	-->
+</div>
+        </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Sat, 29 Dec 2018 08:56:11 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

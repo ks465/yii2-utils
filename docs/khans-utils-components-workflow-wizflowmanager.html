@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/afbdca15/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/34135542/style.css" rel="stylesheet">
+<script src="./assets/84a200c2/jquery.js"></script>
+<script src="./assets/afbdca15/js/bootstrap.js"></script>
+<script src="./assets/96f6715f/jssearch.js"></script>    <title>WizflowManager, khans\utils\components\workflow\WizflowManager - KHanUtilsAPI</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w245" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w245-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">KHanUtilsAPI</a></div><div id="w245-collapse" class="collapse navbar-collapse"><ul id="w246" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-228" data-toggle="collapse" data-parent="#navigation">common\actions <b class="caret"></b></a><div id="navigation-228" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-actions-helpaction.html">HelpAction</a></div>
+<a class="list-group-item" href="#navigation-229" data-toggle="collapse" data-parent="#navigation">common\widgets\columns <b class="caret"></b></a><div id="navigation-229" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-widgets-columns-progresscolumn.html">ProgressColumn</a></div>
+<a class="list-group-item" href="#navigation-230" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-230" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-231" data-toggle="collapse" data-parent="#navigation">khans\utils\columns <b class="caret"></b></a><div id="navigation-231" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-booleancolumn.html">BooleanColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-datacolumn.html">DataColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-enumcolumn.html">EnumColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-jalalicolumn.html">JalaliColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-radiocolumn.html">RadioColumn</a></div>
+<a class="list-group-item" href="#navigation-232" data-toggle="collapse" data-parent="#navigation">khans\utils\components <b class="caret"></b></a><div id="navigation-232" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
+<a class="list-group-item" href="./khans-utils-components-filehelper.html">FileHelper</a>
+<a class="list-group-item" href="./khans-utils-components-jalali.html">Jalali</a>
+<a class="list-group-item" href="./khans-utils-components-jalalix.html">JalaliX</a>
+<a class="list-group-item" href="./khans-utils-components-mathhelper.html">MathHelper</a>
+<a class="list-group-item" href="./khans-utils-components-sqlformatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./khans-utils-components-stringhelper.html">StringHelper</a>
+<a class="list-group-item" href="./khans-utils-components-viewhelper.html">ViewHelper</a></div>
+<a class="list-group-item" href="#navigation-233" data-toggle="collapse" data-parent="#navigation">khans\utils\components\rest <b class="caret"></b></a><div id="navigation-233" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-rest-authenticate.html">Authenticate</a>
+<a class="list-group-item" href="./khans-utils-components-rest-client.html">Client</a>
+<a class="list-group-item" href="./khans-utils-components-rest-security.html">Security</a></div>
+<a class="list-group-item active" href="#navigation-234" data-toggle="collapse" data-parent="#navigation">khans\utils\components\workflow <b class="caret"></b></a><div id="navigation-234" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./khans-utils-components-workflow-wizflowmanager.html">WizflowManager</a></div>
+<a class="list-group-item" href="#navigation-235" data-toggle="collapse" data-parent="#navigation">khans\utils\controllers <b class="caret"></b></a><div id="navigation-235" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-controllers-khanconsolecontroller.html">KHanConsoleController</a>
+<a class="list-group-item" href="./khans-utils-controllers-khanrestcontroller.html">KHanRestController</a>
+<a class="list-group-item" href="./khans-utils-controllers-khanwebcontroller.html">KHanWebController</a></div>
+<a class="list-group-item" href="#navigation-236" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\controller <b class="caret"></b></a><div id="navigation-236" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-controller-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-237" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\crud <b class="caret"></b></a><div id="navigation-237" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-crud-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-238" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\form <b class="caret"></b></a><div id="navigation-238" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-form-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-239" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\model <b class="caret"></b></a><div id="navigation-239" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-model-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-240" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\migrations <b class="caret"></b></a><div id="navigation-240" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-migrations-khanmigration.html">KHanMigration</a></div>
+<a class="list-group-item" href="#navigation-241" data-toggle="collapse" data-parent="#navigation">khans\utils\models <b class="caret"></b></a><div id="navigation-241" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-khanuser.html">KHanUser</a></div>
+<a class="list-group-item" href="#navigation-242" data-toggle="collapse" data-parent="#navigation">khans\utils\models\queries <b class="caret"></b></a><div id="navigation-242" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-queries-khanquery.html">KHanQuery</a></div>
+<a class="list-group-item" href="#navigation-243" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets <b class="caret"></b></a><div id="navigation-243" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-captcha.html">Captcha</a>
+<a class="list-group-item" href="./khans-utils-widgets-confirmbutton.html">ConfirmButton</a>
+<a class="list-group-item" href="./khans-utils-widgets-datepicker.html">DatePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-daterangepicker.html">DateRangePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridasset.html">GridAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-khdropdown.html">KHDropdown</a></div>
+<a class="list-group-item" href="#navigation-244" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets\menu <b class="caret"></b></a><div id="navigation-244" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Class khans\utils\components\workflow\WizflowManager</h1>
+<div class="top-nav">
+    <a href="index.html">All Classes</a>
+            | <a href="#properties">Properties</a>
+                | <a href="#methods">Methods</a>
+            </div>
+
+<table class="summaryTable docClass table table-bordered">
+    <colgroup>
+        <col class="col-name" />
+        <col class="col-value" />
+    </colgroup>
+            <tr><th>Inheritance</th><td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a> &raquo;
+raoul2000\wizflow\WizflowManager</td></tr>
+                                        </table>
+
+<div class="class-description">
+    <p><strong>Implement the Wizard UI design pattern using yii2-workflow.</strong></p>
+    
+    </div>
+
+<a id="properties"></a>
+
+<div class="summary doc-property">
+<h2>Public Properties</h2>
+
+<p><a href="#" class="toggle">Hide inherited properties</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-property" />
+    <col class="col-type" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="$skeyName">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#$skeyName-detail">$skeyName</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>Session key name used to store steps</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="$wizardNamespace">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#$wizardNamespace-detail">$wizardNamespace</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>Namespace of the parent directory containing wiazards</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="$workflowBehavior">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#$workflowBehavior-detail">$workflowBehavior</a></td>
+        <td><a href="http://www.php.net/language.types.array">array</a></td>
+        <td>SimpleWorkflowBehavior configuration array attached to all wizard steps</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="$workflowBehaviorName">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#$workflowBehaviorName-detail">$workflowBehaviorName</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>Name of the workflow behavior that is attached to all wizards steps</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="$workflowSourceName">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#$workflowSourceName-detail">$workflowSourceName</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>Name of the workflow source component to use</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="methods"></a>
+
+<div class="summary doc-method">
+<h2>Public Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="destroy()">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#destroy()-detail">destroy()</a></td>
+        <td>Clean up session data that may have been stored by this wizard.</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="getCurrentStep()">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#getCurrentStep()-detail">getCurrentStep()</a></td>
+        <td>Returns the model associated with the current wizard step.</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="getNextStep()">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#getNextStep()-detail">getNextStep()</a></td>
+        <td>Add the current step to the path and creates the next step form which becomes the new current step.</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="getPath()">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#getPath()-detail">getPath()</a></td>
+        <td>Returns an array containing all steps models that have been done until now.</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="getPreviousStep()">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#getPreviousStep()-detail">getPreviousStep()</a></td>
+        <td>Replace the current step, with the last step of the path and returns it.</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="getWorkflowSource()">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#getWorkflowSource()-detail">getWorkflowSource()</a></td>
+        <td>Returns the workflow source component used by the manager</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="getWorkflowSourceName()">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#getWorkflowSourceName()-detail">getWorkflowSourceName()</a></td>
+        <td>Returns the name workflow source component to use.</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="hasCurrentStep()">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#hasCurrentStep()-detail">hasCurrentStep()</a></td>
+        <td></td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="init()">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#init()-detail">init()</a></td>
+        <td>Loads existing wizard data if available.</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="save()">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#save()-detail">save()</a></td>
+        <td>Save the wizard data into the current session</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="start()">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#start()-detail">start()</a></td>
+        <td>Initiate the wizard.</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+            <tr id="updateCurrentStep()">
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html#updateCurrentStep()-detail">updateCurrentStep()</a></td>
+        <td>Updates the current step with the model passed as argument.</td>
+        <td><a href="khans-utils-components-workflow-wizflowmanager.html">khans\utils\components\workflow\WizflowManager</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="events"></a>
+
+<a id="constants"></a>
+
+<h2>Property Details</h2>
+
+<div class="property-doc">
+
+    <div class="detail-header h3" id="$skeyName-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#$skeyName-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $skeyName        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>Session key name used to store steps</p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-components-workflow-wizflowmanager.html#$skeyName-detail">$skeyName</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'_wiz'</span></div>
+
+
+    <div class="detail-header h3" id="$wizardNamespace-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#$wizardNamespace-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $wizardNamespace        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>Namespace of the parent directory containing wiazards</p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-components-workflow-wizflowmanager.html#$wizardNamespace-detail">$wizardNamespace</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">''</span></div>
+
+
+    <div class="detail-header h3" id="$workflowBehavior-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#$workflowBehavior-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $workflowBehavior        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>SimpleWorkflowBehavior configuration array attached to all wizard steps</p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="khans-utils-components-workflow-wizflowmanager.html#$workflowBehavior-detail">$workflowBehavior</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'class'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'\raoul2000\workflow\base\SimpleWorkflowBehavior'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'defaultWorkflowId'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'Wizflow'</span><span style="color: #007700">]</span></div>
+
+
+    <div class="detail-header h3" id="$workflowBehaviorName-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#$workflowBehaviorName-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $workflowBehaviorName        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>Name of the workflow behavior that is attached to all wizards steps</p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-components-workflow-wizflowmanager.html#$workflowBehaviorName-detail">$workflowBehaviorName</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'wizflowBehavior'</span></div>
+
+
+    <div class="detail-header h3" id="$workflowSourceName-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#$workflowSourceName-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $workflowSourceName        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>Name of the workflow source component to use</p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-components-workflow-wizflowmanager.html#$workflowSourceName-detail">$workflowSourceName</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'workflowSource'</span></div>
+
+</div>
+<h2>Method Details</h2>
+
+<div class="method-doc">
+
+    <div class="detail-header h3" id="destroy()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#destroy()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        destroy()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Clean up session data that may have been stored by this wizard.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-components-workflow-wizflowmanager.html#destroy()-detail">destroy</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getCurrentStep()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#getCurrentStep()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getCurrentStep()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Returns the model associated with the current wizard step.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">\khans\utils\components\workflow\Model|<a href="http://www.php.net/language.types.null">null</a></span> <strong><a href="khans-utils-components-workflow-wizflowmanager.html#getCurrentStep()-detail">getCurrentStep</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">\khans\utils\components\workflow\Model|<a href="http://www.php.net/language.types.null">null</a></td>
+                  <td class="param-desc-col"><p>The current stemp model instance or NULL if no current step is defined.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getNextStep()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#getNextStep()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getNextStep()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Add the current step to the path and creates the next step form which becomes the new current step.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">\khans\utils\components\workflow\Model</span> <strong><a href="khans-utils-components-workflow-wizflowmanager.html#getNextStep()-detail">getNextStep</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">\khans\utils\components\workflow\Model</td>
+                  <td class="param-desc-col"><p>The new current step</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getPath()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#getPath()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getPath()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Returns an array containing all steps models that have been done until now.</strong></p>
+
+        <p>The current step is not included in the returned array.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-components-workflow-wizflowmanager.html#getPath()-detail">getPath</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>List of steps that have been performed until now</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getPreviousStep()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#getPreviousStep()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getPreviousStep()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Replace the current step, with the last step of the path and returns it.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">\khans\utils\components\workflow\Model</span> <strong><a href="khans-utils-components-workflow-wizflowmanager.html#getPreviousStep()-detail">getPreviousStep</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">\khans\utils\components\workflow\Model</td>
+                  <td class="param-desc-col"><p>The new current step</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getWorkflowSource()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#getWorkflowSource()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getWorkflowSource()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Returns the workflow source component used by the manager</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">\khans\utils\components\workflow\IWorkflowSource</span> <strong><a href="khans-utils-components-workflow-wizflowmanager.html#getWorkflowSource()-detail">getWorkflowSource</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">\khans\utils\components\workflow\IWorkflowSource</td>
+                  <td class="param-desc-col"><p>The workflow source component instance</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getWorkflowSourceName()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#getWorkflowSourceName()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getWorkflowSourceName()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Returns the name workflow source component to use.</strong></p>
+
+        <p>Note that the component must be available and registred in the Yii::$app container.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-workflow-wizflowmanager.html#getWorkflowSourceName()-detail">getWorkflowSourceName</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>The name of the workflow source component</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="hasCurrentStep()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#hasCurrentStep()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        hasCurrentStep()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="khans-utils-components-workflow-wizflowmanager.html#hasCurrentStep()-detail">hasCurrentStep</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+                  <td class="param-desc-col"><p>TRUE if the wizard process as started (i.e. a current step is available)
+FALSE otherwise.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="init()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#init()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        init()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Loads existing wizard data if available.</strong></p>
+
+        
+        <p>See also <span class="broken-link">\yii\base\Object::init()</span>.</p>    </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-components-workflow-wizflowmanager.html#init()-detail">init</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="save()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#save()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        save()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Save the wizard data into the current session</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-components-workflow-wizflowmanager.html#save()-detail">save</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="start()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#start()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        start()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Initiate the wizard.</strong></p>
+
+        <p>This method reset the existing wizard path and returns the model for the first step.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">\khans\utils\components\workflow\Model</span> <strong><a href="khans-utils-components-workflow-wizflowmanager.html#start()-detail">start</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">\khans\utils\components\workflow\Model</td>
+                  <td class="param-desc-col"><p>The model for the first step</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="updateCurrentStep()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-components-workflow-wizflowmanager.html#updateCurrentStep()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        updateCurrentStep()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Updates the current step with the model passed as argument.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-components-workflow-wizflowmanager.html#updateCurrentStep()-detail">updateCurrentStep</a></strong> ( <span style="color: #0000BB">$model</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$model</span></td>
+                  <td class="param-type-col">\khans\utils\components\workflow\Model</td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                    <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\base\Exception</td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                        </table>
+
+<!--	-->
+</div>
+        </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Sat, 29 Dec 2018 08:56:11 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

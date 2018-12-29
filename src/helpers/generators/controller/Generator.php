@@ -5,6 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
+
 namespace khans\utils\helpers\generators\controller;
 
 use Yii;
@@ -16,12 +17,11 @@ use yii\helpers\StringHelper;
 /**
  * This generator will generate a controller and one or a few action view files.
  *
- * @property array $actionIDs An array of action IDs entered by the user. This property is read-only.
+ * @property array  $actionIDs An array of action IDs entered by the user. This property is read-only.
  * @property string $controllerFile The controller class file path. This property is read-only.
  * @property string $controllerID The controller ID. This property is read-only.
  * @property string $controllerNamespace The namespace of the controller class. This property is read-only.
  * @property string $controllerSubPath The controller sub path. This property is read-only.
- *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
@@ -43,10 +43,14 @@ class Generator extends \yii\gii\Generator
      * @var string list of action IDs separated by commas or spaces
      */
     public $actions = 'index';
-
+    /**
+     * @var bool whether to wrap the `GridView` or `ListView` widget with the `yii\widgets\Pjax` widget
+     * @since 2.0.5
+     */
+    public $enablePjax = false;
 
     /**
-     * {@inheritdoc}
+     * @return string name of the code generator
      */
     public function getName()
     {
@@ -54,7 +58,7 @@ class Generator extends \yii\gii\Generator
     }
 
     /**
-     * {@inheritdoc}
+     * @return string the detailed description of the generator.
      */
     public function getDescription()
     {
@@ -63,36 +67,51 @@ class Generator extends \yii\gii\Generator
     }
 
     /**
-     * {@inheritdoc}
+     * Returns the validation rules for attributes
+     *
+     * @return array validation rules
      */
     public function rules()
     {
         return array_merge(parent::rules(), [
             [['controllerClass', 'actions', 'baseClass'], 'filter', 'filter' => 'trim'],
             [['controllerClass', 'baseClass'], 'required'],
-            ['controllerClass', 'match', 'pattern' => '/^[\w\\\\]*Controller$/', 'message' => 'Only word characters and backslashes are allowed, and the class name must end with "Controller".'],
+            [
+                'controllerClass', 'match', 'pattern' => '/^[\w\\\\]*Controller$/',
+                                            'message' => 'Only word characters and backslashes are allowed, and the class name must end with "Controller".',
+            ],
             ['controllerClass', 'validateNewClass'],
-            ['baseClass', 'match', 'pattern' => '/^[\w\\\\]*$/', 'message' => 'Only word characters and backslashes are allowed.'],
-            ['actions', 'match', 'pattern' => '/^[a-z][a-z0-9\\-,\\s]*$/', 'message' => 'Only a-z, 0-9, dashes (-), spaces and commas are allowed.'],
+            [
+                'baseClass', 'match', 'pattern' => '/^[\w\\\\]*$/',
+                                      'message' => 'Only word characters and backslashes are allowed.',
+            ],
+            [
+                'actions', 'match', 'pattern' => '/^[a-z][a-z0-9\\-,\\s]*$/',
+                                    'message' => 'Only a-z, 0-9, dashes (-), spaces and commas are allowed.',
+            ],
             ['viewPath', 'safe'],
         ]);
     }
 
     /**
-     * {@inheritdoc}
+     * Returns the attribute labels.
+     *
+     * @return array attribute labels (name => label)
      */
     public function attributeLabels()
     {
         return [
-            'baseClass' => 'Base Class',
+            'baseClass'       => 'Base Class',
             'controllerClass' => 'Controller Class',
-            'viewPath' => 'View Path',
-            'actions' => 'Action IDs',
+            'viewPath'        => 'View Path',
+            'actions'         => 'Action IDs',
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * Returns a list of code template files that are required.
+     *
+     * @return array list of code template files that are required.
      */
     public function requiredTemplates()
     {
@@ -103,7 +122,11 @@ class Generator extends \yii\gii\Generator
     }
 
     /**
-     * {@inheritdoc}
+     * Returns the list of sticky attributes.
+     * A sticky attribute will remember its value and will initialize the attribute with this value
+     * when the generator is restarted.
+     *
+     * @return array list of sticky attributes
      */
     public function stickyAttributes()
     {
@@ -111,7 +134,11 @@ class Generator extends \yii\gii\Generator
     }
 
     /**
-     * {@inheritdoc}
+     * Returns the list of hint messages.
+     * The array keys are the attribute names, and the array values are the corresponding hint messages.
+     * Hint messages will be displayed to end users when they are filling the form for the generator.
+     *
+     * @return array the list of hint messages
      */
     public function hints()
     {
@@ -120,21 +147,23 @@ class Generator extends \yii\gii\Generator
                 provide a fully qualified namespaced class (e.g. <code>app\controllers\PostController</code>),
                 and class name should be in CamelCase ending with the word <code>Controller</code>. Make sure the class
                 is using the same namespace as specified by your application\'s controllerNamespace property.',
-            'actions' => 'Provide one or multiple action IDs to generate empty action method(s) in the controller. Separate multiple action IDs with commas or spaces.
+            'actions'         => 'Provide one or multiple action IDs to generate empty action method(s) in the controller. Separate multiple action IDs with commas or spaces.
                 Action IDs should be in lower case. For example:
                 <ul>
                     <li><code>index</code> generates <code>actionIndex()</code></li>
                     <li><code>create-order</code> generates <code>actionCreateOrder()</code></li>
                 </ul>',
-            'viewPath' => 'Specify the directory for storing the view scripts for the controller. You may use path alias here, e.g.,
+            'viewPath'        => 'Specify the directory for storing the view scripts for the controller. You may use path alias here, e.g.,
                 <code>/var/www/basic/controllers/views/order</code>, <code>@app/views/order</code>. If not set, it will default
                 to <code>@app/views/ControllerID</code>',
-            'baseClass' => 'This is the class that the new controller class will extend from. Please make sure the class exists and can be autoloaded.',
+            'baseClass'       => 'This is the class that the new controller class will extend from. Please make sure the class exists and can be autoloaded.',
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * Returns the message to be displayed when the newly generated code is saved successfully.
+     *
+     * @return string the message to be displayed when the newly generated code is saved successfully.
      */
     public function successMessage()
     {
@@ -143,6 +172,7 @@ class Generator extends \yii\gii\Generator
 
     /**
      * This method returns a link to try controller generated
+     *
      * @see https://github.com/yiisoft/yii2-gii/issues/182
      * @return string
      * @since 2.0.6
@@ -159,11 +189,16 @@ class Generator extends \yii\gii\Generator
         } else {
             $route = $this->getControllerSubPath() . $this->getControllerID() . '/' . reset($actions);
         }
-        return ' You may ' . Html::a('try it now', Yii::$app->getUrlManager()->createUrl($route), ['target' => '_blank', 'rel' => 'noopener noreferrer']) . '.';
+
+        return ' You may ' . Html::a('try it now', Yii::$app->getUrlManager()->createUrl($route), [
+                'target' => '_blank', 'rel' => 'noopener noreferrer',
+            ]) . '.';
     }
 
     /**
-     * {@inheritdoc}
+     * Generates the code based on the current user input and the specified code template files.
+     *
+     * @return CodeFile[] a list of code files to be created.
      */
     public function generate()
     {
@@ -186,6 +221,7 @@ class Generator extends \yii\gii\Generator
 
     /**
      * Normalizes [[actions]] into an array of action IDs.
+     *
      * @return array an array of action IDs entered by the user
      */
     public function getActionIDs()
@@ -210,12 +246,14 @@ class Generator extends \yii\gii\Generator
     public function getControllerID()
     {
         $name = StringHelper::basename($this->controllerClass);
+
         return Inflector::camel2id(substr($name, 0, strlen($name) - 10));
     }
 
     /**
      * This method will return sub path for controller if it
      * is located in subdirectory of application controllers dir
+     *
      * @see https://github.com/yiisoft/yii2-gii/issues/182
      * @since 2.0.6
      * @return string the controller sub path
@@ -228,11 +266,13 @@ class Generator extends \yii\gii\Generator
             $subPath = substr($controllerNamespace, strlen(Yii::$app->controllerNamespace));
             $subPath = ($subPath !== '') ? str_replace('\\', '/', substr($subPath, 1)) . '/' : '';
         }
+
         return $subPath;
     }
 
     /**
      * @param string $action the action ID
+     *
      * @return string the action view file path
      */
     public function getViewFile($action)
@@ -250,6 +290,7 @@ class Generator extends \yii\gii\Generator
     public function getControllerNamespace()
     {
         $name = StringHelper::basename($this->controllerClass);
-        return ltrim(substr($this->controllerClass, 0, - (strlen($name) + 1)), '\\');
+
+        return ltrim(substr($this->controllerClass, 0, -(strlen($name) + 1)), '\\');
     }
 }

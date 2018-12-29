@@ -18,7 +18,7 @@ use yii\db\Migration;
  * Most of these capabilities are targeted toward MariaDB only.
  *
  * @package KHanS\Utils
- * @version 0.3.2-970804
+ * @version 0.3.3-971006
  * @since   1.0
  */
 class KHanMigration extends Migration
@@ -41,12 +41,26 @@ class KHanMigration extends Migration
     }
 
     /**
+     * Create an auto increment primary key of type SMALLINT
+     *
+     * @param integer $length precision definition
+     *
+     * @return \yii\db\ColumnSchemaBuilder|\yii\db\mysql\ColumnSchemaBuilder the column instance which can be further
+     * customized.
+     */
+    protected function smallPrimaryKey($length = null)
+    {
+        return $this->smallInteger($length)->unique()->notNull()->append(' NOT NULL AUTO_INCREMENT');
+    }
+
+
+    /**
      * Creates a longtext column.
      *
      * @return \yii\db\ColumnSchemaBuilder|\yii\db\mysql\ColumnSchemaBuilder the column instance which can be further
      * customized.
      */
-    public function longText()
+    protected function longText()
     {
         try {
             return $this->getDb()->getSchema()->createColumnSchemaBuilder('longtext');
@@ -61,7 +75,7 @@ class KHanMigration extends Migration
      * @return \yii\db\ColumnSchemaBuilder|\yii\db\mysql\ColumnSchemaBuilder the column instance which can be further
      * customized.
      */
-    public function longBlob()
+    protected function longBlob()
     {
         try {
             return $this->getDb()->getSchema()->createColumnSchemaBuilder('longblob');

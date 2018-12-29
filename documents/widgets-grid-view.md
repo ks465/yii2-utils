@@ -102,6 +102,7 @@ echo GridView::widget([
         'icon'    => 'send',
         'class'   => '',
         'message' => '',
+        'hint'    => 'با همه انتخاب شده‌ها',
     ],
     'createAction' => [
          'action' => 'create',
@@ -128,3 +129,71 @@ createAction can be
         'class'  => 'btn btn-success btn-xs', //class of shown link
         'ajax'   => true, //true adds `role => modal-remote` will be set in button options.
                           //false makes `role => ''`.
+
+###BulkAction
++ Set as array. In this scenario one action is available to take act upon the selection in the grid. The submit method is AJAX.
+```php
+'bulkAction' => [
+        'action'  => 'some-action',
+        'label'   => 'Do Somthing',
+        'icon'    => 'send',
+        'class'   => '',
+        'message' => '',
+        'hint'    => 'با همه انتخاب شده‌ها',
+    ],
+```
++ Set as DropDown. In this scenario multiple actions are available to take act upon the selection in the grid.
+In this case the submit method is also AJAX. See [KHDropdown](widgets-dropdown.md) for details.
+```php
+'bulkAction' => [
+    'action'  =>khans\utils\widgets\KHDropdown::widget([
+        'items' => [
+            [
+                'label' => 'دریافت داده‌های صفحه',
+            ],
+            [
+                'label'   => 'دستور یک',
+                'url'     => 'index',
+                'message' => 'پیام شماره یک',
+            ],
+            [
+                'label' => 'دستورات',
+                'class' => 'danger',
+                'items' => [
+                    [
+                        'label'   => 'دستور ۲',
+                        'message' => 'پیام شماره ۲',
+                    ],
+                    [
+                        'label'   => 'دستور سه',
+                        'url'     => 'about',
+                        'message' => 'پیام شماره سه',
+                        'class'   => 'danger',
+                    ],
+                    [
+                        'label'   => 'باز هم دستور',
+                        'message' => 'پیام شماره چهار',
+                        'url'     => 'login',
+                    ],
+                ],
+            ],
+            [
+                'label'   => 'باز هم یک دستور دیگر',
+                'url'     => '#',
+                'message' => 'پیام شماره پنج',
+            ],
+            '<li class="divider"></li>',
+            [
+                'label' => 'دستور جدا شده',
+                'url'   => '#',
+                'class' => 'success',
+            ],
+        ]
+        ]),
+    'label' => 'Do Something',
+    'icon' => 'send',
+    'class'   => '',
+    'message' => '',
+    'hint'    => 'با همه انتخاب شده‌ها',
+]
+```

@@ -26,7 +26,7 @@ use yii\web\Response;
 /**
  * Class KHanConsoleController offers common behavior for web controllers
  *
- * @package khans\utils\components\rest
+ * @package khans\utils\controllers
  * @version 0.1.0-970915
  * @since 1.0
  */

@@ -68,10 +68,10 @@ class m130524_201442_CreateUserTables extends KHanMigration
             'email'  => $this->string(64)->notNull()->unique()->comment('ایمیل کاربر'),
 
             'status'          => $this->smallInteger()->notNull()->defaultValue(KHanIdentity::STATUS_ACTIVE)->comment('وضعیت کاربر'),
-            'last_visit_time' => $this->timestamp()->comment('آخرین زمان دسترسی'),
-            'create_time'     => $this->timestamp()->notNull()->comment('زمان ثبت نام'),
-            'update_time'     => $this->timestamp()->comment('زمان آخرین ویرایش'),
-            'delete_time'     => $this->timestamp()->comment('زمان پاک شدن از سامانه'),
+            'last_visit_time' => $this->bigInteger()->comment('آخرین زمان دسترسی'),
+            'create_time'     => $this->bigInteger()->notNull()->comment('زمان ثبت نام'),
+            'update_time'     => $this->bigInteger()->comment('زمان آخرین ویرایش'),
+            'delete_time'     => $this->bigInteger()->comment('زمان پاک شدن از سامانه'),
         ], $this->comment($tableComment));
     }
 
@@ -95,8 +95,9 @@ class m130524_201442_CreateUserTables extends KHanMigration
             'name'          => 'سامانه',
             'family'        => 'خودکار',
             'email'         => 'noreply@khan.org',
-            'status'        => KHanIdentity::STATUS_PENDING,
+            'status'        => KHanIdentity::STATUS_DISABLED,
         ], false);
+        $systemUser->generateAccessToken();
 
         if (!$systemUser->save(false)) {
             throw new \yii\base\Exception('Error when creating system user:' . $systemUser->getFirstErrors());

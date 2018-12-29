@@ -11,11 +11,9 @@ namespace khans\utils\columns;
 
 use kartik\helpers\Html;
 use khans\utils\components\Jalali;
-use khans\utils\models\KHanIdentity;
-use khans\utils\models\KHanModel;
+use khans\utils\models\{KHanIdentity, KHanModel};
 use Yii;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
+use yii\helpers\{ArrayHelper, Url};
 
 /**
  * Show column in grid views for actions on the data.
@@ -46,7 +44,6 @@ class ActionColumn extends \kartik\grid\ActionColumn
     public $runAsAjax = false;
     /**
      * @var array List of other items to add to the ActionColumn
-     *
      * See [ActionColumn Guide](guide:columns-action-column.md) for details
      */
     public $extraItems = [];
@@ -54,6 +51,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
      * @var string the header cell content. Note that it will not be HTML-encoded.
      */
     public $header = 'عملیات';
+
     /**
      * Build and configure the widget
      *
@@ -103,10 +101,10 @@ class ActionColumn extends \kartik\grid\ActionColumn
         }
 
         $this->deleteOptions = [
-            'role'         => 'modal-remote',
-            'title'        => 'پاک‌کن',
-            'data-confirm' => $this->deleteAlert,
-
+            'role'                 => 'modal-remote',
+            'title'                => 'پاک‌کن',
+            'data-confirm'         => false, // for override default confirmation
+            'data-method'          => false, // for override yii data api
             'data-request-method'  => 'post',
             'data-toggle'          => 'tooltip',
             'data-confirm-title'   => 'آیا اطمینان دارید؟',
@@ -196,7 +194,6 @@ class ActionColumn extends \kartik\grid\ActionColumn
 
     /**
      * If more keys and actions are required, Put them in [[extraItems]] property of the [[ActionColumn]]:
-     *
      * ```php
      * ...
      * 'extraItems' => [
@@ -233,7 +230,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
                 if (array_key_exists('action', $data)) {
                     $action = Url::to([$data['action']]);
                 } else {
-                    $action = Url::to([$title]);
+                    $action = $url; //Url::to([$title]);
                 }
 
                 if ($this->runAsAjax && ArrayHelper::getValue($data, 'runAsAjax') !== false) {

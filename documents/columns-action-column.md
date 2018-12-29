@@ -63,7 +63,7 @@ $extraColumns = [
     'name'   => [
         'icon'   => 'edit',
         'action' => 'my-action',
-        'config' => ['class' => 'alert-danger'], // Use alert-* class with dropDown => dropDown => true
+        'config' => ['class' => 'alert-danger'], // Use alert-* class with dropDown => true
     ],
     [],
     'rename' => [
@@ -84,6 +84,6 @@ _Array Values_
    + **title** In dropdown menu it is the title in the selection menu. In any case it will be used as the tooltip.
    + **icon** Type of glyphicon to use. Class glyphicon will be added automatically.
    It is optional and default is _link_.
-   + **action** Name of action in the receiving controller. It is optional and default is array key of the item.
+   + **action** Name of action in the receiving controller. If it is omitted the action name will be the array key, and the default Url creator of the column is used. If it is set, the action target should be complete -- no assumption are done. 
    + **config** Configuration array which will directly fed into the `Html::a()` config part.
    + **runAsAjax** Whether the related action shoud run as AJAX request or full page reload. 

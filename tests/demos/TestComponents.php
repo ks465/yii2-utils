@@ -10,7 +10,6 @@
 namespace khans\utils\tests\demos;
 
 
-use khans\utils\Admin;
 use khans\utils\components\ArrayHelper;
 use khans\utils\components\FileHelper;
 use khans\utils\components\Jalali;
@@ -24,6 +23,15 @@ use yii\db\Exception;
 
 class TestComponents extends BaseTester
 {
+    protected $skipTests = [
+        'testJalaliInstance', 'testJalaliStatic', 'testJalaliXInstance', 'testJalaliXStatic',
+        'testMathFloors', 'testArrayHelpers', 'testSqlFormatter', 'testCorrectYaKa', 'testTrimAll',
+        'testConvertDigits', 'testPadding', 'testImplode1', 'testImplode2', 'testImplode3', 'testMobiles',
+        'testNIDs', 'testLoadCSV', 'testLoadIni', 'testLoadCsvSaveIni',
+//        'testNumberToWords1', 'testNumberToWords2', 'testNumberToWords3', 'testNumberToWords4', 'testNumberToWords5',
+    ];
+
+    //<editor-fold Desc="Jalali">
     public function testJalaliInstance()
     {
         try {
@@ -113,7 +121,9 @@ class TestComponents extends BaseTester
 
         echo '</pre>';
     }
+    //</editor-fold>
 
+    //<editor-fold Desc="Misc">
     public function testMathFloors()
     {
         echo '<pre dir="ltr">' . "\n";
@@ -423,4 +433,61 @@ class TestComponents extends BaseTester
 
         vd('Reading ' . $result . ' rows Written to ' . $outputFile, FileHelper::loadIni($outputFile));
     }
+    //</editor-fold>
+
+    //</editor-fold Desc="Number to Word">
+    public function testNumberToWords1()
+    {
+        echo '<pre dir="ltr">' . "\n";
+        for ($i = -1000; $i <= 0; $i += 31) {
+            echo 'expect("' . number_format($i) . '", MathHelper::numberToWord(' . $i . '))' .
+                '->equals("' . MathHelper::numberToWord($i) . '");' . "\n";
+        }
+        echo '</pre>' . "\n";
+    }
+
+    public function testNumberToWords2()
+    {
+        echo '<pre dir="ltr">' . "\n";
+        for ($i = 0; $i <= 1000; $i += 29) {
+            echo 'expect("' . number_format($i) . '", MathHelper::numberToWord(' . $i . '))' .
+                '->equals("' . MathHelper::numberToWord($i) . '");' . "\n";
+        }
+        echo '</pre>' . "\n";
+    }
+
+    public function testNumberToWords3()
+    {
+        echo '<pre dir="ltr">' . "\n";
+        for ($i = 1; $i < 20; $i++) {
+            $j = intval(10 ** $i);
+            echo 'expect("' . number_format($j) . '", MathHelper::numberToWord(' . $j . '))' .
+                '->equals("' . MathHelper::numberToWord($j) . '");' . "\n";
+        }
+        echo '</pre>' . "\n";
+    }
+
+    public function testNumberToWords4()
+    {
+        echo '<pre dir="ltr">' . "\n";
+        $j = '1';
+        for ($i = 1; $i < 20; $i++) {
+            $j .= '0';
+            echo 'expect("' . $j . '1' . '", MathHelper::numberToWord(' . $j . '1))' .
+                '->equals("' . MathHelper::numberToWord($j . '1') . '");' . "\n";
+        }
+        echo '</pre>' . "\n";
+    }
+
+    public function testNumberToWords5()
+    {
+        echo '<pre dir="ltr">' . "\n";
+        $j = '1';
+        for ($i = 0; $i < 4; $i += 0.123) {
+            echo 'expect("' . $i . '", MathHelper::numberToWord(' . $i . '))' .
+                '->equals("' . MathHelper::numberToWord($i) . '");' . "\n";
+        }
+        echo '</pre>' . "\n";
+    }
+    //</editor-fold>
 }

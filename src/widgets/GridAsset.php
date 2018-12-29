@@ -18,7 +18,7 @@ class GridAsset extends AssetBundle
 
     /**
      * @var array list of CSS files that this bundle contains. Each CSS file can be specified
-     * in one of the three formats as explained in [[js]].
+     * in one of the three formats as explained in [[\khans\utils\widgets\GridAsset\js]].
      */
     public $css = [
         'AjaxModal.css',

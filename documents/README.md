@@ -6,12 +6,11 @@ Documentation Edition: 1.0-970803
 #Documentation
 Guides, notes, and anything regarding good style programming and documenting:
 
- 1. [Document Tips and Tricks](documents.md)
- 2. [Setup for Persian](persian.md)
- 
-#Actions
-1. [CSV Grid View](actions-csv-grid-view.md) shows data saved in a CSV file as a [[\khans\utils\widgets\GridView]]. 
+1. [Document Tips and Tricks](documents.md)
+1. [Setup for Persian](persian.md)
+1. [Complete Config](full-config.md)
 
+ 
 #Components
 All the classes in the component directory of the package:
 
@@ -33,12 +32,12 @@ They are specialized versions for Kartik Gridview.
 1. [Data Column](columns-data-column.md) contains DataColumn for GridViews.
 1. [Enum Column](columns-enum-column.md) contains EnumColumn for GridViews.
 1. [Radio Column](columns-radio-column.md) contains RadioColumn for GridViews to select row and work with bulk action.
-
+1. [Jalali Column](columns-jalali-column.md)
+1. [Progress Column](columns-progress-column.md)
 
 #Models
 1. [Base Model](models-khan-model.md) contains basic skeleton for all models.
 1. [Base user](models-khan-user.md) contains basic skeleton for all user models.
-1. [CSV DataProvider](models-csv-data-provider.md)
 
 
 #RBAC
@@ -53,30 +52,31 @@ They are specialized versions for Kartik Gridview.
 1. [Date Picker](widgets-date-picker.md)
 1. [Date Range Picker](widgets-date-range-picker.md)
 1. [Grid View](widgets-grid-view.md)
+1. [AJAX Dropdown](widgets-dropdown.md)
 1. [Export Menu](widgets-export-menu.md)
+1. [Confirm Button](widgets-confirm-button.md)
+1. [Captcha](widgets-captcha.md)
 
    
 #Others
 These are miscellaneous classes for configuring the package or installation.
 
-1. [App Builder Controller](helpers-app-builder-controller.md) contains methods useful for creating models, controllers, CRUD packages. 
+1. [App Builder](helpers-app-builder.md) contains methods useful for creating models, controllers, CRUD packages. 
 1. [VarDump](components-var-dump.md) contains methods to make life easier and fun for the admins in debugging the code objects.
 1. [SqlFormatter](components-sql-formatter.md) contains methods to make life easier and fun for the admins in debugging the SQL queries.
 1. [Settings](settings.md) contains all the settings and constant values.
 1. [Migrations](helpers-migrations.md) contains all the migrations required for rising the package up and running.
 1. [Overlay Menu](widgets-menu.md) contains description of an overlay menu, which covers all the browser page.
 This can be used inside _**NavBar**_ menu or as a button on the page.
+1. [Workflow Manager](components-workflow.md) contains all the requirements for builidng, using and managing workflows
+1. [Wizard Flow](components-wiz-flow.md)
  
+ Move the following to [Full Config](full-config.md):
 #StartUp
 General requirements in application options:
 
 ```php
-    'language' => 'fa-IR',
-    'timeZone' => 'Asia/Tehran',
-    'aliases' => [
-        '@khan' => '@vendor/khans465/yii2-utils',
-        '@mdm/admin' => '@vendor/mdmsoft/yii2-admin',
-    ],
+    
     'modules' => [
         'gridview' => [
             'class' => '\kartik\grid\Module',
@@ -85,8 +85,14 @@ General requirements in application options:
             'class' => 'mdm\admin\Module',
             'layout' => 'left-menu',
         ],
+        'workflow' => [
+            'class' => 'cornernote\workflow\manager\Module',
+        ],
     ],
     'components' => [
+        'workflowSource' => [
+            'class' => 'cornernote\workflow\manager\components\WorkflowDbSource',
+        ],
         'formatter' => [
             'class' => 'yii\i18n\Formatter',
             'nullDisplay' => '_NULL_value_to_display_',
@@ -126,22 +132,6 @@ General requirements in application options:
                 'itemChildTable' => 'sys_auth_item_child',
                 'assignmentTable' => 'sys_auth_assignment',
             ],
-            'user'         => [
-                'identityClass'   => 'app\models\User',
-                'enableAutoLogin' => true,
-            ],
-            'user' => [
-                'class' => '\khans\utils\models\KHanUser',
-                'identityClass'   => '\khans\utils\models\KHanIdentity', // or any child
-                'userTable' => 'a_user',
-                'superAdmins' => ['keyhan'],
-                'enableAutoLogin' => true,
-                'identityCookie' => [
-                    'name' => '_identity_name_',
-                    'httpOnly' => true,
-                    'path' => '_path_to_application_',
-                ],
-            ],
         ],
         'as access' => [
             'class' => 'mdm\admin\components\AccessControl',
@@ -177,27 +167,28 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class'      => 'yii\gii\Module',
         'generators' => [
-            'model'      => [
-                'class'     => 'khans\utils\helpers\generators\model\Generator',
-                'templates' => ['khanGii' => '@khan/src/helpers/generators/model'],
-            ],
-            'crud-ajax'       => [
-                'class'     => 'khans\utils\helpers\generators\crudAjax\Generator',
-                'templates' => ['khanGii' => '@khan/src/helpers/generators/crudAjax'],
-            ],
-            'crud-list'       => [
-                'class'     => 'khans\utils\helpers\generators\crudList\Generator',
-                'templates' => ['khanGii' => '@khan/src/helpers/generators/crudList'],
-            ],
-            'controller' => [
-                'class'     => 'khans\utils\helpers\generators\controller\Generator',
-                'templates' => ['khanGii' => '@khan/src/helpers/generators/controller'],
-            ],
-            'form'       => [
-                'class'     => 'khans\utils\helpers\generators\form\Generator',
-                'templates' => ['khanGii' => '@khan/src/helpers/generators/form'],
-            ],
-        ],
+            'model'     => [
+                'class'    => 'khans\utils\helpers\generators\model\Generator',
+               'templates' => ['giiModel' => '@khan/src/helpers/generators/model'],
+           ],
+           'crud'       => [
+               'class'     => 'khans\utils\helpers\generators\crud\Generator',
+               'templates' => [
+                   'giiCrudAjax' => '@khan/src/helpers/generators/crud/ajax',
+                   'giiCrudList' => '@khan/src/helpers/generators/crud/grid',
+                   'giiCrudUser' => '@khan/src/helpers/generators/crud/user',
+                   'giiCrudAuth' => '@khan/src/helpers/generators/crud/auth',
+               ],
+           ],
+           'controller' => [
+               'class'     => 'khans\utils\helpers\generators\controller\Generator',
+               'templates' => ['giiController' => '@khan/src/helpers/generators/controller'],
+           ],
+           'form'       => [
+               'class'     => 'khans\utils\helpers\generators\form\Generator',
+               'templates' => ['giiForm' => '@khan/src/helpers/generators/form'],
+           ],
+       ],
     ];
 }
 ```

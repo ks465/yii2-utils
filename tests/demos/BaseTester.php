@@ -18,6 +18,15 @@ class BaseTester
      * @var array List of tests in each Test* class to skip for debuging purposes.
      */
     protected $skipTests = [];
+
+    /**
+     * Show the class name of the current demo.
+     */
+    function __construct()
+    {
+        echo '<h3 class="alert alert-info text-center">' . static::class . '</h3>';
+    }
+
     /**
      * A helper static method to run all of tests in all of files.
      */
@@ -27,7 +36,7 @@ class BaseTester
             /* @var $tester BaseTester */
             $testClass = __NAMESPACE__ . '\\' . $testClass;
 
-            iF(class_exists($testClass)) {
+            iF (class_exists($testClass)) {
                 $tester = new $testClass();
             } else {
                 echo $testClass . ' does not exist.';
