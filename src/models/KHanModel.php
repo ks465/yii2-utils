@@ -10,11 +10,9 @@
 namespace khans\utils\models;
 
 
-use khans\utils\components\Jalali;
-use khans\utils\components\ViewHelper;
+use khans\utils\components\{Jalali, ViewHelper};
 use Yii;
-use yii\behaviors\BlameableBehavior;
-use yii\behaviors\TimestampBehavior;
+use yii\behaviors\{BlameableBehavior, TimestampBehavior};
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 
@@ -23,9 +21,8 @@ use yii\helpers\ArrayHelper;
  * Thus it is marked as `abstract` to avoid instantiating a model without table.
  *
  * @package khans\utils
- * @version 0.4.2-970803
+ * @version 0.4.3-970921
  * @since   1.0
- *
  * @property integer $status     وضعیت فعال بودن رکورد
  * @property integer $created_by سازنده رکورد
  * @property integer $created_at زمان ساخت رکورد
@@ -38,7 +35,6 @@ abstract class KHanModel extends ActiveRecord
      * record is marked as deleted -- destroyed -- and users can not see it at all
      */
     const STATUS_DELETED = 0;
-
     /**
      * Record is disabled to be used in new transactions. But previous data can access the details for read-only access.
      */
@@ -66,7 +62,7 @@ abstract class KHanModel extends ActiveRecord
     public function getModelErrors()
     {
         $errors = [];
-        foreach ($this->errors as &$error) {
+        foreach ($this->errors as $error) {
             $errors[] = ViewHelper::implode($error, '<br />');
         }
 

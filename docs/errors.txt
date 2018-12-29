@@ -1,0 +1,132 @@
+Array
+(
+    [0] => Array
+        (
+            [file] => yii2-utils/src/Settings.php
+            [message] => broken link to \khans\utils\helpers\AppBuilder in khans\utils\Settings
+        )
+
+    [1] => Array
+        (
+            [file] => yii2-utils/src/Settings.php
+            [message] => broken link to \khans\utils\QueryParamAuth::tokenParam in khans\utils\Settings
+        )
+
+    [2] => Array
+        (
+            [line] => 41
+            [file] => yii2-utils/src/actions/HelpAction.php
+            [message] => Method init has no parent to inherit from in common\actions\HelpAction.
+        )
+
+    [3] => Array
+        (
+            [line] => 77
+            [file] => yii2-utils/src/actions/HelpAction.php
+            [message] => Method run has no parent to inherit from in common\actions\HelpAction.
+        )
+
+    [4] => Array
+        (
+            [file] => yii2-utils/src/actions/HelpAction.php
+            [message] => broken link to \common\actions\console\controllers\GenerateHelpsController in common\actions\HelpAction
+        )
+
+    [5] => Array
+        (
+            [file] => yii2-utils/src/columns/JalaliColumn.php
+            [message] => broken link to \khans\utils\columns\Jalali:KHAN_SHORT in khans\utils\columns\JalaliColumn
+        )
+
+    [6] => Array
+        (
+            [file] => yii2-utils/src/columns/JalaliColumn.php
+            [message] => broken link to \khans\utils\columns\Jalali:KHAN_SHORT in khans\utils\columns\JalaliColumn
+        )
+
+    [7] => Array
+        (
+            [file] => yii2-utils/src/components/rest/Client.php
+            [message] => broken link to self::$key in khans\utils\components\rest\Client
+        )
+
+    [8] => Array
+        (
+            [file] => yii2-utils/src/components/rest/Client.php
+            [message] => broken link to self::$hash in khans\utils\components\rest\Client
+        )
+
+    [9] => Array
+        (
+            [file] => yii2-utils/src/components/rest/Client.php
+            [message] => broken link to self::$key in khans\utils\components\rest\Client
+        )
+
+    [10] => Array
+        (
+            [file] => yii2-utils/src/components/rest/Client.php
+            [message] => broken link to self::$hash in khans\utils\components\rest\Client
+        )
+
+    [11] => Array
+        (
+            [file] => yii2-utils/src/components/workflow/WizflowManager.php
+            [message] => broken link to \yii\base\Object::init() in khans\utils\components\workflow\WizflowManager
+        )
+
+    [12] => Array
+        (
+            [line] => 765
+            [file] => yii2-utils/src/helpers/generators/model/Generator.php
+            [message] => Undefined parameter documented:  in checkJunctionTable().
+        )
+
+    [13] => Array
+        (
+            [file] => yii2-utils/src/models/KHanUser.php
+            [message] => broken link to \khans\utils\models\KHanIdentity in khans\utils\models\KHanUser
+        )
+
+    [14] => Array
+        (
+            [file] => yii2-utils/src/models/KHanUser.php
+            [message] => broken link to \khans\utils\models\KHanIdentity in khans\utils\models\KHanUser
+        )
+
+    [15] => Array
+        (
+            [file] => yii2-utils/src/widgets/ConfirmButton.php
+            [message] => broken link to khans\utils\widgets\ConfirmButton::TYPE_DANGER in khans\utils\widgets\ConfirmButton
+        )
+
+    [16] => Array
+        (
+            [file] => yii2-utils/src/widgets/ConfirmButton.php
+            [message] => broken link to \khans\utils\widgets\ConfirmButton\formId in khans\utils\widgets\ConfirmButton
+        )
+
+    [17] => Array
+        (
+            [file] => yii2-utils/src/widgets/GridAsset.php
+            [message] => broken link to \khans\utils\widgets\GridAsset\js in khans\utils\widgets\GridAsset
+        )
+
+    [18] => Array
+        (
+            [file] => yii2-utils/src/widgets/KHDropdown.php
+            [message] => broken link to \kartik\dropdown\DropdownX in khans\utils\widgets\KHDropdown
+        )
+
+    [19] => Array
+        (
+            [file] => yii2-utils/src/widgets/KHDropdown.php
+            [message] => broken link to \kartik\dropdown\DropdownX in khans\utils\widgets\KHDropdown
+        )
+
+    [20] => Array
+        (
+            [file] => yii2-utils/src/widgets/KHDropdown.php
+            [message] => broken link to \kartik\dropdown\DropdownX in khans\utils\widgets\KHDropdown
+        )
+
+)

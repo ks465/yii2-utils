@@ -14,17 +14,18 @@ _**There is no need to call methods in this class directly. Just use `vd` or `vd
 **_Important Notice:
 You should require the containing class early in your scripts, in order to activate these shortcuts._** 
 Although you can just add it on the point of usage.
+Add the following segment to seb config AND console config:
 
 ```php
-if(theLoggedInUser->isSuperAdmin){
-    require_once \Yii::getAlias('@khan/src/components/VarDump.php');
+if (YII_ENV_DEV) { //add YII_DEBUG if you want to debug production applications 
+    require_once (__DIR__ . '/../vendor/khans465/yii2-utils/src/components/VarDump.php');
 }
 ```
 
 Examples:
 
 ```php
-//This is on the 17th line of file `/var/www/html/khans/views/site/index.php`
+//Suppose this is on the 17th line of file `/var/www/html/khans/views/site/index.php`
 vd(Yii::$app->user); 
 ```
 

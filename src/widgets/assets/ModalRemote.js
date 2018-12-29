@@ -1,7 +1,7 @@
 /*!
  * Modal Remote
  * =================================
- * Use for johnitvn/yii2-ajaxcrud extension
+ * Use for khans\utils\widgets/GridView extension
  * @author John Martin john.itvn@gmail.com
  */
 (function ($) {

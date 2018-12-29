@@ -1,7 +1,7 @@
 /*!
  * Ajax Crud
  * =================================
- * Use for khans\utils\widgets/AjaxGridView extension
+ * Use for khans\utils\widgets/GridView extension
  * @author John Martin john.itvn@gmail.com
  */
 $(document).ready(function () {

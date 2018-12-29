@@ -33,7 +33,7 @@ class Settings extends BaseObject
      */
     const MAX_IDLE_TIME = 300;
     /**
-     * Path to application models repository, this is mainly used for [[helpers\AppBuilder]] to create new models.
+     * Path to application models repository, this is mainly used for [[\khans\utils\helpers\AppBuilder]] to create new models.
      */
     const PATH_MODELS_DIRECTORY = '@app/models/';
     /**

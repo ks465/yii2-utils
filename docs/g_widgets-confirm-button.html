@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/afbdca15/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/34135542/style.css" rel="stylesheet">
+<script src="./assets/84a200c2/jquery.js"></script>
+<script src="./assets/afbdca15/js/bootstrap.js"></script>
+<script src="./assets/96f6715f/jssearch.js"></script>    <title>Confirm Button - Widgets - KHanUtilsGuide</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w202" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w202-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">KHanUtilsGuide</a></div><div id="w202-collapse" class="collapse navbar-collapse"><ul id="w203" class="navbar-nav nav"><li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-192" data-toggle="collapse" data-parent="#navigation">Documentation <b class="caret"></b></a><div id="navigation-192" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_documents.html">Document Tips and Tricks</a>
+<a class="list-group-item" href="./g_persian.html">Setup for Persian</a>
+<a class="list-group-item" href="./g_full-config.html">Complete Config</a></div>
+<a class="list-group-item" href="#navigation-193" data-toggle="collapse" data-parent="#navigation">Components <b class="caret"></b></a><div id="navigation-193" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_components-array-helper.html">Array Helper</a>
+<a class="list-group-item" href="./g_components-file-helper.html">File Helper</a>
+<a class="list-group-item" href="./g_components-jalali.html">Jalali and JalaliX</a>
+<a class="list-group-item" href="./g_components-math-helper.html">Math Helper</a>
+<a class="list-group-item" href="./g_components-sql-formatter.html">SQL Formatter</a>
+<a class="list-group-item" href="./g_components-string-helper.html">String Helper</a>
+<a class="list-group-item" href="./g_components-view-helper.html">View Helper</a></div>
+<a class="list-group-item" href="#navigation-194" data-toggle="collapse" data-parent="#navigation">Columns <b class="caret"></b></a><div id="navigation-194" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_columns-action-column.html">Action Column</a>
+<a class="list-group-item" href="./g_columns-boolean-column.html">Boolean Column</a>
+<a class="list-group-item" href="./g_columns-data-column.html">Data Column</a>
+<a class="list-group-item" href="./g_columns-enum-column.html">Enum Column</a>
+<a class="list-group-item" href="./g_columns-radio-column.html">Radio Column</a>
+<a class="list-group-item" href="./g_columns-jalali-column.html">Jalali Column</a>
+<a class="list-group-item" href="./g_columns-progress-column.html">Progress Column</a></div>
+<a class="list-group-item" href="#navigation-195" data-toggle="collapse" data-parent="#navigation">Models <b class="caret"></b></a><div id="navigation-195" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_models-khan-model.html">Base Model</a>
+<a class="list-group-item" href="./g_models-khan-user.html">Base user</a></div>
+<a class="list-group-item" href="#navigation-196" data-toggle="collapse" data-parent="#navigation">RBAC <b class="caret"></b></a><div id="navigation-196" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_rbac-rule-owner.html">Owner Rule</a></div>
+<a class="list-group-item active" href="#navigation-197" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-197" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./g_widgets-date-picker.html">Date Picker</a>
+<a class="list-group-item" href="./g_widgets-date-range-picker.html">Date Range Picker</a>
+<a class="list-group-item" href="./g_widgets-grid-view.html">Grid View</a>
+<a class="list-group-item" href="./g_widgets-dropdown.html">AJAX Dropdown</a>
+<a class="list-group-item" href="./g_widgets-export-menu.html">Export Menu</a>
+<a class="list-group-item active" href="./g_widgets-confirm-button.html">Confirm Button</a></div>
+<a class="list-group-item" href="#navigation-198" data-toggle="collapse" data-parent="#navigation">Others <b class="caret"></b></a><div id="navigation-198" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_helpers-app-builder.html">App Builder</a>
+<a class="list-group-item" href="./g_components-var-dump.html">VarDump</a>
+<a class="list-group-item" href="./g_components-sql-formatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./g_settings.html">Settings</a>
+<a class="list-group-item" href="./g_helpers-migrations.html">Migrations</a>
+<a class="list-group-item" href="./g_widgets-menu.html">Overlay Menu</a>
+<a class="list-group-item" href="./g_components-workflow.html">Workflow Manager</a>
+<a class="list-group-item" href="./g_components-wiz-flow.html">Wizard Flow</a></div>
+<a class="list-group-item" href="#navigation-199" data-toggle="collapse" data-parent="#navigation">StartUp <b class="caret"></b></a><div id="navigation-199" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-200" data-toggle="collapse" data-parent="#navigation">Sanitizing User Input <b class="caret"></b></a><div id="navigation-200" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-201" data-toggle="collapse" data-parent="#navigation">RBAC Setup <b class="caret"></b></a><div id="navigation-201" class="submenu panel-collapse collapse"></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Confirm Button <span id="confirm-button"></span><a href="#confirm-button" class="hashlink">&para;</a></h1><p>This widget is a submit button in essence, which shows a confirmation dialog before submitting the form. It extends the [\kartik\dialog\Dialog] directly, so all of the parent widget are usable.
+It could submit form using both AJAX POST or normal POST. Remember that this widget should be placed in a form with POST method. The common parts of the setup are as follows:</p>
+<ul>
+<li><code>form.id</code> ID of the form is required for the widget to work. If it is omitted it would not show the modal dialog.</li>
+<li><code>form.action</code> Obviously it is standard attribute of the form</li>
+<li><code>form.method</code> Should be POST. Otherwise the widget won't show the modal dialog.</li>
+</ul>
+<p>All of widget config elements are optional. They have defaults when required. </p>
+<ul>
+<li><code>id</code> is used for setting up the javascript assets. It is really important when there is more than one ConfirmButton on a page. This is set to a unique string if ommited.</li>
+<li><code>type</code> is the dialog type from ConfirmButton::TYPE<em>* constants, which are equivalent to [\kartik\dialog\Dialog::TYPE</em>*] ones. Default is [ConfirmButton::TYPE_DANGER].</li>
+<li><code>formID</code> is the ID of the form to submit and this button is part of.</li>
+<li><code>buttonLabel</code> a text to show on the submit button in the form. Default is <code>بنویس</code>.</li>
+<li><code>buttonClass</code> complete set of classes of the submit button. Default is <code>btn btn-primary</code>. </li>
+<li><code>buttonStyle</code> arbitrary CSS style for the submit button.</li>
+<li><code>title</code> a text for the header of the dialog. Default is empty string.</li>
+<li><code>message</code> a text for the body of the dialog. It can contain HTML tags and multiple lines.</li>
+<li><code>btnOKLabel</code> text to use as the OK button label for confirming the submission.</li>
+<li><code>btnCancelLabel</code> text to use as the Cancel button label for cancelling the submission.</li>
+<li><code>btnOKIcon</code> the glyphicon type to append to OK button class. <code>glyphicon glyphicon-</code> part is prepended to it. Default is <code>ok</code>.</li>
+<li><code>btnCancelIcon</code> the glyphicon type to append to Cancel button class. <code>glyphicon glyphicon-</code> part is prepended to it. Default is <code>ban-circle</code>.</li>
+<li><code>sendAjax</code> boolean switch to select the POST type. If it is <code>false</code> which is default, the form is submitted through normal POST method. If it is <code>true</code> the form will be submitted through AJAX POST method.
+Current implementation shows the server response in an alert widget on success. In case of error, the received error message is shown in the alert widget. </li>
+</ul>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$form</span> = ActiveForm::begin([
+    <span class="hljs-string">'id'</span>     =&gt; <span class="hljs-string">'form-a'</span>, <span class="hljs-comment">//mandatory</span>
+    <span class="hljs-string">'action'</span> =&gt; Url::to([<span class="hljs-string">'login'</span>]),
+]);
+
+<span class="hljs-keyword">echo</span> ConfirmButton::widget([
+    <span class="hljs-string">'id'</span>          =&gt; <span class="hljs-string">'js-id'</span>,
+    <span class="hljs-string">'type'</span>        =&gt; ConfirmButton::TYPE_INFO,
+    <span class="hljs-string">'formID'</span>      =&gt; <span class="hljs-variable">$form</span>-&gt;id,                 <span class="hljs-comment">//mandatory</span>
+    <span class="hljs-string">'buttonLabel'</span> =&gt; <span class="hljs-string">'Load "login" Page with POST'</span>,
+    <span class="hljs-string">'buttonClass'</span> =&gt; <span class="hljs-string">'btn btn-info'</span>,
+    <span class="hljs-string">'buttonStyle'</span> =&gt; <span class="hljs-string">'color:red;'</span>,
+    <span class="hljs-string">'title'</span>       =&gt; <span class="hljs-string">'Model dialog title'</span>,
+    <span class="hljs-string">'message'</span>     =&gt; Html::tag(<span class="hljs-string">'h3'</span>, <span class="hljs-string">'Any tailored message'</span> . <span class="hljs-string">'&lt;br/&gt;'</span> .
+        <span class="hljs-string">'Which actually could be'</span> .
+        <span class="hljs-string">'splitted on multiple lines.'</span>, [<span class="hljs-string">'style'</span> =&gt; <span class="hljs-string">'color: #d9534f'</span>]) . 
+        <span class="hljs-string">'with HTML tags.'</span>,
+    <span class="hljs-string">'btnOKLabel'</span>     =&gt; <span class="hljs-string">'Click this to go ahead'</span>,
+    <span class="hljs-string">'btnCancelLabel'</span> =&gt; <span class="hljs-string">'Click this to cancel and go back'</span>,
+    <span class="hljs-string">'btnOKIcon'</span>      =&gt; <span class="hljs-string">'fire'</span>,
+    <span class="hljs-string">'btnCancelIcon'</span>  =&gt; <span class="hljs-string">'time'</span>,
+    <span class="hljs-string">'sendAjax'</span>       =&gt; <span class="hljs-keyword">true</span>,
+]);
+
+ActiveForm::end();
+</code></pre>
+<h3>Normal POST <span id="normal-post"></span><a href="#normal-post" class="hashlink">&para;</a></h3><p>When <code>sendAjax</code> is not set or is set to <code>false</code>, the widget loads the target action of the form.</p>
+<h3>AJAX POST <span id="ajax-post"></span><a href="#ajax-post" class="hashlink">&para;</a></h3><p>When <code>sendAjax</code> is set to <code>true</code>, the widget calls the target action through AJAX call.
+After receiving response, if it is success, the received result is shown as an alert.
+If it is error, the received error is shown as an alert.</p>
+<p>Please note that it is the developer's responsibility to response appropriately in the target action.</p>
+<p>By adding an empty element to the document and setting its ID as the <code>target</code> of the <code>.ajax</code> method, the result could be shown in the given element. <em>This is functionality is muted in the current javascript code</em>.</p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Sat, 29 Dec 2018 08:56:07 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

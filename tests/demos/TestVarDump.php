@@ -10,11 +10,11 @@
 namespace khans\utils\tests\demos;
 
 use khans\utils\components\BlackHtmlVarDumpTheme;
+use khans\utils\components\BlueHtmlVarDumpTheme;
 use khans\utils\components\CliVarDumpTheme;
 use khans\utils\components\FileVarDumpTheme;
 use khans\utils\components\GreenHtmlVarDumpTheme;
 use khans\utils\components\RedHtmlVarDumpTheme;
-use khans\utils\components\BlueHtmlVarDumpTheme;
 use khans\utils\components\VarDump;
 
 require_once \Yii::getAlias('@khan/src/components/VarDump.php');
@@ -85,7 +85,9 @@ class TestVarDump extends BaseTester
         $this->writeHeader('xd(new (\yii\db\Query())->from([\'test\'])->where([1=>2])->groupBy([\'id\', \'time\'])); to stop script afterward');
 //        xd($sql);
     }
-    public function testThemes(){
+
+    public function testThemes()
+    {
         $outputFile = \yii\helpers\Url::to('@app/runtime/vd-output.log');
 
         $this->writeHeader('$varDump = new VarDump(null, null, null, new CliVarDumpTheme());');

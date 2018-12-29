@@ -9,15 +9,16 @@
 
 namespace khans\utils\tests\demos;
 
-
 use app\models\UpsertAggr;
 use app\models\UpsertAggrSearch;
 use kartik\export\ExportMenu;
 use kartik\form\ActiveForm;
 use khans\utils\components\Jalali;
+use khans\utils\widgets\ConfirmButton;
 use khans\utils\widgets\DatePicker;
 use khans\utils\widgets\DateRangePicker;
 use khans\utils\widgets\GridView;
+use khans\utils\widgets\KHDropdown;
 use Yii;
 use yii\base\DynamicModel;
 use yii\data\ArrayDataProvider;
@@ -29,11 +30,174 @@ require_once Yii::getAlias('@vendor/fzaninotto/faker/src/autoload.php');
 class TestWidgets extends BaseTester
 {
     protected $skipTests = [
-//        'testDatePicker1', 'testDatePicker1_1', 'testDatePicker2', 'testDatePicker3', 'testDatePicker4',
-//        'testDatePicker5', 'testDatePicker6', 'testDatePicker7', 'testDatePicker8', 'testDatePicker9',
-//        'testDatePicker10', 'testDatePicker11', 'testDatePicker12', 'testDateRangePicker1',
-//        'testDateRangePicker2', 'testGridView', 'testAjaxGridView',
+        'testDatePicker1', 'testDatePicker1_1', 'testDatePicker2', 'testDatePicker3', 'testDatePicker4',
+        'testDatePicker5', 'testDatePicker6', 'testDatePicker7', 'testDatePicker8', 'testDatePicker9',
+        'testDatePicker10', 'testDatePicker11', 'testDatePicker12', 'testDateRangePicker1',
+        'testDateRangePicker2',
+        'testGridView', 'testAjaxGridView',
+        'testConfirmButtonA', 'testConfirmButtonB',
+        'testConfirmButtonC', 'testConfirmButtonD',
+        'exportArray',
+        'testExportModel',
+        'testGridViewExport',
     ];
+
+    public function testGridViewDropDownBulkAction()
+    {
+//        $this->writeHeader('GridView; BulkAction with Dropdown, run as Ajax');
+//        $config = $this->configWidget('dropdown-test', false, false);
+        $this->writeHeader('GridView; BulkAction with Dropdown, run as Normal');
+        $config = $this->configWidget('dropdown-test', false, true);
+        $config['type'] = 'danger';
+        $config['itemLabelSingle'] = 'danger';
+        $config['itemLabelMany'] = 'dangerMM';
+        $config['itemLabelPlural'] = 'dangerSS';
+        $config['itemLabelFew'] = 'dangerFF';
+        $config['showRefreshButtons'] = true;
+        $config['createAction'] = false;
+        $config['bulkAction']['dropdown'] = true;
+        $config['bulkAction']['action'] = KHDropdown::widget([
+            'items' => [
+                [
+                    'label' => 'عنوان منوی اصلی',
+                ],
+                [
+                    'label'   => 'دستور یک',
+                    'url'     => 'index',
+                    'message' => 'پیام شماره یک',
+                    'class'   => 'default',
+                ],
+                [
+                    'label'   => 'باز هم یک دستور دیگر',
+                    'url'     => '#',
+                    'message' => 'پیام شماره پنج',
+                ],
+                '<li class="divider"></li>',
+                [
+                    'label' => 'کلید زیرمنوی یکم',
+                    'class' => 'danger',
+                    'items' => [
+                        [
+                            'label' => 'عنوان زیرمنوی یکم',
+                        ],
+                        [
+                            'label'   => 'دستور سه',
+                            'url'     => 'about',
+                            'message' => 'پیام شماره سه',
+                            'class'   => 'danger',
+                        ],
+                        [
+                            'label'   => 'باز هم دستور',
+                            'message' => 'پیام شماره چهار',
+                            'url'     => 'login',
+                        ],
+                    ],
+                ],
+                '<li class="divider"></li>',
+                [
+                    'label' => 'عنوان منوی فرعی',
+                ],
+                [
+                    'label' => 'دستور جدا شده',
+                    'url'   => '#',
+                    'class' => 'success',
+                ],
+            ],
+        ]);
+
+        echo GridView::widget($config);
+    }
+
+    //<editor-fold Desc="ConfirmButton">
+    public function testConfirmButtonA()
+    {
+        $form = ActiveForm::begin([
+            'id'     => 'form-a', //mandatory
+            'action' => Url::to(['login']), //optional
+        ]);
+
+        echo ConfirmButton::widget([
+            'type'        => ConfirmButton::TYPE_INFO,
+            'formID'      => $form->id,
+            'buttonLabel' => 'Load "login" Page with POST',
+            'buttonClass' => 'btn btn-info',
+            'title'       => 'Modal dialog title',
+            'message'     => Html::tag('h3', 'Any tailored message' . '<br/>' .
+                    'Which actually could be' .
+                    'splitted on multiple lines.', ['style' => 'color: #d9534f']) . 'with HTML tags.',
+        ]);
+        ActiveForm::end();
+    }
+
+    public function testConfirmButtonB()
+    {
+        $form = ActiveForm::begin([
+            'id'     => 'form-b', //mandatory
+            'action' => Url::to(['form-action']), //optional
+        ]);
+
+        echo ConfirmButton::widget([
+            'formID'         => $form->id,
+            'buttonLabel'    => 'Load "form-action" Page with POST',
+            'buttonClass'    => 'btn btn-danger',
+            'title'          => 'Modal dialog title',
+            'message'        => Html::tag('h3', 'Any tailored message' . '<br/>' .
+                    'Which actually could be' .
+                    'splitted on multiple lines.', ['style' => 'color: #d9534f']) . 'with HTML tags.',
+            'btnOKLabel'     => 'Click this to go ahead',
+            'btnCancelLabel' => 'Click this to cancel and go back',
+            'btnOKIcon'      => 'fire',
+            'btnCancelIcon'  => 'time',
+        ]);
+        ActiveForm::end();
+    }
+
+    public function testConfirmButtonC()
+    {
+        $form = ActiveForm::begin([
+            'id'     => 'form-c', //mandatory
+            'action' => Url::to(['login']), //optional
+        ]);
+
+        echo ConfirmButton::widget([
+            'type'        => ConfirmButton::TYPE_SUCCESS,
+            'formID'      => $form->id,
+            'sendAjax'    => true,
+            'buttonLabel' => 'Load "login" Page with AJAX',
+            'buttonClass' => 'btn btn-success',
+            'title'       => 'modal dialog title',
+            'message'     => Html::tag('h3', 'Any tailored message' . '<br/>' .
+                    'Which actually could be' .
+                    'splitted on multiple lines.', ['style' => 'color: #d9534f']) . 'with HTML tags.',
+        ]);
+        ActiveForm::end();
+    }
+
+    public function testConfirmButtonD()
+    {
+        $form = ActiveForm::begin([
+            'id'     => 'form-d', //mandatory
+            'action' => Url::to(['form-action']), //optional
+        ]);
+
+        echo ConfirmButton::widget([
+            'type'           => ConfirmButton::TYPE_PRIMARY,
+            'formID'         => $form->id,
+            'sendAjax'       => true,
+            'buttonLabel'    => 'Load "form-action" Page with AJAX',
+            'buttonClass'    => 'btn btn-primary',
+            'title'          => 'modal dialog title',
+            'message'        => Html::tag('h3', 'Any tailored message' . '<br/>' .
+                    'Which actually could be' .
+                    'splitted on multiple lines.', ['style' => 'color: #d9534f']) . 'with HTML tags.',
+            'btnOKLabel'     => 'Click this to go ahead',
+            'btnCancelLabel' => 'Click this to cancel and go back',
+            'btnOKIcon'      => 'fire',
+            'btnCancelIcon'  => 'time',
+        ]);
+        ActiveForm::end();
+    }
+    //</editor-fold>
 
     //<editor-fold Desc="DatePicker">
     public function testDatePicker1()
@@ -437,8 +601,8 @@ class TestWidgets extends BaseTester
                     'class'     => 'khans\utils\columns\DataColumn',
                 ],
                 [
-                    'class'      => 'khans\utils\columns\BooleanColumn',
-                    'attribute'  => 'e',
+                    'class'     => 'khans\utils\columns\BooleanColumn',
+                    'attribute' => 'e',
 //                    'trueIcon'  => 'PhD',
 //                    'trueLabel'  => 'PhD',
 //                    'falseLabel' => 'MSc',
@@ -590,8 +754,8 @@ class TestWidgets extends BaseTester
         //$config['beforeFooter'] = $config['beforeHeader'];
         //$config['afterFooter'] = $config['beforeHeader'];
         $config['createAction'] = [
-            'action'  => 'create',
-            'ajax'=> false,
+            'action' => 'create',
+            'ajax'   => false,
         ];
 
         vd($config);

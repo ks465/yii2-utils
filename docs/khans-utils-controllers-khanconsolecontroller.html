@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/afbdca15/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/34135542/style.css" rel="stylesheet">
+<script src="./assets/84a200c2/jquery.js"></script>
+<script src="./assets/afbdca15/js/bootstrap.js"></script>
+<script src="./assets/96f6715f/jssearch.js"></script>    <title>KHanConsoleController, khans\utils\controllers\KHanConsoleController - KHanUtilsAPI</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w416" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w416-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">KHanUtilsAPI</a></div><div id="w416-collapse" class="collapse navbar-collapse"><ul id="w417" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-399" data-toggle="collapse" data-parent="#navigation">common\actions <b class="caret"></b></a><div id="navigation-399" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-actions-helpaction.html">HelpAction</a></div>
+<a class="list-group-item" href="#navigation-400" data-toggle="collapse" data-parent="#navigation">common\widgets\columns <b class="caret"></b></a><div id="navigation-400" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-widgets-columns-progresscolumn.html">ProgressColumn</a></div>
+<a class="list-group-item" href="#navigation-401" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-401" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-402" data-toggle="collapse" data-parent="#navigation">khans\utils\columns <b class="caret"></b></a><div id="navigation-402" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-booleancolumn.html">BooleanColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-datacolumn.html">DataColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-enumcolumn.html">EnumColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-jalalicolumn.html">JalaliColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-radiocolumn.html">RadioColumn</a></div>
+<a class="list-group-item" href="#navigation-403" data-toggle="collapse" data-parent="#navigation">khans\utils\components <b class="caret"></b></a><div id="navigation-403" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
+<a class="list-group-item" href="./khans-utils-components-filehelper.html">FileHelper</a>
+<a class="list-group-item" href="./khans-utils-components-jalali.html">Jalali</a>
+<a class="list-group-item" href="./khans-utils-components-jalalix.html">JalaliX</a>
+<a class="list-group-item" href="./khans-utils-components-mathhelper.html">MathHelper</a>
+<a class="list-group-item" href="./khans-utils-components-sqlformatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./khans-utils-components-stringhelper.html">StringHelper</a>
+<a class="list-group-item" href="./khans-utils-components-viewhelper.html">ViewHelper</a></div>
+<a class="list-group-item" href="#navigation-404" data-toggle="collapse" data-parent="#navigation">khans\utils\components\rest <b class="caret"></b></a><div id="navigation-404" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-rest-authenticate.html">Authenticate</a>
+<a class="list-group-item" href="./khans-utils-components-rest-client.html">Client</a>
+<a class="list-group-item" href="./khans-utils-components-rest-security.html">Security</a></div>
+<a class="list-group-item" href="#navigation-405" data-toggle="collapse" data-parent="#navigation">khans\utils\components\workflow <b class="caret"></b></a><div id="navigation-405" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-workflow-wizflowmanager.html">WizflowManager</a></div>
+<a class="list-group-item active" href="#navigation-406" data-toggle="collapse" data-parent="#navigation">khans\utils\controllers <b class="caret"></b></a><div id="navigation-406" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./khans-utils-controllers-khanconsolecontroller.html">KHanConsoleController</a>
+<a class="list-group-item" href="./khans-utils-controllers-khanrestcontroller.html">KHanRestController</a>
+<a class="list-group-item" href="./khans-utils-controllers-khanwebcontroller.html">KHanWebController</a></div>
+<a class="list-group-item" href="#navigation-407" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\controller <b class="caret"></b></a><div id="navigation-407" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-controller-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-408" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\crud <b class="caret"></b></a><div id="navigation-408" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-crud-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-409" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\form <b class="caret"></b></a><div id="navigation-409" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-form-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-410" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\model <b class="caret"></b></a><div id="navigation-410" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-model-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-411" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\migrations <b class="caret"></b></a><div id="navigation-411" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-migrations-khanmigration.html">KHanMigration</a></div>
+<a class="list-group-item" href="#navigation-412" data-toggle="collapse" data-parent="#navigation">khans\utils\models <b class="caret"></b></a><div id="navigation-412" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-khanuser.html">KHanUser</a></div>
+<a class="list-group-item" href="#navigation-413" data-toggle="collapse" data-parent="#navigation">khans\utils\models\queries <b class="caret"></b></a><div id="navigation-413" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-queries-khanquery.html">KHanQuery</a></div>
+<a class="list-group-item" href="#navigation-414" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets <b class="caret"></b></a><div id="navigation-414" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-captcha.html">Captcha</a>
+<a class="list-group-item" href="./khans-utils-widgets-confirmbutton.html">ConfirmButton</a>
+<a class="list-group-item" href="./khans-utils-widgets-datepicker.html">DatePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-daterangepicker.html">DateRangePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridasset.html">GridAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-khdropdown.html">KHDropdown</a></div>
+<a class="list-group-item" href="#navigation-415" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets\menu <b class="caret"></b></a><div id="navigation-415" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Class khans\utils\controllers\KHanConsoleController</h1>
+<div class="top-nav">
+    <a href="index.html">All Classes</a>
+                </div>
+
+<table class="summaryTable docClass table table-bordered">
+    <colgroup>
+        <col class="col-name" />
+        <col class="col-value" />
+    </colgroup>
+            <tr><th>Inheritance</th><td><a href="khans-utils-controllers-khanconsolecontroller.html">khans\utils\controllers\KHanConsoleController</a> &raquo;
+yii\console\Controller</td></tr>
+                                        <tr><th>Available since version</th><td>1.0</td></tr>
+            </table>
+
+<div class="class-description">
+    <p><strong>Class KHanWebController offers common behavior for web controllers</strong></p>
+    
+    </div>
+
+<a id="properties"></a>
+
+<a id="methods"></a>
+
+<a id="events"></a>
+
+<a id="constants"></a>
+
+        </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Sat, 29 Dec 2018 08:56:11 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

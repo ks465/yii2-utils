@@ -20,11 +20,15 @@ use yii\helpers\Inflector;
  * Class AppBuilder does some cool stuff to make life easier in development period.
  *
  * @package khans\utils
- * @version 1.3.1-970915
+ * @version 1.3.2-970922
  * @since   1.0
  */
 class AppBuilder extends BaseObject
 {
+    const ACTIONS_USER_DEFAULT = 'behaviors, actions, login, login-attempts, logout, sign-up, request-password-reset, reset-password, ';
+
+    //<editor-fold Desc="Model generators">
+
     /**
      * Create or overwrite model and query for the given table in the given namespace
      *
@@ -67,7 +71,8 @@ class AppBuilder extends BaseObject
                 'queryNs'                    => $modelsNS . '\\queries',
                 'generateLabelsFromComments' => true,
                 'interactive'                => false,
-                'template'                   => 'khanGii',
+//                'overwrite'                  => true,
+                'template'                   => 'giiModel',
             ]);
         } catch (InvalidRouteException $e) {
             echo $e->getMessage();
@@ -116,7 +121,9 @@ class AppBuilder extends BaseObject
 
         return $result;
     }
+    //</editor-fold>
 
+    //<editor-fold Desc="Model Removers">
     /**
      * Remove a model or query class file from filesystem.
      *
@@ -173,7 +180,9 @@ class AppBuilder extends BaseObject
 
         return $result;
     }
+    //</editor-fold>
 
+    //<editor-fold Desc="CRUD Generators">
     /**
      * Create or overwrite CRUD for the given model in the given namespace
      *
@@ -200,7 +209,7 @@ class AppBuilder extends BaseObject
             $baseControllerClass = '\\khans\\utils\\controllers\\KHanWebController';
         }
         try {
-            \Yii::$app->runAction('gii/crud-list', [
+            \Yii::$app->runAction('gii/crud', [
                 'controllerClass'     => $controllerClass,
                 'modelClass'          => $modelClass,
                 'searchModelClass'    => $modelClass . 'Search',
@@ -209,7 +218,8 @@ class AppBuilder extends BaseObject
                 'baseControllerClass' => $baseControllerClass,
                 'enablePjax'          => true,
                 'interactive'         => false,
-                'template'            => 'khanGii',
+//                'overwrite'          => true,
+                'template'            => 'giiCrudList',
             ]);
         } catch (InvalidRouteException $e) {
             echo $e->getMessage();
@@ -250,14 +260,15 @@ class AppBuilder extends BaseObject
         }
 
         try {
-            \Yii::$app->runAction('gii/crud-ajax', [
+            \Yii::$app->runAction('gii/crud', [
                 'controllerClass'     => $controllerClass,
                 'modelClass'          => $modelClass,
                 'searchModelClass'    => $modelClass . 'Search',
                 'viewPath'            => $viewPath,
                 'baseControllerClass' => $baseControllerClass,
                 'interactive'         => false,
-                'template'            => 'khanGii',
+//                'overwrite'           => true,
+                'template'            => 'giiCrudAjax',
             ]);
         } catch (InvalidRouteException $e) {
             echo $e->getMessage();
@@ -272,6 +283,121 @@ class AppBuilder extends BaseObject
         return ExitCode::OK;
     }
 
+    /**
+     * Create or overwrite CRUD for the given user model in the given namespace
+     *
+     * @param string $controllerClass controller fully qualified class with namespace in CamelCase (with first
+     *    uppercase letter and ending with Controller (app\\controllers\\PostController)
+     * @param string $modelClass fully qualified model class with namespace used (app\\models\\Post)
+     * @param string $viewPath Directory path or alias for the view files.
+     * @param string $tableTitle Title of the pages, which presumably is the comment of the database table.
+     * @param string $baseControllerClass fully qualified name of the base class for generated controller. Defaults to
+     *     [[\\khans\\utils\\controllers\\KHanWebController]]
+     *
+     * @return int ExitCode If completed successfully
+     */
+    public static function generateUserCrud($controllerClass, $modelClass, $viewPath, $tableTitle,
+        $baseControllerClass = null): int
+    {
+        $controllersDirectory = dirname(\Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
+
+        if (!is_dir($controllersDirectory)) {
+            try {
+                mkdir($controllersDirectory);
+            } catch (\Exception $e) {
+                Console::error($e->getMessage() . $controllersDirectory);
+
+                return ExitCode::OSFILE;
+            }
+        }
+
+        if (is_null($baseControllerClass)) {
+            $baseControllerClass = '\\khans\\utils\\controllers\\KHanWebController';
+        }
+        try {
+            \Yii::$app->runAction('gii/crud', [
+                'controllerClass'     => $controllerClass,
+                'modelClass'          => $modelClass,
+                'searchModelClass'    => $modelClass . 'Search',
+                'viewPath'            => $viewPath,
+                'baseControllerClass' => $baseControllerClass,
+                'tableTitle'          => $tableTitle,
+                'enablePjax'          => true,
+                'interactive'         => false,
+//                'overwrite'           => true,
+                'template'            => 'giiCrudUser',
+            ]);
+        } catch (InvalidRouteException $e) {
+            echo $e->getMessage();
+
+            return ExitCode::USAGE;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+
+            return ExitCode::USAGE;
+        }
+
+        return ExitCode::OK;
+    }
+
+    /**
+     * Create or overwrite user authentication actions for the given user model in the given namespace
+     *
+     * @param string $controllerClass controller fully qualified class with namespace in CamelCase (with first
+     *    uppercase letter and ending with Controller (app\\controllers\\PostController)
+     * @param string $modelClass fully qualified model class with namespace used (app\\models\\Post)
+     * @param string $viewPath Directory path or alias for the view files.
+     * @param string $modelNS namespace of he auth forms.
+     * @param string $baseControllerClass fully qualified name of the base class for generated controller. Defaults to
+     *     [[\\khans\\utils\\controllers\\KHanWebController]]
+     *
+     * @return int ExitCode If completed successfully
+     */
+    public static function generateUserAuth($controllerClass, $modelClass, $viewPath, $modelNS,
+        $baseControllerClass = null): int
+    {
+        $controllersDirectory = dirname(\Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
+
+        if (!is_dir($controllersDirectory)) {
+            try {
+                mkdir($controllersDirectory);
+            } catch (\Exception $e) {
+                Console::error($e->getMessage() . $controllersDirectory);
+
+                return ExitCode::OSFILE;
+            }
+        }
+
+        if (is_null($baseControllerClass)) {
+            $baseControllerClass = '\\khans\\utils\\controllers\\KHanWebController';
+        }
+        try {
+            \Yii::$app->runAction('gii/crud', [
+                'controllerClass'     => $controllerClass,
+                'modelClass'          => $modelClass,
+                'viewPath'            => $viewPath,
+                'baseControllerClass' => $baseControllerClass,
+                'enablePjax'          => true,
+                'authForms'           => $modelNS,
+                'interactive'         => false,
+//                'overwrite'           => true,
+                'template'            => 'giiCrudAuth',
+            ]);
+        } catch (InvalidRouteException $e) {
+            echo $e->getMessage();
+
+            return ExitCode::USAGE;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+
+            return ExitCode::USAGE;
+        }
+
+        return ExitCode::OK;
+    }
+    //</editor-fold>
+
+    //<editor-fold Desc="CRUD Remover">
     /**
      * Remove CRUD files for the given controller in the given namespace.
      *
@@ -306,4 +432,71 @@ class AppBuilder extends BaseObject
 
         return ExitCode::OK;
     }
+    //</editor-fold>
+
+    //<editor-fold Desc="Controller Generators">
+    /**
+     * Create or overwrite Controller for the given list of actions in the given namespace
+     *
+     * @param string $controllerClass controller fully qualified class with namespace in CamelCase (with first
+     *    uppercase letter and ending with Controller (app\\controllers\\PostController)
+     * @param string $actions List of empty actions in the generated controller, all in lower case separated with comma
+     *     or space.
+     * @param string $viewPath Directory path or alias for the view files.
+     * @param string $baseClass fully qualified name of the base class for generated controller. Defaults to
+     *     [[\\khans\\utils\\controllers\\KHanWebController]]
+     *
+     * @return int ExitCode If completed successfully
+     */
+    public static function generateController($controllerClass, $actions, $viewPath, $baseClass = null): int
+    {
+        $controllersDirectory = dirname(\Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
+
+        if (!is_dir($controllersDirectory)) {
+            mkdir($controllersDirectory);
+        }
+
+        if (is_null($baseClass)) {
+            $baseClass = '\\khans\\utils\\controllers\\KHanWebController';
+        }
+        try {
+            \Yii::$app->runAction('gii/controller', [
+                'controllerClass' => $controllerClass,
+                'actions'         => $actions,
+                'viewPath'        => $viewPath,
+                'baseClass'       => $baseClass,
+                'enablePjax'      => true,
+                'interactive'     => false,
+//                'overwrite'           => true,
+                'template'        => 'giiController',
+            ]);
+        } catch (InvalidRouteException $e) {
+            echo $e->getMessage();
+
+            return ExitCode::USAGE;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+
+            return ExitCode::USAGE;
+        }
+
+        return ExitCode::OK;
+    }
+    //</editor-fold>
+
+    //<editor-fold Desc="Controller Remover">
+    /**
+     * Remove Controller files for the given controller in the given namespace.
+     *
+     * @param string $controllerClass controller fully qualified class with namespace in CamelCase (with first
+     *    uppercase letter and ending with Controller (app\\controllers\\PostController)
+     * @param string $viewPath Directory path or alias for the view files.
+     *
+     * @return int ExitCode If completed successfully
+     */
+    public static function unlinkController($controllerClass, $viewPath): int
+    {
+        return self::unlinkCrud($controllerClass, $viewPath);
+    }
+    //</editor-fold>
 }

@@ -9,8 +9,6 @@
 
 namespace khans\utils\tests\demos;
 
-
-use khans\utils\Admin;
 use khans\utils\widgets\menu\OverlayMenu;
 use khans\utils\widgets\menu\OverlayMenuFiller;
 

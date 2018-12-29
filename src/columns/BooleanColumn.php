@@ -53,7 +53,7 @@ class BooleanColumn extends \kartik\grid\BooleanColumn
             $this->hAlign = GridView::ALIGN_CENTER;
         }
         if (empty($this->vAlign)) {
-            $this->vAlign = GridView::ALIGN_CENTER;
+            $this->vAlign = GridView::ALIGN_MIDDLE;
         }
         if (empty($this->headerOptions)) {
             $this->headerOptions = ['class' => 'kv-align-center kv-align-middle'];

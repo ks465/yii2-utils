@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/afbdca15/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/34135542/style.css" rel="stylesheet">
+<script src="./assets/84a200c2/jquery.js"></script>
+<script src="./assets/afbdca15/js/bootstrap.js"></script>
+<script src="./assets/96f6715f/jssearch.js"></script>    <title>OverlayMenuFiller, khans\utils\widgets\menu\OverlayMenuFiller - KHanUtilsAPI</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w492" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w492-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">KHanUtilsAPI</a></div><div id="w492-collapse" class="collapse navbar-collapse"><ul id="w493" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-475" data-toggle="collapse" data-parent="#navigation">common\actions <b class="caret"></b></a><div id="navigation-475" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-actions-helpaction.html">HelpAction</a></div>
+<a class="list-group-item" href="#navigation-476" data-toggle="collapse" data-parent="#navigation">common\widgets\columns <b class="caret"></b></a><div id="navigation-476" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-widgets-columns-progresscolumn.html">ProgressColumn</a></div>
+<a class="list-group-item" href="#navigation-477" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-477" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-478" data-toggle="collapse" data-parent="#navigation">khans\utils\columns <b class="caret"></b></a><div id="navigation-478" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-booleancolumn.html">BooleanColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-datacolumn.html">DataColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-enumcolumn.html">EnumColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-jalalicolumn.html">JalaliColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-radiocolumn.html">RadioColumn</a></div>
+<a class="list-group-item" href="#navigation-479" data-toggle="collapse" data-parent="#navigation">khans\utils\components <b class="caret"></b></a><div id="navigation-479" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
+<a class="list-group-item" href="./khans-utils-components-filehelper.html">FileHelper</a>
+<a class="list-group-item" href="./khans-utils-components-jalali.html">Jalali</a>
+<a class="list-group-item" href="./khans-utils-components-jalalix.html">JalaliX</a>
+<a class="list-group-item" href="./khans-utils-components-mathhelper.html">MathHelper</a>
+<a class="list-group-item" href="./khans-utils-components-sqlformatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./khans-utils-components-stringhelper.html">StringHelper</a>
+<a class="list-group-item" href="./khans-utils-components-viewhelper.html">ViewHelper</a></div>
+<a class="list-group-item" href="#navigation-480" data-toggle="collapse" data-parent="#navigation">khans\utils\components\rest <b class="caret"></b></a><div id="navigation-480" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-rest-authenticate.html">Authenticate</a>
+<a class="list-group-item" href="./khans-utils-components-rest-client.html">Client</a>
+<a class="list-group-item" href="./khans-utils-components-rest-security.html">Security</a></div>
+<a class="list-group-item" href="#navigation-481" data-toggle="collapse" data-parent="#navigation">khans\utils\components\workflow <b class="caret"></b></a><div id="navigation-481" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-workflow-wizflowmanager.html">WizflowManager</a></div>
+<a class="list-group-item" href="#navigation-482" data-toggle="collapse" data-parent="#navigation">khans\utils\controllers <b class="caret"></b></a><div id="navigation-482" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-controllers-khanconsolecontroller.html">KHanConsoleController</a>
+<a class="list-group-item" href="./khans-utils-controllers-khanrestcontroller.html">KHanRestController</a>
+<a class="list-group-item" href="./khans-utils-controllers-khanwebcontroller.html">KHanWebController</a></div>
+<a class="list-group-item" href="#navigation-483" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\controller <b class="caret"></b></a><div id="navigation-483" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-controller-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-484" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\crud <b class="caret"></b></a><div id="navigation-484" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-crud-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-485" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\form <b class="caret"></b></a><div id="navigation-485" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-form-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-486" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\model <b class="caret"></b></a><div id="navigation-486" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-model-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-487" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\migrations <b class="caret"></b></a><div id="navigation-487" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-migrations-khanmigration.html">KHanMigration</a></div>
+<a class="list-group-item" href="#navigation-488" data-toggle="collapse" data-parent="#navigation">khans\utils\models <b class="caret"></b></a><div id="navigation-488" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-khanuser.html">KHanUser</a></div>
+<a class="list-group-item" href="#navigation-489" data-toggle="collapse" data-parent="#navigation">khans\utils\models\queries <b class="caret"></b></a><div id="navigation-489" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-queries-khanquery.html">KHanQuery</a></div>
+<a class="list-group-item" href="#navigation-490" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets <b class="caret"></b></a><div id="navigation-490" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-captcha.html">Captcha</a>
+<a class="list-group-item" href="./khans-utils-widgets-confirmbutton.html">ConfirmButton</a>
+<a class="list-group-item" href="./khans-utils-widgets-datepicker.html">DatePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-daterangepicker.html">DateRangePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridasset.html">GridAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-khdropdown.html">KHDropdown</a></div>
+<a class="list-group-item active" href="#navigation-491" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets\menu <b class="caret"></b></a><div id="navigation-491" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
+<a class="list-group-item active" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Class khans\utils\widgets\menu\OverlayMenuFiller</h1>
+<div class="top-nav">
+    <a href="index.html">All Classes</a>
+            | <a href="#properties">Properties</a>
+                | <a href="#methods">Methods</a>
+            </div>
+
+<table class="summaryTable docClass table table-bordered">
+    <colgroup>
+        <col class="col-name" />
+        <col class="col-value" />
+    </colgroup>
+            <tr><th>Inheritance</th><td><a href="khans-utils-widgets-menu-overlaymenufiller.html">khans\utils\widgets\menu\OverlayMenuFiller</a> &raquo;
+yii\base\BaseObject</td></tr>
+                                        </table>
+
+<div class="class-description">
+    <p><strong>Class OverlayMenuFiller reads a CSV file and builds the menu items required for <a href="khans-utils-widgets-menu-overlaymenu.html">khans\utils\widgets\menu\OverlayMenu</a>.</strong></p>
+    <p>You do not need to call this class directly, instead you can configure <a href="khans-utils-widgets-menu-overlaymenu.html">khans\utils\widgets\menu\OverlayMenu</a> to utilize it.</p>
+<p><strong>Example 1</strong></p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$this</span>-&gt;menuFiller = <span class="hljs-keyword">new</span> OverlayMenuFiller([
+   <span class="hljs-string">'csvFileUrl'</span> =&gt; <span class="hljs-string">'sample.csv'</span>,
+   <span class="hljs-string">'tabs'</span> =&gt; <span class="hljs-variable">$this</span>-&gt;tabs,
+]);
+</code></pre>
+<p><strong>Example 2</strong></p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$this</span>-&gt;menuFiller = <span class="hljs-keyword">new</span> OverlayMenuFiller([
+   <span class="hljs-string">'csvFileUrl'</span> =&gt; <span class="hljs-string">'sample.csv'</span>,
+   <span class="hljs-string">'tabs'</span> =&gt; <span class="hljs-variable">$this</span>-&gt;tabs,
+]);
+<span class="hljs-string">''</span><span class="hljs-string">'
+</span></code></pre>
+
+    <p>See also:</p><ul><li><a href="khans-utils-widgets-menu-overlaymenu.html">khans\utils\widgets\menu\OverlayMenu</a></li><li>[[sample.csv]].</li></ul></div>
+
+<a id="properties"></a>
+
+<div class="summary doc-property">
+<h2>Public Properties</h2>
+
+<p><a href="#" class="toggle">Hide inherited properties</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-property" />
+    <col class="col-type" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="$csvFileUrl">
+        <td><a href="khans-utils-widgets-menu-overlaymenufiller.html#$csvFileUrl-detail">$csvFileUrl</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>Full path to CSV file
+Full path to a CSV file containing the data required for rendering menu.</td>
+        <td><a href="khans-utils-widgets-menu-overlaymenufiller.html">khans\utils\widgets\menu\OverlayMenuFiller</a></td>
+    </tr>
+            <tr id="$tabs">
+        <td><a href="khans-utils-widgets-menu-overlaymenufiller.html#$tabs-detail">$tabs</a></td>
+        <td><a href="http://www.php.net/language.types.array">array</a></td>
+        <td>List of tabs and view parameters</td>
+        <td><a href="khans-utils-widgets-menu-overlaymenufiller.html">khans\utils\widgets\menu\OverlayMenuFiller</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="methods"></a>
+
+<div class="summary doc-method">
+<h2>Public Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="getTabs()">
+        <td><a href="khans-utils-widgets-menu-overlaymenufiller.html#getTabs()-detail">getTabs()</a></td>
+        <td></td>
+        <td><a href="khans-utils-widgets-menu-overlaymenufiller.html">khans\utils\widgets\menu\OverlayMenuFiller</a></td>
+    </tr>
+            <tr id="init()">
+        <td><a href="khans-utils-widgets-menu-overlaymenufiller.html#init()-detail">init()</a></td>
+        <td></td>
+        <td><a href="khans-utils-widgets-menu-overlaymenufiller.html">khans\utils\widgets\menu\OverlayMenuFiller</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="events"></a>
+
+<a id="constants"></a>
+
+<h2>Property Details</h2>
+
+<div class="property-doc">
+
+    <div class="detail-header h3" id="$csvFileUrl-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-menu-overlaymenufiller.html#$csvFileUrl-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $csvFileUrl        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>Full path to CSV file
+Full path to a CSV file containing the data required for rendering menu.
+see <a href="./g_widgets-menu.html#subsection">Overlay Menu Guide</a></p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-widgets-menu-overlaymenufiller.html#$csvFileUrl-detail">$csvFileUrl</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">''</span></div>
+
+
+    <div class="detail-header h3" id="$tabs-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-menu-overlaymenufiller.html#$tabs-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $tabs        <span class="detail-header-tag small">
+            public                                                property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>List of tabs and view parameters</p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="khans-utils-widgets-menu-overlaymenufiller.html#$tabs-detail">$tabs</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[]</span></div>
+
+</div>
+<h2>Method Details</h2>
+
+<div class="method-doc">
+
+    <div class="detail-header h3" id="getTabs()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-menu-overlaymenufiller.html#getTabs()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getTabs()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-widgets-menu-overlaymenufiller.html#getTabs()-detail">getTabs</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="init()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-menu-overlaymenufiller.html#init()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        init()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-widgets-menu-overlaymenufiller.html#init()-detail">init</a></strong> ( )</td></tr>
+                                                            <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col"><a href="http://www.php.net/class.exception">Exception</a></td>
+                  <td class="param-desc-col"><p>when the file name is empty or the file is not found.</p>
+</td>
+                </tr>
+                        </table>
+
+<!--	-->
+</div>
+        </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Sat, 29 Dec 2018 08:56:12 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

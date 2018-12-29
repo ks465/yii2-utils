@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/afbdca15/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/34135542/style.css" rel="stylesheet">
+<script src="./assets/84a200c2/jquery.js"></script>
+<script src="./assets/afbdca15/js/bootstrap.js"></script>
+<script src="./assets/96f6715f/jssearch.js"></script>    <title>String Helper - Components - KHanUtilsGuide</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w94" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w94-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">KHanUtilsGuide</a></div><div id="w94-collapse" class="collapse navbar-collapse"><ul id="w95" class="navbar-nav nav"><li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-84" data-toggle="collapse" data-parent="#navigation">Documentation <b class="caret"></b></a><div id="navigation-84" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_documents.html">Document Tips and Tricks</a>
+<a class="list-group-item" href="./g_persian.html">Setup for Persian</a>
+<a class="list-group-item" href="./g_full-config.html">Complete Config</a></div>
+<a class="list-group-item active" href="#navigation-85" data-toggle="collapse" data-parent="#navigation">Components <b class="caret"></b></a><div id="navigation-85" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./g_components-array-helper.html">Array Helper</a>
+<a class="list-group-item" href="./g_components-file-helper.html">File Helper</a>
+<a class="list-group-item" href="./g_components-jalali.html">Jalali and JalaliX</a>
+<a class="list-group-item" href="./g_components-math-helper.html">Math Helper</a>
+<a class="list-group-item" href="./g_components-sql-formatter.html">SQL Formatter</a>
+<a class="list-group-item active" href="./g_components-string-helper.html">String Helper</a>
+<a class="list-group-item" href="./g_components-view-helper.html">View Helper</a></div>
+<a class="list-group-item" href="#navigation-86" data-toggle="collapse" data-parent="#navigation">Columns <b class="caret"></b></a><div id="navigation-86" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_columns-action-column.html">Action Column</a>
+<a class="list-group-item" href="./g_columns-boolean-column.html">Boolean Column</a>
+<a class="list-group-item" href="./g_columns-data-column.html">Data Column</a>
+<a class="list-group-item" href="./g_columns-enum-column.html">Enum Column</a>
+<a class="list-group-item" href="./g_columns-radio-column.html">Radio Column</a>
+<a class="list-group-item" href="./g_columns-jalali-column.html">Jalali Column</a>
+<a class="list-group-item" href="./g_columns-progress-column.html">Progress Column</a></div>
+<a class="list-group-item" href="#navigation-87" data-toggle="collapse" data-parent="#navigation">Models <b class="caret"></b></a><div id="navigation-87" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_models-khan-model.html">Base Model</a>
+<a class="list-group-item" href="./g_models-khan-user.html">Base user</a></div>
+<a class="list-group-item" href="#navigation-88" data-toggle="collapse" data-parent="#navigation">RBAC <b class="caret"></b></a><div id="navigation-88" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_rbac-rule-owner.html">Owner Rule</a></div>
+<a class="list-group-item" href="#navigation-89" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-89" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_widgets-date-picker.html">Date Picker</a>
+<a class="list-group-item" href="./g_widgets-date-range-picker.html">Date Range Picker</a>
+<a class="list-group-item" href="./g_widgets-grid-view.html">Grid View</a>
+<a class="list-group-item" href="./g_widgets-dropdown.html">AJAX Dropdown</a>
+<a class="list-group-item" href="./g_widgets-export-menu.html">Export Menu</a>
+<a class="list-group-item" href="./g_widgets-confirm-button.html">Confirm Button</a></div>
+<a class="list-group-item" href="#navigation-90" data-toggle="collapse" data-parent="#navigation">Others <b class="caret"></b></a><div id="navigation-90" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_helpers-app-builder.html">App Builder</a>
+<a class="list-group-item" href="./g_components-var-dump.html">VarDump</a>
+<a class="list-group-item" href="./g_components-sql-formatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./g_settings.html">Settings</a>
+<a class="list-group-item" href="./g_helpers-migrations.html">Migrations</a>
+<a class="list-group-item" href="./g_widgets-menu.html">Overlay Menu</a>
+<a class="list-group-item" href="./g_components-workflow.html">Workflow Manager</a>
+<a class="list-group-item" href="./g_components-wiz-flow.html">Wizard Flow</a></div>
+<a class="list-group-item" href="#navigation-91" data-toggle="collapse" data-parent="#navigation">StartUp <b class="caret"></b></a><div id="navigation-91" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-92" data-toggle="collapse" data-parent="#navigation">Sanitizing User Input <b class="caret"></b></a><div id="navigation-92" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-93" data-toggle="collapse" data-parent="#navigation">RBAC Setup <b class="caret"></b></a><div id="navigation-93" class="submenu panel-collapse collapse"></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>StringHelper Class <span id="stringhelper-class"></span><a href="#stringhelper-class" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#persianname">PERSIAN_NAME</a></li>
+<li><a href="#persiantitle">PERSIAN_TITLE</a></li>
+<li><a href="#screeninput">screenInput</a></li></ol></div>
+<p>This class contains all the utilities for formatting, correcting and shaping strings for saving or showing.
+It is extending <code>\yii\helpers\StringHelper</code> class to simplify imports.</p>
+<h2>PERSIAN_NAME <span id="persianname"></span><a href="#persianname" class="hashlink">&para;</a></h2><p>This constant defines a regular expression pattern to filter alphabet characters which are valid in names.</p>
+<h2>PERSIAN_TITLE <span id="persiantitle"></span><a href="#persiantitle" class="hashlink">&para;</a></h2><p>This constants defines a regular expression pattern to filter alphabet, numbers (both Persian &amp; Latin type faces), punctuations,
+and other characters usually used in titles of books, papers, etc.</p>
+<h2>screenInput <span id="screeninput"></span><a href="#screeninput" class="hashlink">&para;</a></h2><p>In order to make sure all of Persian inputs are corrected for the Ya &amp; Ka before application starts processing the input.
+<span class="broken-link">correctYaKa</span> is called in this method. For this to work you should add the following to the Yii2 main config:</p>
+<pre><code class="hljs php language-php">    <span class="hljs-string">'on beforeRequest'</span> =&gt; [
+    <span class="hljs-string">'khans\utils'</span>,
+    <span class="hljs-string">'screenInput'</span>,
+],
+* ```
+
+<span class="hljs-comment">##correctYaKa</span>
+Unfortunately, older Microsoft keyboards <span class="hljs-keyword">and</span> fonts used arabic characters `ك` <span class="hljs-keyword">and</span> `ي` instead of `ی` <span class="hljs-keyword">and</span> `ک`. 
+This results in inconsistent search results. To solve this problem <span class="hljs-keyword">use</span> [[<span class="hljs-title">correctYaKa</span>]] <span class="hljs-title">to</span> <span class="hljs-title">convert</span> <span class="hljs-title">all</span> <span class="hljs-title">occurrence</span> <span class="hljs-title">of</span> 
+<span class="hljs-title">these</span> <span class="hljs-title">two</span> <span class="hljs-title">letters</span> <span class="hljs-title">to</span> <span class="hljs-title">the</span> <span class="hljs-title">standard</span> <span class="hljs-title">Persian</span> <span class="hljs-title">ones</span> (<span class="hljs-title">which</span> <span class="hljs-title">are</span> `ی` <span class="hljs-title">and</span> `ک`). 
+<span class="hljs-title">This</span> <span class="hljs-title">function</span> <span class="hljs-title">is</span> <span class="hljs-title">used</span> <span class="hljs-title">in</span> [[<span class="hljs-title">screenInput</span>]] <span class="hljs-title">to</span> <span class="hljs-title">ensure</span> <span class="hljs-title">simple</span> <span class="hljs-title">and</span> <span class="hljs-title">solid</span> <span class="hljs-title">using</span> <span class="hljs-title">of</span> <span class="hljs-title">Persian</span> <span class="hljs-title">language</span> <span class="hljs-title">sites</span>.
+
+##<span class="hljs-title">trimAll</span>
+<span class="hljs-title">Trim</span> <span class="hljs-title">strings</span> <span class="hljs-title">in</span> <span class="hljs-title">any</span> <span class="hljs-title">data</span> <span class="hljs-title">depth</span> <span class="hljs-title">but</span> <span class="hljs-title">do</span> <span class="hljs-title">not</span> <span class="hljs-title">change</span> <span class="hljs-title">the</span> <span class="hljs-title">key</span> <span class="hljs-title">of</span> <span class="hljs-title">associative</span> <span class="hljs-title">arrays</span>.
+
+##<span class="hljs-title">convertDigits</span>
+<span class="hljs-title">Convert</span> <span class="hljs-title">Latin</span> <span class="hljs-title">digits</span> <span class="hljs-title">into</span> <span class="hljs-title">Persian</span>-<span class="hljs-title">faced</span> <span class="hljs-title">numerals</span> <span class="hljs-title">and</span> <span class="hljs-title">vice</span> <span class="hljs-title">versa</span>. <span class="hljs-title">This</span> <span class="hljs-title">is</span> <span class="hljs-title">for</span> <span class="hljs-title">display</span> <span class="hljs-title">reasons</span>, <span class="hljs-title">and</span> <span class="hljs-title">by</span> <span class="hljs-title">using</span> <span class="hljs-title">an</span> <span class="hljs-title">appropriate</span>
+<span class="hljs-title">font</span>, <span class="hljs-title">this</span> <span class="hljs-title">is</span> <span class="hljs-title">not</span> <span class="hljs-title">really</span> <span class="hljs-title">needed</span> --<span class="hljs-title">except</span> <span class="hljs-title">for</span> <span class="hljs-title">the</span> <span class="hljs-title">decimal</span> <span class="hljs-title">point</span> <span class="hljs-title">character</span>.
+
+##<span class="hljs-title">mb_str_pad</span>
+<span class="hljs-title">Padding</span> <span class="hljs-title">multi</span> <span class="hljs-title">byte</span> <span class="hljs-title">characters</span> <span class="hljs-title">is</span> <span class="hljs-title">not</span> <span class="hljs-title">as</span> <span class="hljs-title">simple</span> <span class="hljs-title">as</span> <span class="hljs-title">ASCII</span> <span class="hljs-title">characters</span>. <span class="hljs-title">As</span> <span class="hljs-title">it</span> <span class="hljs-title">is</span> <span class="hljs-title">seen</span> <span class="hljs-title">in</span> <span class="hljs-title">the</span> <span class="hljs-title">following</span> <span class="hljs-title">example</span> <span class="hljs-title">length</span> <span class="hljs-title">of</span> <span class="hljs-title">multi</span>-<span class="hljs-title">byte</span>
+<span class="hljs-title">characters</span> <span class="hljs-title">is</span> <span class="hljs-title">not</span> <span class="hljs-title">calculated</span> <span class="hljs-title">correctly</span> <span class="hljs-title">in</span> `<span class="hljs-title">PHP</span>::<span class="hljs-title">str</span>()`. <span class="hljs-title">In</span> <span class="hljs-title">this</span> <span class="hljs-title">rewrite</span> <span class="hljs-title">the</span> <span class="hljs-title">real</span> <span class="hljs-title">length</span> <span class="hljs-title">of</span> <span class="hljs-title">words</span> <span class="hljs-title">is</span> <span class="hljs-title">calculated</span>, <span class="hljs-title">and</span> <span class="hljs-title">further</span>
+<span class="hljs-title">to</span> <span class="hljs-title">that</span> <span class="hljs-title">this</span> <span class="hljs-title">method</span> <span class="hljs-title">considers</span> <span class="hljs-title">the</span> <span class="hljs-title">no</span>-<span class="hljs-title">width</span> <span class="hljs-title">no</span>-<span class="hljs-title">break</span> <span class="hljs-title">space</span> <span class="hljs-title">in</span> <span class="hljs-title">Persian</span>. 
+
+```<span class="hljs-title">php</span>
+$<span class="hljs-title">length</span> = 12;
+
+<span class="hljs-keyword">echo</span> str_pad(<span class="hljs-variable">$text1</span>, <span class="hljs-variable">$length</span>, <span class="hljs-string">'-'</span>,STR_PAD_LEFT);
+<span class="hljs-comment">//راه انداز</span>
+
+<span class="hljs-keyword">echo</span> StringHelper::mb_str_pad(<span class="hljs-variable">$text1</span>, <span class="hljs-variable">$length</span>, <span class="hljs-string">'-'</span>,STR_PAD_LEFT);
+<span class="hljs-comment">//---راه انداز</span>
+
+<span class="hljs-keyword">echo</span> str_pad(<span class="hljs-variable">$text2</span>, <span class="hljs-variable">$length</span>, <span class="hljs-string">'-'</span>,STR_PAD_LEFT);
+<span class="hljs-comment">//راه‌انداز</span>
+
+<span class="hljs-keyword">echo</span> StringHelper::mb_str_pad(<span class="hljs-variable">$text2</span>, <span class="hljs-variable">$length</span>, <span class="hljs-string">'-'</span>,STR_PAD_LEFT);
+<span class="hljs-comment">//----راه‌انداز</span>
+
+<span class="hljs-variable">$length</span> = <span class="hljs-number">20</span>;
+
+<span class="hljs-keyword">echo</span> str_pad(<span class="hljs-variable">$text1</span>, <span class="hljs-variable">$length</span>, <span class="hljs-string">'-'</span>,STR_PAD_LEFT);
+<span class="hljs-comment">//---راه انداز</span>
+
+<span class="hljs-keyword">echo</span> StringHelper::mb_str_pad(<span class="hljs-variable">$text1</span>, <span class="hljs-variable">$length</span>, <span class="hljs-string">'-'</span>,STR_PAD_LEFT);
+<span class="hljs-comment">//-----------راه انداز</span>
+
+<span class="hljs-keyword">echo</span> str_pad(<span class="hljs-variable">$text2</span>, <span class="hljs-variable">$length</span>, <span class="hljs-string">'-'</span>,STR_PAD_LEFT);
+<span class="hljs-comment">//-راه‌انداز</span>
+
+<span class="hljs-keyword">echo</span> StringHelper::mb_str_pad(<span class="hljs-variable">$text2</span>, <span class="hljs-variable">$length</span>, <span class="hljs-string">'-'</span>,STR_PAD_LEFT);
+<span class="hljs-comment">//------------راه‌انداز</span>
+</code></pre>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Sat, 29 Dec 2018 08:56:07 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

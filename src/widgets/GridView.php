@@ -31,8 +31,9 @@ use yii\i18n\Formatter;
  * ])
  * ```
  * GridView 1.* and AjaxGridView 1.* are merged together, and there is no AjaxGridView in the 2.* version.
+ * For details of bulkAction usage see [guide]
  * @package khans\utils\widgets
- * @version 2.2.1-970916
+ * @version 2.2.2-970918
  * @since   1.0.0
  */
 class GridView extends \kartik\grid\GridView
@@ -73,11 +74,13 @@ class GridView extends \kartik\grid\GridView
      *    + message is the text of the message to show as confirmation of action.
      */
     public $bulkAction = [
-        'action'  => '',
-        'label'   => '',
-        'icon'    => '',
-        'class'   => '',
-        'message' => '',
+        'action'   => '',
+        'label'    => '',
+        'icon'     => '',
+        'class'    => '',
+        'message'  => '',
+        'hint'     => '',
+        'dropdown' => false,
     ];
     /**
      * @var array|boolean Configuration parameters to put a button in the panel to trige createAction or equivalent.
@@ -181,9 +184,12 @@ class GridView extends \kartik\grid\GridView
         $this->condensed = true;
         $this->responsive = true;
 
-
-        if (!empty($this->bulkAction) && is_array($this->bulkAction) && !empty($this->bulkAction['action'])) {
-            $this->loadBulkSegment();
+        if (!empty($this->bulkAction)) {
+            if (isset($this->bulkAction['dropdown']) and $this->bulkAction['dropdown']) {
+                $this->loadBulkSegmentDropdown();
+            } else {
+                $this->loadBulkSegmentButton();
+            }
         }
 
         if (!empty($this->createAction) && $this->createAction !== false) {
@@ -192,11 +198,12 @@ class GridView extends \kartik\grid\GridView
             } else {
                 $this->createAction = array_merge($this->_createAction, $this->createAction);
             }
-//todo include AAA and RBAC check for showing this
+
             $this->toolbar['content'] .= Html::a('<i class="glyphicon glyphicon-' . $this->createAction['icon'] . '"></i>',
                 [$this->createAction['action']],
-                ['role'  => $this->createAction['ajax'] === true ? 'modal-remote' : '',
-                 'title' => $this->createAction['title'], 'class' => 'btn btn-success',
+                [
+                    'role'  => $this->createAction['ajax'] === true ? 'modal-remote' : '',
+                    'title' => $this->createAction['title'], 'class' => 'btn btn-success',
                 ]);
         }
 
@@ -241,13 +248,12 @@ class GridView extends \kartik\grid\GridView
                 'filename' => $filename,
             ],
         ];
-
     }
 
     /**
      * If bulk action button is requested, configure it and add it to the panel.
      */
-    private function loadBulkSegment()
+    private function loadBulkSegmentButton()
     {
         if (empty($this->bulkAction['class'])) {
             $this->bulkAction['class'] = 'default';
@@ -255,20 +261,51 @@ class GridView extends \kartik\grid\GridView
         if (empty($this->bulkAction['message'])) {
             $this->bulkAction['message'] = 'از انجام این دستور اطمینان دارید؟';
         }
+        if (empty($this->bulkAction['hint'])) {
+            $this->bulkAction['hint'] = 'با همه انتخاب شده‌ها';
+        }
 
         $this->panel['before'] .= '<div class="pull-left rtl">' .
-            '&nbsp;&nbsp;با همه انتخاب شده‌ها&nbsp;&nbsp;<i class="glyphicon glyphicon-arrow-left"></i>&nbsp;&nbsp;' .
+            '&nbsp;&nbsp;' . $this->bulkAction['hint'] . '&nbsp;&nbsp;<i class="glyphicon glyphicon-arrow-left"></i>&nbsp;&nbsp;' .
             Html::a('<i class="glyphicon glyphicon-' . $this->bulkAction['icon'] . '"></i>&nbsp;' . $this->bulkAction['label'],
                 [$this->bulkAction['action']],
                 [
-                    "class"                => 'btn btn-' . $this->bulkAction['class'],
+                    'class'                => 'btn btn-' . $this->bulkAction['class'],
                     'role'                 => 'modal-remote-bulk',
-                    'data-confirm'         => false,
-                    'data-method'          => false,// for overide yii data api
+                    'data-confirm'         => false, // for override default confirmation
+                    'data-method'          => false, // for override yii data api
                     'data-request-method'  => 'post',
                     'data-confirm-title'   => ' آیا اطمینان دارید؟',
                     'data-confirm-message' => $this->bulkAction['message'],
                 ]) .
+            '</div>';
+    }
+
+    /**
+     * If more than one bulk actions are requested, configure them in a way similar to DropdownX
+     */
+    private function loadBulkSegmentDropdown()
+    {
+        if (empty($this->bulkAction['class'])) {
+            $this->bulkAction['class'] = 'default';
+        }
+        if (empty($this->bulkAction['message'])) {
+            $this->bulkAction['message'] = 'از انجام این دستور اطمینان دارید؟';
+        }
+        if (empty($this->bulkAction['hint'])) {
+            $this->bulkAction['hint'] = 'با همه انتخاب شده‌ها';
+        }
+
+        $this->panel['before'] .= '<div class="pull-left rtl">' .
+            '&nbsp;&nbsp;' . $this->bulkAction['hint'] . '&nbsp;&nbsp;<i class="glyphicon glyphicon-arrow-left"></i>&nbsp;&nbsp;' .
+            '<div class="btn-group">' .
+            '<button data-toggle="dropdown" class="dropdown-toggle btn btn-default" title="نمایش دستورات">' .
+            '<i class="glyphicon ' . $this->bulkAction['icon'] . '"></i>' .
+            '&nbsp;' . $this->bulkAction['label'] . '&nbsp;' . '&nbsp;' .
+            '<b class="caret"></b>' .
+            '</button>' .
+            $this->bulkAction['action'] .
+            '</div>' .
             '</div>';
     }
 }

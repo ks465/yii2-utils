@@ -17,35 +17,33 @@ use yii\web\User;
  * User model
  *
  * @package KHanS\Utils
- * @version 0.3-970803
+ * @version 0.3-0-970803
  * @since   1.0
- *
- * @property integer $id                   شماره کاربر
- * @property string  $username             شناسه کاربر
- * @property string  $auth_key             کلید تشخیص هویت
- * @property string  $password_hash        رمز گذرواژه
- * @property string  $password_reset_token بلیت بازنشانی گذرواژه
- * @property string  $access_token         کلید دسترسی خودکار
- *
- * @property string  $name                  نام کاربر
- * @property string  $family                نام خانوادگی کاربر
- * @property string  $email                ایمیل کاربر
- *
- * @property integer $status               وضعیت فعال بودن کاربر
- * @property integer $last_visit_time       زمان آخرین ورود کاربر به سامانه
- * @property integer $create_time           زمان ساخت رکورد کاربر
- * @property integer $update_time           زمان آخرین ویرایش رکورد کاربر
- * @property integer $delete_time           زمان پاک کردن رکورد کاربر از سامانه
- *
+ * // * @property integer $id                   شماره کاربر
+ * // * @property string $username             شناسه کاربر
+ * // * @property string $auth_key             کلید تشخیص هویت
+ * // * @property string $password_hash        رمز گذرواژه
+ * // * @property string $password_reset_token بلیت بازنشانی گذرواژه
+ * // * @property string $access_token         کلید دسترسی خودکار
+ * // *
+ * // * @property string $name                  نام کاربر
+ * // * @property string $family                نام خانوادگی کاربر
+ * // * @property string $email                ایمیل کاربر
+ * // *
+ * // * @property integer $status               وضعیت فعال بودن کاربر
+ * // * @property integer $last_visit_time       زمان آخرین ورود کاربر به سامانه
+ * // * @property integer $create_time           زمان ساخت رکورد کاربر
+ * // * @property integer $update_time           زمان آخرین ویرایش رکورد کاربر
+ * // * @property integer $delete_time           زمان پاک کردن رکورد کاربر از سامانه
+ * // *
  * @property string  $fullName             نام کامل کاربر
  * @property string  $fullId               نام کامل کاربر و کد شناسایی
- *
  * @property boolean $isSuperAdmin         یک مدیر سیستم است
  */
 class KHanUser extends User
 {
     /**
-     * @var string the class name of the [[KHanIdentity]] object.
+     * @var string the class name of the [[\khans\utils\models\KHanIdentity]] object.
      */
     public $identityClass = '\khans\utils\models\KHanIdentity';
     /**
