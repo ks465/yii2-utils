@@ -63,6 +63,7 @@ class Jalali extends BaseObject
     const W3C = "Y-m-d\TH:i:sP";
     const KHAN_SHORT = "Y/m/d H:i:s";
     const KHAN_LONG = "l S F Y، H و i دقیقه";
+    const KHAN_FILENAME = "Y_m_d-H_i";
 
     /**
      * @var int

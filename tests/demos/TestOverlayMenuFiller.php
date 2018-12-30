@@ -12,6 +12,13 @@ namespace khans\utils\tests\demos;
 use khans\utils\widgets\menu\OverlayMenu;
 use khans\utils\widgets\menu\OverlayMenuFiller;
 
+/**
+ * Class TestOverlayMenuFiller load demo files for the overlay menu of the yii2-utils package
+ *
+ * @package khans\utils\tests\demos
+ * @version 0.1.0-970915
+ * @since   1.0
+ */
 class TestOverlayMenuFiller extends BaseTester
 {
     public function testFiller()

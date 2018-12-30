@@ -17,96 +17,39 @@ use khans\utils\components\Jalali;
 use khans\utils\widgets\ConfirmButton;
 use khans\utils\widgets\DatePicker;
 use khans\utils\widgets\DateRangePicker;
+use khans\utils\widgets\DropdownX;
 use khans\utils\widgets\GridView;
-use khans\utils\widgets\KHDropdown;
 use Yii;
 use yii\base\DynamicModel;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-require_once Yii::getAlias('@vendor/fzaninotto/faker/src/autoload.php');
-
+/**
+ * Class TestWidgets load demo files for the widgets of the yii2-utils package
+ *
+ * @package khans\utils\tests\demos
+ * @version 0.5.0-971009
+ * @since   1.0
+ */
 class TestWidgets extends BaseTester
 {
     protected $skipTests = [
-        'testDatePicker1', 'testDatePicker1_1', 'testDatePicker2', 'testDatePicker3', 'testDatePicker4',
-        'testDatePicker5', 'testDatePicker6', 'testDatePicker7', 'testDatePicker8', 'testDatePicker9',
-        'testDatePicker10', 'testDatePicker11', 'testDatePicker12', 'testDateRangePicker1',
-        'testDateRangePicker2',
-        'testGridView', 'testAjaxGridView',
-        'testConfirmButtonA', 'testConfirmButtonB',
-        'testConfirmButtonC', 'testConfirmButtonD',
-        'exportArray',
-        'testExportModel',
-        'testGridViewExport',
+//        'testDatePicker1', 'testDatePicker1_1', 'testDatePicker2', 'testDatePicker3', 'testDatePicker4',
+//        'testDatePicker5', 'testDatePicker6', 'testDatePicker7', 'testDatePicker8', 'testDatePicker9',
+//        'testDatePicker10', 'testDatePicker11', 'testDatePicker12',
+//        'testDateRangePicker1', 'testDateRangePicker2',
+//        'testGridView', 'testAjaxGridView',
+//        'testGridViewDropDownBulkAction',
+//        'testConfirmButtonA', 'testConfirmButtonB',
+//        'testConfirmButtonC', 'testConfirmButtonD',
+//        'testExportArray', 'testExportModel', 'testGridViewExport', 'testGridViewSEExport',
+//        'testExportLongModelDefault',
+//        'testExportLongModelExportMenu1',
+//        'testExportLongModelExportMenu2', 'testExportLongModelExportMenu3',
+//        'testExportLongModelExportMenuReal',
+//        'testExportLongModelExportMenuSimple',
     ];
-
-    public function testGridViewDropDownBulkAction()
-    {
-//        $this->writeHeader('GridView; BulkAction with Dropdown, run as Ajax');
-//        $config = $this->configWidget('dropdown-test', false, false);
-        $this->writeHeader('GridView; BulkAction with Dropdown, run as Normal');
-        $config = $this->configWidget('dropdown-test', false, true);
-        $config['type'] = 'danger';
-        $config['itemLabelSingle'] = 'danger';
-        $config['itemLabelMany'] = 'dangerMM';
-        $config['itemLabelPlural'] = 'dangerSS';
-        $config['itemLabelFew'] = 'dangerFF';
-        $config['showRefreshButtons'] = true;
-        $config['createAction'] = false;
-        $config['bulkAction']['dropdown'] = true;
-        $config['bulkAction']['action'] = KHDropdown::widget([
-            'items' => [
-                [
-                    'label' => 'عنوان منوی اصلی',
-                ],
-                [
-                    'label'   => 'دستور یک',
-                    'url'     => 'index',
-                    'message' => 'پیام شماره یک',
-                    'class'   => 'default',
-                ],
-                [
-                    'label'   => 'باز هم یک دستور دیگر',
-                    'url'     => '#',
-                    'message' => 'پیام شماره پنج',
-                ],
-                '<li class="divider"></li>',
-                [
-                    'label' => 'کلید زیرمنوی یکم',
-                    'class' => 'danger',
-                    'items' => [
-                        [
-                            'label' => 'عنوان زیرمنوی یکم',
-                        ],
-                        [
-                            'label'   => 'دستور سه',
-                            'url'     => 'about',
-                            'message' => 'پیام شماره سه',
-                            'class'   => 'danger',
-                        ],
-                        [
-                            'label'   => 'باز هم دستور',
-                            'message' => 'پیام شماره چهار',
-                            'url'     => 'login',
-                        ],
-                    ],
-                ],
-                '<li class="divider"></li>',
-                [
-                    'label' => 'عنوان منوی فرعی',
-                ],
-                [
-                    'label' => 'دستور جدا شده',
-                    'url'   => '#',
-                    'class' => 'success',
-                ],
-            ],
-        ]);
-
-        echo GridView::widget($config);
-    }
 
     //<editor-fold Desc="ConfirmButton">
     public function testConfirmButtonA()
@@ -503,6 +446,10 @@ class TestWidgets extends BaseTester
                     'class' => 'kartik\grid\SerialColumn',
                 ],
                 [
+                    'attribute' => 'counter',
+                    'class'     => 'khans\utils\columns\DataColumn',
+                ],
+                [
                     'attribute' => 'field',
                     'class'     => 'khans\utils\columns\DataColumn',
                 ],
@@ -552,17 +499,17 @@ class TestWidgets extends BaseTester
             'before'       => 'This is `before` place holder.',
             'after'        => 'This is `after` place holder.',
             'rowOptions'   => function($model, $index, $widget, $grid) {
-                if ($model['field'] == 2012) {
+                if ($model['grade'] == 'PhD') {
                     return ['class' => 'alert-danger', 'style' => 'background-color: #f2dede;'];
                 }
 
                 return [];
             },
-            'beforeHeader' => [
-                [
-                    'columns' => $this->firstRow(),
-                ],
-            ],
+//            'beforeHeader' => [
+//                [
+//                    'columns' => $this->firstRow(),
+//                ],
+//            ],
             'bulkAction'   => [
                 'action'  => 'some-action',
                 'label'   => 'Do Somthing',
@@ -722,45 +669,244 @@ class TestWidgets extends BaseTester
         vd($config);
         echo GridView::widget($config);
     }
+
+    public function testGridViewDropDownBulkAction()
+    {
+//        $this->writeHeader('GridView; BulkAction with Dropdown, run as Ajax');
+//        $config = $this->configWidget('dropdown-test', false, false);
+        $this->writeHeader('GridView; BulkAction with Dropdown, run as Normal');
+        $config = $this->configWidget('dropdown-test', false, true);
+        $config['type'] = 'danger';
+        $config['itemLabelSingle'] = 'danger';
+        $config['itemLabelMany'] = 'dangerMM';
+        $config['itemLabelPlural'] = 'dangerSS';
+        $config['itemLabelFew'] = 'dangerFF';
+        $config['showRefreshButtons'] = true;
+        $config['createAction'] = false;
+        $config['bulkAction']['dropdown'] = true;
+        $config['bulkAction']['action'] = DropdownX::widget([
+            'items' => [
+                [
+                    'label' => 'عنوان منوی اصلی',
+                ],
+                [
+                    'label'   => 'دستور یک',
+                    'url'     => 'index',
+                    'message' => 'پیام شماره یک',
+                    'class'   => 'default',
+                ],
+                [
+                    'label'   => 'باز هم یک دستور دیگر',
+                    'url'     => '#',
+                    'message' => 'پیام شماره پنج',
+                ],
+                '<li class="divider"></li>',
+                [
+                    'label' => 'کلید زیرمنوی یکم',
+                    'class' => 'danger',
+                    'items' => [
+                        [
+                            'label' => 'عنوان زیرمنوی یکم',
+                        ],
+                        [
+                            'label'   => 'دستور سه',
+                            'url'     => 'about',
+                            'message' => 'پیام شماره سه',
+                            'class'   => 'danger',
+                        ],
+                        [
+                            'label'   => 'باز هم دستور',
+                            'message' => 'پیام شماره چهار',
+                            'url'     => 'login',
+                        ],
+                    ],
+                ],
+                '<li class="divider"></li>',
+                [
+                    'label' => 'عنوان منوی فرعی',
+                ],
+                [
+                    'label' => 'دستور جدا شده',
+                    'url'   => '#',
+                    'class' => 'success',
+                ],
+            ],
+        ]);
+
+        echo GridView::widget($config);
+    }
     //</editor-fold>
 
     //<editor-fold Desc="Export Component">
+    public function fakeDataForSearch()
+    {
+        return;
+        require_once __DIR__ . '/../../vendor/fzaninotto/faker/src/autoload.php';
+
+        $count = 100;
+        $faker = \Faker\Factory::create('fa_IR');
+        for ($i = 0; $i < $count; $i++) {
+            $x = new UpsertAggr();
+            $x->grade = $faker->shuffleArray(['Msc', 'PhD'])[0];
+            $x->field = $faker->numberBetween(1200, 1300);
+            $x->year = $faker->numberBetween(1392, 1394);
+            $x->status = $faker->randomLetter;
+            $x->counter = $i;
+            $x->r_a = $faker->numerify('###.##');
+            $x->r_b = $faker->numerify('##.#');
+            $x->created_by = 0;
+            $x->created_at = time();
+            $x->updated_by = 0;
+            $x->updated_at = time();
+            $x->save();
+        }
+    }
+
     public function testExportArray()
     {
-        $this->writeHeader('Stand alone export menu with array data.');
+        $this->writeHeader('Stand alone export menu with array data. This requires some CSS tweaks. No columns defined.');
         echo ExportMenu::widget([
             'dataProvider' => new ArrayDataProvider(['allModels' => $this->buildGridData()]),
-//            'columns' => $this->columns,
         ]);
     }
 
     public function testExportModel()
     {
-        $this->writeHeader('Stand alone export menu with model data.');
+        $this->writeHeader('Stand alone export menu with model data. This requires some CSS tweaks. No columns defined.');
         $model = new UpsertAggrSearch();
         echo ExportMenu::widget([
-            'dataProvider' => $model->search(Yii::$app->request->queryParams),
-//            'columns' => $this->columns,
+            'dataProvider'              => $model->search(Yii::$app->request->queryParams),
+            'columnSelectorMenuOptions' => ['class' => 'dropdown-menu-right'],
+            'dropdownOptions'           => ['menuOptions' => ['class' => 'dropdown-menu-right']],
+            'template'                  => "{menu}\n{columns}",
         ]);
     }
 
     public function testGridViewExport()
     {
-        $this->writeHeader('GridView; ExtraActions as icons & run normal; Actions in dropdowns & run as ajax; Reset extra action never runs as ajax. View runs normal.');
-        $config = $this->configWidget('export-test', false, true);
+        $this->writeHeader('GridView; export is set to TRUE. Array Data.');
+        $config = $this->configWidget('export-test1', false, true);
         $config['title'] = 'Testing Export Component';
         $config['afterHeader'] = $config['beforeHeader'];
         $config['afterHeader'][0]['options'] = ['class' => ' skip-export '];
-        //$config['beforeFooter'] = $config['beforeHeader'];
-        //$config['afterFooter'] = $config['beforeHeader'];
+        $config['createAction'] = [
+            'action' => 'create',
+            'ajax'   => false,
+        ];
+        $config['export'] = true;
+
+        echo GridView::widget($config);
+    }
+
+    public function testGridViewSEExport()
+    {
+        $this->writeHeader('GridView; export is set to an instance of ExportMenu. Array Data.');
+
+        $config = $this->configWidget('export-test2', false, true);
+        $config['title'] = 'Testing Export Component';
+        $config['afterHeader'] = $config['beforeHeader'];
+        $config['afterHeader'][0]['options'] = ['class' => ' skip-export '];
         $config['createAction'] = [
             'action' => 'create',
             'ajax'   => false,
         ];
 
-        vd($config);
+        $config['export'] = ExportMenu::widget([
+            'dataProvider'              => $config['dataProvider'],
+            'template'                  => "{menu}\n{columns}",
+            'columnSelectorMenuOptions' => ['class' => 'dropdown-menu-right'],
+            'columnSelectorOptions'     => ['class' => 'btn-info'],
+            'dropdownOptions'           => [
+                'class'       => 'btn-info',
+                'menuOptions' => ['class' => 'dropdown-menu-right'],
+            ],
+        ]);
 
+        echo GridView::widget($config);
+    }
+
+    public function testExportLongModelDefault()
+    {
+        $this->writeHeader('Default exporter. Exports current page. Respects filters. Includes serial column.');
+        $config = $this->configWidgetModel('export-test3', false, true);
         $config['export'] = true;
+
+        echo GridView::widget($config);
+    }
+
+    public function testExportLongModelExportMenu1()
+    {
+        $this->writeHeader('ExportMenu exporter Using same data provider. Exports all pages . Respects filters. This is implemented');
+        $config = $this->configWidgetModel('export-test4', false, true);
+        $config['export'] = ExportMenu::widget([
+            'dataProvider'              => $config['dataProvider'],
+            'columnSelectorMenuOptions' => ['class' => 'dropdown-menu-right'],
+            'dropdownOptions'           => ['menuOptions' => ['class' => 'dropdown-menu-right']],
+            'template'                  => "{menu}\n{columns}",
+            'clearBuffers'              => true,
+            'initProvider'              => true,
+        ]);
+
+        echo GridView::widget($config);
+    }
+
+    public function testExportLongModelExportMenu2()
+    {
+        $this->writeHeader('ExportMenu exporter Using separate data provider with queryParams. Exports all page. Respects filters.');
+        $config = $this->configWidgetModel('export-test5', false, true);
+        $model = new UpsertAggrSearch();
+        $config['export'] = ExportMenu::widget([
+            'dataProvider'              => $model->search(Yii::$app->request->queryParams),
+            'columnSelectorMenuOptions' => ['class' => 'dropdown-menu-right'],
+            'dropdownOptions'           => ['menuOptions' => ['class' => 'dropdown-menu-right']],
+            'template'                  => "{menu}\n{columns}",
+            'clearBuffers'              => true,
+            'initProvider'              => true,
+        ]);
+
+        echo GridView::widget($config);
+    }
+
+    public function testExportLongModelExportMenu3()
+    {
+        $this->writeHeader('ExportMenu exporter Using separate data provider without queryParams. Exports all pages. Does NOT respect filters.');
+        $config = $this->configWidgetModel('export-test6', false, true);
+        $model = new UpsertAggrSearch();
+        $config['export'] = ExportMenu::widget([
+            'dataProvider'              => $model->search([]),
+            'columnSelectorMenuOptions' => ['class' => 'dropdown-menu-right'],
+            'dropdownOptions'           => ['menuOptions' => ['class' => 'dropdown-menu-right']],
+            'template'                  => "{menu}\n{columns}",
+            'clearBuffers'              => true,
+            'initProvider'              => true,
+        ]);
+
+        echo GridView::widget($config);
+    }
+
+    public function testExportLongModelExportMenuReal()
+    {
+        $this->writeHeader('ExportMenu Widget Using the same data provider without queryParams. Exports all pages. Does respect filters. Drops serial column');
+        $config = $this->configWidgetModel('export-test6', false, true);
+        $config['showRefreshButtons'] = true;
+        $config['bulkAction'] = false;
+
+        $config['export'] = \khans\utils\widgets\ExportMenu::widget([
+            'dataProvider' => $config['dataProvider'],
+        ]);
+
+        echo GridView::widget($config);
+    }
+
+    public function testExportLongModelExportMenuSimple()
+    {
+        $this->writeHeader('ExportMenu Widget Using the same data provider without queryParams. Exports all pages. Does respect filters. Drops serial column');
+        $config = $this->configWidgetModel('export-test6', false, true);
+        $config['showRefreshButtons'] = true;
+        $config['bulkAction'] = false;
+
+        $config['export'] = GridView::EXPORTER_MENU;
+
         echo GridView::widget($config);
     }
     //</editor-fold>

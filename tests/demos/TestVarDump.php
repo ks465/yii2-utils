@@ -17,12 +17,13 @@ use khans\utils\components\GreenHtmlVarDumpTheme;
 use khans\utils\components\RedHtmlVarDumpTheme;
 use khans\utils\components\VarDump;
 
-require_once \Yii::getAlias('@khan/src/components/VarDump.php');
 
 /**
- * Class TestDebug shows and tests the khans\utils\Debug methods
+ * Class TestDebug load demo files for the decorated VarDump of the yii2-utils package
  *
  * @package khans\utils\tests
+ * @version 0.1.0-970915
+ * @since   1.0
  */
 class TestVarDump extends BaseTester
 {
@@ -39,7 +40,7 @@ class TestVarDump extends BaseTester
     public function zero()
     {
         echo '<p class="alert alert-danger ltr">' .
-            'Remember: You need to add <code>require_once \Yii::getAlias(\'@khan/src/components/VarDump.php\');</code> somewhere in your scripts.' .
+            'Remember: You need to add <code>require_once \Yii::getAlias(\'@khan/src/components/VarDump.php\');</code> in your config scripts.' .
             '</p>';
     }
 

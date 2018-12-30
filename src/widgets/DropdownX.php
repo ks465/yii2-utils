@@ -10,17 +10,17 @@
 namespace khans\utils\widgets;
 
 
-use kartik\dropdown\DropdownX;
 use yii\base\InvalidConfigException;
+use yii\helpers\Html;
 
 /**
  * Class KHDropDown accepts a simpler configuration array for creating a [[\kartik\dropdown\DropdownX]]
  *
  * @package khans\utils\widgets
- * @version 0.1.0-971002
+ * @version 0.1.2-971008
  * @since 1.0
  */
-class KHDropdown extends DropdownX
+class DropdownX extends \kartik\dropdown\DropdownX
 {
 
     /**
@@ -48,6 +48,7 @@ class KHDropdown extends DropdownX
         }
 
         $this->items = $this->setupItems($this->items);
+        Html::addCssClass($this->options, ['widget' => 'dropdown-menu dropdown-menu-right']);
 
         parent::init();
     }

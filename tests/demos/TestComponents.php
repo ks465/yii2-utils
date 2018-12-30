@@ -21,13 +21,20 @@ use khans\utils\components\ViewHelper;
 use khans\utils\models\KHanModel;
 use yii\db\Exception;
 
+/**
+ * Class TestComponents load demo files for the components of the yii2-utils package
+ *
+ * @package khans\utils\tests\demos
+ * @version 0.1.0-970915
+ * @since   1.0
+ */
 class TestComponents extends BaseTester
 {
     protected $skipTests = [
-        'testJalaliInstance', 'testJalaliStatic', 'testJalaliXInstance', 'testJalaliXStatic',
-        'testMathFloors', 'testArrayHelpers', 'testSqlFormatter', 'testCorrectYaKa', 'testTrimAll',
-        'testConvertDigits', 'testPadding', 'testImplode1', 'testImplode2', 'testImplode3', 'testMobiles',
-        'testNIDs', 'testLoadCSV', 'testLoadIni', 'testLoadCsvSaveIni',
+//        'testJalaliInstance', 'testJalaliStatic', 'testJalaliXInstance', 'testJalaliXStatic',
+//        'testMathFloors', 'testArrayHelpers', 'testSqlFormatter', 'testCorrectYaKa', 'testTrimAll',
+//        'testConvertDigits', 'testPadding', 'testImplode1', 'testImplode2', 'testImplode3', 'testMobiles',
+//        'testNIDs', 'testLoadCSV', 'testLoadIni', 'testLoadCsvSaveIni',
 //        'testNumberToWords1', 'testNumberToWords2', 'testNumberToWords3', 'testNumberToWords4', 'testNumberToWords5',
     ];
 

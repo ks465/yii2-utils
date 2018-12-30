@@ -56,6 +56,7 @@ They are specialized versions for Kartik Gridview.
 1. [Export Menu](widgets-export-menu.md)
 1. [Confirm Button](widgets-confirm-button.md)
 1. [Captcha](widgets-captcha.md)
+1. [ExportMenu](widgets-export-menu.md)
 
    
 #Others

@@ -19,6 +19,10 @@ use yii\web\IdentityInterface;
 /**
  * User Identity model holds required parts for Yii::$app->user->identity
  *
+ * @package khans\utils\models
+ * @version 0.3.3-970921
+ * @since   1.0
+ *
  * @property integer $id                   شماره کاربر
  * @property string  $username             شناسه کاربر
  * @property string  $auth_key             کلید تشخیص هویت
@@ -36,9 +40,6 @@ use yii\web\IdentityInterface;
  * @property string  $fullName             نام کامل کاربر
  * @property string  $fullId               نام کامل کاربر و کد شناسایی
  * @property boolean $isSuperAdmin         یک مدیر سیستم است
- * @package khans\utils\models
- * @version 0.3.3-970921
- * @since   1.0
  */
 class KHanIdentity extends KHanModel implements IdentityInterface
 {
@@ -60,6 +61,7 @@ class KHanIdentity extends KHanModel implements IdentityInterface
     private $_isSuperAdmin = null;
 
 //    <editor-fold Desc="Finders">
+
     /**
      * Finds user by email -- email is used as username
      *
@@ -465,5 +467,12 @@ class KHanIdentity extends KHanModel implements IdentityInterface
         return parent::beforeSave($insert);
     }
 
+    /**
+     * @inheritdoc
+     */
+    protected function getResponsibleUser($ownerID)
+    {
+    }
 //</editor-fold>
+
 }

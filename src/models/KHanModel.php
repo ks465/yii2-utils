@@ -21,7 +21,7 @@ use yii\helpers\ArrayHelper;
  * Thus it is marked as `abstract` to avoid instantiating a model without table.
  *
  * @package khans\utils
- * @version 0.4.3-970921
+ * @version 0.4.4-971008
  * @since   1.0
  * @property integer $status     وضعیت فعال بودن رکورد
  * @property integer $created_by سازنده رکورد
@@ -205,10 +205,7 @@ abstract class KHanModel extends ActiveRecord
      *
      * @return KHanIdentity
      */
-    protected function getResponsibleUser($ownerID)
-    {
-        return new KHanIdentity();
-    }
+    protected abstract function getResponsibleUser($ownerID);
 
     /**
      * Get active record for the updater of the record from the given user table

@@ -33,11 +33,14 @@ use yii\i18n\Formatter;
  * GridView 1.* and AjaxGridView 1.* are merged together, and there is no AjaxGridView in the 2.* version.
  * For details of bulkAction usage see [guide]
  * @package khans\utils\widgets
- * @version 2.2.2-970918
+ * @version 2.3.0-971009
  * @since   1.0.0
  */
 class GridView extends \kartik\grid\GridView
 {
+    const EXPORTER_SIMPLE = 'grid';
+    const EXPORTER_MENU = 'menu';
+
     /**
      * @var string Shortcut for panel.heading option
      */
@@ -121,11 +124,10 @@ class GridView extends \kartik\grid\GridView
      */
     public $type = 'primary';
     /**
-     * @var array|boolean the grid export menu settings. If set to true widget defaults are applied. If set to false
-     * --the default-- export menu is not activated. This export menu only prepares the items already displayed on the
-     *     page.
+     * @var null|string the grid export menu type. If set to `grid` default export menu of the GridView is used.
+     *    If set to `menu` {{ExportMenu]] is activated.
      */
-    public $export = false;
+    public $export = null;
     /**
      * @var string Arbitrary string to appear in the panel.
      */
@@ -149,15 +151,31 @@ class GridView extends \kartik\grid\GridView
         Modal::end();
 
         $this->pager = Yii::$app->params['pager'];
+
+        /** @noinspection PhpUndefinedFieldInspection */
         if ($this->dataProvider->totalCount <= 25) {
+            /** @noinspection PhpUndefinedFieldInspection */
             $this->dataProvider->pagination = ['pageSize' => 25];
         }
 
         if (empty($this->title)) {
             $this->title = $this->getView()->title;
         }
-        if ($this->export !== false) {
-            $this->loadExportSegment();
+
+        switch ($this->export) {
+            case self::EXPORTER_SIMPLE:
+                $this->loadExportSegment();
+                $exporter = '';
+                break;
+            case self::EXPORTER_MENU:
+                $exporter = ExportMenu::widget([
+                    'dataProvider' => $this->dataProvider,
+                ]);
+                $this->export = false;
+                break;
+            default:
+                $exporter = $this->export;
+                $this->export = false;
         }
 
         if ($this->showRefreshButtons === true) {
@@ -169,7 +187,7 @@ class GridView extends \kartik\grid\GridView
                     'class' => 'btn btn-danger', 'title' => 'بازخوانی صفحه و پاک نمودن فیلترها',
                 ]);
         }
-        $this->toolbar['content'] = $this->showRefreshButtons . $this->content;
+        $this->toolbar['content'] = $this->showRefreshButtons . $exporter . $this->content;
         $this->pjaxSettings['options']['id'] = $this->id;
 
         $this->panel['heading'] = '<div class="pull-left">' . '<i class="glyphicon glyphicon-list"></i>&nbsp;' . $this->title . '</div>';

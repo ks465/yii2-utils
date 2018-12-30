@@ -12,6 +12,13 @@ namespace khans\utils\tests\demos;
 
 use yii\helpers\FileHelper;
 
+/**
+ * Class BaseTester is base for demo files of the yii2-utils and yii2-pgrad packages
+ *
+ * @package khans\utils\tests\demos
+ * @version 0.1.1-970915
+ * @since   1.0
+ */
 class BaseTester
 {
     /**
@@ -25,6 +32,14 @@ class BaseTester
     function __construct()
     {
         echo '<h3 class="alert alert-info text-center">' . static::class . '</h3>';
+    }
+
+    /**
+     * @return string name of currently active class
+     */
+    public function className()
+    {
+        return static::class;
     }
 
     /**

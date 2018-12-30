@@ -143,10 +143,10 @@ createAction can be
     ],
 ```
 + Set as DropDown. In this scenario multiple actions are available to take act upon the selection in the grid.
-In this case the submit method is also AJAX. See [KHDropdown](widgets-dropdown.md) for details.
+In this case the submit method is also AJAX. See [DropdownX](widgets-dropdown.md) for details.
 ```php
 'bulkAction' => [
-    'action'  =>khans\utils\widgets\KHDropdown::widget([
+    'action'  =>khans\utils\widgets\DropdownX::widget([
         'items' => [
             [
                 'label' => 'دریافت داده‌های صفحه',
@@ -197,3 +197,21 @@ In this case the submit method is also AJAX. See [KHDropdown](widgets-dropdown.m
     'hint'    => 'با همه انتخاب شده‌ها',
 ]
 ```
+
+###Export
+In this widget value of `export` could be one of these:
++ `false` or `null`: In this case no export button is rendered. This is the default.
++ `true` or `GridView::EXPORTER_SIMPLE`: In this case default export button for GridView widget is used.
+Note that in this case only the active page is exported. The exportable formats are `PDF` and `CSV` only.
++ `GridView::EXPORTER_MENU`: In this case the [[\khans\utils\widgets\ExportMenu]] is used. 
+In this case the exported columns are selectable. All the records are exported. Exportable formats include:
+  - `CSV`
+  - `PDF`
+  - `Excel-95`
+  - `Excel-2007`
+  - `HTML` is disabled
+  - `Text` is disabled
++ Prepared value: You may build a [[\khans\utils\widgets\ExportMenu]] and set the `export` value to it. 
+In this case all is yours, and nothing could be said.
+
+In the built-in types the data filters in the grid are respected and are used for exporting.

@@ -9,7 +9,7 @@
 <link href="./assets/34135542/style.css" rel="stylesheet">
 <script src="./assets/84a200c2/jquery.js"></script>
 <script src="./assets/afbdca15/js/bootstrap.js"></script>
-<script src="./assets/96f6715f/jssearch.js"></script>    <title>KHDropdown, khans\utils\widgets\KHDropdown - KHanUtilsAPI</title>
+<script src="./assets/96f6715f/jssearch.js"></script>    <title>ExportMenu, khans\utils\widgets\ExportMenu - KHanUtilsAPI</title>
 </head>
 <body>
 
@@ -66,32 +66,35 @@
 <a class="list-group-item" href="./khans-utils-widgets-confirmbutton.html">ConfirmButton</a>
 <a class="list-group-item" href="./khans-utils-widgets-datepicker.html">DatePicker</a>
 <a class="list-group-item" href="./khans-utils-widgets-daterangepicker.html">DateRangePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-dropdownx.html">DropdownX</a>
+<a class="list-group-item active" href="./khans-utils-widgets-exportmenu.html">ExportMenu</a>
 <a class="list-group-item" href="./khans-utils-widgets-gridasset.html">GridAsset</a>
-<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a>
-<a class="list-group-item active" href="./khans-utils-widgets-khdropdown.html">KHDropdown</a></div>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a></div>
 <a class="list-group-item" href="#navigation-434" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets\menu <b class="caret"></b></a><div id="navigation-434" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
 <a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
 <a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
     <div class="col-md-9 api-content" role="main">
-        <h1>Class khans\utils\widgets\KHDropdown</h1>
+        <h1>Class khans\utils\widgets\ExportMenu</h1>
 <div class="top-nav">
     <a href="index.html">All Classes</a>
                 | <a href="#methods">Methods</a>
-            </div>
+                    | <a href="#constants">Constants</a>
+    </div>
 
 <table class="summaryTable docClass table table-bordered">
     <colgroup>
         <col class="col-name" />
         <col class="col-value" />
     </colgroup>
-            <tr><th>Inheritance</th><td><a href="khans-utils-widgets-khdropdown.html">khans\utils\widgets\KHDropdown</a> &raquo;
-kartik\dropdown\DropdownX</td></tr>
-                                        <tr><th>Available since version</th><td>1.0</td></tr>
+            <tr><th>Inheritance</th><td><a href="khans-utils-widgets-exportmenu.html">khans\utils\widgets\ExportMenu</a> &raquo;
+kartik\export\ExportMenu</td></tr>
+                                        <tr><th>Available since version</th><td>1.0.0</td></tr>
             </table>
 
 <div class="class-description">
-    <p><strong>Class KHDropDown accepts a simpler configuration array for creating a <span class="broken-link">\kartik\dropdown\DropdownX</span></strong></p>
-    
+    <p><strong>Class ExportMenu offers unified and simplified export menu widget.</strong></p>
+    <p>This can be used every where in the page or could be passed to <span class="broken-link">\khans\utils\widgets\export</span> property of <a href="khans-utils-widgets-gridview.html">khans\utils\widgets\GridView</a></p>
+
     </div>
 
 <a id="properties"></a>
@@ -113,9 +116,9 @@ kartik\dropdown\DropdownX</td></tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
         <tr id="init()">
-        <td><a href="khans-utils-widgets-khdropdown.html#init()-detail">init()</a></td>
-        <td>‌Build complete configuration for the parent class</td>
-        <td><a href="khans-utils-widgets-khdropdown.html">khans\utils\widgets\KHDropdown</a></td>
+        <td><a href="khans-utils-widgets-exportmenu.html#init()-detail">init()</a></td>
+        <td>Define preset values for the widget</td>
+        <td><a href="khans-utils-widgets-exportmenu.html">khans\utils\widgets\ExportMenu</a></td>
     </tr>
     </table>
 </div>
@@ -123,6 +126,30 @@ kartik\dropdown\DropdownX</td></tr>
 <a id="events"></a>
 
 <a id="constants"></a>
+<div class="summary doc-const">
+    <h2>Constants</h2>
+
+    <p><a href="#" class="toggle">Hide inherited constants</a></p>
+
+    <table class="summary-table table table-striped table-bordered table-hover">
+    <colgroup>
+        <col class="col-const" />
+        <col class="col-value" />
+        <col class="col-description" />
+        <col class="col-defined" />
+    </colgroup>
+    <tr>
+        <th>Constant</th><th>Value</th><th>Description</th><th>Defined By</th>
+    </tr>
+            <tr id="EXPORT_REQUEST">
+          <td id="EXPORT_REQUEST-detail">EXPORT_REQUEST</td>
+          <td>'khan_request_export'</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-widgets-exportmenu.html">khans\utils\widgets\ExportMenu</a></td>
+        </tr>
+        </table>
+</div>
 
 <h2>Method Details</h2>
 
@@ -130,7 +157,7 @@ kartik\dropdown\DropdownX</td></tr>
 
     <div class="detail-header h3" id="init()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-widgets-khdropdown.html#init()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        <a class="tool-link hash" href="khans-utils-widgets-exportmenu.html#init()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
         init()
         <span class="detail-header-tag small">
@@ -140,13 +167,13 @@ kartik\dropdown\DropdownX</td></tr>
 
     
     <div class="doc-description">
-        <p><strong>‌Build complete configuration for the parent class</strong></p>
+        <p><strong>Define preset values for the widget</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-widgets-khdropdown.html#init()-detail">init</a></strong> ( )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-widgets-exportmenu.html#init()-detail">init</a></strong> ( )</td></tr>
                                                             <tr>
                   <th class="param-name-col">throws</th>
                   <td class="param-type-col">\yii\base\InvalidConfigException</td>
@@ -194,7 +221,7 @@ kartik\dropdown\DropdownX</td></tr>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 29 Dec 2018 08:56:11 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sun, 30 Dec 2018 13:58:48 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

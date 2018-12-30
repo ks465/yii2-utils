@@ -66,9 +66,10 @@
 <a class="list-group-item" href="./khans-utils-widgets-confirmbutton.html">ConfirmButton</a>
 <a class="list-group-item" href="./khans-utils-widgets-datepicker.html">DatePicker</a>
 <a class="list-group-item" href="./khans-utils-widgets-daterangepicker.html">DateRangePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-dropdownx.html">DropdownX</a>
+<a class="list-group-item" href="./khans-utils-widgets-exportmenu.html">ExportMenu</a>
 <a class="list-group-item" href="./khans-utils-widgets-gridasset.html">GridAsset</a>
-<a class="list-group-item active" href="./khans-utils-widgets-gridview.html">GridView</a>
-<a class="list-group-item" href="./khans-utils-widgets-khdropdown.html">KHDropdown</a></div>
+<a class="list-group-item active" href="./khans-utils-widgets-gridview.html">GridView</a></div>
 <a class="list-group-item" href="#navigation-567" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets\menu <b class="caret"></b></a><div id="navigation-567" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
 <a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
 <a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
@@ -78,7 +79,8 @@
     <a href="index.html">All Classes</a>
             | <a href="#properties">Properties</a>
                 | <a href="#methods">Methods</a>
-            </div>
+                    | <a href="#constants">Constants</a>
+    </div>
 
 <table class="summaryTable docClass table table-bordered">
     <colgroup>
@@ -155,8 +157,8 @@ CheckboxColumn and RadioColumn and call an action on all of them.</td>
     </tr>
             <tr id="$export">
         <td><a href="khans-utils-widgets-gridview.html#$export-detail">$export</a></td>
-        <td><a href="http://www.php.net/language.types.array">array</a>|<a href="http://www.php.net/language.types.boolean">boolean</a></td>
-        <td>The grid export menu settings.</td>
+        <td><a href="http://www.php.net/language.types.null">null</a>|<a href="http://www.php.net/language.types.string">string</a></td>
+        <td>The grid export menu type.</td>
         <td><a href="khans-utils-widgets-gridview.html">khans\utils\widgets\GridView</a></td>
     </tr>
             <tr id="$footer">
@@ -261,6 +263,37 @@ CheckboxColumn and RadioColumn and call an action on all of them.</td>
 <a id="events"></a>
 
 <a id="constants"></a>
+<div class="summary doc-const">
+    <h2>Constants</h2>
+
+    <p><a href="#" class="toggle">Hide inherited constants</a></p>
+
+    <table class="summary-table table table-striped table-bordered table-hover">
+    <colgroup>
+        <col class="col-const" />
+        <col class="col-value" />
+        <col class="col-description" />
+        <col class="col-defined" />
+    </colgroup>
+    <tr>
+        <th>Constant</th><th>Value</th><th>Description</th><th>Defined By</th>
+    </tr>
+            <tr id="EXPORTER_MENU">
+          <td id="EXPORTER_MENU-detail">EXPORTER_MENU</td>
+          <td>'menu'</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-widgets-gridview.html">khans\utils\widgets\GridView</a></td>
+        </tr>
+            <tr id="EXPORTER_SIMPLE">
+          <td id="EXPORTER_SIMPLE-detail">EXPORTER_SIMPLE</td>
+          <td>'grid'</td>
+          <td>
+                        </td>
+          <td><a href="khans-utils-widgets-gridview.html">khans\utils\widgets\GridView</a></td>
+        </tr>
+        </table>
+</div>
 
 <h2>Property Details</h2>
 
@@ -384,14 +417,12 @@ If this attribute is set to <code>false</code> the button will not rendered.</li
 
     
     <div class="doc-description">
-        <p>The grid export menu settings. If set to true widget defaults are applied. If set to false
---the default-- export menu is not activated. This export menu only prepares the items already displayed on the</p>
-<pre><code class="hljs ">page.
-</code></pre>
+        <p>The grid export menu type. If set to <code>grid</code> default export menu of the GridView is used.
+   If set to <code>menu</code> {{ExportMenu]] is activated.</p>
 
             </div>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a>|<a href="http://www.php.net/language.types.boolean">boolean</a></span> <a href="khans-utils-widgets-gridview.html#$export-detail">$export</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false</span></div>
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.null">null</a>|<a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-widgets-gridview.html#$export-detail">$export</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
 
 
     <div class="detail-header h3" id="$footer-detail">
@@ -616,7 +647,7 @@ it <span class="hljs-keyword">is</span> <span class="hljs-keyword">string</span>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 29 Dec 2018 08:56:12 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sun, 30 Dec 2018 13:58:48 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

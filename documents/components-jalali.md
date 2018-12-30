@@ -71,6 +71,9 @@ echo Jalali::date(Jalali::KHAN_SHORT, $time);
 
 echo Jalali::date(Jalali::KHAN_LONG, $time);
 //پنج شنبه هفدهم آبان 1397، 08 و 52 دقیقه
+
+echo Jalali::date(Jalali::KHAN_FILENAME, $time);
+//1397_08_17-08_48
 ```
 
 `JalaliX` tries to fulfills other requirements in a date object. 

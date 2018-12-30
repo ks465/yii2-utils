@@ -113,7 +113,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
 
 
         if ($this->dropdown) {
-            $this->dropdownMenu = ['class' => 'text-right'];
+            $this->dropdownMenu = ['class' => 'text-right']; // instead of dropdown-menu-right use this to avoid horizontal scrolling
             $this->viewOptions  ['label'] = '<span class="glyphicon glyphicon-eye-open"></span> تماشا';
             $this->updateOptions  ['label'] = '<span class="glyphicon glyphicon-pencil"></span> ویرایش';
             $this->deleteOptions  ['label'] = '<span class="glyphicon glyphicon-trash"></span> پاک‌کن';
