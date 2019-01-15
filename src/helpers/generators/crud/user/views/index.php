@@ -1,8 +1,13 @@
 <?php
-
+/**
+ * This is the template for generating a User CRUD index view file.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.1-971013
+ * @since   1.0
+ */
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
-
 
 /* @var $this yii\web\View */
 /* @var $generator khans\utils\helpers\generators\crud\Generator */
@@ -24,7 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-index">
-        <?="<?="?>GridView::widget([
+    <h1><?= "<?= " ?>Html::encode($this->title) ?></h1>
+
+    <?="<?="?>GridView::widget([
             'id'                 => '<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-pjax',
             'dataProvider'       => $dataProvider,
             'filterModel'        => $searchModel,

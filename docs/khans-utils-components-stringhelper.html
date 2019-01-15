@@ -33,12 +33,13 @@
 <div class="row">
     <div class="col-md-3">
                 <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-247" data-toggle="collapse" data-parent="#navigation">common\actions <b class="caret"></b></a><div id="navigation-247" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-actions-helpaction.html">HelpAction</a></div>
-<a class="list-group-item" href="#navigation-248" data-toggle="collapse" data-parent="#navigation">common\widgets\columns <b class="caret"></b></a><div id="navigation-248" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-widgets-columns-progresscolumn.html">ProgressColumn</a></div>
-<a class="list-group-item" href="#navigation-249" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-249" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-248" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-248" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-249" data-toggle="collapse" data-parent="#navigation">khans\utils\behaviors <b class="caret"></b></a><div id="navigation-249" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-behaviors-workflowbehavior.html">WorkflowBehavior</a></div>
 <a class="list-group-item" href="#navigation-250" data-toggle="collapse" data-parent="#navigation">khans\utils\columns <b class="caret"></b></a><div id="navigation-250" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-booleancolumn.html">BooleanColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-datacolumn.html">DataColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-enumcolumn.html">EnumColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-jalalicolumn.html">JalaliColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-progresscolumn.html">ProgressColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-radiocolumn.html">RadioColumn</a></div>
 <a class="list-group-item active" href="#navigation-251" data-toggle="collapse" data-parent="#navigation">khans\utils\components <b class="caret"></b></a><div id="navigation-251" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
 <a class="list-group-item" href="./khans-utils-components-filehelper.html">FileHelper</a>
@@ -69,7 +70,8 @@
 <a class="list-group-item" href="./khans-utils-widgets-dropdownx.html">DropdownX</a>
 <a class="list-group-item" href="./khans-utils-widgets-exportmenu.html">ExportMenu</a>
 <a class="list-group-item" href="./khans-utils-widgets-gridasset.html">GridAsset</a>
-<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a></div>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-workflowfield.html">WorkflowField</a></div>
 <a class="list-group-item" href="#navigation-263" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets\menu <b class="caret"></b></a><div id="navigation-263" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
 <a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
 <a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
@@ -160,6 +162,13 @@ yii\helpers\StringHelper</td></tr>
     <tr>
         <th>Constant</th><th>Value</th><th>Description</th><th>Defined By</th>
     </tr>
+            <tr id="DATE_STRING">
+          <td id="DATE_STRING-detail">DATE_STRING</td>
+          <td>'~^(\d{2,4})[.-/](\d{1,2})[.-/](\d{1,2})$~'</td>
+          <td>Preg_match pattern to check date string especially for Jalali dates
+                        </td>
+          <td><a href="khans-utils-components-stringhelper.html">khans\utils\components\StringHelper</a></td>
+        </tr>
             <tr id="PERSIAN_NAME">
           <td id="PERSIAN_NAME-detail">PERSIAN_NAME</td>
           <td>'/^[\x{0600}-\x{06EF}\s\x{200C}ـ_]+$/u'</td>
@@ -197,15 +206,24 @@ plus digits -- both Persian and Latin -- and period, dash &amp; underline
     <div class="doc-description">
         <p><strong>Convert Latin digits to Persian digits or vice versa.</strong></p>
 
-        
+        <p>As standard Persian decimal point is not recognized by MSWord, the decimal separator is definable.</p>
+
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a>|<a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-stringhelper.html#convertDigits()-detail">convertDigits</a></strong> ( <span style="color: #0000BB">$phrase</span>, <span style="color: #0000BB">$reversed&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a>|<a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-stringhelper.html#convertDigits()-detail">convertDigits</a></strong> ( <span style="color: #0000BB">$phrase</span>, <span style="color: #0000BB">$decimalSeparator&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'٫'</span>, <span style="color: #0000BB">$reversed&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$phrase</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a>|<a href="http://www.php.net/language.types.string">string</a></td>
                   <td class="param-desc-col"><p>Data to scan and replace digits</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$decimalSeparator</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Character to use as decimal separator. Default is standard Persian decimal</p>
+<pre><code class="hljs nginx"><span class="hljs-title">point</span>
+</code></pre>
 </td>
                 </tr>
                             <tr>
@@ -416,7 +434,7 @@ width.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 30 Dec 2018 13:58:48 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 15 Jan 2019 17:36:40 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

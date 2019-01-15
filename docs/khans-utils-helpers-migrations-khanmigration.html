@@ -33,12 +33,13 @@
 <div class="row">
     <div class="col-md-3">
                 <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-342" data-toggle="collapse" data-parent="#navigation">common\actions <b class="caret"></b></a><div id="navigation-342" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-actions-helpaction.html">HelpAction</a></div>
-<a class="list-group-item" href="#navigation-343" data-toggle="collapse" data-parent="#navigation">common\widgets\columns <b class="caret"></b></a><div id="navigation-343" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-widgets-columns-progresscolumn.html">ProgressColumn</a></div>
-<a class="list-group-item" href="#navigation-344" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-344" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-343" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-343" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-344" data-toggle="collapse" data-parent="#navigation">khans\utils\behaviors <b class="caret"></b></a><div id="navigation-344" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-behaviors-workflowbehavior.html">WorkflowBehavior</a></div>
 <a class="list-group-item" href="#navigation-345" data-toggle="collapse" data-parent="#navigation">khans\utils\columns <b class="caret"></b></a><div id="navigation-345" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-booleancolumn.html">BooleanColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-datacolumn.html">DataColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-enumcolumn.html">EnumColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-jalalicolumn.html">JalaliColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-progresscolumn.html">ProgressColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-radiocolumn.html">RadioColumn</a></div>
 <a class="list-group-item" href="#navigation-346" data-toggle="collapse" data-parent="#navigation">khans\utils\components <b class="caret"></b></a><div id="navigation-346" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
 <a class="list-group-item" href="./khans-utils-components-filehelper.html">FileHelper</a>
@@ -69,7 +70,8 @@
 <a class="list-group-item" href="./khans-utils-widgets-dropdownx.html">DropdownX</a>
 <a class="list-group-item" href="./khans-utils-widgets-exportmenu.html">ExportMenu</a>
 <a class="list-group-item" href="./khans-utils-widgets-gridasset.html">GridAsset</a>
-<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a></div>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-workflowfield.html">WorkflowField</a></div>
 <a class="list-group-item" href="#navigation-358" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets\menu <b class="caret"></b></a><div id="navigation-358" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
 <a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
 <a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
@@ -139,12 +141,12 @@ yii\db\Migration</td></tr>
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-                    <tr id="init()">
+                        <tr id="init()">
         <td><a href="khans-utils-helpers-migrations-khanmigration.html#init()-detail">init()</a></td>
         <td>Setup collation and InnoDB engine if the database driver is MariaDB or MySQL</td>
         <td><a href="khans-utils-helpers-migrations-khanmigration.html">khans\utils\helpers\migrations\KHanMigration</a></td>
     </tr>
-                                    </table>
+                                        </table>
 </div>
 
 <div class="summary doc-method">
@@ -161,7 +163,12 @@ yii\db\Migration</td></tr>
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-        <tr id="addLoggersFields()">
+        <tr id="addLoggers()">
+        <td><a href="khans-utils-helpers-migrations-khanmigration.html#addLoggers()-detail">addLoggers()</a></td>
+        <td>Add five standard fields in tables to the default data</td>
+        <td><a href="khans-utils-helpers-migrations-khanmigration.html">khans\utils\helpers\migrations\KHanMigration</a></td>
+    </tr>
+            <tr id="addLoggersFields()">
         <td><a href="khans-utils-helpers-migrations-khanmigration.html#addLoggersFields()-detail">addLoggersFields()</a></td>
         <td>Add five standard fields and definitions to user-defined list of fields. These fields are:
 <code>status</code>
@@ -199,6 +206,11 @@ yii\db\Migration</td></tr>
             <tr id="latinChar()">
         <td><a href="khans-utils-helpers-migrations-khanmigration.html#latinChar()-detail">latinChar()</a></td>
         <td>Creates a char column and set the collation to latin1_general_ci.</td>
+        <td><a href="khans-utils-helpers-migrations-khanmigration.html">khans\utils\helpers\migrations\KHanMigration</a></td>
+    </tr>
+            <tr id="load()">
+        <td><a href="khans-utils-helpers-migrations-khanmigration.html#load()-detail">load()</a></td>
+        <td>Load data from initiating CSV files into the database</td>
         <td><a href="khans-utils-helpers-migrations-khanmigration.html">khans\utils\helpers\migrations\KHanMigration</a></td>
     </tr>
             <tr id="longBlob()">
@@ -253,6 +265,41 @@ yii\db\Migration</td></tr>
 <h2>Method Details</h2>
 
 <div class="method-doc">
+
+    <div class="detail-header h3" id="addLoggers()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-migrations-khanmigration.html#addLoggers()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        addLoggers()
+        <span class="detail-header-tag small">
+            protected                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Add five standard fields in tables to the default data</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-migrations-khanmigration.html#addLoggers()-detail">addLoggers</a></strong> ( <span style="color: #0000BB">$item</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$item</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>Single row data</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>Row data including the logger fields</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
 
     <div class="detail-header h3" id="addLoggersFields()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
@@ -487,6 +534,47 @@ customized.</p>
 
 <!--	-->
 
+    <div class="detail-header h3" id="load()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-migrations-khanmigration.html#load()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        load()
+        <span class="detail-header-tag small">
+            protected                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Load data from initiating CSV files into the database</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type">void</span> <strong><a href="khans-utils-helpers-migrations-khanmigration.html#load()-detail">load</a></strong> ( <span style="color: #0000BB">$tableName</span>, <span style="color: #0000BB">$csvFile</span>, <span style="color: #0000BB">$addLoggers&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$tableName</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Name of table to insert data into</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$csvFile</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Path to the CSV file</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$addLoggers</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+                  <td class="param-desc-col"><p>Add 5-fields loggers to the data</p>
+</td>
+                </tr>
+                                                </table>
+
+<!--	-->
+
     <div class="detail-header h3" id="longBlob()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="khans-utils-helpers-migrations-khanmigration.html#longBlob()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -674,7 +762,7 @@ customized.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 30 Dec 2018 13:58:48 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 15 Jan 2019 17:36:40 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

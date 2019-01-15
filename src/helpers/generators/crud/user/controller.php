@@ -1,6 +1,10 @@
 <?php
 /**
- * This is the template for generating a CRUD controller class file.
+ * This is the template for generating a User CRUD controller class file.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.2-971012
+ * @since   1.0
  */
 
 use yii\helpers\StringHelper;
@@ -47,7 +51,7 @@ use yii\helpers\Html;
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> User model.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.1-970921
+ * @version 0.1.2-971012
  * @since   1.0
  */
 class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
@@ -250,7 +254,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                         'model' => $model,
                     ]),
                     'footer'      => Html::button('ببند', ['class'=>'btn btn-default pull-left', 'data-dismiss' => 'modal']) .
-                        Html::a('ویرایش', ['reset', 'id' => $id],
+                        Html::a('ویرایش', ['reset-pass', 'id' => $id],
                             ['class'=>'btn btn-primary','role'=>'modal-remote']
                     ),
                 ];

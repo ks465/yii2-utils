@@ -1,6 +1,10 @@
 <?php
 /**
- * This is the template for generating a CRUD controller class file.
+ * This is the template for generating a User Authentication controller class file.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.3-971008
+ * @since   1.0
  */
 
 use yii\helpers\StringHelper;

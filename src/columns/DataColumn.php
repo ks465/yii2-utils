@@ -29,6 +29,8 @@ class DataColumn extends \kartik\grid\DataColumn
      */
     public function init()
     {
+        $this->filterInputOptions['autocomplete'] = 'off'; //disable browser autocomplete for all filter input elements
+
         if (empty($this->hAlign)) {
             $this->hAlign = GridView::ALIGN_CENTER;
         }

@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * This is the template for generating a CRUD index view file.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.1-971013
+ * @since   1.0
+ */
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
@@ -8,10 +14,8 @@ use yii\helpers\StringHelper;
 
 $urlParams = $generator->generateUrlParams();
 $nameAttribute = $generator->getNameAttribute();
-
 echo "<?php\n";
 ?>
-
 use yii\helpers\Html;
 use <?= $generator->indexWidgetType === 'grid' ? "khans\\utils\\widgets\\GridView" : "yii\\widgets\\ListView" ?>;
 <?= $generator->enablePjax ? 'use yii\widgets\Pjax;' : '' ?>
@@ -20,7 +24,7 @@ use <?= $generator->indexWidgetType === 'grid' ? "khans\\utils\\widgets\\GridVie
 <?= !empty($generator->searchModelClass) ? "/* @var \$searchModel " . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass)))) ?>;
+$this->title = <?= $generator->generateString($generator->tableTitle) ?>;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-index">

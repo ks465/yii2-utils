@@ -1,9 +1,11 @@
 <?php
-
-use yii\helpers\Url;
-use yii\helpers\Html;
-use yii\bootstrap\Modal;
-use yii\helpers\Inflector;
+/**
+ * This is the template for generating a CRUD index columns file.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.2-971013
+ * @since   1.0
+ */
 use yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
@@ -33,12 +35,18 @@ $column = [
     <?php
     $count = 0;
     foreach ($generator->getColumnNames() as $name) {
-        if ($name=='id'||$name=='created_at'||$name=='updated_at'){
+        if ($name == 'id' || $name == 'created_at' || $name == 'updated_at') {
             echo "    // [\n";
             echo "        // 'class'=>'\kartik\grid\DataColumn',\n";
             echo "        // 'attribute'=>'" . $name . "',\n";
             echo "    // ],\n";
-        } else if (++$count < 6) {
+        } elseif ($name == 'status') {
+            echo "    [\n";
+            echo "        'class'          => '\khans\utils\columns\EnumColumn',\n";
+            echo "        'attribute'      => '" . $name . "',\n";
+            echo "        'enum'           => KHanModel::getStatuses()," . "\n";
+            echo "    ],\n";
+        } elseif (++$count < 6) {
             echo "    [\n";
             echo "        'class'          => '\khans\utils\columns\DataColumn',\n";
             echo "        'attribute'      => '" . $name . "',\n";
@@ -55,11 +63,6 @@ $column = [
         }
     }
     ?>
-    [
-        'class'          => '\khans\utils\columns\EnumColumn',
-        'attribute'      => 'status',
-        'enum'           => KHanModel::getStatuses(),
-    ],
     [
         'class'          => '\khans\utils\columns\ActionColumn',
         'runAsAjax'      => false,

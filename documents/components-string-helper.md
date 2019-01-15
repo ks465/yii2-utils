@@ -9,6 +9,9 @@ This constant defines a regular expression pattern to filter alphabet characters
 This constants defines a regular expression pattern to filter alphabet, numbers (both Persian & Latin type faces), punctuations,
 and other characters usually used in titles of books, papers, etc.
 
+##DATE_STRING
+This constant defines a regular expression pattern to separate Jalali dates saved as string to an array.
+
 ##screenInput
 In order to make sure all of Persian inputs are corrected for the Ya & Ka before application starts processing the input.
 [[correctYaKa]] is called in this method. For this to work you should add the following to the Yii2 main config:
@@ -32,6 +35,7 @@ Trim strings in any data depth but do not change the key of associative arrays.
 ##convertDigits
 Convert Latin digits into Persian-faced numerals and vice versa. This is for display reasons, and by using an appropriate
 font, this is not really needed --except for the decimal point character.
+As standard Persian decimal point is not recognized by MSWord, the decimal separator is definable.
 
 ##mb_str_pad
 Padding multi byte characters is not as simple as ASCII characters. As it is seen in the following example length of multi-byte

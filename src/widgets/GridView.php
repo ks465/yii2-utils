@@ -32,8 +32,9 @@ use yii\i18n\Formatter;
  * ```
  * GridView 1.* and AjaxGridView 1.* are merged together, and there is no AjaxGridView in the 2.* version.
  * For details of bulkAction usage see [guide]
+ *
  * @package khans\utils\widgets
- * @version 2.3.0-971009
+ * @version 2.3.3-971021
  * @since   1.0.0
  */
 class GridView extends \kartik\grid\GridView
@@ -76,15 +77,16 @@ class GridView extends \kartik\grid\GridView
      *    + class is the tag of the bootstrap btn-* class
      *    + message is the text of the message to show as confirmation of action.
      */
-    public $bulkAction = [
-        'action'   => '',
-        'label'    => '',
-        'icon'     => '',
-        'class'    => '',
-        'message'  => '',
-        'hint'     => '',
-        'dropdown' => false,
-    ];
+    public $bulkAction;
+//    public $_bulkAction = [
+//        'action'   => '',
+//        'label'    => '',
+//        'icon'     => '',
+//        'class'    => '',
+//        'message'  => '',
+//        'hint'     => '',
+//        'dropdown' => false,
+//    ];
     /**
      * @var array|boolean Configuration parameters to put a button in the panel to trige createAction or equivalent.
      *    + action is the URL to the target action, default is create.
@@ -151,6 +153,9 @@ class GridView extends \kartik\grid\GridView
         Modal::end();
 
         $this->pager = Yii::$app->params['pager'];
+        $this->dataProvider->getPagination()->pageParam = $this->id . '-page';
+        $this->dataProvider->getSort()->sortParam = $this->id . '-sort';
+
 
         /** @noinspection PhpUndefinedFieldInspection */
         if ($this->dataProvider->totalCount <= 25) {
@@ -183,7 +188,8 @@ class GridView extends \kartik\grid\GridView
                 Html::a('<i class="glyphicon glyphicon-refresh"></i>', Url::current(), [
                     'class' => 'btn btn-default', 'title' => 'بازخوانی داده‌ها با حفظ فیلترها',
                 ]) .
-                Html::a('<i class="glyphicon glyphicon-repeat"></i>', Url::to(['']), [
+                // Ensure the grid is reloaded correctly even in a parent_view::child_grid. Add the actionParams, even if most of the time it is not required
+                Html::a('<i class="glyphicon glyphicon-repeat"></i>', Url::to([''] + Yii::$app->requestedAction->controller->actionParams), [
                     'class' => 'btn btn-danger', 'title' => 'بازخوانی صفحه و پاک نمودن فیلترها',
                 ]);
         }

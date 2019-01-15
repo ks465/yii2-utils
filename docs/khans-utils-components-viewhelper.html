@@ -33,12 +33,13 @@
 <div class="row">
     <div class="col-md-3">
                 <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-133" data-toggle="collapse" data-parent="#navigation">common\actions <b class="caret"></b></a><div id="navigation-133" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-actions-helpaction.html">HelpAction</a></div>
-<a class="list-group-item" href="#navigation-134" data-toggle="collapse" data-parent="#navigation">common\widgets\columns <b class="caret"></b></a><div id="navigation-134" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-widgets-columns-progresscolumn.html">ProgressColumn</a></div>
-<a class="list-group-item" href="#navigation-135" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-135" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-134" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-134" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-135" data-toggle="collapse" data-parent="#navigation">khans\utils\behaviors <b class="caret"></b></a><div id="navigation-135" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-behaviors-workflowbehavior.html">WorkflowBehavior</a></div>
 <a class="list-group-item" href="#navigation-136" data-toggle="collapse" data-parent="#navigation">khans\utils\columns <b class="caret"></b></a><div id="navigation-136" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-booleancolumn.html">BooleanColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-datacolumn.html">DataColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-enumcolumn.html">EnumColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-jalalicolumn.html">JalaliColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-progresscolumn.html">ProgressColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-radiocolumn.html">RadioColumn</a></div>
 <a class="list-group-item active" href="#navigation-137" data-toggle="collapse" data-parent="#navigation">khans\utils\components <b class="caret"></b></a><div id="navigation-137" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
 <a class="list-group-item" href="./khans-utils-components-filehelper.html">FileHelper</a>
@@ -69,7 +70,8 @@
 <a class="list-group-item" href="./khans-utils-widgets-dropdownx.html">DropdownX</a>
 <a class="list-group-item" href="./khans-utils-widgets-exportmenu.html">ExportMenu</a>
 <a class="list-group-item" href="./khans-utils-widgets-gridasset.html">GridAsset</a>
-<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a></div>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-workflowfield.html">WorkflowField</a></div>
 <a class="list-group-item" href="#navigation-149" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets\menu <b class="caret"></b></a><div id="navigation-149" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
 <a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
 <a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
@@ -115,12 +117,14 @@ yii\base\BaseObject</td></tr>
 </tr>
         <tr id="formatNID()">
         <td><a href="khans-utils-components-viewhelper.html#formatNID()-detail">formatNID()</a></td>
-        <td>Format national Iranian ID number to its official form</td>
+        <td>Format national Iranian ID number to its official form.</td>
         <td><a href="khans-utils-components-viewhelper.html">khans\utils\components\ViewHelper</a></td>
     </tr>
             <tr id="formatPhone()">
         <td><a href="khans-utils-components-viewhelper.html#formatPhone()-detail">formatPhone()</a></td>
-        <td>Format Iranian phone number to its official form</td>
+        <td>Format Iranian phone number to its official form
+Use this function with caution. In different environment the output is different, when considering the dash
+behavior in various context. Specially on copying the result, the change can be dramatic.</td>
         <td><a href="khans-utils-components-viewhelper.html">khans\utils\components\ViewHelper</a></td>
     </tr>
             <tr id="implode()">
@@ -151,17 +155,26 @@ yii\base\BaseObject</td></tr>
 
     
     <div class="doc-description">
-        <p><strong>Format national Iranian ID number to its official form</strong></p>
+        <p><strong>Format national Iranian ID number to its official form.</strong></p>
 
-        
+        <p>Use this function with caution. In different environment the output is different, when considering the dash
+behavior in various context. Specially on copying the result, the change can be dramatic.</p>
+
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-viewhelper.html#formatNID()-detail">formatNID</a></strong> ( <span style="color: #0000BB">$nid</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-viewhelper.html#formatNID()-detail">formatNID</a></strong> ( <span style="color: #0000BB">$nid</span>, <span style="color: #0000BB">$rtl&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$nid</span></td>
-                  <td class="param-type-col"></td>
-                  <td class="param-desc-col"></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Numeral presentation of nID</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$rtl</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+                  <td class="param-desc-col"><p>In some RTL environments it is required to replace parts to view correctly</p>
+</td>
                 </tr>
                                                 </table>
 
@@ -179,17 +192,25 @@ yii\base\BaseObject</td></tr>
 
     
     <div class="doc-description">
-        <p><strong>Format Iranian phone number to its official form</strong></p>
+        <p><strong>Format Iranian phone number to its official form
+Use this function with caution. In different environment the output is different, when considering the dash
+behavior in various context. Specially on copying the result, the change can be dramatic.</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-viewhelper.html#formatPhone()-detail">formatPhone</a></strong> ( <span style="color: #0000BB">$phone</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-components-viewhelper.html#formatPhone()-detail">formatPhone</a></strong> ( <span style="color: #0000BB">$phone</span>, <span style="color: #0000BB">$rtl&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false</span> )</td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$phone</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
                   <td class="param-desc-col"><p>Phone number in a long number format</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$rtl</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+                  <td class="param-desc-col"><p>In some RTL environments it is required to replace parts to view correctly</p>
 </td>
                 </tr>
                                                 </table>
@@ -274,7 +295,7 @@ yii\base\BaseObject</td></tr>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 30 Dec 2018 13:58:47 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 15 Jan 2019 17:36:40 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

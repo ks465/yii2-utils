@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * This is the template for generating a AJAX CRUD index view file.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.2-971013
+ * @since   1.0
+ */
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
@@ -10,7 +16,6 @@ echo "<?php\n";
 ?>
 
 use yii\helpers\Html;
-
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */

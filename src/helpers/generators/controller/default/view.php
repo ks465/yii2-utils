@@ -1,6 +1,10 @@
 <?php
 /**
  * This is the template for generating an action view file.
+ *
+ * @package KHanS\Utils
+ * @version 0.2.0-971020
+ * @since   1.0
  */
 
 /* @var $this yii\web\View */

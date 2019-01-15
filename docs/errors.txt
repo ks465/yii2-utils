@@ -76,9 +76,9 @@ Array
 
     [12] => Array
         (
-            [line] => 765
-            [file] => yii2-utils/src/helpers/generators/model/Generator.php
-            [message] => Undefined parameter documented:  in checkJunctionTable().
+            [line] => 27
+            [file] => yii2-utils/src/controllers/KHanWebController.php
+            [message] => Method behaviors has no parent to inherit from in khans\utils\controllers\KHanWebController.
         )
 
     [13] => Array
@@ -133,6 +133,30 @@ Array
         (
             [file] => yii2-utils/src/widgets/GridAsset.php
             [message] => broken link to \khans\utils\widgets\GridAsset\js in khans\utils\widgets\GridAsset
+        )
+
+    [22] => Array
+        (
+            [file] => yii2-utils/src/widgets/WorkflowField.php
+            [message] => broken link to \khans\utils\widgets\Select2 in khans\utils\widgets\WorkflowField
+        )
+
+    [23] => Array
+        (
+            [file] => yii2-utils/src/widgets/WorkflowField.php
+            [message] => broken link to \khans\utils\widgets\Select2 in khans\utils\widgets\WorkflowField
+        )
+
+    [24] => Array
+        (
+            [file] => yii2-utils/src/widgets/WorkflowField.php
+            [message] => broken link to \khans\utils\widgets\Select2 in khans\utils\widgets\WorkflowField
+        )
+
+    [25] => Array
+        (
+            [file] => yii2-utils/src/widgets/WorkflowField.php
+            [message] => broken link to \khans\utils\widgets\Select2 in khans\utils\widgets\WorkflowField
         )
 
 )

@@ -1,5 +1,6 @@
 <?php
 
+
 namespace khans\utils\helpers\migrations;
 
 use mdm\admin\components\Configs;
@@ -9,7 +10,7 @@ use mdm\admin\components\Configs;
  * A single table is used if there is more than one application in the site.
  *
  * @package KHanS\Utils
- * @version 0.3.2-970804
+ * @version 0.4.1-971013
  * @since   1.0
  */
 class m140602_111327_CreateMenuTable extends KHanMigration
@@ -21,7 +22,7 @@ class m140602_111327_CreateMenuTable extends KHanMigration
     {
         $menuTable = Configs::instance()->menuTable;
 
-        $this->createMenuTable($menuTable);
+        $this->createMenuTable($menuTable, 'Application Menu data');
     }
 
     /**
@@ -36,18 +37,19 @@ class m140602_111327_CreateMenuTable extends KHanMigration
      * Create a table holding menu items
      *
      * @param string $menuTable
+     * @param string $tableComment comment of the table
      */
-    protected function createMenuTable($menuTable): void
+    protected function createMenuTable($menuTable, $tableComment): void
     {
         $this->createTable($menuTable, [
             'id'     => $this->primaryKey(),
-            'app'    => $this->string(64)->notNull()->defaultValue('_SIMPLE_APP_'),
-            'name'   => $this->string(128)->notNull(),
-            'parent' => $this->integer(),
-            'route'  => $this->string(),
-            'order'  => $this->integer(),
-            'data'   => $this->binary(),
-        ], $this->tableOptions);
+            'app'    => $this->string(64)->notNull()->defaultValue('_SIMPLE_APP_')->comment('برنامه مرتبط'),
+            'name'   => $this->string(128)->notNull()->comment('عنوان'),
+            'parent' => $this->integer()->comment('شاخه بالایی'),
+            'route'  => $this->string()->comment('مسیر'),
+            'order'  => $this->integer()->comment('ترتیب'),
+            'data'   => $this->binary()->comment('داده'),
+        ], $this->comment($tableComment));
 
         $this->addForeignKey($menuTable . '_parent_fk', $menuTable, 'parent', $menuTable,
             'id', 'SET NULL', 'CASCADE');

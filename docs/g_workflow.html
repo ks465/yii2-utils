@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/afbdca15/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/34135542/style.css" rel="stylesheet">
+<script src="./assets/84a200c2/jquery.js"></script>
+<script src="./assets/afbdca15/js/bootstrap.js"></script>
+<script src="./assets/96f6715f/jssearch.js"></script>    <title>Workflow - Documentation - KHanUtilsGuide</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w89" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w89-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">KHanUtilsGuide</a></div><div id="w89-collapse" class="collapse navbar-collapse"><ul id="w90" class="navbar-nav nav"><li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item active" href="#navigation-78" data-toggle="collapse" data-parent="#navigation">Documentation <b class="caret"></b></a><div id="navigation-78" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./g_documents.html">Document Tips and Tricks</a>
+<a class="list-group-item" href="./g_persian.html">Setup for Persian</a>
+<a class="list-group-item" href="./g_full-config.html">Complete Config</a>
+<a class="list-group-item active" href="./g_workflow.html">Workflow</a></div>
+<a class="list-group-item" href="#navigation-79" data-toggle="collapse" data-parent="#navigation">Behaviors <b class="caret"></b></a><div id="navigation-79" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_workflow.html#WorkflowBehavior">WorkflowBehavior</a></div>
+<a class="list-group-item" href="#navigation-80" data-toggle="collapse" data-parent="#navigation">Components <b class="caret"></b></a><div id="navigation-80" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_components-array-helper.html">Array Helper</a>
+<a class="list-group-item" href="./g_components-file-helper.html">File Helper</a>
+<a class="list-group-item" href="./g_components-jalali.html">Jalali and JalaliX</a>
+<a class="list-group-item" href="./g_components-math-helper.html">Math Helper</a>
+<a class="list-group-item" href="./g_components-sql-formatter.html">SQL Formatter</a>
+<a class="list-group-item" href="./g_components-string-helper.html">String Helper</a>
+<a class="list-group-item" href="./g_components-view-helper.html">View Helper</a></div>
+<a class="list-group-item" href="#navigation-81" data-toggle="collapse" data-parent="#navigation">Columns <b class="caret"></b></a><div id="navigation-81" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_columns-action-column.html">Action Column</a>
+<a class="list-group-item" href="./g_columns-boolean-column.html">Boolean Column</a>
+<a class="list-group-item" href="./g_columns-data-column.html">Data Column</a>
+<a class="list-group-item" href="./g_columns-enum-column.html">Enum Column</a>
+<a class="list-group-item" href="./g_columns-radio-column.html">Radio Column</a>
+<a class="list-group-item" href="./g_columns-jalali-column.html">Jalali Column</a>
+<a class="list-group-item" href="./g_workflow.html#ProgressColumn">Progress Column</a>
+<a class="list-group-item" href="./g_columns-related-column.html">Related Column</a></div>
+<a class="list-group-item" href="#navigation-82" data-toggle="collapse" data-parent="#navigation">Models <b class="caret"></b></a><div id="navigation-82" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_models-khan-model.html">Base Model</a>
+<a class="list-group-item" href="./g_models-khan-user.html">Base user</a></div>
+<a class="list-group-item" href="#navigation-83" data-toggle="collapse" data-parent="#navigation">RBAC <b class="caret"></b></a><div id="navigation-83" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_rbac-rule-owner.html">Owner Rule</a></div>
+<a class="list-group-item" href="#navigation-84" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-84" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_widgets-date-picker.html">Date Picker</a>
+<a class="list-group-item" href="./g_widgets-date-range-picker.html">Date Range Picker</a>
+<a class="list-group-item" href="./g_widgets-grid-view.html">Grid View</a>
+<a class="list-group-item" href="./g_widgets-dropdown.html">AJAX Dropdown</a>
+<a class="list-group-item" href="./g_widgets-export-menu.html">Export Menu</a>
+<a class="list-group-item" href="./g_widgets-confirm-button.html">Confirm Button</a>
+<a class="list-group-item" href="./g_widgets-captcha.html">Captcha</a>
+<a class="list-group-item" href="./g_widgets-export-menu.html">ExportMenu</a></div>
+<a class="list-group-item" href="#navigation-85" data-toggle="collapse" data-parent="#navigation">Others <b class="caret"></b></a><div id="navigation-85" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_helpers-app-builder.html">App Builder</a>
+<a class="list-group-item" href="./g_helpers-genrators.html">Generators</a>
+<a class="list-group-item" href="./g_components-var-dump.html">VarDump</a>
+<a class="list-group-item" href="./g_components-sql-formatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./g_settings.html">Settings</a>
+<a class="list-group-item" href="./g_helpers-migrations.html">Migrations</a>
+<a class="list-group-item" href="./g_widgets-menu.html">Overlay Menu</a>
+<a class="list-group-item" href="./g_components-workflow.html">Workflow Manager</a>
+<a class="list-group-item" href="./g_components-wiz-flow.html">Wizard Flow</a>
+<a class="list-group-item" href="./g_tests.html">Tests</a></div>
+<a class="list-group-item" href="#navigation-86" data-toggle="collapse" data-parent="#navigation">StartUp <b class="caret"></b></a><div id="navigation-86" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-87" data-toggle="collapse" data-parent="#navigation">Sanitizing User Input <b class="caret"></b></a><div id="navigation-87" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-88" data-toggle="collapse" data-parent="#navigation">RBAC Setup <b class="caret"></b></a><div id="navigation-88" class="submenu panel-collapse collapse"></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Workflow <span id="workflow"></span><a href="#workflow" class="hashlink">&para;</a></h1><h1>Workflow Manager <span id="workflow-manager"></span><a href="#workflow-manager" class="hashlink">&para;</a></h1><p>In this version workflow are saved in the database tables and managed using <span class="broken-link">\cornernote\workflow\manager\Module</span>.
+Both <span class="broken-link">workflow</span> and [[workflow-view]] are supported through this.
+Although it is not ver good for building new workflow from scratch. 
+Name of tables are hard-coded.</p>
+<pre><code class="hljs php language-php"><span class="hljs-string">'modules'</span>    =&gt; [
+    <span class="hljs-string">'workflow'</span> =&gt; [
+        <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'cornernote\workflow\manager\Module'</span>,
+    ],
+],
+<span class="hljs-string">'components'</span> =&gt; [
+    <span class="hljs-string">'wizflowManager'</span> =&gt; [
+        <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'khans\utils\components\workflow\WizflowManager'</span>,
+        <span class="hljs-string">'workflowSourceName'</span> =&gt; <span class="hljs-string">'workflowSource'</span>,
+    ],
+    <span class="hljs-string">'workflowSource'</span> =&gt; [
+        <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'cornernote\workflow\manager\components\WorkflowDbSource'</span>,
+    ],
+],
+</code></pre>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            [
+                <span class="hljs-string">'class'</span> =&gt; \raoul2000\workflow\base\SimpleWorkflowBehavior::className(),
+                <span class="hljs-string">'defaultWorkflowId'</span> =&gt; <span class="hljs-string">'post'</span>,
+                <span class="hljs-string">'propagateErrorsToModel'</span> =&gt; <span class="hljs-keyword">true</span>,
+            ],
+        ];
+    }
+}
+</code></pre>
+<h2>Workflow Structure <span id="workflow-structure"></span><a href="#workflow-structure" class="hashlink">&para;</a></h2><ul>
+<li>[x] id :string status ID</li>
+<li>[x] label :string label of the status</li>
+<li>[x] transitions :array list of statuses allowed to transit into</li>
+<li>[x] metadata :array following items<ul>
+<li>[x] actor :string one of predefined actors</li>
+<li>[x] stage :array list of groups of statuses</li>
+<li>[x] description :string detail of the status</li>
+<li>[ ] color :string color coding for texts or buttons</li>
+<li>[ ] icon :string icon used in buttons and links</li>
+</ul>
+</li>
+</ul>
+<p>* Mandatory configs are checked. </p>
+<h1>WorkflowField <span id="workflowfield"></span><a href="#workflowfield" class="hashlink">&para;</a></h1><p>This widget renders a Select2 input widget for gathering input. 
+The most important convenience is to set the model to inherit <span class="broken-link">KHanModel</span>.
+ As a result the <code>data</code> config utilizes <span class="broken-link">KHanModel::getWorkflowState()</span> which indeed is a method in the <span class="broken-link">WorkflowBehavior</span>.</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$form</span> = ActiveForm::begin();
+
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$form</span>-&gt;field(<span class="hljs-variable">$this</span>-&gt;WFRecord, <span class="hljs-string">'progress_column'</span>)-&gt;widget(WorkflowField::class, []);
+
+<span class="hljs-keyword">echo</span> Html::submitButton(<span class="hljs-string">'Send'</span>);
+ActiveForm::end();
+</code></pre>
+<h1>WorkflowBehavior <span id="workflowbehavior"></span><a href="#workflowbehavior" class="hashlink">&para;</a></h1><ul>
+<li>[getWorkflowState()] get label for the current record.</li>
+<li>[getStatusesLabels()] get a list for drop-downs of all of the statuses in the given workflow.</li>
+<li>[$statusTable] name of table containing all statuses. </li>
+<li>[workflowID] ID of the workflow which the model is part of.</li>
+</ul>
+<h1>ProgressColumn <span id="progresscolumn"></span><a href="#progresscolumn" class="hashlink">&para;</a></h1><p>By defining the <code>workflow</code> (class implementing <code>IWorkflowDefinitionProvider</code>),
+the following column will render workflow labels in the cells, 
+and show Select2 filter searching workflow labels. </p>
+<pre><code class="hljs php language-php">[
+    <span class="hljs-string">'attribute'</span> =&gt; <span class="hljs-string">'progress_column'</span>,
+    <span class="hljs-string">'class'</span>     =&gt; <span class="hljs-string">'khans\utils\columns\ProgressColumn'</span>,
+    <span class="hljs-string">'workflow'</span> =&gt; <span class="hljs-string">'app\components\demos\TestWF'</span>,
+],
+</code></pre>
+<p>By defining the <code>workflowID</code> (database using <code>WorflowDbManager</code>), 
+the following column will render workflow labels in the cells,
+and show Select2 filter searching workflow labels. 
+<code>`</code>php
+[</p>
+<pre><code class="hljs php"><span class="hljs-string">'attribute'</span>  =&gt; <span class="hljs-string">'progress_column'</span>,
+<span class="hljs-string">'class'</span>      =&gt; <span class="hljs-string">'khans\utils\columns\ProgressColumn'</span>,
+<span class="hljs-string">'workflowID'</span> =&gt; <span class="hljs-string">'FirstWorkflow'</span>,
+</code></pre>
+<p>],
+<code>`</code></p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 15 Jan 2019 17:36:35 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

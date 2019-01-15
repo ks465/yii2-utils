@@ -1,8 +1,13 @@
 <?php
 /**
  * This is the template for generating a CRUD controller class file.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.3-971016
+ * @since   1.0
  */
 
+use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 use yii\db\ActiveRecordInterface;
 
@@ -38,7 +43,6 @@ use yii\data\ActiveDataProvider;
 <?php endif; ?>
 use <?= ltrim($generator->baseControllerClass, '\\') ?>;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
 
@@ -46,7 +50,7 @@ use yii\helpers\Html;
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> model.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.1-970915
+ * @version 0.1.3-971016
  * @since   1.0
  */
 class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
@@ -84,20 +88,22 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     public function actionView(<?= $actionParams ?>)
     {
         $request = Yii::$app->request;
+        $model = $this->findModel(<?= $actionParams ?>);
+
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'   => "<?= $modelClass ?> #".<?= $actionParams ?>,
+                    'title'   => "<?= $generator->tableTitle ?> #" . $model-><?= $generator->getNameAttribute() ?>,
                     'content' => $this->renderAjax('view', [
-                        'model' => $this->findModel(<?= $actionParams ?>),
+                        'model' => $model,
                     ]),
-                    'footer' => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
+                    'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
                             Html::a('ویرایش', ['update','<?= substr($actionParams,1) ?>'=><?= $actionParams ?>],
                                 ['class'=>'btn btn-primary','role'=>'modal-remote'])
                 ];
         }else{
             return $this->render('view', [
-                'model' => $this->findModel(<?= $actionParams ?>),
+                'model' => $model,
             ]);
         }
     }
@@ -117,7 +123,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'   => "افزودن <?= $modelClass ?> تازه",
+                    'title'   => "افزودن به <?= $generator->tableTitle ?> تازه",
                     'content' => $this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -127,15 +133,15 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                 ];
             }else if($model->load($request->post()) && $model->save()){
                 return [
-                    'forceReload' => '#crud-datatable-pjax',
-                    'title'       => "افزودن <?= $modelClass ?> تازه",
+                    'forceReload' => '#<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-datatable-pjax',
+                    'title'       => "افزودن <?= $generator->tableTitle ?> تازه",
                     'content'     => '<span class="text-success">افزودن <?= $modelClass ?> موفق</span>',
                     'footer'      => Html::button('ببند', ['class' => 'btn btn-default pull-left','data-dismiss' => 'modal']).
                             Html::a('افزودن بیشتر', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                 ];
             }else{
                 return [
-                    'title'   => "افزودن <?= $modelClass ?> تازه",
+                    'title'   => "افزودن <?= $generator->tableTitle ?> تازه",
                     'content' => $this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -176,31 +182,33 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "ویرایش <?= $modelClass ?> #".<?= $actionParams ?>,
-                    'content'=>$this->renderAjax('update', [
+                    'title'   => "ویرایش <?= $generator->tableTitle ?> #" . $model-><?= $generator->getNameAttribute() ?>,
+                    'content' =>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('ببند',['class'=>'btn btn-default pull-left','data-dismiss'=>'modal']).
-                                Html::button('بنویس',['class'=>'btn btn-primary','type'=>'submit'])
+                    'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
+                                Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit'])
                 ];
             }else if($model->load($request->post()) && $model->save()){
                 return [
-                    'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "<?= $modelClass ?> #".<?= $actionParams ?>,
-                    'content'=>$this->renderAjax('view', [
+                    'forceReload' => '#<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-datatable-pjax',
+                    'title'       => "<?= $generator->tableTitle ?> #".<?= $actionParams ?>,
+                    'content'     => $this->renderAjax('view', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('ببند',['class'=>'btn btn-default pull-left','data-dismiss'=>'modal']).
-                            Html::a('ویرایش',['update','<?= substr($actionParams,1) ?>'=><?= $actionParams ?>],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                    'footer'      => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
+                        Html::a('ویرایش', ['update', '<?= substr($actionParams,1) ?>' => <?= $actionParams ?>],
+                            ['class' => 'btn btn-primary', 'role'=>'modal-remote']
+                        )
                 ];
             }else{
                  return [
-                    'title'=> "ویرایش <?= $modelClass ?> #".<?= $actionParams ?>,
-                    'content'=>$this->renderAjax('update', [
+                    'title'   => "ویرایش <?= $generator->tableTitle ?> #".<?= $actionParams ?>,
+                    'content' =>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>'modal']).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>'submit'])
+                    'footer'  => Html::button('ببند',['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
+                        Html::button('بنویس',['class' => 'btn btn-primary', 'type' => 'submit'])
                 ];
             }
         }else{
@@ -218,7 +226,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     }
 
     /**
-     * Delete an existing <?= $modelClass ?> model.
+     * Delete an existing <?= $generator->tableTitle ?> model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
@@ -234,7 +242,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             *   Process for ajax request
             */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return ['forceClose'=>true,'forceReload'=>'#crud-datatable-pjax'];
+            return ['forceClose' => true, 'forceReload' => '#<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-datatable-pjax'];
         }else{
             /*
             *   Process for non-ajax request
@@ -266,7 +274,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             *   Process for ajax request
             */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return ['forceClose'=>true,'forceReload'=>'#crud-datatable-pjax'];
+            return ['forceClose'=>true,'forceReload'=>'#<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-datatable-pjax'];
         }else{
             /*
             *   Process for non-ajax request

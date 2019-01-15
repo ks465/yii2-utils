@@ -20,16 +20,26 @@ use yii\helpers\ArrayHelper;
  * Class KHanModel holds the basic structure of all database models.
  * Thus it is marked as `abstract` to avoid instantiating a model without table.
  *
- * @package khans\utils
- * @version 0.4.4-971008
- * @since   1.0
  * @property integer $status     وضعیت فعال بودن رکورد
  * @property integer $created_by سازنده رکورد
  * @property integer $created_at زمان ساخت رکورد
  * @property integer $updated_by آخرین ویراینده رکورد
  * @property integer $updated_at زمان آخرین ویرایش رکورد
+ * @property string  $workflowID
+ * @method bool enterWorkflow(string $string)
+ * @method bool sendToStatus(string $string)
+ * @method bool statusEquals(string $string)
+ * @method \raoul2000\workflow\base\Status getWorkflowStatus()
+ * @method \raoul2000\workflow\base\WorkflowInterface getWorkflow()
+ * @method \raoul2000\workflow\base\Workflow getWorkflowSource()
+ * @method mixed getMetaData(string $string, mixed $defaultValue)
+ * @method mixed getStatusesLabels()
+ * @method mixed getWorkflowState()
+ * @package khans\utils
+ * @version 0.4.5-971023
+ * @since   1.0
  */
-abstract class KHanModel extends ActiveRecord
+class KHanModel extends ActiveRecord
 {
     /**
      * record is marked as deleted -- destroyed -- and users can not see it at all
@@ -133,6 +143,7 @@ abstract class KHanModel extends ActiveRecord
 //            'history'   => [
 //                'class'        => \nhkey\arh\ActiveRecordHistoryBehavior::className(),
 //                'ignoreFields' => ['created_at', 'created_by', 'updated_at', 'updated_by'],
+//                'managerOptions' => ['tableName' => 'MyLogTable',],
 //            ],
         ];
     }
@@ -205,7 +216,7 @@ abstract class KHanModel extends ActiveRecord
      *
      * @return KHanIdentity
      */
-    protected abstract function getResponsibleUser($ownerID);
+    protected function getResponsibleUser($ownerID) { }
 
     /**
      * Get active record for the updater of the record from the given user table

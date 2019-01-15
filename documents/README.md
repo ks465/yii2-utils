@@ -9,7 +9,10 @@ Guides, notes, and anything regarding good style programming and documenting:
 1. [Document Tips and Tricks](documents.md)
 1. [Setup for Persian](persian.md)
 1. [Complete Config](full-config.md)
+1. [Workflow](workflow.md)
 
+#Behaviors
+1. [WorkflowBehavior](workflow.md#WorkflowBehavior)
  
 #Components
 All the classes in the component directory of the package:
@@ -33,12 +36,12 @@ They are specialized versions for Kartik Gridview.
 1. [Enum Column](columns-enum-column.md) contains EnumColumn for GridViews.
 1. [Radio Column](columns-radio-column.md) contains RadioColumn for GridViews to select row and work with bulk action.
 1. [Jalali Column](columns-jalali-column.md)
-1. [Progress Column](columns-progress-column.md)
+1. [Progress Column](workflow.md#ProgressColumn)
+1. [Related Column](columns-related-column.md)
 
 #Models
 1. [Base Model](models-khan-model.md) contains basic skeleton for all models.
 1. [Base user](models-khan-user.md) contains basic skeleton for all user models.
-
 
 #RBAC
 1. Helpers:
@@ -57,12 +60,14 @@ They are specialized versions for Kartik Gridview.
 1. [Confirm Button](widgets-confirm-button.md)
 1. [Captcha](widgets-captcha.md)
 1. [ExportMenu](widgets-export-menu.md)
+1. [WorkflowField](widgets-workflow-field.md)
 
    
 #Others
 These are miscellaneous classes for configuring the package or installation.
 
 1. [App Builder](helpers-app-builder.md) contains methods useful for creating models, controllers, CRUD packages. 
+1. [Generators](helpers-genrators.md) contains multiple generator templates for use besides GII.
 1. [VarDump](components-var-dump.md) contains methods to make life easier and fun for the admins in debugging the code objects.
 1. [SqlFormatter](components-sql-formatter.md) contains methods to make life easier and fun for the admins in debugging the SQL queries.
 1. [Settings](settings.md) contains all the settings and constant values.
@@ -71,6 +76,7 @@ These are miscellaneous classes for configuring the package or installation.
 This can be used inside _**NavBar**_ menu or as a button on the page.
 1. [Workflow Manager](components-workflow.md) contains all the requirements for builidng, using and managing workflows
 1. [Wizard Flow](components-wiz-flow.md)
+1. [Tests](tests.md)
  
  Move the following to [Full Config](full-config.md):
 #StartUp

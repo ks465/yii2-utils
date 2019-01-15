@@ -1,7 +1,10 @@
 <?php
 /**
  * This is the template for generating the model class of a specified table.
- */
+ *
+ * @package KHanS\Utils
+ * @version 0.1.0-971020
+ * @since   1.0*/
 
 /* @var $this yii\web\View */
 /* @var $generator khans\utils\helpers\generators\model\Generator */
@@ -33,6 +36,10 @@ use Yii;
  * @property <?= $relation[1] . ($relation[2] ? '[]' : '') . ' $' . lcfirst($name) . "\n" ?>
 <?php endforeach; ?>
 <?php endif; ?>
+ *
+ * @package KHanS\Utils
+ * @version 0.1.0-971020
+ * @since   1.0
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . "\n" ?>
 {

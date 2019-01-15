@@ -33,12 +33,13 @@
 <div class="row">
     <div class="col-md-3">
                 <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-285" data-toggle="collapse" data-parent="#navigation">common\actions <b class="caret"></b></a><div id="navigation-285" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-actions-helpaction.html">HelpAction</a></div>
-<a class="list-group-item" href="#navigation-286" data-toggle="collapse" data-parent="#navigation">common\widgets\columns <b class="caret"></b></a><div id="navigation-286" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-widgets-columns-progresscolumn.html">ProgressColumn</a></div>
-<a class="list-group-item" href="#navigation-287" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-287" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-286" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-286" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-287" data-toggle="collapse" data-parent="#navigation">khans\utils\behaviors <b class="caret"></b></a><div id="navigation-287" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-behaviors-workflowbehavior.html">WorkflowBehavior</a></div>
 <a class="list-group-item" href="#navigation-288" data-toggle="collapse" data-parent="#navigation">khans\utils\columns <b class="caret"></b></a><div id="navigation-288" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-booleancolumn.html">BooleanColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-datacolumn.html">DataColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-enumcolumn.html">EnumColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-jalalicolumn.html">JalaliColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-progresscolumn.html">ProgressColumn</a>
 <a class="list-group-item" href="./khans-utils-columns-radiocolumn.html">RadioColumn</a></div>
 <a class="list-group-item" href="#navigation-289" data-toggle="collapse" data-parent="#navigation">khans\utils\components <b class="caret"></b></a><div id="navigation-289" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
 <a class="list-group-item" href="./khans-utils-components-filehelper.html">FileHelper</a>
@@ -69,7 +70,8 @@
 <a class="list-group-item" href="./khans-utils-widgets-dropdownx.html">DropdownX</a>
 <a class="list-group-item" href="./khans-utils-widgets-exportmenu.html">ExportMenu</a>
 <a class="list-group-item" href="./khans-utils-widgets-gridasset.html">GridAsset</a>
-<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a></div>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-workflowfield.html">WorkflowField</a></div>
 <a class="list-group-item" href="#navigation-301" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets\menu <b class="caret"></b></a><div id="navigation-301" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
 <a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
 <a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
@@ -79,8 +81,7 @@
     <a href="index.html">All Classes</a>
             | <a href="#properties">Properties</a>
                 | <a href="#methods">Methods</a>
-                    | <a href="#constants">Constants</a>
-    </div>
+            </div>
 
 <table class="summaryTable docClass table table-bordered">
     <colgroup>
@@ -88,12 +89,12 @@
         <col class="col-value" />
     </colgroup>
             <tr><th>Inheritance</th><td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a> &raquo;
-yii\gii\Generator</td></tr>
-                                        <tr><th>Available since version</th><td>2.0</td></tr>
+yii\gii\generators\model\Generator</td></tr>
+                                        <tr><th>Available since version</th><td>1.0</td></tr>
             </table>
 
 <div class="class-description">
-    <p><strong>This generator will generate one or multiple ActiveRecord classes for the specified database table.</strong></p>
+    <p><strong>This generator will set defaults for the parent generator only.</strong></p>
     
     </div>
 
@@ -120,13 +121,7 @@ yii\gii\Generator</td></tr>
         <td>FQN of the base class for the generated model</td>
         <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
     </tr>
-                <tr id="$db">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#$db-detail">$db</a></td>
-        <td><a href="http://www.php.net/language.types.string">string</a></td>
-        <td>Database id of the application</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="$generateLabelsFromComments">
+                <tr id="$generateLabelsFromComments">
         <td><a href="khans-utils-helpers-generators-model-generator.html#$generateLabelsFromComments-detail">$generateLabelsFromComments</a></td>
         <td><a href="http://www.php.net/language.types.boolean">boolean</a></td>
         <td>Generate labels for attributes from table comments</td>
@@ -136,24 +131,6 @@ yii\gii\Generator</td></tr>
         <td><a href="khans-utils-helpers-generators-model-generator.html#$generateQuery-detail">$generateQuery</a></td>
         <td><a href="http://www.php.net/language.types.boolean">boolean</a></td>
         <td>Generate query for the model</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="$generateRelations">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#$generateRelations-detail">$generateRelations</a></td>
-        <td><a href="http://www.php.net/language.types.string">string</a></td>
-        <td>Type of relations generated for the model.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="$generateRelationsFromCurrentSchema">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#$generateRelationsFromCurrentSchema-detail">$generateRelationsFromCurrentSchema</a></td>
-        <td><a href="http://www.php.net/language.types.boolean">boolean</a></td>
-        <td>Generate relations for the current table schema of the database</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="$modelClass">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#$modelClass-detail">$modelClass</a></td>
-        <td><a href="http://www.php.net/language.types.string">string</a></td>
-        <td>Name of the generated model class</td>
         <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
     </tr>
             <tr id="$ns">
@@ -168,35 +145,16 @@ yii\gii\Generator</td></tr>
         <td>FQN of the base model for queries</td>
         <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
     </tr>
-            <tr id="$queryClass">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#$queryClass-detail">$queryClass</a></td>
-        <td><a href="http://www.php.net/language.types.string">string</a></td>
-        <td>Name of the generated query class</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
             <tr id="$queryNs">
         <td><a href="khans-utils-helpers-generators-model-generator.html#$queryNs-detail">$queryNs</a></td>
         <td><a href="http://www.php.net/language.types.string">string</a></td>
         <td>Namespace for the generated queries</td>
         <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
     </tr>
-            <tr id="$tableName">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#$tableName-detail">$tableName</a></td>
-        <td><a href="http://www.php.net/language.types.string">string</a></td>
-        <td>Name of an existing table to generate model for</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-                <tr id="$useSchemaName">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#$useSchemaName-detail">$useSchemaName</a></td>
+                <tr id="$withSearchModel">
+        <td><a href="khans-utils-helpers-generators-model-generator.html#$withSearchModel-detail">$withSearchModel</a></td>
         <td><a href="http://www.php.net/language.types.boolean">boolean</a></td>
-        <td>Whether to include the schema name in the ActiveRecord class
-   when it's auto generated.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="$useTablePrefix">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#$useTablePrefix-detail">$useTablePrefix</a></td>
-        <td><a href="http://www.php.net/language.types.boolean">boolean</a></td>
-        <td>Use prefix for tables</td>
+        <td>Build search model alongside the data model</td>
         <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
     </tr>
     </table>
@@ -223,13 +181,13 @@ yii\gii\Generator</td></tr>
         <td>List of models when using wildcards in table name</td>
         <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
     </tr>
-                                                        <tr id="$tableNames">
+                                <tr id="$tableNames">
         <td><a href="khans-utils-helpers-generators-model-generator.html#$tableNames-detail">$tableNames</a></td>
         <td><a href="http://www.php.net/language.types.array">array</a></td>
         <td>List of tables when using wildcards in table name</td>
         <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
     </tr>
-            </table>
+        </table>
 </div>
 
 <a id="methods"></a>
@@ -248,37 +206,7 @@ yii\gii\Generator</td></tr>
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-            <tr id="attributeLabels()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#attributeLabels()-detail">attributeLabels()</a></td>
-        <td>Returns the attribute labels.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="autoCompleteData()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#autoCompleteData()-detail">autoCompleteData()</a></td>
-        <td>Returns the list of auto complete values.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-                <tr id="generate()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#generate()-detail">generate()</a></td>
-        <td>Generates the code based on the current user input and the specified code template files.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-                <tr id="generateLabels()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#generateLabels()-detail">generateLabels()</a></td>
-        <td>Generates the attribute labels for the specified table.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-                                <tr id="generateRules()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#generateRules()-detail">generateRules()</a></td>
-        <td>Generates validation rules for the specified table.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="generateTableName()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#generateTableName()-detail">generateTableName()</a></td>
-        <td>Generates the table name by considering table prefix.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-                    <tr id="getDescription()">
+        <tr id="getDescription()">
         <td><a href="khans-utils-helpers-generators-model-generator.html#getDescription()-detail">getDescription()</a></td>
         <td></td>
         <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
@@ -288,182 +216,12 @@ yii\gii\Generator</td></tr>
         <td></td>
         <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
     </tr>
-                    <tr id="getTablePrefix()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#getTablePrefix()-detail">getTablePrefix()</a></td>
-        <td>Returns the <code>tablePrefix</code> property of the DB connection as specified</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="hints()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#hints()-detail">hints()</a></td>
-        <td>Returns the list of hint messages.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-                    <tr id="requiredTemplates()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#requiredTemplates()-detail">requiredTemplates()</a></td>
-        <td>Returns a list of code template files that are required.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="rules()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#rules()-detail">rules()</a></td>
-        <td>Returns the validation rules for attributes</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="stickyAttributes()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#stickyAttributes()-detail">stickyAttributes()</a></td>
-        <td>Returns the list of sticky attributes.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="validateDb()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#validateDb()-detail">validateDb()</a></td>
-        <td>Validates the <a href="khans-utils-helpers-generators-model-generator.html#$db-detail">$db</a> attribute.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="validateModelClass()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#validateModelClass()-detail">validateModelClass()</a></td>
-        <td>Validates the <a href="khans-utils-helpers-generators-model-generator.html#$modelClass-detail">$modelClass</a> attribute.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="validateNamespace()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#validateNamespace()-detail">validateNamespace()</a></td>
-        <td>Validates the namespace.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="validateTableName()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#validateTableName()-detail">validateTableName()</a></td>
-        <td>Validates the <a href="khans-utils-helpers-generators-model-generator.html#$tableName-detail">$tableName</a> attribute.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
     </table>
-</div>
-
-<div class="summary doc-method">
-<h2>Protected Methods</h2>
-
-<p><a href="#" class="toggle">Hide inherited methods</a></p>
-
-<table class="summary-table table table-striped table-bordered table-hover">
-<colgroup>
-    <col class="col-method" />
-    <col class="col-description" />
-    <col class="col-defined" />
-</colgroup>
-<tr>
-  <th>Method</th><th>Description</th><th>Defined By</th>
-</tr>
-        <tr id="addInverseRelations()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#addInverseRelations()-detail">addInverseRelations()</a></td>
-        <td>Adds inverse relations</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-                    <tr id="checkJunctionTable()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#checkJunctionTable()-detail">checkJunctionTable()</a></td>
-        <td>Checks if the given table is a junction table, that is it has at least one pair of unique foreign keys.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-                <tr id="generateClassName()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#generateClassName()-detail">generateClassName()</a></td>
-        <td>Generates a class name from the specified table name.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-                <tr id="generateProperties()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#generateProperties()-detail">generateProperties()</a></td>
-        <td>Generates the properties for the specified table.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="generateQueryClassName()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#generateQueryClassName()-detail">generateQueryClassName()</a></td>
-        <td>Generates a query class name from the specified model class name.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="generateRelationLink()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#generateRelationLink()-detail">generateRelationLink()</a></td>
-        <td>Generates the link parameter to be used in generating the relation declaration.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="generateRelationName()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#generateRelationName()-detail">generateRelationName()</a></td>
-        <td>Generate a relation name for the specified table and a base name.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="generateRelations()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#generateRelations()-detail">generateRelations()</a></td>
-        <td></td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-                    <tr id="getDbConnection()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#getDbConnection()-detail">getDbConnection()</a></td>
-        <td></td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="getDbDriverName()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#getDbDriverName()-detail">getDbDriverName()</a></td>
-        <td></td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-                    <tr id="getSchemaNames()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#getSchemaNames()-detail">getSchemaNames()</a></td>
-        <td></td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="getTableNames()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#getTableNames()-detail">getTableNames()</a></td>
-        <td></td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-                    <tr id="isColumnAutoIncremental()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#isColumnAutoIncremental()-detail">isColumnAutoIncremental()</a></td>
-        <td>Checks if any of the specified columns is auto incremental.</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-            <tr id="isHasManyRelation()">
-        <td><a href="khans-utils-helpers-generators-model-generator.html#isHasManyRelation()-detail">isHasManyRelation()</a></td>
-        <td>Determines if relation is of has many type</td>
-        <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-    </tr>
-                                </table>
 </div>
 
 <a id="events"></a>
 
 <a id="constants"></a>
-<div class="summary doc-const">
-    <h2>Constants</h2>
-
-    <p><a href="#" class="toggle">Hide inherited constants</a></p>
-
-    <table class="summary-table table table-striped table-bordered table-hover">
-    <colgroup>
-        <col class="col-const" />
-        <col class="col-value" />
-        <col class="col-description" />
-        <col class="col-defined" />
-    </colgroup>
-    <tr>
-        <th>Constant</th><th>Value</th><th>Description</th><th>Defined By</th>
-    </tr>
-            <tr id="RELATIONS_ALL">
-          <td id="RELATIONS_ALL-detail">RELATIONS_ALL</td>
-          <td>'all'</td>
-          <td>
-                        </td>
-          <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-        </tr>
-            <tr id="RELATIONS_ALL_INVERSE">
-          <td id="RELATIONS_ALL_INVERSE-detail">RELATIONS_ALL_INVERSE</td>
-          <td>'all-inverse'</td>
-          <td>
-                        </td>
-          <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-        </tr>
-            <tr id="RELATIONS_NONE">
-          <td id="RELATIONS_NONE-detail">RELATIONS_NONE</td>
-          <td>'none'</td>
-          <td>
-                        </td>
-          <td><a href="khans-utils-helpers-generators-model-generator.html">khans\utils\helpers\generators\model\Generator</a></td>
-        </tr>
-        </table>
-</div>
 
 <h2>Property Details</h2>
 
@@ -505,24 +263,6 @@ yii\gii\Generator</td></tr>
     <div class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$classNames-detail">$classNames</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
 
 
-    <div class="detail-header h3" id="$db-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#$db-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $db        <span class="detail-header-tag small">
-            public                                                property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p>Database id of the application</p>
-
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$db-detail">$db</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'db'</span></div>
-
-
     <div class="detail-header h3" id="$generateLabelsFromComments-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#$generateLabelsFromComments-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -557,60 +297,6 @@ yii\gii\Generator</td></tr>
             </div>
 
     <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$generateQuery-detail">$generateQuery</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span></div>
-
-
-    <div class="detail-header h3" id="$generateRelations-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#$generateRelations-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $generateRelations        <span class="detail-header-tag small">
-            public                                                property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p>Type of relations generated for the model.</p>
-
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$generateRelations-detail">$generateRelations</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">self</span><span style="color: #007700">::</span><span style="color: #0000BB">RELATIONS_ALL</span></div>
-
-
-    <div class="detail-header h3" id="$generateRelationsFromCurrentSchema-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#$generateRelationsFromCurrentSchema-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $generateRelationsFromCurrentSchema        <span class="detail-header-tag small">
-            public                                                property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p>Generate relations for the current table schema of the database</p>
-
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$generateRelationsFromCurrentSchema-detail">$generateRelationsFromCurrentSchema</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span></div>
-
-
-    <div class="detail-header h3" id="$modelClass-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#$modelClass-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $modelClass        <span class="detail-header-tag small">
-            public                                                property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p>Name of the generated model class</p>
-
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$modelClass-detail">$modelClass</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
 
 
     <div class="detail-header h3" id="$ns-detail">
@@ -649,24 +335,6 @@ yii\gii\Generator</td></tr>
     <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$queryBaseClass-detail">$queryBaseClass</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'khans\utils\models\queries\KHanQuery'</span></div>
 
 
-    <div class="detail-header h3" id="$queryClass-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#$queryClass-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $queryClass        <span class="detail-header-tag small">
-            public                                                property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p>Name of the generated query class</p>
-
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$queryClass-detail">$queryClass</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
-
-
     <div class="detail-header h3" id="$queryNs-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#$queryNs-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -683,24 +351,6 @@ yii\gii\Generator</td></tr>
             </div>
 
     <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$queryNs-detail">$queryNs</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'khans\utils\models\queries'</span></div>
-
-
-    <div class="detail-header h3" id="$tableName-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#$tableName-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $tableName        <span class="detail-header-tag small">
-            public                                                property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p>Name of an existing table to generate model for</p>
-
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$tableName-detail">$tableName</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
 
 
     <div class="detail-header h3" id="$tableNames-detail">
@@ -721,658 +371,27 @@ yii\gii\Generator</td></tr>
     <div class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$tableNames-detail">$tableNames</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
 
 
-    <div class="detail-header h3" id="$useSchemaName-detail">
+    <div class="detail-header h3" id="$withSearchModel-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#$useSchemaName-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#$withSearchModel-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $useSchemaName        <span class="detail-header-tag small">
+        $withSearchModel        <span class="detail-header-tag small">
             public                                                property
                     </span>
     </div>
 
     
     <div class="doc-description">
-        <p>Whether to include the schema name in the ActiveRecord class
-   when it's auto generated. Only non default schema would be used.</p>
+        <p>Build search model alongside the data model</p>
 
             </div>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$useSchemaName-detail">$useSchemaName</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span></div>
-
-
-    <div class="detail-header h3" id="$useTablePrefix-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#$useTablePrefix-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $useTablePrefix        <span class="detail-header-tag small">
-            public                                                property
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p>Use prefix for tables</p>
-
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$useTablePrefix-detail">$useTablePrefix</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false</span></div>
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <a href="khans-utils-helpers-generators-model-generator.html#$withSearchModel-detail">$withSearchModel</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span></div>
 
 </div>
 <h2>Method Details</h2>
 
 <div class="method-doc">
-
-    <div class="detail-header h3" id="addInverseRelations()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#addInverseRelations()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        addInverseRelations()
-        <span class="detail-header-tag small">
-            protected                                    method
-                            (available since version 2.0.5)
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Adds inverse relations</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#addInverseRelations()-detail">addInverseRelations</a></strong> ( <span style="color: #0000BB">$relations</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$relations</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>Relation declarations</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>Relation declarations extended with inverse relation names</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\NotSupportedException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                            <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="attributeLabels()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#attributeLabels()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        attributeLabels()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Returns the attribute labels.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#attributeLabels()-detail">attributeLabels</a></strong> ( )</td></tr>
-                                                <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>Attribute labels (name =&gt; label)</p>
-</td>
-                </tr>
-                                    </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="autoCompleteData()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#autoCompleteData()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        autoCompleteData()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Returns the list of auto complete values.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#autoCompleteData()-detail">autoCompleteData</a></strong> ( )</td></tr>
-                                                <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>The list of auto complete values</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="checkJunctionTable()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#checkJunctionTable()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        checkJunctionTable()
-        <span class="detail-header-tag small">
-            protected                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Checks if the given table is a junction table, that is it has at least one pair of unique foreign keys.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a>|<a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#checkJunctionTable()-detail">checkJunctionTable</a></strong> ( <span style="color: #0000BB">$table</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$table</span></td>
-                  <td class="param-type-col"></td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a>|<a href="http://www.php.net/language.types.boolean">boolean</a></td>
-                  <td class="param-desc-col"><p>All unique foreign key pairs if the table is a junction table,
-or false if the table is not a junction table.</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="generate()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#generate()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        generate()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Generates the code based on the current user input and the specified code template files.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">\yii\gii\CodeFile[]</span> <strong><a href="khans-utils-helpers-generators-model-generator.html#generate()-detail">generate</a></strong> ( )</td></tr>
-                                                <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col">\yii\gii\CodeFile[]</td>
-                  <td class="param-desc-col"><p>A list of code files to be created.</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\NotSupportedException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                            <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="generateClassName()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#generateClassName()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        generateClassName()
-        <span class="detail-header-tag small">
-            protected                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Generates a class name from the specified table name.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#generateClassName()-detail">generateClassName</a></strong> ( <span style="color: #0000BB">$tableName</span>, <span style="color: #0000BB">$useSchemaName&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$tableName</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"><p>The table name (which may contain schema prefix)</p>
-</td>
-                </tr>
-                            <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$useSchemaName</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
-                  <td class="param-desc-col"><p>Should schema name be included in the class name, if present</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"><p>The generated class name</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="generateLabels()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#generateLabels()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        generateLabels()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Generates the attribute labels for the specified table.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#generateLabels()-detail">generateLabels</a></strong> ( <span style="color: #0000BB">$table</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$table</span></td>
-                  <td class="param-type-col">\yii\db\TableSchema</td>
-                  <td class="param-desc-col"><p>The table schema</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>The generated attribute labels (name =&gt; label)</p>
-</td>
-                </tr>
-                                    </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="generateProperties()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#generateProperties()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        generateProperties()
-        <span class="detail-header-tag small">
-            protected                                    method
-                            (available since version 2.0.6)
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Generates the properties for the specified table.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#generateProperties()-detail">generateProperties</a></strong> ( <span style="color: #0000BB">$table</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$table</span></td>
-                  <td class="param-type-col">\yii\db\TableSchema</td>
-                  <td class="param-desc-col"><p>The table schema</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>The generated properties (property =&gt; type)</p>
-</td>
-                </tr>
-                                    </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="generateQueryClassName()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#generateQueryClassName()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        generateQueryClassName()
-        <span class="detail-header-tag small">
-            protected                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Generates a query class name from the specified model class name.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#generateQueryClassName()-detail">generateQueryClassName</a></strong> ( <span style="color: #0000BB">$modelClassName</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$modelClassName</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"><p>Model class name</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"><p>Generated class name</p>
-</td>
-                </tr>
-                                    </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="generateRelationLink()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#generateRelationLink()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        generateRelationLink()
-        <span class="detail-header-tag small">
-            protected                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Generates the link parameter to be used in generating the relation declaration.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#generateRelationLink()-detail">generateRelationLink</a></strong> ( <span style="color: #0000BB">$refs</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$refs</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>Reference constraint</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"><p>The generated link parameter.</p>
-</td>
-                </tr>
-                                    </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="generateRelationName()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#generateRelationName()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        generateRelationName()
-        <span class="detail-header-tag small">
-            protected                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Generate a relation name for the specified table and a base name.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#generateRelationName()-detail">generateRelationName</a></strong> ( <span style="color: #0000BB">$relations</span>, <span style="color: #0000BB">$table</span>, <span style="color: #0000BB">$key</span>, <span style="color: #0000BB">$multiple</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$relations</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>The relations being generated currently.</p>
-</td>
-                </tr>
-                            <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$table</span></td>
-                  <td class="param-type-col">\yii\db\TableSchema</td>
-                  <td class="param-desc-col"><p>The table schema</p>
-</td>
-                </tr>
-                            <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$key</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"><p>A base name that the relation name may be generated from</p>
-</td>
-                </tr>
-                            <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$multiple</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
-                  <td class="param-desc-col"><p>Whether this is a has-many relation</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"><p>The relation name</p>
-</td>
-                </tr>
-                                    </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="generateRelations()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#generateRelations()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        generateRelations()
-        <span class="detail-header-tag small">
-            protected                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong></strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#generateRelations()-detail">generateRelations</a></strong> ( )</td></tr>
-                                                <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>The generated relation declarations</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\NotSupportedException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                            <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="generateRules()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#generateRules()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        generateRules()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Generates validation rules for the specified table.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#generateRules()-detail">generateRules</a></strong> ( <span style="color: #0000BB">$table</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$table</span></td>
-                  <td class="param-type-col">\yii\db\TableSchema</td>
-                  <td class="param-desc-col"><p>The table schema</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>The generated validation rules</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="generateTableName()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#generateTableName()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        generateTableName()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Generates the table name by considering table prefix.</strong></p>
-
-        <p>If <a href="khans-utils-helpers-generators-model-generator.html#$useTablePrefix-detail">$useTablePrefix</a> is false, the table name will be returned without change.</p>
-
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#generateTableName()-detail">generateTableName</a></strong> ( <span style="color: #0000BB">$tableName</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$tableName</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"><p>The table name (which may contain schema prefix)</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"><p>The generated table name</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="getDbConnection()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#getDbConnection()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        getDbConnection()
-        <span class="detail-header-tag small">
-            protected                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong></strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.object">object</a>|\yii\db\Connection</span> <strong><a href="khans-utils-helpers-generators-model-generator.html#getDbConnection()-detail">getDbConnection</a></strong> ( )</td></tr>
-                                                            <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="getDbDriverName()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#getDbDriverName()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        getDbDriverName()
-        <span class="detail-header-tag small">
-            protected                                    method
-                            (available since version 2.0.6)
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong></strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a>|<a href="http://www.php.net/language.types.null">null</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#getDbDriverName()-detail">getDbDriverName</a></strong> ( )</td></tr>
-                                                <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a>|<a href="http://www.php.net/language.types.null">null</a></td>
-                  <td class="param-desc-col"><p>Driver name of db connection.
-In case db is not instance of \yii\db\Connection null will be returned.</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
 
     <div class="detail-header h3" id="getDescription()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
@@ -1431,417 +450,6 @@ In case db is not instance of \yii\db\Connection null will be returned.</p>
                                     </table>
 
 <!--	-->
-
-    <div class="detail-header h3" id="getSchemaNames()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#getSchemaNames()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        getSchemaNames()
-        <span class="detail-header-tag small">
-            protected                                    method
-                            (available since version 2.0.5)
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong></strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a>[]</span> <strong><a href="khans-utils-helpers-generators-model-generator.html#getSchemaNames()-detail">getSchemaNames</a></strong> ( )</td></tr>
-                                                <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a>[]</td>
-                  <td class="param-desc-col"><p>All db schema names or an array with a single empty string</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\NotSupportedException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                            <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="getTableNames()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#getTableNames()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        getTableNames()
-        <span class="detail-header-tag small">
-            protected                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong></strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#getTableNames()-detail">getTableNames</a></strong> ( )</td></tr>
-                                                <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>The table names that match the pattern specified by <a href="khans-utils-helpers-generators-model-generator.html#$tableName-detail">$tableName</a>.</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="getTablePrefix()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#getTablePrefix()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        getTablePrefix()
-        <span class="detail-header-tag small">
-            public                                    method
-                            (available since version 2.0.5)
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Returns the <code>tablePrefix</code> property of the DB connection as specified</strong></p>
-
-        
-        <p>See also <a href="khans-utils-helpers-generators-model-generator.html#getDbConnection()-detail">getDbConnection()</a>.</p>    </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#getTablePrefix()-detail">getTablePrefix</a></strong> ( )</td></tr>
-                                                            <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="hints()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#hints()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        hints()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Returns the list of hint messages.</strong></p>
-
-        <p>The array keys are the attribute names, and the array values are the corresponding hint messages.
-Hint messages will be displayed to end users when they are filling the form for the generator.</p>
-
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#hints()-detail">hints</a></strong> ( )</td></tr>
-                                                <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>The list of hint messages</p>
-</td>
-                </tr>
-                                    </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="isColumnAutoIncremental()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#isColumnAutoIncremental()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        isColumnAutoIncremental()
-        <span class="detail-header-tag small">
-            protected                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Checks if any of the specified columns is auto incremental.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#isColumnAutoIncremental()-detail">isColumnAutoIncremental</a></strong> ( <span style="color: #0000BB">$table</span>, <span style="color: #0000BB">$columns</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$table</span></td>
-                  <td class="param-type-col">\yii\db\TableSchema</td>
-                  <td class="param-desc-col"><p>The table schema</p>
-</td>
-                </tr>
-                            <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$columns</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>Columns to check for autoIncrement property</p>
-</td>
-                </tr>
-                                        <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
-                  <td class="param-desc-col"><p>Whether any of the specified columns is auto incremental.</p>
-</td>
-                </tr>
-                                    </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="isHasManyRelation()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#isHasManyRelation()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        isHasManyRelation()
-        <span class="detail-header-tag small">
-            protected                                    method
-                            (available since version 2.0.5)
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Determines if relation is of has many type</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#isHasManyRelation()-detail">isHasManyRelation</a></strong> ( <span style="color: #0000BB">$table</span>, <span style="color: #0000BB">$fks</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$table</span></td>
-                  <td class="param-type-col">\yii\db\TableSchema</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                            <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$fks</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                                                    <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="requiredTemplates()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#requiredTemplates()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        requiredTemplates()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Returns a list of code template files that are required.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#requiredTemplates()-detail">requiredTemplates</a></strong> ( )</td></tr>
-                                                <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>List of code template files that are required.</p>
-</td>
-                </tr>
-                                    </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="rules()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#rules()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        rules()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Returns the validation rules for attributes</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#rules()-detail">rules</a></strong> ( )</td></tr>
-                                                <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>Validation rules</p>
-</td>
-                </tr>
-                                    </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="stickyAttributes()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#stickyAttributes()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        stickyAttributes()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Returns the list of sticky attributes.</strong></p>
-
-        <p>A sticky attribute will remember its value and will initialize the attribute with this value
-when the generator is restarted.</p>
-
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-helpers-generators-model-generator.html#stickyAttributes()-detail">stickyAttributes</a></strong> ( )</td></tr>
-                                                <tr>
-                  <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>List of sticky attributes</p>
-</td>
-                </tr>
-                                    </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="validateDb()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#validateDb()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        validateDb()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Validates the <a href="khans-utils-helpers-generators-model-generator.html#$db-detail">$db</a> attribute.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-helpers-generators-model-generator.html#validateDb()-detail">validateDb</a></strong> ( )</td></tr>
-                                                            <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="validateModelClass()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#validateModelClass()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        validateModelClass()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Validates the <a href="khans-utils-helpers-generators-model-generator.html#$modelClass-detail">$modelClass</a> attribute.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-helpers-generators-model-generator.html#validateModelClass()-detail">validateModelClass</a></strong> ( )</td></tr>
-            </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="validateNamespace()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#validateNamespace()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        validateNamespace()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Validates the namespace.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-helpers-generators-model-generator.html#validateNamespace()-detail">validateNamespace</a></strong> ( <span style="color: #0000BB">$attribute</span> )</td></tr>
-                                    <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$attribute</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
-                  <td class="param-desc-col"><p>Namespace variable.</p>
-</td>
-                </tr>
-                                                </table>
-
-<!--	-->
-
-    <div class="detail-header h3" id="validateTableName()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="khans-utils-helpers-generators-model-generator.html#validateTableName()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        validateTableName()
-        <span class="detail-header-tag small">
-            public                                    method
-                    </span>
-    </div>
-
-    
-    <div class="doc-description">
-        <p><strong>Validates the <a href="khans-utils-helpers-generators-model-generator.html#$tableName-detail">$tableName</a> attribute.</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="khans-utils-helpers-generators-model-generator.html#validateTableName()-detail">validateTableName</a></strong> ( )</td></tr>
-                                                            <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
 </div>
         </div>
 </div>
@@ -1881,7 +489,7 @@ when the generator is restarted.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 30 Dec 2018 13:58:48 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 15 Jan 2019 17:36:40 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

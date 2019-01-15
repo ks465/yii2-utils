@@ -1,6 +1,10 @@
 <?php
 /**
  * This is the template for generating a controller class file.
+ *
+ * @package KHanS\Utils
+ * @version 0.2.0-971020
+ * @since   1.0
  */
 
 use yii\helpers\Inflector;
@@ -16,15 +20,20 @@ echo "<?php\n";
 namespace <?= $generator->getControllerNamespace() ?>;
 
 /**
-* <?= $controllerClass ?> implements something.
+* <?= StringHelper::basename($generator->controllerClass) ?> implements something.
 *
 * @package khans\utils\generatedControllers
-* @version 0.0.1-970908
+* @version 0.1.0-971020
 * @since   1.0
 */
 class <?= StringHelper::basename($generator->controllerClass) ?> extends <?= '\\' . trim($generator->baseClass, '\\') . "\n" ?>
 {
 <?php foreach ($generator->getActionIDs() as $action): ?>
+   /**
+    * Action <?= $action ?>.
+    *
+    * @return mixed
+    */
     public function action<?= Inflector::id2camel($action) ?>()
     {
         return $this->render('<?= $action ?>');

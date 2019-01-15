@@ -9,7 +9,9 @@
 
 namespace khans\utils\helpers\migrations;
 
+use khans\utils\components\FileHelper;
 use KHanS\Utils\models\KHanIdentity;
+use khans\utils\models\KHanModel;
 use yii\base\NotSupportedException;
 use yii\db\Migration;
 
@@ -18,7 +20,7 @@ use yii\db\Migration;
  * Most of these capabilities are targeted toward MariaDB only.
  *
  * @package KHanS\Utils
- * @version 0.3.3-971006
+ * @version 0.4.0-971013
  * @since   1.0
  */
 class KHanMigration extends Migration
@@ -212,5 +214,44 @@ class KHanMigration extends Migration
         }
 
         return $input;
+    }
+
+    /**
+     * Load data from initiating CSV files into the database
+     *
+     * @param string $tableName name of table to insert data into
+     * @param string $csvFile path to the CSV file
+     * @param bool   $addLoggers add 5-fields loggers to the data
+     */
+    protected function load($tableName, $csvFile, $addLoggers = true)
+    {
+        if (is_null($csvFile)) {
+            $csvFile = $tableName;
+        }
+
+        foreach (FileHelper::loadCSV($csvFile) as $row) {
+            if ($addLoggers) {
+                $row = $this->addLoggers($row);
+            }
+            $this->insert($tableName, $row);
+        }
+    }
+
+    /**
+     * Add five standard fields in tables to the default data
+     *
+     * @param array $item single row data
+     *
+     * @return array row data including the logger fields
+     */
+    protected function addLoggers($item)
+    {
+        $item['status'] = KHanModel::STATUS_ACTIVE;
+        $item['created_by'] = 0;
+        $item['updated_by'] = 0;
+        $item['created_at'] = time();
+        $item['updated_at'] = time();
+
+        return $item;
     }
 }

@@ -48,12 +48,28 @@ class KHanSUtilsComponentsViewHelperTest extends \Codeception\Test\Unit
         expect("Anywhere, with no leading zeros", ViewHelper::formatNID(1234567890))->equals('۱۲۳-۴۵۶۷۸۹-۰');
     }
 
+    public function testFormatNidRtl()
+    {
+        expect("Tehran, with 2 leading zeros", ViewHelper::formatNID(12345678, true))->equals('۸-۲۳۴۵۶۷-۰۰۱');
+        expect("Somewhere, with 1 leading zeros", ViewHelper::formatNID(123456789, true))->equals('۹-۳۴۵۶۷۸-۰۱۲');
+        expect("Anywhere, with no leading zeros", ViewHelper::formatNID(1234567890, true))->equals('۰-۴۵۶۷۸۹-۱۲۳');
+    }
+
     public function testFormatMobile()
     {
-//        expect("Tehran local", ViewHelper::formatPhone(2112345678))->equals('۰۲۱-۱۲-۳۴-۵۶-۷۸');
+        expect("Tehran local", ViewHelper::formatPhone(2112345678))->equals('۰۲۱-۱۲-۳۴-۵۶-۷۸');
         expect("Mobile Phone", ViewHelper::formatPhone(9001234567))->equals('۰۹۰۰-۱۲۳-۴۵-۶۷');
         expect("Provincial", ViewHelper::formatPhone(1231234567))->equals('۰۱۲۳-۱۲۳-۴۵-۶۷');
         expect("International", ViewHelper::formatPhone(989001234567))->equals('۹۸۹۰۰۱۲۳۴۵۶۷');
         expect("International", ViewHelper::formatPhone(19001234567))->equals('۱۹۰۰-۱۲۳-۴۵-۶۷');
+    }
+
+    public function testFormatMobileRtl()
+    {
+        expect("Tehran local", ViewHelper::formatPhone(2112345678, true))->equals('۷۸-۵۶-۳۴-۱۲-۰۲۱');
+        expect("Mobile Phone", ViewHelper::formatPhone(9001234567, true))->equals('۶۷-۴۵-۱۲۳-۰۹۰۰');
+        expect("Provincial", ViewHelper::formatPhone(1231234567, true))->equals('۶۷-۴۵-۱۲۳-۰۱۲۳');
+        expect("International", ViewHelper::formatPhone(989001234567, true))->equals('۹۸۹۰۰۱۲۳۴۵۶۷');
+        expect("International", ViewHelper::formatPhone(19001234567, true))->equals('۶۷-۴۵-۱۲۳-۱۹۰۰');
     }
 }

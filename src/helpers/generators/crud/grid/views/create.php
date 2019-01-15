@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * This is the template for generating a AJAX CRUD index view file.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.2-971013
+ * @since   1.0
+ */
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
@@ -15,8 +21,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
 
-$this->title = <?= $generator->generateString('افزودن ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>;
-$this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass)))) ?>, 'url' => ['index']];
+$this->title = <?= $generator->generateString('افزودن به ' . $generator->tableTitle) ?>;
+$this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString($generator->tableTitle) ?>, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-create">

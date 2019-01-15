@@ -1,6 +1,10 @@
 <?php
 /**
  * This is the template for generating the ActiveQuery class.
+ *
+ * @package KHanS\Utils
+ * @version 0.1.0-971020
+ * @since   1.0
  */
 
 /* @var $this yii\web\View */
@@ -28,6 +32,10 @@ namespace <?= $generator->queryNs ?>;
  * This is the ActiveQuery class for [[<?= $modelFullClassName ?>]].
  *
  * @see <?= $modelFullClassName . "\n" ?>
+ *
+ * @package KHanS\Utils
+ * @version 0.1.0-971020
+ * @since   1.0
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\') . "\n" ?>
 {

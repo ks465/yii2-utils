@@ -1,6 +1,10 @@
 <?php
 /**
  * This is the template for generating CRUD search class of the specified model.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.2-971013
+ * @since   1.0
  */
 
 use yii\helpers\StringHelper;
@@ -28,15 +32,35 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use <?= ltrim($generator->modelClass, '\\') . (isset($modelAlias) ? " as $modelAlias" : "") ?>;
+use yii\db\ActiveQuery;
 
 /**
- * <?= $searchModelClass ?> represents the model behind the search form of `<?= $generator->modelClass ?>`.
+ * <?= $searchModelClass ?> represents the model behind the search form about `<?= $generator->modelClass ?>`.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.2-971013
+ * @since   1.0
  */
 class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $modelClass ?>
-
 {
     /**
-     * {@inheritdoc}
+     * @var ActiveQuery centralized query object for this search model
+     */
+    public $query;
+
+    /**
+     * Set the query for this model if it is not already set
+     */
+    public function init()
+    {
+        if(empty($this->query)){
+            $this->query = <?= isset($modelAlias) ? $modelAlias : $modelClass ?>::find();
+        }
+        parent::init();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function rules()
     {
@@ -46,7 +70,7 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function scenarios()
     {
@@ -63,23 +87,18 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
      */
     public function search($params)
     {
-        $query = <?= isset($modelAlias) ? $modelAlias : $modelClass ?>::find();
-
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+            'query' => $this->query,
         ]);
 
         $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+            // $this->query->where('0=1');
             return $dataProvider;
         }
 
-        // grid filtering conditions
         <?= implode("\n        ", $searchConditions) ?>
 
         return $dataProvider;

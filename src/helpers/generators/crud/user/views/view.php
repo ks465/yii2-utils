@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * This is the template for generating a User CRUD view file.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.2-971013
+ * @since   1.0
+ */
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 

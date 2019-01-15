@@ -5,7 +5,13 @@
  * Date: 28/12/18
  * Time: 13:14
  */
-
+/**
+ * This is the template for generating a User CRUD status file.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.2-971013
+ * @since   1.0
+ */
 /* @var $this yii\web\View */
 /* @var $generator khans\utils\helpers\generators\crud\Generator */
 

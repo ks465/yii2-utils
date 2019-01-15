@@ -1,5 +1,10 @@
 <?php
-
+/**
+ *
+ * @package KHanS\Utils
+ * @version 0.1.0-971020
+ * @since   1.0
+ */
 use khans\utils\helpers\generators\model\Generator;
 
 /* @var $this yii\web\View */

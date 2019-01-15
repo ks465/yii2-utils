@@ -3,6 +3,7 @@ GridView 1.* and AjaxGridView 1.* are merged together, and there is no AjaxGridV
 In order to reach AJAX activity, use [[\khans\utils\columns\ActionColumn|ActionColumn]] and set `runAsAjax = true,` for
 individual button or for all the column. 
 
+`pagination.pageParam` and `sort.sortParam` attribute of the `dataProvider` are set according to the `id` of the widget.
 ```php
 $firstRow = [
     [
@@ -129,6 +130,12 @@ createAction can be
         'class'  => 'btn btn-success btn-xs', //class of shown link
         'ajax'   => true, //true adds `role => modal-remote` will be set in button options.
                           //false makes `role => ''`.
+
+###showRefreshButtons
+Setting this parameter to `true` enables two buttons in the panel. Both of them refresh the grid view,
+But one of them keeps all the query parameters (in other words all the pagination and filters).
+The other only keeps the action parameters, hence destroys the filters. By keeping action parameters,
+grid views in parent-child views behave as stand alone grids.
 
 ###BulkAction
 + Set as array. In this scenario one action is available to take act upon the selection in the grid. The submit method is AJAX.

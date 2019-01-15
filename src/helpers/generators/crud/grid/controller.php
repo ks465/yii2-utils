@@ -1,6 +1,10 @@
 <?php
 /**
  * This is the template for generating a CRUD controller class file.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.0-970910
+ * @since   1.0
  */
 
 use yii\db\ActiveRecordInterface;
@@ -38,7 +42,6 @@ use yii\data\ActiveDataProvider;
 <?php endif; ?>
 use <?= ltrim($generator->baseControllerClass, '\\') ?>;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> model.
@@ -49,21 +52,6 @@ use yii\filters\VerbFilter;
  */
 class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all <?= $modelClass ?> models.
      * @return mixed

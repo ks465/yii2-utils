@@ -11,7 +11,8 @@ namespace khans\utils\columns;
 
 use kartik\helpers\Html;
 use khans\utils\components\Jalali;
-use khans\utils\models\{KHanIdentity, KHanModel};
+use khans\utils\models\{KHanModel};
+use mdm\admin\components\Helper;
 use Yii;
 use yii\helpers\{ArrayHelper, Url};
 
@@ -21,7 +22,7 @@ use yii\helpers\{ArrayHelper, Url};
  * See [ActionColumn Guide](guide:columns-action-column.md)
  *
  * @package common\widgets
- * @version 2.1.1-970904
+ * @version 2.1.2-971014
  * @since   1.0
  */
 class ActionColumn extends \kartik\grid\ActionColumn
@@ -67,20 +68,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
         $this->vAlign = 'middle';
         $this->hAlign = 'center';
 
-        if (empty($this->urlCreator)) {
-            $this->urlCreator = function($action, $model, $key, $index, $actionColumn) {
-//if (!Helper::checkRoute($action)) {
-//    return '';
-//}
-                if (is_array($key)) {
-                    return Url::to([$action] + $key);
-                }
-
-                return Url::to([$action, 'id' => $key]);
-            };
-        }
-
-        if (empty($this->viewOptions) || empty($this->viewOptions['runAsAjax'])) {
+        if (empty($this->viewOptions) && empty($this->viewOptions['runAsAjax'])) {
             $this->viewOptions = [
                 'role'        => $this->runAsAjax ? 'modal-remote' : null,
                 'title'       => 'تماشا',
@@ -90,7 +78,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
             $this->viewOptions['role'] = $this->viewOptions['runAsAjax'] ? 'modal-remote' : null;
         }
 
-        if (empty($this->updateOptions) || empty($this->updateOptions['runAsAjax'])) {
+        if (empty($this->updateOptions) && empty($this->updateOptions['runAsAjax'])) {
             $this->updateOptions = [
                 'role'        => $this->runAsAjax ? 'modal-remote' : null,
                 'title'       => 'ویرایش',
@@ -111,6 +99,16 @@ class ActionColumn extends \kartik\grid\ActionColumn
             'data-confirm-message' => $this->deleteAlert,
         ];
 
+        if (!empty($this->download)) {
+            $this->_download();
+        }
+        if ($this->audit) {
+            $this->_audit();
+        }
+
+        if (!empty($this->extraItems)) {
+            $this->_extraItems();
+        }
 
         if ($this->dropdown) {
             $this->dropdownMenu = ['class' => 'text-right']; // instead of dropdown-menu-right use this to avoid horizontal scrolling
@@ -118,16 +116,6 @@ class ActionColumn extends \kartik\grid\ActionColumn
             $this->updateOptions  ['label'] = '<span class="glyphicon glyphicon-pencil"></span> ویرایش';
             $this->deleteOptions  ['label'] = '<span class="glyphicon glyphicon-trash"></span> پاک‌کن';
         }
-        if (!empty($this->download)) {
-            $this->_download();
-        }
-        if ($this->audit) {
-            $this->_audit();
-        }
-        if (!empty($this->extraItems)) {
-            $this->_extraItems();
-        }
-
 //        $this->template = Helper::filterActionColumn($this->template);
 
         parent::init();
@@ -156,11 +144,11 @@ class ActionColumn extends \kartik\grid\ActionColumn
                 $config['label'] = '<span class="glyphicon glyphicon-download-alt"></span> دریافت';
 
                 return '<li>' .
-                    Html::a($config['label'], $this->download, $config) .
+                    Html::a($config['label'], $url, $config) .
                     '</li>';
             }
 
-            return Html::a('<span class="glyphicon glyphicon-download-alt"></span>', $this->download, $config);
+            return Html::a('<span class="glyphicon glyphicon-download-alt"></span>', $url, $config);
         };
     }
 
@@ -214,6 +202,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
 //            if(!\Yii::$app->user->can($title)){
 //                continue;
 //            }
+
             $this->template .= ' {' . $title . '}';
 
             $this->buttons[$title] = function($url, $model, $key) use ($title, $data) {
@@ -228,10 +217,12 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     $data['config']['title'] = ucwords($title);
                 }
                 if (array_key_exists('action', $data)) {
-                    $action = Url::to([$data['action']]);
+                    $action = $data['action']; //Url::to([$data['action']]);
                 } else {
-                    $action = $url; //Url::to([$title]);
+                    $action = $title; //Url::to([$title]);
                 }
+                $params = is_array($key) ? $key : ['id' => (string)$key];
+                $params[0] = $this->controller ? $this->controller . '/' . $action : $action;
 
                 if ($this->runAsAjax && ArrayHelper::getValue($data, 'runAsAjax') !== false) {
                     $data['config']['data-toggle'] = 'tooltip';
@@ -241,10 +232,10 @@ class ActionColumn extends \kartik\grid\ActionColumn
                 if ($this->dropdown) {
                     $this->dropdownOptions = $data['config'];
 
-                    return '<li>' . Html::a($icon . ' ' . ucwords($data['config']['title']), $action, $data['config']) . '</li>';
+                    return '<li>' . Html::a($icon . ' ' . ucwords($data['config']['title']), Url::toRoute($params), $data['config']) . '</li>';
                 }
 
-                return Html::a($icon, $action, $data['config']);
+                return Html::a($icon, Url::toRoute($params), $data['config']);
             };
         }
     }
@@ -281,7 +272,7 @@ function makePopoverContent($model)
         $createTime = ArrayHelper::getValue($model, 'created_at', 0);
         $updateTime = ArrayHelper::getValue($model, 'updated_at', 0);
     } else {
-        throw new \Exception('Model for ActionColumn should inherit ' . KHanIdentity::className());
+        throw new \Exception('Model for ActionColumn should inherit ' . KHanModel::class);
     }
 
 

@@ -9,7 +9,6 @@
 
 namespace khans\utils\helpers;
 
-
 use Yii;
 use yii\base\{BaseObject, InvalidArgumentException, InvalidConfigException, InvalidRouteException};
 use yii\console\{Exception, ExitCode};
@@ -17,10 +16,11 @@ use yii\helpers\Console;
 use yii\helpers\Inflector;
 
 /**
- * Class AppBuilder does some cool stuff to make life easier in development period.
+ * Class AppBuilder prepares methods for generating unified controllers, models, and views based on the KHan*
+ * generators.
  *
  * @package khans\utils
- * @version 1.3.2-970922
+ * @version 1.4.1-971020
  * @since   1.0
  */
 class AppBuilder extends BaseObject
@@ -72,7 +72,7 @@ class AppBuilder extends BaseObject
                 'generateLabelsFromComments' => true,
                 'interactive'                => false,
 //                'overwrite'                  => true,
-                'template'                   => 'giiModel',
+//                'template'                   => 'giiModel',
             ]);
         } catch (InvalidRouteException $e) {
             echo $e->getMessage();
@@ -190,13 +190,15 @@ class AppBuilder extends BaseObject
      *    uppercase letter and ending with Controller (app\\controllers\\PostController)
      * @param string $modelClass fully qualified model class with namespace used (app\\models\\Post)
      * @param string $viewPath Directory path or alias for the view files.
+     * @param string $tableTitle Title of the pages, which presumably is the comment of the database table.
      * @param string $baseControllerClass fully qualified name of the base class for generated controller. Defaults to
      *     [[\\khans\\utils\\controllers\\KHanWebController]]
      * @param string $indexWidget type of widget used in the index page. It can be GridView (default) or ListView.
      *
      * @return int ExitCode If completed successfully
      */
-    public static function generateCrud($controllerClass, $modelClass, $viewPath, $baseControllerClass = null,
+    public static function generateCrud($controllerClass, $modelClass, $viewPath, $tableTitle,
+        $baseControllerClass = null,
         $indexWidget = 'grid'): int
     {
         $controllersDirectory = dirname(\Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
@@ -216,6 +218,7 @@ class AppBuilder extends BaseObject
                 'viewPath'            => $viewPath,
                 'indexWidgetType'     => $indexWidget,
                 'baseControllerClass' => $baseControllerClass,
+                'tableTitle'          => $tableTitle,
                 'enablePjax'          => true,
                 'interactive'         => false,
 //                'overwrite'          => true,
@@ -242,12 +245,14 @@ class AppBuilder extends BaseObject
      *    uppercase letter and ending with Controller (app\\controllers\\PostController)
      * @param string $modelClass fully qualified model class with namespace used (app\\models\\Post)
      * @param string $viewPath Directory path or alias for the view files.
+     * @param string $tableTitle Title of the pages, which presumably is the comment of the database table.
      * @param string $baseControllerClass fully qualified name of the base class for generated controller. Defaults to
      *     [[\\khans\\utils\\controllers\\KHanWebController]]
      *
      * @return int ExitCode If completed successfully
      */
-    public static function generateAjaxCrud($controllerClass, $modelClass, $viewPath, $baseControllerClass = null): int
+    public static function generateAjaxCrud($controllerClass, $modelClass, $viewPath, $tableTitle,
+        $baseControllerClass = null): int
     {
         $controllersDirectory = dirname(\Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
 
@@ -266,9 +271,10 @@ class AppBuilder extends BaseObject
                 'searchModelClass'    => $modelClass . 'Search',
                 'viewPath'            => $viewPath,
                 'baseControllerClass' => $baseControllerClass,
+                'tableTitle'          => $tableTitle,
                 'interactive'         => false,
 //                'overwrite'           => true,
-                'template'            => 'giiCrudAjax',
+//                'template'            => 'giiCrudAjax',
             ]);
         } catch (InvalidRouteException $e) {
             echo $e->getMessage();
@@ -347,7 +353,7 @@ class AppBuilder extends BaseObject
      *    uppercase letter and ending with Controller (app\\controllers\\PostController)
      * @param string $modelClass fully qualified model class with namespace used (app\\models\\Post)
      * @param string $viewPath Directory path or alias for the view files.
-     * @param string $modelNS namespace of he auth forms.
+     * @param string $modelNS namespace of the auth forms.
      * @param string $baseControllerClass fully qualified name of the base class for generated controller. Defaults to
      *     [[\\khans\\utils\\controllers\\KHanWebController]]
      *
@@ -468,7 +474,7 @@ class AppBuilder extends BaseObject
                 'enablePjax'      => true,
                 'interactive'     => false,
 //                'overwrite'           => true,
-                'template'        => 'giiController',
+//                'template'        => 'giiController',
             ]);
         } catch (InvalidRouteException $e) {
             echo $e->getMessage();

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/afbdca15/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/34135542/style.css" rel="stylesheet">
+<script src="./assets/84a200c2/jquery.js"></script>
+<script src="./assets/afbdca15/js/bootstrap.js"></script>
+<script src="./assets/96f6715f/jssearch.js"></script>    <title>Generators - Others - KHanUtilsGuide</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w115" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w115-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">KHanUtilsGuide</a></div><div id="w115-collapse" class="collapse navbar-collapse"><ul id="w116" class="navbar-nav nav"><li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-104" data-toggle="collapse" data-parent="#navigation">Documentation <b class="caret"></b></a><div id="navigation-104" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_documents.html">Document Tips and Tricks</a>
+<a class="list-group-item" href="./g_persian.html">Setup for Persian</a>
+<a class="list-group-item" href="./g_full-config.html">Complete Config</a>
+<a class="list-group-item" href="./g_workflow.html">Workflow</a></div>
+<a class="list-group-item" href="#navigation-105" data-toggle="collapse" data-parent="#navigation">Behaviors <b class="caret"></b></a><div id="navigation-105" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_workflow.html#WorkflowBehavior">WorkflowBehavior</a></div>
+<a class="list-group-item" href="#navigation-106" data-toggle="collapse" data-parent="#navigation">Components <b class="caret"></b></a><div id="navigation-106" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_components-array-helper.html">Array Helper</a>
+<a class="list-group-item" href="./g_components-file-helper.html">File Helper</a>
+<a class="list-group-item" href="./g_components-jalali.html">Jalali and JalaliX</a>
+<a class="list-group-item" href="./g_components-math-helper.html">Math Helper</a>
+<a class="list-group-item" href="./g_components-sql-formatter.html">SQL Formatter</a>
+<a class="list-group-item" href="./g_components-string-helper.html">String Helper</a>
+<a class="list-group-item" href="./g_components-view-helper.html">View Helper</a></div>
+<a class="list-group-item" href="#navigation-107" data-toggle="collapse" data-parent="#navigation">Columns <b class="caret"></b></a><div id="navigation-107" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_columns-action-column.html">Action Column</a>
+<a class="list-group-item" href="./g_columns-boolean-column.html">Boolean Column</a>
+<a class="list-group-item" href="./g_columns-data-column.html">Data Column</a>
+<a class="list-group-item" href="./g_columns-enum-column.html">Enum Column</a>
+<a class="list-group-item" href="./g_columns-radio-column.html">Radio Column</a>
+<a class="list-group-item" href="./g_columns-jalali-column.html">Jalali Column</a>
+<a class="list-group-item" href="./g_workflow.html#ProgressColumn">Progress Column</a>
+<a class="list-group-item" href="./g_columns-related-column.html">Related Column</a></div>
+<a class="list-group-item" href="#navigation-108" data-toggle="collapse" data-parent="#navigation">Models <b class="caret"></b></a><div id="navigation-108" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_models-khan-model.html">Base Model</a>
+<a class="list-group-item" href="./g_models-khan-user.html">Base user</a></div>
+<a class="list-group-item" href="#navigation-109" data-toggle="collapse" data-parent="#navigation">RBAC <b class="caret"></b></a><div id="navigation-109" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_rbac-rule-owner.html">Owner Rule</a></div>
+<a class="list-group-item" href="#navigation-110" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-110" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_widgets-date-picker.html">Date Picker</a>
+<a class="list-group-item" href="./g_widgets-date-range-picker.html">Date Range Picker</a>
+<a class="list-group-item" href="./g_widgets-grid-view.html">Grid View</a>
+<a class="list-group-item" href="./g_widgets-dropdown.html">AJAX Dropdown</a>
+<a class="list-group-item" href="./g_widgets-export-menu.html">Export Menu</a>
+<a class="list-group-item" href="./g_widgets-confirm-button.html">Confirm Button</a>
+<a class="list-group-item" href="./g_widgets-captcha.html">Captcha</a>
+<a class="list-group-item" href="./g_widgets-export-menu.html">ExportMenu</a></div>
+<a class="list-group-item active" href="#navigation-111" data-toggle="collapse" data-parent="#navigation">Others <b class="caret"></b></a><div id="navigation-111" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./g_helpers-app-builder.html">App Builder</a>
+<a class="list-group-item active" href="./g_helpers-genrators.html">Generators</a>
+<a class="list-group-item" href="./g_components-var-dump.html">VarDump</a>
+<a class="list-group-item" href="./g_components-sql-formatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./g_settings.html">Settings</a>
+<a class="list-group-item" href="./g_helpers-migrations.html">Migrations</a>
+<a class="list-group-item" href="./g_widgets-menu.html">Overlay Menu</a>
+<a class="list-group-item" href="./g_components-workflow.html">Workflow Manager</a>
+<a class="list-group-item" href="./g_components-wiz-flow.html">Wizard Flow</a>
+<a class="list-group-item" href="./g_tests.html">Tests</a></div>
+<a class="list-group-item" href="#navigation-112" data-toggle="collapse" data-parent="#navigation">StartUp <b class="caret"></b></a><div id="navigation-112" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-113" data-toggle="collapse" data-parent="#navigation">Sanitizing User Input <b class="caret"></b></a><div id="navigation-113" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-114" data-toggle="collapse" data-parent="#navigation">RBAC Setup <b class="caret"></b></a><div id="navigation-114" class="submenu panel-collapse collapse"></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Generators <span id="generators"></span><a href="#generators" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#form-generator">Form Generator</a></li>
+<li><a href="#model-generator">Model Generator</a></li>
+<li><a href="#controller-generator">Controller Generator</a></li>
+<li><a href="#crud-generators">CRUD Generators</a></li></ol></div>
+<p><code>Yii2</code> comes with a handful of good generators for agile development. In addition to that, <code>johnitvn/yii2-ajaxcrud</code> has a very beautiful AJAX modal CRUD system.
+So these generators are mostly useful for setting some defaults.</p>
+<h2>Form Generator <span id="form-generator"></span><a href="#form-generator" class="hashlink">&para;</a></h2><p>Yii2 Form Generator only creates a view file for the given model. This version generates a very basic action file and a view containing a <code>kartik\form\ActiveForm</code>.</p>
+<h2>Model Generator <span id="model-generator"></span><a href="#model-generator" class="hashlink">&para;</a></h2><p>This generator is basically the same as the Yii version, except for the model base class and content of the query. The base class for the model is <code>khans\utils\models\KHanModel</code>. The query contains an empty body. </p>
+<h2>Controller Generator <span id="controller-generator"></span><a href="#controller-generator" class="hashlink">&para;</a></h2><p>This generator is basically the same as the Yii version, except for the controller base class. The base class for the model is <code>\khans\utils\controllers\KHanWebController</code>.</p>
+<h2>CRUD Generators <span id="crud-generators"></span><a href="#crud-generators" class="hashlink">&para;</a></h2><p>This generator has four templates:</p>
+<ul>
+<li><p><code>Default (giiCrudAjax)</code>: Generates an AJAX CRUD similar to <code>johnitvn/yii2-ajaxcrud</code>.</p>
+<ul>
+<li><code>controller</code> in this template has very little changes. Persian content, plus PJAX container ID depending the controller name.</li>
+<li><code>_columns</code> has <code>\khans\utils\columns\ActionColumn</code> for ActionColumn, and <code>status</code>, <code>created_at</code>, and <code>updated_at</code> have their tuned columns.</li>
+<li><code>_form</code> has specific form field for <code>status</code>, <code>created_at</code>, and <code>updated_at</code> attributes and <code>kartik\form\ActiveForm</code> as <code>form</code> element.</li>
+<li><code>index</code> has <code>khans\utils\widgets\GridView</code> and PJAX id based on the controller.</li>
+<li><code>_view</code> has specific form fields for <code>status</code>, <code>created_at</code>, and <code>updated_at</code> attributes.</li>
+</ul>
+</li>
+<li><code>giiCrudList</code>: Generates a typical CRUD similar to <code>yii\gii\generators\crud\Generator</code>.</li>
+<li><code>giiCrudUser</code>: Generates an AJAX CRUD based on <code>giiCrudAjax</code> specially designed to manger user tables.</li>
+<li><code>giiCrudAuth</code>: Generates a normal CRUD based on <code>giiCrudList</code> for authentication tasks. This template has the option to generate form models (LoginForm, PasswordResetRequestForm, ResetPasswordForm, SignupForm) for authentication.</li>
+</ul>
+<p>The <code>search</code> model in the above templates (giiCurdAuth has not any search model, of course) has a class attribute for <code>$query</code> so the query can be set in the instantiating time to a desired filtered one, or let it be set to the old model by default.
+<code>`</code>php
+$searchModel = new namespace\ModelSearch(); //behaves as the original search model.
+<code>`</code></p>
+<p>Now imagine two related tables <code>Users</code> and <code>BooksRead</code>. In the parent table <code>Users</code> view you can add the following:
+<code>`</code>php
+$searchBooksRead = new namespace\BooksReadSearch(['query'=> $UsersModel->getBooksRead()]);
+$dataProvider = $searchBooksRead-&gt;search(Yii::$app-&gt;request-&gt;queryParams);
+khans\utils\widgets\GridView::widget([</p>
+<pre><code class="hljs php"><span class="hljs-string">'id'</span>                 =&gt; <span class="hljs-string">'books-read-datatable-pjax'</span>,
+<span class="hljs-string">'dataProvider'</span>       =&gt; <span class="hljs-variable">$dataProvider</span>,
+<span class="hljs-string">'filterModel'</span>        =&gt; <span class="hljs-variable">$searchBooksRead</span>,
+...
+</code></pre>
+<p>]);
+<code>`</code>
+The result is a list for a given record in <code>Users</code> table and below it a grid view containing all the records in <code>BooksRead</code> for the user.</p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 15 Jan 2019 17:36:35 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

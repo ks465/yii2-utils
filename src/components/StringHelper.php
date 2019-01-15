@@ -16,7 +16,7 @@ use yii\base\InvalidConfigException;
  * Class StringHelper contains all the utilities for formatting, correcting and shaping strings for saving or showing.
  *
  * @package khans\utils
- * @version 0.2.0-970817
+ * @version 0.3.1-971025
  * @since   1.0
  */
 class StringHelper extends \yii\helpers\StringHelper
@@ -32,6 +32,10 @@ class StringHelper extends \yii\helpers\StringHelper
      * plus digits -- both Persian and Latin -- and period, dash & underline
      */
     const PERSIAN_TITLE = '/^[0-9\x{0600}-\x{06FF}\s\x{200C}\s\p{P}<>]+$/u';
+    /**
+     * preg_match pattern to check date string especially for Jalali dates
+     */
+    const DATE_STRING = '~^(\d{2,4})[.-/](\d{1,2})[.-/](\d{1,2})$~';
 
     /**
      * Make sure all of Persian inputs are corrected for the Ya & Ka before application starts processing the input.
@@ -118,21 +122,24 @@ class StringHelper extends \yii\helpers\StringHelper
 
     /**
      * Convert Latin digits to Persian digits or vice versa.
+     * As standard Persian decimal point is not recognized by MSWord, the decimal separator is definable.
      *
      * @param array|string $phrase data to scan and replace digits
+     * @param string       $decimalSeparator character to use as decimal separator. Default is standard Persian decimal
+     *     point
      * @param bool         $reversed direction of conversion
      *
      * @return array|string
      */
-    public static function convertDigits($phrase, $reversed = false)
+    public static function convertDigits($phrase, $decimalSeparator = '٫', $reversed = false)
     {
         if (is_null($phrase)) {
             return null;
         }
-        $L = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'ي', 'ك'];
-        $F = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', 'ی', 'ک'];
+        $L = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        $F = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
         $L[] = '.';
-        $F[] = '٫';
+        $F[] = $decimalSeparator;
 
         if ($reversed) {
             return StringHelper::trimAll(str_replace($F, $L, $phrase));

@@ -45,6 +45,7 @@ class ExportMenu extends \kartik\export\ExportMenu
         $this->initProvider = true;
         $this->fontAwesome = true;
         $this->template = "{menu}\n{columns}";
+        $this->batchSize = 25;
 
         if (empty($this->exportConfig)) {
             $this->exportConfig = [

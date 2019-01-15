@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * This is the template for generating a AJAX CRUD index view file.
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.1.2-971013
+ * @since   1.0
+ */
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
@@ -18,7 +24,6 @@ echo "<?php\n";
 ?>
 use yii\helpers\Html;
 use kartik\form\ActiveForm;
-use khans\utils\models\KHanModel;
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
@@ -33,7 +38,9 @@ use khans\utils\models\KHanModel;
         echo "    <?= " . $generator->generateActiveField($attribute) . " ?>\n\n";
     }
 } ?>
-    <?= "<?= " ?>$form->field($model, 'status')->radioButtonGroup(KHanModel::getStatuses()) ?>
+<?php if(in_array('status', $generator->getColumnNames())){
+    echo "    <?= " . '$form->field($model, \'status\')->radioButtonGroup(khans\utils\models\KHanModel::getStatuses())' . " ?>\n\n";
+} ?>
 
     <?='<?php if (!Yii::$app->request->isAjax){ ?>'."\n"?>
 	  	<div class="form-group">
