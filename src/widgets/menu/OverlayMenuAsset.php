@@ -25,7 +25,7 @@ class OverlayMenuAsset extends \yii\web\AssetBundle
      * @var string the directory that contains the source asset files for this asset bundle.
      * A source asset file is a file that is part of your source code repository of your Web application.
      */
-    public $sourcePath = '@khan/src/widgets/menu/assets';
+    public $sourcePath = '@khan/widgets/menu/assets';
     /**
      * @var array list of CSS files that this bundle contains. Each CSS file can be specified
      * in one of the three formats as explained in [[js]].

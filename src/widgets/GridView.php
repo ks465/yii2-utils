@@ -34,12 +34,18 @@ use yii\i18n\Formatter;
  * For details of bulkAction usage see [guide]
  *
  * @package khans\utils\widgets
- * @version 2.3.3-971021
- * @since   1.0.0
+ * @version 2.3.6-971125
+ * @since   1.0
  */
 class GridView extends \kartik\grid\GridView
 {
+    /**
+     * Constant defining export menu uses default grid exporter
+     */
     const EXPORTER_SIMPLE = 'grid';
+    /**
+     * Constant defining export menu uses [[ExportMenu]]
+     */
     const EXPORTER_MENU = 'menu';
 
     /**
@@ -78,15 +84,6 @@ class GridView extends \kartik\grid\GridView
      *    + message is the text of the message to show as confirmation of action.
      */
     public $bulkAction;
-//    public $_bulkAction = [
-//        'action'   => '',
-//        'label'    => '',
-//        'icon'     => '',
-//        'class'    => '',
-//        'message'  => '',
-//        'hint'     => '',
-//        'dropdown' => false,
-//    ];
     /**
      * @var array|boolean Configuration parameters to put a button in the panel to trige createAction or equivalent.
      *    + action is the URL to the target action, default is create.
@@ -98,13 +95,6 @@ class GridView extends \kartik\grid\GridView
      * If this attribute is set to `false` the button will not rendered.
      */
     public $createAction;
-    private $_createAction = [
-        'action' => 'create',
-        'title'  => 'افزودن',
-        'icon'   => 'plus',
-        'class'  => 'btn btn-success btn-xs',
-        'ajax'   => true,
-    ];
     /**
      * @var boolean Defaults to `true`. The entire GridView widget will be parsed via Pjax and auto-rendered
      * inside a yii\widgets\Pjax widget container. Individual actions can be disabled in
@@ -134,6 +124,16 @@ class GridView extends \kartik\grid\GridView
      * @var string Arbitrary string to appear in the panel.
      */
     protected $content = '';
+    /**
+     * @var string the modal size. Can be Modal::SIZE_LARGE or Modal::SIZE_SMALL, or empty for default.
+     */
+    private $_createAction = [
+        'action' => 'create',
+        'title'  => 'افزودن',
+        'icon'   => 'plus',
+        'class'  => 'btn btn-success btn-xs',
+        'ajax'   => true,
+    ];
 
     /**
      * Setup custom configuration
@@ -145,6 +145,7 @@ class GridView extends \kartik\grid\GridView
         GridAsset::register($this->getView());
         Modal::begin([
             "id"      => "ajaxCrudModal",
+            'size'    => Modal::SIZE_LARGE,
             "footer"  => "",// always need it for jquery plugin
             'options' => [
                 'tabindex' => false // important for Select2 to work properly
@@ -154,8 +155,9 @@ class GridView extends \kartik\grid\GridView
 
         $this->pager = Yii::$app->params['pager'];
         $this->dataProvider->getPagination()->pageParam = $this->id . '-page';
-        $this->dataProvider->getSort()->sortParam = $this->id . '-sort';
-
+        if (!empty($this->dataProvider->getSort())) {
+            $this->dataProvider->getSort()->sortParam = $this->id . '-sort';
+        }
 
         /** @noinspection PhpUndefinedFieldInspection */
         if ($this->dataProvider->totalCount <= 25) {
@@ -196,11 +198,17 @@ class GridView extends \kartik\grid\GridView
         $this->toolbar['content'] = $this->showRefreshButtons . $exporter . $this->content;
         $this->pjaxSettings['options']['id'] = $this->id;
 
-        $this->panel['heading'] = '<div class="pull-left">' . '<i class="glyphicon glyphicon-list"></i>&nbsp;' . $this->title . '</div>';
-        $this->panel['type'] = $this->type;
-        $this->panel['before'] = $this->before;
-        $this->panel['after'] = $this->after;
-        $this->panel['footer'] = $this->footer;
+        if ($this->panel !== false) {
+            $this->panel['heading'] = '<div class="pull-left">' . '<i class="glyphicon glyphicon-list"></i>&nbsp;' . $this->title . '</div>';
+            $this->panel['type'] = $this->type;
+            $this->panel['before'] = $this->before;
+            $this->panel['after'] = $this->after;
+            $this->panel['footer'] = $this->footer;
+        } else {
+            $this->panelHeadingTemplate = '';
+            $this->panel['before'] = false;
+            $this->panel['after'] = false;
+        }
 
         $this->resizableColumns = false;
         $this->toggleData = false;
@@ -275,6 +283,34 @@ class GridView extends \kartik\grid\GridView
     }
 
     /**
+     * If more than one bulk actions are requested, configure them in a way similar to DropdownX
+     */
+    private function loadBulkSegmentDropdown()
+    {
+        if (empty($this->bulkAction['class'])) {
+            $this->bulkAction['class'] = 'default';
+        }
+        if (empty($this->bulkAction['message'])) {
+            $this->bulkAction['message'] = 'از انجام این دستور اطمینان دارید؟';
+        }
+        if (empty($this->bulkAction['hint'])) {
+            $this->bulkAction['hint'] = 'با همه انتخاب شده‌ها';
+        }
+
+        $this->panel['before'] .= '<div class="pull-left rtl">' .
+            '&nbsp;&nbsp;' . $this->bulkAction['hint'] . '&nbsp;&nbsp;<i class="glyphicon glyphicon-arrow-left"></i>&nbsp;&nbsp;' .
+            '<div class="btn-group">' .
+            '<button data-toggle="dropdown" class="dropdown-toggle btn btn-default" title="نمایش دستورات">' .
+            '<i class="glyphicon ' . $this->bulkAction['icon'] . '"></i>' .
+            '&nbsp;' . $this->bulkAction['label'] . '&nbsp;' . '&nbsp;' .
+            '<b class="caret"></b>' .
+            '</button>' .
+            $this->bulkAction['action'] .
+            '</div>' .
+            '</div>';
+    }
+
+    /**
      * If bulk action button is requested, configure it and add it to the panel.
      */
     private function loadBulkSegmentButton()
@@ -302,34 +338,6 @@ class GridView extends \kartik\grid\GridView
                     'data-confirm-title'   => ' آیا اطمینان دارید؟',
                     'data-confirm-message' => $this->bulkAction['message'],
                 ]) .
-            '</div>';
-    }
-
-    /**
-     * If more than one bulk actions are requested, configure them in a way similar to DropdownX
-     */
-    private function loadBulkSegmentDropdown()
-    {
-        if (empty($this->bulkAction['class'])) {
-            $this->bulkAction['class'] = 'default';
-        }
-        if (empty($this->bulkAction['message'])) {
-            $this->bulkAction['message'] = 'از انجام این دستور اطمینان دارید؟';
-        }
-        if (empty($this->bulkAction['hint'])) {
-            $this->bulkAction['hint'] = 'با همه انتخاب شده‌ها';
-        }
-
-        $this->panel['before'] .= '<div class="pull-left rtl">' .
-            '&nbsp;&nbsp;' . $this->bulkAction['hint'] . '&nbsp;&nbsp;<i class="glyphicon glyphicon-arrow-left"></i>&nbsp;&nbsp;' .
-            '<div class="btn-group">' .
-            '<button data-toggle="dropdown" class="dropdown-toggle btn btn-default" title="نمایش دستورات">' .
-            '<i class="glyphicon ' . $this->bulkAction['icon'] . '"></i>' .
-            '&nbsp;' . $this->bulkAction['label'] . '&nbsp;' . '&nbsp;' .
-            '<b class="caret"></b>' .
-            '</button>' .
-            $this->bulkAction['action'] .
-            '</div>' .
             '</div>';
     }
 }

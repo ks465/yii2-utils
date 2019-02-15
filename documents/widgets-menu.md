@@ -1,4 +1,7 @@
 #OverlayMenu Class
+Documentation Edition: 1.1-971112
+Class Version: 0.1.0-970717
+
 This is a simple widget class to render the menu. It consists of: 
 + OverlayMenuFiller
 + OverlayMenuAsset

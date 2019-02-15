@@ -16,7 +16,7 @@ use yii\base\InvalidConfigException;
  * Class StringHelper contains all the utilities for formatting, correcting and shaping strings for saving or showing.
  *
  * @package khans\utils
- * @version 0.3.1-971025
+ * @version 0.3.2-971112
  * @since   1.0
  */
 class StringHelper extends \yii\helpers\StringHelper
@@ -59,7 +59,8 @@ class StringHelper extends \yii\helpers\StringHelper
                 $out = [];
             }
             foreach ($out as $id => &$data) {
-                if ('_guest_CSRF' == $id || '_staff_CSRF' == $id) {
+                if (StringHelper::endsWith($id, '_CSRF')) {
+//                if ('_guest_CSRF' == $id || '_staff_CSRF' == $id) {
                     continue;
                 }
                 $data = StringHelper::correctYaKa($data);
@@ -68,7 +69,7 @@ class StringHelper extends \yii\helpers\StringHelper
 
             $out = Yii::$app->request->getQueryParams();
             foreach ($out as $id => &$data) {
-                if (\yii\helpers\StringHelper::endsWith($id, '_CSRF')) {
+                if (StringHelper::endsWith($id, '_CSRF')) {
                     continue;
                 }
                 $data = StringHelper::correctYaKa($data);

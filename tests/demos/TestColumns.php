@@ -104,6 +104,34 @@ class TestColumns extends BaseTester
             ],
             [
                 'class' => 'khans\utils\columns\ActionColumn',
+                'runAsAjax'      => true,
+                'extraItems'=>[
+                    'with-confirm' =>[
+                        'icon'=> 'ban-circle',
+                        'method' => 'get',
+                        'confirm' => [
+                            'title' => 'آیا از فرستادن این گزینه اطمینان دارید؟',
+                            'message' => 'با انجام این عمل:' . '<ul>' .
+                                '<li>' .
+                                'پرونده نامبرده بزای اقدام فرستاده خواهد شد.' .
+                                '</li>' .
+                                '<li>' .
+                                'به جریان افتادن پرونده نامبرده از طریق ایمیل به وی اعلام خواهد شد.' .
+                                '</li>' .
+                                '</ul>' .
+                                'آیا اطمینان دارید؟'
+                        ],
+                    ],
+                    'generic-confirm' =>[
+                        'method' => 'post',
+                        'confirm' => true,
+                        'icon'=> 'ok',
+                    ],
+                    'no-confirm' =>[
+                        'method' => 'post',
+                        'icon'=> 'road',
+                    ],
+                ],
             ],
             [
                 'attribute' => 'boolean_column',
@@ -127,12 +155,12 @@ class TestColumns extends BaseTester
                 'class'     => 'khans\utils\columns\JalaliColumn',
                 'JFormat'   => 'Y/m/d', // Jalali::KHAN_SHORT,
             ],
-            [
-                'attribute'  => 'progress_column',
-                'class'      => 'khans\utils\columns\ProgressColumn',
-                'workflowID' => 'TestWF',
-                'width'      => '200px',
-            ],
+//            [
+//                'attribute'  => 'progress_column',
+//                'class'      => 'khans\utils\columns\ProgressColumn',
+//                'workflowID' => 'TestWF',
+//                'width'      => '200px',
+//            ],
             [
                 'attribute'   => 'related_column',
                 'class'       => 'khans\utils\columns\RelatedColumn',
@@ -209,11 +237,11 @@ class TestColumns extends BaseTester
             'model'      => $this->WFRecord,
             'attributes' => [
                 'id',
-                'value' => WorkflowField::widget([
-                    'attribute' => 'progress_column',
-                    'model'     => $this->WFRecord,
-                    'mode'      => WorkflowField::MODE_VIEW,
-                ]),
+//                'value' => WorkflowField::widget([
+//                    'attribute' => 'progress_column',
+//                    'model'     => $this->WFRecord,
+//                    'mode'      => WorkflowField::MODE_VIEW,
+//                ]),
                 'boolean_column',
                 'tiny_column',
                 'enum_column',
@@ -230,7 +258,7 @@ class TestColumns extends BaseTester
         $this->WFRecord = new ColumnsTest();
         $form = ActiveForm::begin();
 
-        echo $form->field($this->WFRecord, 'progress_column')->widget(WorkflowField::class);
+//        echo $form->field($this->WFRecord, 'progress_column')->widget(WorkflowField::class);
 
         echo Html::submitButton('Send');
         ActiveForm::end();
@@ -241,7 +269,7 @@ class TestColumns extends BaseTester
         $this->loadModelWithWorkflow();
         $form = ActiveForm::begin();
 
-        echo $form->field($this->WFRecord, 'progress_column')->widget(WorkflowField::class);
+//        echo $form->field($this->WFRecord, 'progress_column')->widget(WorkflowField::class);
 
         echo Html::submitButton('Send');
         ActiveForm::end();

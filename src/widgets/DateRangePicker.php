@@ -9,7 +9,6 @@
 
 namespace khans\utils\widgets;
 
-
 use faravaghi\jalaliDateRangePicker\jalaliDateRangePicker;
 use kartik\icons\Icon;
 
@@ -18,13 +17,13 @@ use kartik\icons\Icon;
  * [DateRangePicker Guide](guide:widgets-date-range-picker.md) contains all required documents for using this widget.
  *
  * @package khans\utils
- * @version 0.1.0-980802-dev
+ * @version 0.1.0-970802-dev
  * @since   1.0
  */
 class DateRangePicker extends jalaliDateRangePicker
 {
-    //todo: view has some problems
-    //todo: this can not be used as column filter type
+//todo: view has some problems
+//todo: this can not be used as column filter type
     /**
      * Configure widget
      */

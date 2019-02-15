@@ -3,7 +3,7 @@
  * This is the template for generating CRUD search class of the specified model.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.2-971013
+ * @version 0.2.1-971126
  * @since   1.0
  */
 
@@ -26,10 +26,13 @@ $searchConditions = $generator->generateSearchConditions();
 echo "<?php\n";
 ?>
 
+
 namespace <?= StringHelper::dirname(ltrim($generator->searchModelClass, '\\')) ?>;
 
 use Yii;
 use yii\base\Model;
+<?= $generator->enableEAV ? 'use khans\utils\tools\models\SysEavAttributes;' : '' ?>
+
 use yii\data\ActiveDataProvider;
 use <?= ltrim($generator->modelClass, '\\') . (isset($modelAlias) ? " as $modelAlias" : "") ?>;
 use yii\db\ActiveQuery;
@@ -38,10 +41,11 @@ use yii\db\ActiveQuery;
  * <?= $searchModelClass ?> represents the model behind the search form about `<?= $generator->modelClass ?>`.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.2-971013
+ * @version 0.2.1-971126
  * @since   1.0
  */
 class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $modelClass ?>
+
 {
     /**
      * @var ActiveQuery centralized query object for this search model
@@ -53,8 +57,8 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
      */
     public function init()
     {
-        if(empty($this->query)){
-            $this->query = <?= isset($modelAlias) ? $modelAlias : $modelClass ?>::find();
+        if (empty($this->query)) {
+            $this->query = <?= isset($modelAlias) ? $modelAlias : $modelClass ?>::find()<?= $generator->enableEAV ? '->getEavJoinQuery()' : '' ?>;
         }
         parent::init();
     }
@@ -62,7 +66,7 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             <?= implode(",\n            ", $rules) ?>,
@@ -72,7 +76,7 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
     /**
      * @inheritdoc
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -85,7 +89,7 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params): ActiveDataProvider
     {
         $dataProvider = new ActiveDataProvider([
             'query' => $this->query,
@@ -100,6 +104,19 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
         }
 
         <?= implode("\n        ", $searchConditions) ?>
+
+<?php if($generator->enableEAV): ?>
+        foreach (SysEavAttributes::find()->where(['entity_table' => '<?= $generator->modelClass::tableName() ?>'])->all() as $field) {
+            /* @var SysEavAttributes $field */
+            if ($field->attr_type == 'number') {
+                $this->query->andEavFilterCompare($field->attr_name, $this->{$field->attr_name});
+            } elseif ($field->attr_type == 'string') {
+                $this->query->andEavFilterCompare($field->attr_name, $this->{$field->attr_name}, 'like');
+            } else {
+                $this->query->andEavFilterWhere($field->attr_name, $this->{$field->attr_name});
+            }
+        }
+<?php endif; ?>
 
         return $dataProvider;
     }

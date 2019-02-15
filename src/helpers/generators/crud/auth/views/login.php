@@ -74,8 +74,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="form-group">
             <?= "<?= " ?>$form->field($model, 'rememberMe', [
                 'template'     => '{input}{label}{error}{hint}',
-                'labelOptions' => ['class' => 'cbx-label'],
-            ])->widget(CheckboxX::class, ['autoLabel' => true]) ?>
+            ])->widget(CheckboxX::class, [
+                    'autoLabel' => true,
+                    'pluginOptions' => [
+                        'threeState' => false,
+                    ],
+            ]) ?>
         </div>
     <?="<?php " ?>endif; ?>
 

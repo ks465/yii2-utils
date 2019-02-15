@@ -14,146 +14,497 @@ Array
 
     [2] => Array
         (
-            [line] => 41
-            [file] => yii2-utils/src/actions/HelpAction.php
+            [line] => 42
+            [file] => yii2-utils/src/actions/help/HelpAction.php
             [message] => Method init has no parent to inherit from in common\actions\HelpAction.
         )
 
     [3] => Array
         (
-            [line] => 77
-            [file] => yii2-utils/src/actions/HelpAction.php
+            [line] => 78
+            [file] => yii2-utils/src/actions/help/HelpAction.php
             [message] => Method run has no parent to inherit from in common\actions\HelpAction.
         )
 
     [4] => Array
         (
-            [file] => yii2-utils/src/actions/HelpAction.php
+            [file] => yii2-utils/src/actions/help/HelpAction.php
             [message] => broken link to \common\actions\console\controllers\GenerateHelpsController in common\actions\HelpAction
         )
 
     [5] => Array
         (
-            [file] => yii2-utils/src/columns/JalaliColumn.php
-            [message] => broken link to \khans\utils\columns\Jalali:KHAN_SHORT in khans\utils\columns\JalaliColumn
+            [file] => yii2-utils/src/behaviors/EavQueryTrait.php
+            [message] => broken link to \khans\utils\behaviors\SysEavAttributes in khans\utils\behaviors\EavQueryTrait
         )
 
     [6] => Array
         (
-            [file] => yii2-utils/src/columns/JalaliColumn.php
-            [message] => broken link to \khans\utils\columns\Jalali:KHAN_SHORT in khans\utils\columns\JalaliColumn
+            [file] => yii2-utils/src/behaviors/EavQueryTrait.php
+            [message] => broken link to \khans\utils\behaviors\SysEavValues in khans\utils\behaviors\EavQueryTrait
         )
 
     [7] => Array
         (
-            [file] => yii2-utils/src/components/rest/Client.php
-            [message] => broken link to self::$key in khans\utils\components\rest\Client
+            [file] => yii2-utils/src/behaviors/EavQueryTrait.php
+            [message] => broken link to \khans\utils\behaviors\SysEavAttributes in khans\utils\behaviors\EavQueryTrait
         )
 
     [8] => Array
         (
-            [file] => yii2-utils/src/components/rest/Client.php
-            [message] => broken link to self::$hash in khans\utils\components\rest\Client
+            [file] => yii2-utils/src/behaviors/EavQueryTrait.php
+            [message] => broken link to \khans\utils\behaviors\SysEavValues in khans\utils\behaviors\EavQueryTrait
         )
 
     [9] => Array
+        (
+            [file] => yii2-utils/src/columns/JalaliColumn.php
+            [message] => broken link to \khans\utils\columns\Jalali:KHAN_SHORT in khans\utils\columns\JalaliColumn
+        )
+
+    [10] => Array
+        (
+            [file] => yii2-utils/src/columns/JalaliColumn.php
+            [message] => broken link to \khans\utils\columns\Jalali:KHAN_SHORT in khans\utils\columns\JalaliColumn
+        )
+
+    [11] => Array
         (
             [file] => yii2-utils/src/components/rest/Client.php
             [message] => broken link to self::$key in khans\utils\components\rest\Client
         )
 
-    [10] => Array
+    [12] => Array
         (
             [file] => yii2-utils/src/components/rest/Client.php
             [message] => broken link to self::$hash in khans\utils\components\rest\Client
         )
 
-    [11] => Array
+    [13] => Array
+        (
+            [file] => yii2-utils/src/components/rest/Client.php
+            [message] => broken link to self::$key in khans\utils\components\rest\Client
+        )
+
+    [14] => Array
+        (
+            [file] => yii2-utils/src/components/rest/Client.php
+            [message] => broken link to self::$hash in khans\utils\components\rest\Client
+        )
+
+    [15] => Array
         (
             [file] => yii2-utils/src/components/workflow/WizflowManager.php
             [message] => broken link to \yii\base\Object::init() in khans\utils\components\workflow\WizflowManager
         )
 
-    [12] => Array
+    [16] => Array
         (
             [line] => 27
             [file] => yii2-utils/src/controllers/KHanWebController.php
             [message] => Method behaviors has no parent to inherit from in khans\utils\controllers\KHanWebController.
         )
 
-    [13] => Array
+    [17] => Array
         (
-            [file] => yii2-utils/src/models/KHanUser.php
-            [message] => broken link to \khans\utils\models\KHanIdentity in khans\utils\models\KHanUser
+            [file] => yii2-utils/src/controllers/SystemTablesController.php
+            [message] => broken link to \app\models\system\SysDbTables in khans\utils\controllers\SystemTablesController
         )
 
-    [14] => Array
+    [18] => Array
         (
-            [file] => yii2-utils/src/models/KHanUser.php
-            [message] => broken link to \khans\utils\models\KHanIdentity in khans\utils\models\KHanUser
+            [file] => yii2-utils/src/controllers/SystemTablesController.php
+            [message] => broken link to \khans\utils\controllers\SysDbFields in khans\utils\controllers\SystemTablesController
         )
 
-    [15] => Array
+    [19] => Array
         (
-            [file] => yii2-utils/src/widgets/ConfirmButton.php
-            [message] => broken link to khans\utils\widgets\ConfirmButton::TYPE_DANGER in khans\utils\widgets\ConfirmButton
+            [file] => yii2-utils/src/controllers/SystemTablesController.php
+            [message] => broken link to \app\models\system\SysDbTables in khans\utils\controllers\SystemTablesController
         )
 
-    [16] => Array
+    [20] => Array
+        (
+            [file] => yii2-utils/src/controllers/SystemTablesController.php
+            [message] => broken link to \khans\utils\controllers\SysDbFields in khans\utils\controllers\SystemTablesController
+        )
+
+    [21] => Array
+        (
+            [file] => yii2-utils/src/helpers/SystemTableBuilder.php
+            [message] => broken link to \khans\utils\helpers\m190103_083414_InitSystemTables in khans\utils\helpers\SystemTableBuilder
+        )
+
+    [22] => Array
+        (
+            [file] => yii2-utils/src/helpers/generators/component/Generator.php
+            [message] => broken link to \khans\utils\helpers\generators\component\RelatedColumn in khans\utils\helpers\generators\component\Generator
+        )
+
+    [23] => Array
+        (
+            [file] => yii2-utils/src/helpers/generators/component/Generator.php
+            [message] => broken link to \khans\utils\helpers\generators\component\RelatedColumn in khans\utils\helpers\generators\component\Generator
+        )
+
+    [24] => Array
+        (
+            [file] => yii2-utils/src/helpers/generators/component/Generator.php
+            [message] => broken link to \yii\gii\generators\controller\Generator::generate() in khans\utils\helpers\generators\component\Generator
+        )
+
+    [25] => Array
+        (
+            [line] => 54
+            [file] => yii2-utils/src/helpers/migrations/KHanMigration.php
+            [message] => Undefined parameter documented:  in enum().
+        )
+
+    [26] => Array
+        (
+            [line] => 14
+            [file] => yii2-utils/src/tools/Module.php
+            [message] => Method $controllerNamespace has no parent to inherit from in khans\utils\tools\Module.
+        )
+
+    [27] => Array
+        (
+            [line] => 19
+            [file] => yii2-utils/src/tools/Module.php
+            [message] => Method init has no parent to inherit from in khans\utils\tools\Module.
+        )
+
+    [28] => Array
+        (
+            [line] => 30
+            [file] => yii2-utils/src/tools/models/SysEavAttributes.php
+            [message] => Method tableName has no parent to inherit from in khans\utils\tools\models\SysEavAttributes.
+        )
+
+    [29] => Array
+        (
+            [line] => 38
+            [file] => yii2-utils/src/tools/models/SysEavAttributes.php
+            [message] => Method rules has no parent to inherit from in khans\utils\tools\models\SysEavAttributes.
+        )
+
+    [30] => Array
+        (
+            [line] => 55
+            [file] => yii2-utils/src/tools/models/SysEavAttributes.php
+            [message] => Method attributeLabels has no parent to inherit from in khans\utils\tools\models\SysEavAttributes.
+        )
+
+    [31] => Array
+        (
+            [line] => 77
+            [file] => yii2-utils/src/tools/models/SysEavAttributes.php
+            [message] => Method find has no parent to inherit from in khans\utils\tools\models\SysEavAttributes.
+        )
+
+    [32] => Array
+        (
+            [line] => 30
+            [file] => yii2-utils/src/tools/models/SysEavAttributes.php
+            [message] => Method tableName has no parent to inherit from in khans\utils\tools\models\SysEavAttributes.
+        )
+
+    [33] => Array
+        (
+            [line] => 38
+            [file] => yii2-utils/src/tools/models/SysEavAttributes.php
+            [message] => Method rules has no parent to inherit from in khans\utils\tools\models\SysEavAttributes.
+        )
+
+    [34] => Array
+        (
+            [line] => 55
+            [file] => yii2-utils/src/tools/models/SysEavAttributes.php
+            [message] => Method attributeLabels has no parent to inherit from in khans\utils\tools\models\SysEavAttributes.
+        )
+
+    [35] => Array
+        (
+            [line] => 77
+            [file] => yii2-utils/src/tools/models/SysEavAttributes.php
+            [message] => Method find has no parent to inherit from in khans\utils\tools\models\SysEavAttributes.
+        )
+
+    [36] => Array
+        (
+            [line] => 32
+            [file] => yii2-utils/src/tools/models/SysEavValues.php
+            [message] => Method tableName has no parent to inherit from in khans\utils\tools\models\SysEavValues.
+        )
+
+    [37] => Array
+        (
+            [line] => 40
+            [file] => yii2-utils/src/tools/models/SysEavValues.php
+            [message] => Method rules has no parent to inherit from in khans\utils\tools\models\SysEavValues.
+        )
+
+    [38] => Array
+        (
+            [line] => 59
+            [file] => yii2-utils/src/tools/models/SysEavValues.php
+            [message] => Method attributeLabels has no parent to inherit from in khans\utils\tools\models\SysEavValues.
+        )
+
+    [39] => Array
+        (
+            [line] => 78
+            [file] => yii2-utils/src/tools/models/SysEavValues.php
+            [message] => Method find has no parent to inherit from in khans\utils\tools\models\SysEavValues.
+        )
+
+    [40] => Array
+        (
+            [line] => 32
+            [file] => yii2-utils/src/tools/models/SysEavValues.php
+            [message] => Method tableName has no parent to inherit from in khans\utils\tools\models\SysEavValues.
+        )
+
+    [41] => Array
+        (
+            [line] => 40
+            [file] => yii2-utils/src/tools/models/SysEavValues.php
+            [message] => Method rules has no parent to inherit from in khans\utils\tools\models\SysEavValues.
+        )
+
+    [42] => Array
+        (
+            [line] => 59
+            [file] => yii2-utils/src/tools/models/SysEavValues.php
+            [message] => Method attributeLabels has no parent to inherit from in khans\utils\tools\models\SysEavValues.
+        )
+
+    [43] => Array
+        (
+            [line] => 78
+            [file] => yii2-utils/src/tools/models/SysEavValues.php
+            [message] => Method find has no parent to inherit from in khans\utils\tools\models\SysEavValues.
+        )
+
+    [44] => Array
+        (
+            [line] => 61
+            [file] => yii2-utils/src/tools/models/SysHistoryDatabase.php
+            [message] => Method tableName has no parent to inherit from in khans\utils\tools\models\SysHistoryDatabase.
+        )
+
+    [45] => Array
+        (
+            [line] => 79
+            [file] => yii2-utils/src/tools/models/SysHistoryDatabase.php
+            [message] => Method rules has no parent to inherit from in khans\utils\tools\models\SysHistoryDatabase.
+        )
+
+    [46] => Array
+        (
+            [line] => 94
+            [file] => yii2-utils/src/tools/models/SysHistoryDatabase.php
+            [message] => Method attributeLabels has no parent to inherit from in khans\utils\tools\models\SysHistoryDatabase.
+        )
+
+    [47] => Array
+        (
+            [line] => 113
+            [file] => yii2-utils/src/tools/models/SysHistoryDatabase.php
+            [message] => Method find has no parent to inherit from in khans\utils\tools\models\SysHistoryDatabase.
+        )
+
+    [48] => Array
+        (
+            [line] => 61
+            [file] => yii2-utils/src/tools/models/SysHistoryDatabase.php
+            [message] => Method tableName has no parent to inherit from in khans\utils\tools\models\SysHistoryDatabase.
+        )
+
+    [49] => Array
+        (
+            [line] => 79
+            [file] => yii2-utils/src/tools/models/SysHistoryDatabase.php
+            [message] => Method rules has no parent to inherit from in khans\utils\tools\models\SysHistoryDatabase.
+        )
+
+    [50] => Array
+        (
+            [line] => 94
+            [file] => yii2-utils/src/tools/models/SysHistoryDatabase.php
+            [message] => Method attributeLabels has no parent to inherit from in khans\utils\tools\models\SysHistoryDatabase.
+        )
+
+    [51] => Array
+        (
+            [line] => 113
+            [file] => yii2-utils/src/tools/models/SysHistoryDatabase.php
+            [message] => Method find has no parent to inherit from in khans\utils\tools\models\SysHistoryDatabase.
+        )
+
+    [52] => Array
+        (
+            [line] => 56
+            [file] => yii2-utils/src/tools/models/SysHistoryUsers.php
+            [message] => Method tableName has no parent to inherit from in khans\utils\tools\models\SysHistoryUsers.
+        )
+
+    [53] => Array
+        (
+            [line] => 74
+            [file] => yii2-utils/src/tools/models/SysHistoryUsers.php
+            [message] => Method rules has no parent to inherit from in khans\utils\tools\models\SysHistoryUsers.
+        )
+
+    [54] => Array
+        (
+            [line] => 88
+            [file] => yii2-utils/src/tools/models/SysHistoryUsers.php
+            [message] => Method attributeLabels has no parent to inherit from in khans\utils\tools\models\SysHistoryUsers.
+        )
+
+    [55] => Array
+        (
+            [line] => 108
+            [file] => yii2-utils/src/tools/models/SysHistoryUsers.php
+            [message] => Method find has no parent to inherit from in khans\utils\tools\models\SysHistoryUsers.
+        )
+
+    [56] => Array
+        (
+            [line] => 56
+            [file] => yii2-utils/src/tools/models/SysHistoryUsers.php
+            [message] => Method tableName has no parent to inherit from in khans\utils\tools\models\SysHistoryUsers.
+        )
+
+    [57] => Array
+        (
+            [line] => 74
+            [file] => yii2-utils/src/tools/models/SysHistoryUsers.php
+            [message] => Method rules has no parent to inherit from in khans\utils\tools\models\SysHistoryUsers.
+        )
+
+    [58] => Array
+        (
+            [line] => 88
+            [file] => yii2-utils/src/tools/models/SysHistoryUsers.php
+            [message] => Method attributeLabels has no parent to inherit from in khans\utils\tools\models\SysHistoryUsers.
+        )
+
+    [59] => Array
+        (
+            [line] => 108
+            [file] => yii2-utils/src/tools/models/SysHistoryUsers.php
+            [message] => Method find has no parent to inherit from in khans\utils\tools\models\SysHistoryUsers.
+        )
+
+    [60] => Array
+        (
+            [line] => 50
+            [file] => yii2-utils/src/tools/models/search/SysEavAttributesSearch.php
+            [message] => Method scenarios has no parent to inherit from in khans\utils\tools\models\search\SysEavAttributesSearch.
+        )
+
+    [61] => Array
+        (
+            [line] => 61
+            [file] => yii2-utils/src/tools/models/search/SysEavValuesSearch.php
+            [message] => Method scenarios has no parent to inherit from in khans\utils\tools\models\search\SysEavValuesSearch.
+        )
+
+    [62] => Array
+        (
+            [file] => yii2-utils/src/tools/models/search/SysEavValuesSearch.php
+            [message] => broken link to \khans\utils\tools\models\search\SysEavAttributes in khans\utils\tools\models\search\SysEavValuesSearch
+        )
+
+    [63] => Array
+        (
+            [file] => yii2-utils/src/tools/models/search/SysEavValuesSearch.php
+            [message] => broken link to \khans\utils\tools\models\search\SysEavAttributes in khans\utils\tools\models\search\SysEavValuesSearch
+        )
+
+    [64] => Array
+        (
+            [file] => yii2-utils/src/tools/models/search/SysEavValuesSearch.php
+            [message] => broken link to \khans\utils\tools\models\search\SysEavAttributes in khans\utils\tools\models\search\SysEavValuesSearch
+        )
+
+    [65] => Array
+        (
+            [file] => yii2-utils/src/tools/models/search/SysEavValuesSearch.php
+            [message] => broken link to \khans\utils\tools\models\search\SysEavAttributes in khans\utils\tools\models\search\SysEavValuesSearch
+        )
+
+    [66] => Array
+        (
+            [line] => 51
+            [file] => yii2-utils/src/tools/models/search/SysHistoryDatabaseSearch.php
+            [message] => Method scenarios has no parent to inherit from in khans\utils\tools\models\search\SysHistoryDatabaseSearch.
+        )
+
+    [67] => Array
+        (
+            [line] => 50
+            [file] => yii2-utils/src/tools/models/search/SysHistoryUsersSearch.php
+            [message] => Method scenarios has no parent to inherit from in khans\utils\tools\models\search\SysHistoryUsersSearch.
+        )
+
+    [68] => Array
         (
             [file] => yii2-utils/src/widgets/ConfirmButton.php
             [message] => broken link to \khans\utils\widgets\ConfirmButton\formId in khans\utils\widgets\ConfirmButton
         )
 
-    [17] => Array
+    [69] => Array
         (
             [file] => yii2-utils/src/widgets/DropdownX.php
             [message] => broken link to \kartik\dropdown\DropdownX in khans\utils\widgets\DropdownX
         )
 
-    [18] => Array
+    [70] => Array
         (
             [file] => yii2-utils/src/widgets/DropdownX.php
             [message] => broken link to \kartik\dropdown\DropdownX in khans\utils\widgets\DropdownX
         )
 
-    [19] => Array
+    [71] => Array
         (
             [file] => yii2-utils/src/widgets/DropdownX.php
             [message] => broken link to \kartik\dropdown\DropdownX in khans\utils\widgets\DropdownX
         )
 
-    [20] => Array
+    [72] => Array
         (
             [file] => yii2-utils/src/widgets/ExportMenu.php
             [message] => broken link to \khans\utils\widgets\export in khans\utils\widgets\ExportMenu
         )
 
-    [21] => Array
+    [73] => Array
         (
             [file] => yii2-utils/src/widgets/GridAsset.php
             [message] => broken link to \khans\utils\widgets\GridAsset\js in khans\utils\widgets\GridAsset
         )
 
-    [22] => Array
+    [74] => Array
         (
             [file] => yii2-utils/src/widgets/WorkflowField.php
             [message] => broken link to \khans\utils\widgets\Select2 in khans\utils\widgets\WorkflowField
         )
 
-    [23] => Array
+    [75] => Array
         (
             [file] => yii2-utils/src/widgets/WorkflowField.php
             [message] => broken link to \khans\utils\widgets\Select2 in khans\utils\widgets\WorkflowField
         )
 
-    [24] => Array
+    [76] => Array
         (
             [file] => yii2-utils/src/widgets/WorkflowField.php
             [message] => broken link to \khans\utils\widgets\Select2 in khans\utils\widgets\WorkflowField
         )
 
-    [25] => Array
+    [77] => Array
         (
             [file] => yii2-utils/src/widgets/WorkflowField.php
             [message] => broken link to \khans\utils\widgets\Select2 in khans\utils\widgets\WorkflowField

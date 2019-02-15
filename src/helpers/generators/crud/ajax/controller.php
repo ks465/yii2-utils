@@ -3,14 +3,13 @@
  * This is the template for generating a CRUD controller class file.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.3-971016
+ * @version 0.2.1-971122
  * @since   1.0
  */
 
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 use yii\db\ActiveRecordInterface;
-
 
 /* @var $this yii\web\View */
 /* @var $generator khans\utils\helpers\generators\crud\Generator */
@@ -38,9 +37,8 @@ use Yii;
 use <?= ltrim($generator->modelClass, '\\') ?>;
 <?php if (!empty($generator->searchModelClass)): ?>
 use <?= ltrim($generator->searchModelClass, '\\') . (isset($searchModelAlias) ? " as $searchModelAlias" : "") ?>;
-<?php else: ?>
-use yii\data\ActiveDataProvider;
 <?php endif; ?>
+use yii\data\ActiveDataProvider;
 use <?= ltrim($generator->baseControllerClass, '\\') ?>;
 use yii\web\NotFoundHttpException;
 use \yii\web\Response;
@@ -50,7 +48,7 @@ use yii\helpers\Html;
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> model.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.3-971016
+ * @version 0.2.1-971122
  * @since   1.0
  */
 class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
@@ -135,7 +133,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                 return [
                     'forceReload' => '#<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-datatable-pjax',
                     'title'       => "افزودن <?= $generator->tableTitle ?> تازه",
-                    'content'     => '<span class="text-success">افزودن <?= $modelClass ?> موفق</span>',
+                    'content'     => '<span class="text-success">افزودن <?= $generator->tableTitle ?> موفق</span>',
                     'footer'      => Html::button('ببند', ['class' => 'btn btn-default pull-left','data-dismiss' => 'modal']).
                             Html::a('افزودن بیشتر', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
                 ];
@@ -281,6 +279,30 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             */
             return $this->redirect(['index']);
         }
+    }
+
+    /**
+     * Show history of changes in the given record
+     *
+     * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
+     *
+     * @return array AJAX grid view of changes in the given record
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionAudit(<?= $actionParams ?>)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $model = $this->findModel($id);
+        $dataProvider = new ActiveDataProvider(['query' => $model->getActionHistory()]);
+
+        return [
+            'title'   => "رکورد #" . $model->id . ' جدول <?= $generator->tableTitle ?>',
+            'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
+                'dataProvider' => $dataProvider,
+            ]),
+            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal'])
+        ];
     }
 
     /**

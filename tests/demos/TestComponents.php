@@ -9,7 +9,6 @@
 
 namespace khans\utils\tests\demos;
 
-
 use khans\utils\components\ArrayHelper;
 use khans\utils\components\FileHelper;
 use khans\utils\components\Jalali;
@@ -21,13 +20,6 @@ use khans\utils\components\ViewHelper;
 use khans\utils\models\KHanModel;
 use yii\db\Exception;
 
-/**
- * Class TestComponents load demo files for the components of the yii2-utils package
- *
- * @package khans\utils\tests\demos
- * @version 0.1.0-970915
- * @since   1.0
- */
 class TestComponents extends BaseTester
 {
     protected $skipTests = [
@@ -36,6 +28,7 @@ class TestComponents extends BaseTester
 //        'testConvertDigits', 'testPadding', 'testImplode1', 'testImplode2', 'testImplode3', 'testMobiles',
 //        'testNIDs', 'testLoadCSV', 'testLoadIni', 'testLoadCsvSaveIni',
 //        'testNumberToWords1', 'testNumberToWords2', 'testNumberToWords3', 'testNumberToWords4', 'testNumberToWords5',
+//        'testCheckDigit',
     ];
 
     //<editor-fold Desc="Jalali">
@@ -232,7 +225,8 @@ class TestComponents extends BaseTester
 
     public function testSqlFormatter()
     {
-        $sql = 'SELECT * FROM table WHERE i = 1 GROUP BY x HAVING z > 1 ORDER BY alpha';
+        $sql = /** @lang text */
+            'SELECT * FROM table_1 WHERE i = 1 GROUP BY x HAVING z > 1 ORDER BY alpha';
         $this->writeHeader($sql);
 
         $this->writeHeader('SqlFormatter::format($sql);');
@@ -442,7 +436,7 @@ class TestComponents extends BaseTester
     }
     //</editor-fold>
 
-    //</editor-fold Desc="Number to Word">
+    //<editor-fold Desc="Number to Word">
     public function testNumberToWords1()
     {
         echo '<pre dir="ltr">' . "\n";
@@ -496,5 +490,31 @@ class TestComponents extends BaseTester
         }
         echo '</pre>' . "\n";
     }
+
     //</editor-fold>
+
+    public function testCheckDigit()
+    {
+        $faker = \Faker\Factory::create();
+        $faker->seed(26465);
+        $output = [
+            $faker->numberBetween(10, 90),
+            $faker->numberBetween(100, 900),
+            $faker->numberBetween(1000, 9000),
+            $faker->numberBetween(10000, 90000),
+            $faker->numberBetween(100000, 900000),
+            $faker->numberBetween(1000000, 9000000),
+            $faker->numberBetween(10000000, 90000000),
+            $faker->numberBetween(100000000, 900000000),
+            $faker->numberBetween(1000000000, 9000000000),
+            $faker->numberBetween(10000000000, 90000000000),
+        ];
+
+        echo '<pre dir="ltr">' . "\n";
+        foreach ($output as $i) {
+            echo 'expect("' . number_format($i) . '", MathHelper::checkDigit(' . $i . '))' .
+                '->equals("' . MathHelper::checkDigit($i) . '");' . "\n";
+        }
+        echo '</pre>' . "\n";
+    }
 }

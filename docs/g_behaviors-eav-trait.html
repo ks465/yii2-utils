@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/afbdca15/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/9af5cddc/solarized_light.css" rel="stylesheet">
+<link href="./assets/34135542/style.css" rel="stylesheet">
+<script src="./assets/84a200c2/jquery.js"></script>
+<script src="./assets/afbdca15/js/bootstrap.js"></script>
+<script src="./assets/96f6715f/jssearch.js"></script>    <title>EavQueryTrait - Behaviors - KHanUtilsGuide</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w222" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w222-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">KHanUtilsGuide</a></div><div id="w222-collapse" class="collapse navbar-collapse"><ul id="w223" class="navbar-nav nav"><li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-210" data-toggle="collapse" data-parent="#navigation">Documentation <b class="caret"></b></a><div id="navigation-210" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_documents.html">Document Tips and Tricks</a>
+<a class="list-group-item" href="./g_persian.html">Setup for Persian</a>
+<a class="list-group-item" href="./g_full-config.html">Complete Config</a>
+<a class="list-group-item" href="./g_workflow.html">Workflow</a></div>
+<a class="list-group-item active" href="#navigation-211" data-toggle="collapse" data-parent="#navigation">Behaviors <b class="caret"></b></a><div id="navigation-211" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./g_workflow.html#WorkflowBehavior">WorkflowBehavior</a>
+<a class="list-group-item" href="./g_behaviors-eav-behavior.html">EavBehavior</a>
+<a class="list-group-item active" href="./g_behaviors-eav-trait.html">EavQueryTrait</a></div>
+<a class="list-group-item" href="#navigation-212" data-toggle="collapse" data-parent="#navigation">Components <b class="caret"></b></a><div id="navigation-212" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_components-array-helper.html">Array Helper</a>
+<a class="list-group-item" href="./g_components-file-helper.html">File Helper</a>
+<a class="list-group-item" href="./g_components-jalali.html">Jalali and JalaliX</a>
+<a class="list-group-item" href="./g_components-math-helper.html">Math Helper</a>
+<a class="list-group-item" href="./g_components-sql-formatter.html">SQL Formatter</a>
+<a class="list-group-item" href="./g_components-string-helper.html">String Helper</a>
+<a class="list-group-item" href="./g_components-view-helper.html">View Helper</a></div>
+<a class="list-group-item" href="#navigation-213" data-toggle="collapse" data-parent="#navigation">Controllers <b class="caret"></b></a><div id="navigation-213" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_controllers-khan-console.html">KHan Console</a>
+<a class="list-group-item" href="./g_controllers-khan-rest.html">KHan Rest</a>
+<a class="list-group-item" href="./g_controllers-khan-web.html">KHan Web</a>
+<a class="list-group-item" href="./g_controllers-system-tables.html">System Tables</a></div>
+<a class="list-group-item" href="#navigation-214" data-toggle="collapse" data-parent="#navigation">Columns <b class="caret"></b></a><div id="navigation-214" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_columns-action-column.html">Action Column</a>
+<a class="list-group-item" href="./g_columns-boolean-column.html">Boolean Column</a>
+<a class="list-group-item" href="./g_columns-data-column.html">Data Column</a>
+<a class="list-group-item" href="./g_columns-enum-column.html">Enum Column</a>
+<a class="list-group-item" href="./g_columns-jalali-column.html">Jalali Column</a>
+<a class="list-group-item" href="./g_workflow.html#ProgressColumn">Progress Column</a>
+<a class="list-group-item" href="./g_columns-radio-column.html">Radio Column</a>
+<a class="list-group-item" href="./g_columns-related-column.html">Related Column</a></div>
+<a class="list-group-item" href="#navigation-215" data-toggle="collapse" data-parent="#navigation">Models <b class="caret"></b></a><div id="navigation-215" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_models-khan-model.html">Base Model</a>
+<a class="list-group-item" href="./g_models-khan-user.html">Base user</a>
+<a class="list-group-item" href="./g_models-khan-identity.html">Identity</a></div>
+<a class="list-group-item" href="#navigation-216" data-toggle="collapse" data-parent="#navigation">RBAC <b class="caret"></b></a><div id="navigation-216" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_rbac-rule-owner.html">Owner Rule</a></div>
+<a class="list-group-item" href="#navigation-217" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-217" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_widgets-date-picker.html">Date Picker</a>
+<a class="list-group-item" href="./g_widgets-date-range-picker.html">Date Range Picker</a>
+<a class="list-group-item" href="./g_widgets-grid-view.html">Grid View</a>
+<a class="list-group-item" href="./g_widgets-dropdown.html">AJAX Dropdown</a>
+<a class="list-group-item" href="./g_widgets-export-menu.html">Export Menu</a>
+<a class="list-group-item" href="./g_widgets-confirm-button.html">Confirm Button</a>
+<a class="list-group-item" href="./g_widgets-captcha.html">Captcha</a>
+<a class="list-group-item" href="./g_widgets-export-menu.html">ExportMenu</a></div>
+<a class="list-group-item" href="#navigation-218" data-toggle="collapse" data-parent="#navigation">Others <b class="caret"></b></a><div id="navigation-218" class="submenu panel-collapse collapse"><a class="list-group-item" href="./g_helpers-app-builder.html">App Builder</a>
+<a class="list-group-item" href="./g_helpers-system-table-builder.html">System table Builder</a>
+<a class="list-group-item" href="./g_helpers-genrators.html">Generators</a>
+<a class="list-group-item" href="./g_components-var-dump.html">VarDump</a>
+<a class="list-group-item" href="./g_components-sql-formatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./g_settings.html">Settings</a>
+<a class="list-group-item" href="./g_helpers-migrations.html">Migrations</a>
+<a class="list-group-item" href="./g_widgets-menu.html">Overlay Menu</a>
+<a class="list-group-item" href="./g_components-workflow.html">Workflow Manager</a>
+<a class="list-group-item" href="./g_components-wiz-flow.html">Wizard Flow</a>
+<a class="list-group-item" href="./g_tests.html">Tests</a>
+<a class="list-group-item" href="./g_module-khan-tools.html">Tools Module</a></div>
+<a class="list-group-item" href="#navigation-219" data-toggle="collapse" data-parent="#navigation">StartUp <b class="caret"></b></a><div id="navigation-219" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-220" data-toggle="collapse" data-parent="#navigation">Sanitizing User Input <b class="caret"></b></a><div id="navigation-220" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-221" data-toggle="collapse" data-parent="#navigation">RBAC Setup <b class="caret"></b></a><div id="navigation-221" class="submenu panel-collapse collapse"></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>EavQueryTrait <span id="eavquerytrait"></span><a href="#eavquerytrait" class="hashlink">&para;</a></h1><p>Documentation Edition: 1.0-971126
+Class Version: 0.1.1-971125</p>
+<p>EAV pattern is used for models which resemble sparse matrices. Instead of adding more fields to a single table, these attributes are listed in the Attribute table. By changing any Entity record, the Values of these attributes are saved in a third table.
+As this trait only changes the query, normal actions for the EAV attributes are not implemented here. For creating and changing EAV entities, see <a href="g_behaviors-eav-behavior.html">EavBehavior</a>  </p>
+<p>Class EavQueryTrait is the actor behind following EAV actions:</p>
+<ul>
+<li><code>getEavJoinQuery</code>: Builds the required joins for accessing the attributes and corresponding values.</li>
+<li><code>andEavFilterWhere</code> and <code>orEavFilterWhere</code>: By accepting attribute name and a value build conjugated pair of condition for filtering entities based on the given attribute.</li>
+<li><code>andEavFilterCompare</code> and <code>orEavFilterCompare</code>: These methods are similar to the above ones. They accept a third argument as <code>defaultOperator</code> and in addition to that they understands the operators at the beginning of the submitted values. These operators are recognized:<ul>
+<li><code>&lt;</code>: the column must be less than the given value.</li>
+<li><code>&gt;</code>: the column must be greater than the given value.</li>
+<li><code>&lt;=</code>: the column must be less than or equal to the given value.</li>
+<li><code>&gt;=</code>: the column must be greater than or equal to the given value.</li>
+<li><code>&lt;&gt;</code>: the column must not be the same as the given value.</li>
+<li><code>=</code>: the column must be equal to the given value.</li>
+<li><code>!=</code>: same as <code>&lt;&gt;</code></li>
+<li><code>like</code>: the column must contain the given value as part of string. </li>
+</ul>
+</li>
+</ul>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Fri, 15 Feb 2019 13:08:04 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

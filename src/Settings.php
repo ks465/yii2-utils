@@ -33,18 +33,10 @@ class Settings extends BaseObject
      */
     const MAX_IDLE_TIME = 300;
     /**
-     * Path to application models repository, this is mainly used for [[\khans\utils\helpers\AppBuilder]] to create new models.
+     * Path to application models repository, this is mainly used for [[\khans\utils\helpers\AppBuilder]] to create new
+     * models.
      */
     const PATH_MODELS_DIRECTORY = '@app/models/';
-    /**
-     * List of icons for navigation keys in the grid view pager
-     *
-     * @var array
-     */
-    private static $_pager;
-    private static $_testSetting = 1;
-
-
     /**
      * Setting for [[QueryParamAuth::tokenParam]]
      */
@@ -54,19 +46,16 @@ class Settings extends BaseObject
      * Be sure to end this with /
      */
     const REST_SERVER_URL = '/';
+    /**
+     * List of icons for navigation keys in the grid view pager
+     *
+     * @var array
+     */
+    private static $_pager;
+    private static $_testSetting = 1;
 
 
 //<editor-fold Desc="Setters">
-
-    /**
-     * @param int $testSetting
-     */
-    public static function setTestSetting($testSetting)
-    {
-        self::$_testSetting = $testSetting;
-    }
-//</editor-fold>
-//<editor-fold Desc="Getters">
     /**
      * @return array
      */
@@ -74,13 +63,23 @@ class Settings extends BaseObject
     {
         return self::$_pager;
     }
+//</editor-fold>
 
+//<editor-fold Desc="Getters">
     /**
      * @return int
      */
     public static function getTestSetting()
     {
         return self::$_testSetting;
+    }
+
+    /**
+     * @param int $testSetting
+     */
+    public static function setTestSetting($testSetting)
+    {
+        self::$_testSetting = $testSetting;
     }
 //</editor-fold>
 

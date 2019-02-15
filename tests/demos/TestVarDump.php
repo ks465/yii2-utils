@@ -40,7 +40,7 @@ class TestVarDump extends BaseTester
     public function zero()
     {
         echo '<p class="alert alert-danger ltr">' .
-            'Remember: You need to add <code>require_once \Yii::getAlias(\'@khan/src/components/VarDump.php\');</code> in your config scripts.' .
+            'Remember: You need to add <code>require_once \Yii::getAlias(\'@khan/components/VarDump.php\');</code> in your config scripts.' .
             '</p>';
     }
 

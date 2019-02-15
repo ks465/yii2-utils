@@ -38,7 +38,7 @@ use yii\db\ActiveQuery;
  * <?= $searchModelClass ?> represents the model behind the search form about `<?= $generator->modelClass ?>`.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.2-971013
+ * @version 0.1.3-971104
  * @since   1.0
  */
 class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $modelClass ?>
@@ -63,7 +63,7 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             <?= implode(",\n            ", $rules) ?>,
@@ -73,7 +73,7 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
     /**
      * @inheritdoc
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -86,7 +86,7 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params): ActiveDataProvider
     {
         $dataProvider = new ActiveDataProvider([
             'query' => $this->query,

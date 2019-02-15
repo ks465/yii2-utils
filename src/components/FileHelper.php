@@ -9,7 +9,6 @@
 
 namespace khans\utils\components;
 
-
 use yii\base\BaseObject;
 
 /**
@@ -17,7 +16,7 @@ use yii\base\BaseObject;
  *
  * @package khans\utils
  * @version 1.2.1-950423
- * @since   1.35
+ * @since   1.0
  */
 class FileHelper extends BaseObject
 {

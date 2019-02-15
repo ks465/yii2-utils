@@ -3,7 +3,7 @@
  * This is the template for generating a User Authentication controller class file.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.3-971008
+ * @version 0.2.0-971111
  * @since   1.0
  */
 
@@ -34,6 +34,7 @@ use <?= $generator->authForms ?>\LoginForm;
 use <?= $generator->authForms ?>\SignupForm;
 use <?= $generator->authForms ?>\PasswordResetRequestForm;
 use <?= $generator->authForms ?>\ResetPasswordForm;
+use khans\utils\models\KHanIdentity;
 use yii\base\InvalidConfigException;
 use yii\web\BadRequestHttpException;
 
@@ -41,7 +42,7 @@ use yii\web\BadRequestHttpException;
  * <?= $controllerClass ?> implements the authentication actions for <?= $modelClass ?> model.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.3-971008
+ * @version 0.2.0-971111
  * @since   1.0
  */
 class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
@@ -114,18 +115,25 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             $model->scenario = 'withCaptcha';
         }
 
-        if ($model->load($_POST) and $model->login()) {
-            $this->setLoginAttempts(0); //if login is successful, reset the attempts
-            return $this->goBack();
+        if(Yii::$app->request->isPost) {
+            $post = Yii::$app->request->post();
+            if ($model->load($post) and $model->login()) {
+                KHanIdentity::logSuccessLogin($model['username'], $this->getLoginAttempts());
+                $this->setLoginAttempts(0); //if login is successful, reset the attempts
+
+                return $this->goBack();
+            }
+            //if login is not successful, increase the attempts
+            $this->setLoginAttempts($this->getLoginAttempts() + 1);
+            KHanIdentity::logFailedLogin($model['username'], $this->getLoginAttempts());
         }
-        //if login is not successful, increase the attempts
-        $this->setLoginAttempts($this->getLoginAttempts() + 1);
 
         return $this->render('login', [
             'model' => $model,
             'withEmail' => true,
         ]);
     }
+
     /**
      * Log the current user out and close the session
      *
@@ -187,7 +195,6 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             'model' => $model,
         ]);
     }
-
 
     /**
      * Reset a password using previously generated token

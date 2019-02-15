@@ -1,8 +1,11 @@
-#KHDropDown
+#DropDownX
+Documentation Edition: 1.1-971112
+Class Version: 0.1.2-971008
+
 This is a helper class to build a [kartik\dropdown\DropdownX] with modal actions, searching for selections in a grid.
 It would not work without input elements of type radio and checkbox.
 Besides these elements should be named `selection`.
-This case is default when defining a [khans\utils\widgets\GridView] and add [khans\utils\columns], [\kartik\grid\RadioColumn], or [kartik\grid\CheckboxColumn]. So, in reality, [KHDropdown] is used instead of GridView::bulkAction['action'].
+This case is default when defining a [khans\utils\widgets\GridView] and add [khans\utils\columns], [\kartik\grid\RadioColumn], or [kartik\grid\CheckboxColumn]. So, in reality, [DropDownX] is used instead of GridView::bulkAction['action'].
 
 This widget has only one configuration item: an array named `items`.
 Each element of this array is either:
@@ -15,7 +18,7 @@ Each element of this array is either:
   - `class` any of the `info`, `success`, `primary`, `warning`, or `danger`. Default is `default`.
 + An array containing `items` key, which has the exact structure of the parent, and will serve as a submenu.
 ```php
-$config['bulkAction'] = KHDropdown::widget([
+$config['bulkAction'] = DropDownX::widget([
     'items' => [
         [
             'label' => 'عنوان منوی اصلی',

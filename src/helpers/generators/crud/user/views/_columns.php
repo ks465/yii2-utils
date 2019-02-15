@@ -142,8 +142,15 @@ $column = [
         //'attribute' => 'delete_time',
     //],
     [
-        'class'      => '\khans\utils\columns\ActionColumn',
-        'runAsAjax'  => true,
+        'class'          => '\khans\utils\columns\ActionColumn',
+        'runAsAjax'      => true,
+        'visibleButtons' => [
+            'view'          => true,
+            'update'        => function($model) { return $model->id > 0; },
+            'delete'        => function($model) { return $model->id > 0; },
+            'reset-pass'    => function($model) { return $model->id > 0; },
+            'request-reset' => function($model) { return $model->id > 0; },
+        ],
         'extraItems' => [
             'reset-pass' => [
                 'icon'   => 'edit',

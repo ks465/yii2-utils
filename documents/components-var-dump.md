@@ -1,4 +1,7 @@
 #VarDump Class
+Documentation Edition: 1.0-970920
+Class Version: 0.3.2-970920
+
 This is a third party class offering dumping variables with ability to expand or hide parts of data. 
 In this way it can keep the display clear.
 The original class has multiple themes included, which are named after comic strip heroes. 
@@ -47,8 +50,8 @@ array(6) [...] [reduce]
     string(19) "Yii::$app->user->id" => null
     string(15) "Yii::$app->user" => yii\web\User#0 {...} [expand]
     string(26) "Yii::$app->getComponents()" => array(15) [...] [expand]
-    string(29) "\yii\helpers\Url::to('@khan')" => string(46) "/var/www/html/khans/vendor/khans465/yii2-utils"
-    string(22) "Yii::getAlias('@khan')" => string(46) "/var/www/html/khans/vendor/khans465/yii2-utils"
+    string(29) "\yii\helpers\Url::to('@khan')" => string(46) "/var/www/html/khans/vendor/khans465/yii2-utils/src"
+    string(22) "Yii::getAlias('@khan')" => string(46) "/var/www/html/khans/vendor/khans465/yii2-utils/src"
     string(11) "Just saying" => array(3) [...] [expand]
 ``` 
 

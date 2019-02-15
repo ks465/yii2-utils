@@ -1,15 +1,20 @@
 #RelatedColumn
-RelatedColumn adds a column with Select2 filter and sort of a column in foreign key reference.
+Documentation Edition: 1.1-971126
+Class Version: 0.1.2-971126
+
+RelatedColumn adds a column with Select2 filter and sort  a column in foreign key reference.
 Required configurations are:
 + `class => '\khans\utils\columns\RelatedColumn',` 
 + `attribute` name of the field in child table referring the parent PK
-+ `tagetTable` model presenting the parent table
++ `targetTable` model presenting the parent table
 + `titleField` name of field in parent table which should be used as the title of the parent records, and are shown in the child grid view and search is based on this parent column.
 + `value` a callback for showing the title in the child's grid as a link to parent grid view method
 + `group => true,` 
++ `searcherUrl` array to the action responsible for filtering the field. Defaults to `parents`
 
 **_Example:_**
 The suggested updates to various files are based on this partial table definition:
+
 ```mysql
 CREATE TABLE `parent_table` (
   `id` SMALLINT(6) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -82,18 +87,19 @@ Instead of text input for the `parent_id` column, use `Select2` widget and read 
 #4:
 use kartik\select2\Select2;
 
-#11:
-$parent = ArrayHelper::map(\namespace\ParentModel::find()
-    ->select(['id', 'title'])
-    ->orderBy(['title'=> SORT_ASC])
-    ->asArray()->all(), 'id', 'title');
-
 #21:
 <?= $form->field($model, 'parent_id')->widget(Select2::class, [
     'theme' => Select2::THEME_BOOTSTRAP,
-    'data' => ['' => ''] + $parent,
+    'initValueText' => ArrayHelper::getValue(ParentModel::findOne($model->parent_id), 'parent_title'),
     'pluginOptions' => [
-        'dir' => 'rtl',
+        'allowClear'         => true,
+        'dir'                => 'rtl',
+        'minimumInputLength' => 3,
+        'ajax'               => [
+            'url'      => Url::to(['parents']),
+            'dataType' => 'json',
+            'data'     => new JsExpression('function(params) { return {q:params.term}; }'),
+        ],
     ],
 ]) ?>
 ```
@@ -108,7 +114,7 @@ Set `$parent = true;` to signal the child grid view to drop the referencing colu
 #14:
 /* @var $model ParntModel */
 $searchModel = new namespace\ChildModelSearch([ 
-    'query'=> $model->getCHildren()->orderBy(['title'=>SORT_ASC, 'id'=>SORT_ASC]),
+    'query'=> $model->getChildren()->orderBy(['title'=>SORT_ASC, 'id'=>SORT_ASC]),
 ]);
 $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 $dataProvider->setSort(false);
@@ -121,7 +127,7 @@ $parent = true;
         'id'                 => 'child-datatable-pjax',
         'dataProvider'       => $dataProvider,
         'filterModel'        => $searchModel,
-        'columns'            => require(__DIR__.'/.../child/_columns.php'),
+        'columns'            => require(__DIR__.'/../child/_columns.php'),
         'export'             => true,
         'showRefreshButtons' => true,
         'bulkAction'         => [
@@ -160,7 +166,7 @@ public function actionParents($q)
     \Yii::$app->response->format = Response::FORMAT_JSON;
     $out = ['results' => ['id' => '', 'text' => '']];
     $query = ParentModel::find()
-        ->select(['id', 'text'=>'title'])
+        ->select(['id', 'text'=>''])
         ->where(['like', 'title', $q])
         ->orderBy(['title' => SORT_ASC,])
         ->asArray()

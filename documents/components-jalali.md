@@ -1,4 +1,6 @@
 #Jalali and JalaliX Classes
+Documentation Edition: 1.0-970820
+Class Version: 3.2.4-970816
 
 Jalali class is an attempt to use astronomical calculations of Khayyam and keep the interface 
 as similar as possible to `PHP::date()` function.

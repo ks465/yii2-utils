@@ -1,7 +1,11 @@
 #GridView Class
+Documentation Edition: 1.1-971112
+Class Version: 2.3.5-971111
+
 GridView 1.* and AjaxGridView 1.* are merged together, and there is no AjaxGridView in the 2.* version.
 In order to reach AJAX activity, use [[\khans\utils\columns\ActionColumn|ActionColumn]] and set `runAsAjax = true,` for
 individual button or for all the column. 
+Required assets for modal pages are handled through [[GridAsset]] class.
 
 `pagination.pageParam` and `sort.sortParam` attribute of the `dataProvider` are set according to the `id` of the widget.
 ```php
@@ -42,6 +46,23 @@ $firstRow = [
     ],
 ];
 
+$buildExtras = [
+   'name'   => [
+       'icon'   => 'edit',
+       'action' => 'otherAction',
+       'config' => ['class' => 'alert-danger text-success'],
+   ],
+   [],
+   'rename' => [
+       'title'  => 'Test Me',
+       'icon'   => 'pencil',
+       'config' => ['class' => 'alert-success text-success'],
+   ],
+   'reset'  => [
+       'runAsAjax' => false,
+   ],
+];
+
 $columns = [
     [
         'class' => 'kartik\grid\CheckboxColumn',
@@ -62,13 +83,13 @@ $columns = [
             'update'   => false,
             'delete'   => false,
             'download' => false,
-            'audit'    => true,
+            'history'    => true,
         ],
-        'extraItems'     => $this->buildExtras(),
+        'extraItems'     => $buildExtras,
     ],
     [
         'class'          => 'khans\utils\columns\ActionColumn',
-        'audit'          => true,
+        'history'          => true,
         'runAsAjax'      => false,
         'viewOptions'    => [
             'runAsAjax' => true,
@@ -114,6 +135,9 @@ echo GridView::widget([
      ],
 ]);
 ```
+
+- By setting `panel => false`, panel heading, before and after are removed from output.
+
 Adding extra actions to the column definition of the grid is very similar to the usage of bulk action with [[RadioColumn]].
 Setting footer to `false` removes the pager segment too.
 Add `skip-export` to options.class of virtually any row or column to remove it from export.

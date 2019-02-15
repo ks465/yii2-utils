@@ -3,8 +3,9 @@
  * This is the template for generating the model class of a specified table.
  *
  * @package KHanS\Utils
- * @version 0.1.0-971020
- * @since   1.0*/
+ * @version 0.1.1-971030
+ * @since   1.0
+ */
 
 /* @var $this yii\web\View */
 /* @var $generator khans\utils\helpers\generators\model\Generator */
@@ -23,6 +24,7 @@ echo "<?php\n";
 namespace <?= $generator->ns ?>;
 
 use Yii;
+use \khans\utils\models\queries\KHanQuery;
 
 /**
  * This is the model class for table "<?= $generator->generateTableName($tableName) ?>".
@@ -38,7 +40,7 @@ use Yii;
 <?php endif; ?>
  *
  * @package KHanS\Utils
- * @version 0.1.0-971020
+ * @version 0.2.0-971114
  * @since   1.0
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . "\n" ?>
@@ -46,7 +48,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return '<?= $generator->generateTableName($tableName) ?>';
     }
@@ -64,7 +66,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return array_merge(parent::rules(), [<?= empty($rules) ? '' : ("\n            " . implode(",\n            ", $rules) . ",\n        ") ?>]);
     }
@@ -72,9 +74,9 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
-        return [
+        return parent::attributeLabels() + [
 <?php foreach ($labels as $name => $label): ?>
             <?= "'$name' => " . $generator->generateString($label) . ",\n" ?>
 <?php endforeach; ?>
@@ -99,7 +101,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
      * {@inheritdoc}
      * @return <?= $queryClassFullName ?> the active query used by this AR class.
      */
-    public static function find()
+    public static function find(): <?= '\\' . ltrim($generator->queryBaseClass, '\\') ?>
     {
         return new <?= $queryClassFullName ?>(get_called_class());
     }

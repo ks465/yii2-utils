@@ -12,8 +12,8 @@ namespace khans\utils\columns;
 use kartik\helpers\Html;
 use khans\utils\components\Jalali;
 use khans\utils\models\{KHanModel};
-use mdm\admin\components\Helper;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\helpers\{ArrayHelper, Url};
 
 /**
@@ -22,7 +22,7 @@ use yii\helpers\{ArrayHelper, Url};
  * See [ActionColumn Guide](guide:columns-action-column.md)
  *
  * @package common\widgets
- * @version 2.1.2-971014
+ * @version 2.3.0-971122
  * @since   1.0
  */
 class ActionColumn extends \kartik\grid\ActionColumn
@@ -60,7 +60,10 @@ class ActionColumn extends \kartik\grid\ActionColumn
      */
     public function init()
     {
-        if (property_exists(Yii::$app->user, 'isSuperAdmin') && Yii::$app->user->isSuperAdmin) {
+        if ($this->dropdown and $this->runAsAjax) {
+            throw new InvalidConfigException('Modal actions and dropdown menu are not compatible. Disable one of those.');
+        }
+        if (Yii::$app->user->isSuperAdmin) {
             $this->audit = true;
         }
 
@@ -153,7 +156,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
     }
 
     /**
-     * Show additional icon for monitoring the create/update time and person responsible
+     * Show additional icon for monitoring the history of changes in the record
      */
     private function _audit()
     {
@@ -164,19 +167,22 @@ class ActionColumn extends \kartik\grid\ActionColumn
 
         $this->buttons['audit'] = function($url, $model, $key) {
             $config = [
-                'style'     => 'cursor: help;',
-                'title'     => makePopoverContent($model),
-                'data-pjax' => '0',
+                'data-toggle' => 'tooltip',
+                'style'       => 'cursor: pointer;',
+                'title'       => makePopoverContent($model),
+                'role'        => 'modal-remote',
+                'data-pjax'   => '0',
             ];
             if ($this->dropdown) {
-                $config['label'] = '<span class="glyphicon glyphicon-time"></span> زمانها';
+                $config['label'] = '<span class="glyphicon glyphicon-film"></span> تاریخچه';
+                $this->dropdownOptions = $config;
 
                 return '<li>' .
-                    Html::a($config['label'], false, $config) .
+                    Html::a($config['label'], $url, $config) .
                     '</li>';
             }
 
-            return Html::a('<span class="glyphicon glyphicon-time"></span>', false, $config);
+            return Html::a('<span class="glyphicon glyphicon-film"></span>', $url, $config);
         };
     }
 
@@ -211,24 +217,48 @@ class ActionColumn extends \kartik\grid\ActionColumn
                 } else {
                     $icon = '<span class="glyphicon glyphicon-link"></span>';
                 }
+
                 if (array_key_exists('title', $data)) {
                     $data['config']['title'] = ucwords($data['title']);
                 } else {
                     $data['config']['title'] = ucwords($title);
                 }
+
                 if (array_key_exists('action', $data)) {
-                    $action = $data['action']; //Url::to([$data['action']]);
+                    $action = $data['action'];
                 } else {
-                    $action = $title; //Url::to([$title]);
+                    $action = $title;
                 }
+
                 $params = is_array($key) ? $key : ['id' => (string)$key];
                 $params[0] = $this->controller ? $this->controller . '/' . $action : $action;
+
+                if (isset($data['method'])) {
+                    $data['config']['data-request-method'] = $data['method'];
+                } else {
+                    $data['config']['data-request-method'] = 'post';
+                }
+
+
+                $data['config']['data-confirm'] = false; // for override default confirmation
+                $data['config']['data-method'] = false; // for override yii data api
 
                 if ($this->runAsAjax && ArrayHelper::getValue($data, 'runAsAjax') !== false) {
                     $data['config']['data-toggle'] = 'tooltip';
                     $data['config']['role'] = 'modal-remote';
                     $data['config']['data-pjax'] = '0';
+
+                    if (isset($data['confirm'])) {
+                        if ($data['confirm'] === true) {
+                            $data['config']['data-confirm-title'] = 'آیا اطمینان دارید؟';
+                            $data['config']['data-confirm-message'] = 'از انجام این گزینه اطمینان دارید؟';
+                        } else {
+                            $data['config']['data-confirm-title'] = $data['confirm']['title'];
+                            $data['config']['data-confirm-message'] = $data['confirm']['message'];
+                        }
+                    }
                 }
+
                 if ($this->dropdown) {
                     $this->dropdownOptions = $data['config'];
 
@@ -253,18 +283,35 @@ function makePopoverContent($model)
 {
     if ($model instanceof KHanModel) {
         try {
-            $creator = $model->getCreator()->fullName;
+            if (is_null($model->created_by)) {
+                $creator = 'ناشناس';
+            } else {
+                $creator = $model->getCreator()->fullName;
+            }
         } catch (\Exception $e) {
             $creator = 'ناشناس';
         }
         try {
-            $updater = $model->getUpdater()->fullName;
+            if (is_null($model->updated_by)) {
+                $updater = 'ناشناس';
+            } else {
+                $updater = $model->getUpdater()->fullName;
+            }
         } catch (\Exception $e) {
             $updater = 'ناشناس';
         }
 
-        $createTime = $model->created_at;
-        $updateTime = $model->updated_at;
+        try {
+            $createTime = $model->created_at;
+        } catch (\Exception $e) {
+            $createTime = 0;
+        }
+        try {
+            $updateTime = $model->updated_at;
+        } catch (\Exception $e) {
+            $updateTime = 0;
+        }
+
     } elseif (is_array($model)) {
         $creator = ArrayHelper::getValue($model, 'created_by', 'ثبت نشده');
         $updater = ArrayHelper::getValue($model, 'updated_by', 'ثبت نشده');

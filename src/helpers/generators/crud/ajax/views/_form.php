@@ -3,7 +3,7 @@
  * This is the template for generating a AJAX CRUD index view file.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.2-971013
+ * @version 0.3.1-971125
  * @since   1.0
  */
 use yii\helpers\Inflector;
@@ -22,8 +22,12 @@ $safeAttributes = array_diff($safeAttributes, ['status', 'created_by', 'created_
 
 echo "<?php\n";
 ?>
-use yii\helpers\Html;
+
+use kartik\checkbox\CheckboxX;
 use kartik\form\ActiveForm;
+<?= $generator->enableEAV? 'use khans\utils\tools\models\SysEavAttributes;':'' ?>
+
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
@@ -41,6 +45,24 @@ use kartik\form\ActiveForm;
 <?php if(in_array('status', $generator->getColumnNames())){
     echo "    <?= " . '$form->field($model, \'status\')->radioButtonGroup(khans\utils\models\KHanModel::getStatuses())' . " ?>\n\n";
 } ?>
+
+<?php if($generator->enableEAV): ?>
+    <?= "<?php " ?>foreach (SysEavAttributes::find()->where(['entity_table' => '<?= $generator->modelClass::tableName() ?>'])->all() as $field) {
+        /* @var SysEavAttributes $field */
+        if ($field->attr_type == 'boolean') {
+            echo $form->field($model, $field->attr_name, [
+                'template' => '{input} {label} {error} {hint}',
+            ])->widget(CheckboxX::class, [
+                'autoLabel'     => false,
+                'pluginOptions' => [
+                    'threeState' => false,
+                ],
+            ]);
+        } else {
+            echo $form->field($model, $field->attr_name)->textInput(['maxlength' => true]);
+        }
+    } ?>
+<?php endif; ?>
 
     <?='<?php if (!Yii::$app->request->isAjax){ ?>'."\n"?>
 	  	<div class="form-group">

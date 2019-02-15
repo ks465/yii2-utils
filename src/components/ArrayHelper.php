@@ -14,7 +14,7 @@ namespace khans\utils\components;
  * For convenience this class extends \yii\helpers\ArrayHelper.
  *
  * @package KHanS\Utils
- * @version 0.3.0-970908
+ * @version 0.3.1-971027
  * @since   1.0
  */
 final class ArrayHelper extends \yii\helpers\ArrayHelper
@@ -52,6 +52,7 @@ final class ArrayHelper extends \yii\helpers\ArrayHelper
     public final static function pivot($inputArray, $pivotColumn, $pivotRow, $pivotValue,
         $aggFunc = ArrayHelper::FUNC_SUM)
     {
+//todo: use aggFunc and default aggregate funtion
         $groups = [];
 
         foreach ($inputArray as $dataArray) {
@@ -82,10 +83,10 @@ final class ArrayHelper extends \yii\helpers\ArrayHelper
                 $groups[$rowKey][$colKey] = 0;
             }
 
-            if (is_callable($pivotValue)) {
-                $groups[$rowKey][$colKey] = call_user_func($pivotValue, $dataArray);
-            } else {
+            if (is_string($pivotValue)) { //if pivotValue is set to some keyword like 'count' it is treated as callable.
                 $groups[$rowKey][$colKey] += $dataArray[$pivotValue];
+            } elseif (is_callable($pivotValue)) {
+                $groups[$rowKey][$colKey] = call_user_func($pivotValue, $dataArray);
             }
         }
 
@@ -108,6 +109,7 @@ final class ArrayHelper extends \yii\helpers\ArrayHelper
      */
     public final static function groupBy($inputArray, $pivotRow, $pivotValue, $aggFunc = ArrayHelper::FUNC_SUM)
     {
+//todo: use aggFunc and default aggregate funtion
         $groups = [];
 
         foreach ($inputArray as $dataArray) {
@@ -129,10 +131,10 @@ final class ArrayHelper extends \yii\helpers\ArrayHelper
                 $groups[$rowKey][$colKey] = 0;
             }
 
-            if (is_callable($pivotValue)) {
-                $groups[$rowKey][$colKey] = call_user_func($pivotValue, $dataArray);
-            } else {
+            if (is_string($pivotValue)) { //if pivotValue is set to some keyword like 'count' it is treated as callable.
                 $groups[$rowKey][$colKey] += $dataArray[$pivotValue];
+            } elseif (is_callable($pivotValue)) {
+                $groups[$rowKey][$colKey] = call_user_func($pivotValue, $dataArray);
             }
         }
 

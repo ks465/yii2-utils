@@ -18,7 +18,7 @@ use khans\utils\components\Jalali;
  *
  * @package common\widgets
  * @version 1.2.0-971009
- * @since 1.0.0
+ * @since 1.0
  */
 class ExportMenu extends \kartik\export\ExportMenu
 {

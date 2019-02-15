@@ -1,4 +1,7 @@
 #ExportMenu
+Documentation Edition: 1.1-971112
+Class Version: 1.2.0-971009
+
 This widget extends [[\kartik\export\ExportMenu]] and is used for some provisions about behavior in rendering --
 specially for RTL aspects-- and some preset messages. All the required configuration is `dataProvider` only:
 

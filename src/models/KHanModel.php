@@ -9,8 +9,8 @@
 
 namespace khans\utils\models;
 
-
 use khans\utils\components\{Jalali, ViewHelper};
+use khans\utils\tools\models\SysHistoryDatabase;
 use Yii;
 use yii\behaviors\{BlameableBehavior, TimestampBehavior};
 use yii\db\ActiveRecord;
@@ -26,6 +26,7 @@ use yii\helpers\ArrayHelper;
  * @property integer $updated_by آخرین ویراینده رکورد
  * @property integer $updated_at زمان آخرین ویرایش رکورد
  * @property string  $workflowID
+ *
  * @method bool enterWorkflow(string $string)
  * @method bool sendToStatus(string $string)
  * @method bool statusEquals(string $string)
@@ -35,8 +36,9 @@ use yii\helpers\ArrayHelper;
  * @method mixed getMetaData(string $string, mixed $defaultValue)
  * @method mixed getStatusesLabels()
  * @method mixed getWorkflowState()
+ *
  * @package khans\utils
- * @version 0.4.5-971023
+ * @version 0.4.9-971125
  * @since   1.0
  */
 class KHanModel extends ActiveRecord
@@ -48,7 +50,11 @@ class KHanModel extends ActiveRecord
     /**
      * Record is disabled to be used in new transactions. But previous data can access the details for read-only access.
      */
-    const STATUS_PENDING = 5;
+    const STATUS_ARCHIVED = 2;
+    /**
+     * Record is disabled to be used in new transactions. But previous data can access the details for read-only access.
+     */
+    const STATUS_PENDING = 4;
     /**
      * record is active and user can do whatever allowed
      */
@@ -56,6 +62,7 @@ class KHanModel extends ActiveRecord
     /**
      * @var array $_statuses list of available statuses for users
      */
+
     private static $_statuses = [
         KHanModel::STATUS_DELETED => 'پاک شده',
         KHanModel::STATUS_PENDING => 'معلق',
@@ -63,13 +70,27 @@ class KHanModel extends ActiveRecord
     ];
 
     /**
-     * Convert array of model's errors into string for display
+     * Show a string representation of boolean fields instead of 0/1
      *
-     * @param KHanModel $model
+     * @param string $attribute name of attribute which is boolean
      *
      * @return string
      */
-    public function getModelErrors()
+    public function getBooleanView($attribute)
+    {
+        if (is_null($this->{$attribute})) {
+            return '<i class="glyphicon glyphicon-question-sign text-warning"> </i>';
+        }
+
+        return $this->{$attribute} ? '<i class="glyphicon glyphicon-ok text-success"> </i>' : '<i class="glyphicon glyphicon-remove text-danger"> </i>';
+    }
+
+    /**
+     * Convert array of model's errors into string for display
+     *
+     * @return string
+     */
+    public function getModelErrors(): string
     {
         $errors = [];
         foreach ($this->errors as $error) {
@@ -86,7 +107,7 @@ class KHanModel extends ActiveRecord
      *
      * @return string label for the status
      */
-    public function getStatus($status = null)
+    public function getStatus($status = null): string
     {
         if (empty($status)) {
             return ArrayHelper::getValue(static::getStatuses(), $this->status, 'نامشخص');
@@ -100,7 +121,7 @@ class KHanModel extends ActiveRecord
      *
      * @return array
      */
-    public static function getStatuses()
+    public static function getStatuses(): array
     {
         return KHanModel::$_statuses;
     }
@@ -110,7 +131,7 @@ class KHanModel extends ActiveRecord
      *
      * @return array
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'status'     => 'وضعیت',
@@ -124,8 +145,10 @@ class KHanModel extends ActiveRecord
     /**
      * Returns a list of behaviors that this component should behave as.
      * Add timestamp and blameable behavior to inhabitant
+     *
+     * @return array
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'timestamp' => [
@@ -136,15 +159,15 @@ class KHanModel extends ActiveRecord
                 ],
             ],
             'blameable' => [
-                'class'              => BlameableBehavior::className(),
+                'class'              => BlameableBehavior::class,
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
             ],
-//            'history'   => [
-//                'class'        => \nhkey\arh\ActiveRecordHistoryBehavior::className(),
-//                'ignoreFields' => ['created_at', 'created_by', 'updated_at', 'updated_by'],
-//                'managerOptions' => ['tableName' => 'MyLogTable',],
-//            ],
+            'history'   => [
+                'class'          => \nhkey\arh\ActiveRecordHistoryBehavior::class,
+                'ignoreFields'   => ['created_at', 'created_by', 'updated_at', 'updated_by'],
+                'managerOptions' => ['tableName' => 'sys_history_database'],
+            ],
         ];
     }
 
@@ -153,7 +176,7 @@ class KHanModel extends ActiveRecord
      *
      * @return queries\KHanQuery the active query used by this AR class.
      */
-    public static function find()
+    public static function find(): queries\KHanQuery
     {
         return new queries\KHanQuery(get_called_class());
     }
@@ -161,11 +184,33 @@ class KHanModel extends ActiveRecord
     /**
      * Mark the record as deleted
      */
-    public function delete()
+    public function delete(): void
     {
         $this->setAttribute('status', self::STATUS_DELETED);
         $this->save();
     }
+
+//    /**
+//     * @param bool  $runValidation whether to perform validation (calling [[validate()]]) before saving the record.
+//     *     Defaults to `true`. If the validation fails, the record will not be saved to the database and this method
+//     *     will return `false`.
+//     * @param array $attributeNames list of attribute names that need to be saved. Defaults to null, meaning all
+//     *     attributes that are loaded from DB will be saved.
+//     *
+//     * @return bool whether the saving succeeded (i.e. no validation errors occurred).
+//     */
+//    public function save($runValidation = true, $attributeNames = null): bool
+//    {
+//        if ($this->validate()) {
+//            Yii::$app->session->addFlash('success', 'Model saved successfully.');
+//
+//            return parent::save(false, $attributeNames);
+//        } else {
+//            Yii::$app->session->addFlash('error', $this->getModelErrors());
+//
+//            return false;
+//        }
+//    }
 
     /**
      * Check the record is marked as [[KHanModel::STATUS_ACTIVE]].
@@ -173,7 +218,7 @@ class KHanModel extends ActiveRecord
      *
      * @return bool true if record is marked as active or the current user is `Super Admin`
      */
-    public function isActive()
+    public function isActive(): bool
     {
         if (property_exists(Yii::$app, 'user') && Yii::$app->user->isSuperAdmin) {
             return true;
@@ -188,7 +233,7 @@ class KHanModel extends ActiveRecord
      *
      * @return bool true if record is not marked as deleted or the current user is `Super Admin`
      */
-    public function isVisible()
+    public function isVisible(): bool
     {
         if (property_exists(Yii::$app, 'user') && Yii::$app->user->isSuperAdmin) {
             return true;
@@ -202,7 +247,7 @@ class KHanModel extends ActiveRecord
      *
      * @return KHanIdentity
      */
-    public function getCreator()
+    public function getCreator(): ?KHanIdentity
     {
         return $this->getResponsibleUser($this->created_by);
     }
@@ -210,20 +255,23 @@ class KHanModel extends ActiveRecord
     /**
      * Get active record for the given user id in all of the instances of [[KHanIdentity]].
      * If the given id can not be found, an empty model will be returned.
-     * This method should be overridden in the child classes to meet their structure requirements.
+     * This method should be overridden by the child classes to meet their structure requirements.
      *
      * @param integer $ownerID requested Id
      *
      * @return KHanIdentity
      */
-    protected function getResponsibleUser($ownerID) { }
+    protected function getResponsibleUser(int $ownerID): ?KHanIdentity
+    {
+        return Yii::$app->user->identityClass::findOne($ownerID);
+    }
 
     /**
      * Get active record for the updater of the record from the given user table
      *
      * @return KHanIdentity
      */
-    public function getUpdater()
+    public function getUpdater(): ?KHanIdentity
     {
         return $this->getResponsibleUser($this->updated_by);
     }
@@ -233,7 +281,7 @@ class KHanModel extends ActiveRecord
      *
      * @return string
      */
-    public function getCreatedTime()
+    public function getCreatedTime(): string
     {
         return Jalali::date(Jalali::KHAN_LONG, $this->created_at);
     }
@@ -243,7 +291,7 @@ class KHanModel extends ActiveRecord
      *
      * @return string
      */
-    public function getUpdatedTime()
+    public function getUpdatedTime(): string
     {
         return Jalali::date(Jalali::KHAN_LONG, $this->updated_at);
     }
@@ -253,8 +301,17 @@ class KHanModel extends ActiveRecord
      *
      * @return integer value of the latest activity in [[updated_at]] field
      */
-    public function getLastFlow()
+    public function getLastFlow(): int
     {
         return $this->updated_at;
+    }
+
+    /**
+     * Get list of recorded history for this record
+     */
+    public function getActionHistory()
+    {
+        return $this->hasMany(SysHistoryDatabase::class, ['field_id' => 'id'])
+            ->andWhere(['table' => static::tableName()]);
     }
 }

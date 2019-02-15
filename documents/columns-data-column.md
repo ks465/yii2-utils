@@ -1,4 +1,7 @@
 #DataColumn Class
+Documentation Edition: 1.0-970820
+Class Version: 0.1.0-970820
+
 [[khans\utils\columns\DataColumn|This class]] extends \kartik\grid\DataColumn only to simplify routine, uniform development.
 + Vertical alignment is set to _middle_. 
 + Horizontal alignment is set to _center_.

@@ -7,6 +7,13 @@
  */
 
 
+/**
+ * Module VarDump defines functions to replace PHP var_dump with a cleaner look
+ *
+ * @package khans\utils
+ * @version 0.3.2-970920
+ * @since   1.0
+ */
 namespace {
 
     use khans\utils\components\{SqlFormatter, VarDump};
@@ -147,7 +154,6 @@ namespace khans\utils\components {
     use ReflectionClass;
     use ReflectionException;
     use ReflectionMethod;
-
 
     /**
      * Interface for a theme of the dump output

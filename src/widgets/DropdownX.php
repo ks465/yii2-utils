@@ -9,12 +9,11 @@
 
 namespace khans\utils\widgets;
 
-
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
 
 /**
- * Class KHDropDown accepts a simpler configuration array for creating a [[\kartik\dropdown\DropdownX]]
+ * Class DropDownX accepts a simpler configuration array for creating a [[\kartik\dropdown\DropdownX]]
  *
  * @package khans\utils\widgets
  * @version 0.1.2-971008

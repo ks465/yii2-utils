@@ -1,0 +1,164 @@
+@font-face {
+    font-family: "parsi";
+    src: url('IRANSansWebFaNum_UltraLight.woff') format('woff2');
+}
+
+*, body, html {
+    font-family: parsi;
+}
+
+.glyphicon {
+    font-family: "Glyphicons Halflings" !important;
+}
+
+.fa {
+    font-family: "FontAwesome" !important;
+}
+
+html, body, input, .rtl {
+    direction: rtl;
+    color: #0e7f08;
+    background-color: #fffff2;
+}
+
+.navbar-brand {
+    padding: 0 !important;
+}
+
+.dropdown-menu {
+    /*padding: 3px 3px 3px 25px;*/
+    text-align: right;
+    /*float: right;*/
+}
+
+.checkbox label, .radio label {
+    padding-right: 20px;
+}
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+    position: absolute;
+    margin-right: -20px;
+}
+.dropdown-submenu > a:before {
+    content: '◄';
+    float: left;
+    color: #ccc;
+    margin-left: -15px;
+}
+
+.dropdown-submenu > a:after {
+    display: none !important;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    border-radius: 6px 0 6px 6px !important;
+    left: auto !important;
+    top: auto !important;
+    right: calc(100% - 5px);
+}
+
+table.kv-child-table {
+    width: 100%;
+}
+
+a.goToday {
+    margin: -20px;
+    position: fixed;
+}
+
+#spinner-frame {
+    z-index: 10000;
+}
+
+.pars-wrap {
+    overflow: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap !important;
+}
+
+div.pdp-default {
+    z-index: 5000;
+}
+
+html, body {
+    background: url("../image/aut-l.png") no-repeat fixed center;
+}
+
+
+.ltr, .datepicker-plot-area, .bootstrap-touchspin, .pagination {
+    direction: ltr;
+}
+
+.file-error-message ul {
+    text-align: right !important;
+}
+
+.checkbox-inline, .radio-inline {
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    margin-bottom: 0;
+    padding-right: -20px;
+    position: relative;
+    vertical-align: middle;
+}
+
+nav.navbar-inverse {
+    background-color: #3c8dbc;
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+    background-color: #1234FF;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #DDDDBB;
+}
+
+.close {
+    float: left;
+}
+
+.form-horizontal .control-label {
+    float: right;
+}
+
+.x-dropdown .checkbox {
+    margin-right: 15px;
+    padding-left: 2px;
+}
+
+.x-dropdown input {
+    margin-right: -25px;
+    margin-top: 0;
+}
+
+.r-dropdown {
+    left: auto !important;
+}
+
+.polaroid {
+    position: relative;
+    width: 220px;
+}
+
+.polaroid img {
+    border: 10px solid #fff;
+    border-bottom: 20px solid #fff;
+    -webkit-box-shadow: 3px 3px 3px #777;
+    -moz-box-shadow: 3px 3px 3px #777;
+    box-shadow: 3px 3px 3px #777;
+}
+
+.rotate {
+    -moz-transform: rotate(-90.0deg); /* FF3.5+ */
+    -o-transform: rotate(-90.0deg); /* Opera 10.5 */
+    -webkit-transform: rotate(-90.0deg); /* Saf3.1+, Chrome */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083); /* IE6,IE7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)"; /* IE8 */
+}
+
+.select2-container .select2-selection__rendered {
+    width: 0 !important;
+    min-width: 100% !important;
+}

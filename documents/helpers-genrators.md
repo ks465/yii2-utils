@@ -1,17 +1,22 @@
 #Generators
+Documentation Edition: 1.2-971126
+Class Version: 0.4.0-971122
+
 `Yii2` comes with a handful of good generators for agile development. In addition to that, `johnitvn/yii2-ajaxcrud` has a very beautiful AJAX modal CRUD system.
 So these generators are mostly useful for setting some defaults.
 
 ##Form Generator
 Yii2 Form Generator only creates a view file for the given model. This version generates a very basic action file and a view containing a `kartik\form\ActiveForm`.
 
-##Model Generator
-This generator is basically the same as the Yii version, except for the model base class and content of the query. The base class for the model is `khans\utils\models\KHanModel`. The query contains an empty body. 
+##Model Generators
++ `Default`: This generator is basically the same as the Yii version, except for the model base class and content of the query. The base class for the model is `khans\utils\models\KHanModel`. The query contains an empty body. 
++ `Eav`: This generator adds [EavBehavior] to model and [EavQueryTrait] to the accompanied query for EAV pattern.
 
 ##Controller Generator
 This generator is basically the same as the Yii version, except for the controller base class. The base class for the model is `\khans\utils\controllers\KHanWebController`.
 
 ##CRUD Generators
+By setting `Enable EAV Pattern` the generated pages have extra required codes to manipulate EAV values flawlessly as genuine attributes of the model itself. At this time, sorting by EAV attributes is not implemented.
 This generator has four templates:
 + `Default (giiCrudAjax)`: Generates an AJAX CRUD similar to `johnitvn/yii2-ajaxcrud`.
   - `controller` in this template has very little changes. Persian content, plus PJAX container ID depending the controller name.
@@ -42,3 +47,5 @@ khans\utils\widgets\GridView::widget([
 ]);
 ```
 The result is a list for a given record in `Users` table and below it a grid view containing all the records in `BooksRead` for the user.
+
+**_enableEAV_** in the CRUD generator lets the created `_columns`, `view`, and `_form` utilize EAV pattern for a model which is already designed for this pattern.

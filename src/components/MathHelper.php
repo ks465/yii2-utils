@@ -17,7 +17,7 @@ use yii\base\BaseObject;
  * For examples please see [Math Helper Guide](guide:components-math-helper.md)
  *
  * @package khans\utils
- * @version 0.1.1-970803
+ * @version 0.1.2-971112
  * @since   1.0
  */
 class MathHelper extends BaseObject
@@ -188,5 +188,37 @@ class MathHelper extends BaseObject
         }
 
         return trim($text);
+    }
+
+    /**
+     * Calculate a two-digit number for the given number-as-string as check digit
+     *
+     * @param string|integer $number
+     *
+     * @return string
+     */
+    public static function checkDigit($number)
+    {
+        $sum1 = $sum2 = 0;
+        $alternate = false;
+        for ($i = strlen($number) - 1; $i >= 0; $i--) {
+            $n1 = $n2 = substr($number, $i, 1);
+            if ($alternate) {
+                $n1 *= 2;
+                if ($n1 > 9) {
+                    $n1 = ($n1 % 10) + 1;
+                }
+                $sum1 += $n1;
+            } else {
+                $n2 *= 3;
+                if ($n2 > 9) {
+                    $n2 = ($n2 % 10) + 1;
+                }
+                $sum2 += $n2;
+            }
+            $alternate = !$alternate;
+        }
+
+        return ($sum1 % 10) . ($sum2 % 10);
     }
 }

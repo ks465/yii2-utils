@@ -9,7 +9,6 @@
 
 namespace khans\utils\columns;
 
-
 use kartik\grid\GridView;
 use kartik\select2\Select2;
 use yii\base\InvalidConfigException;
@@ -31,7 +30,7 @@ class EnumColumn extends \kartik\grid\EnumColumn
      */
     public function init()
     {
-        if(empty($this->enum)){
+        if (empty($this->enum)) {
             throw new InvalidConfigException('Enum List is missing.');
         }
         $this->filterType = GridView::FILTER_SELECT2;

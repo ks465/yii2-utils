@@ -11,7 +11,6 @@ namespace khans\utils\components;
 
 use Exception;
 
-
 /**
  * JalaliX
  * Some additional capability added to [[Jalali]] Class.

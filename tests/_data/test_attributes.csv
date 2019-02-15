@@ -1,0 +1,6 @@
+id,attr_name,attr_type,entity_table
+1,request_a,decimal,test_entities
+2,field_a,integer,non_existent_1
+3,request_b,decimal,test_entities
+4,request_c,decimal,test_entities
+5,campus,string,non_existent_2

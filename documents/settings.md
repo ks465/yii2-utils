@@ -1,4 +1,7 @@
 #Setting Class
+Documentation Edition: 1.0-971112
+Class Version: 0.1-970803
+
 Contains all the semi-static values for the applications.
 Use internal SQLite or something for hibernating settings.
 

@@ -1,4 +1,7 @@
 #DatePicker Widget
+Documentation Edition: 1.0-970628
+Class Version: 0.2.1-941201
+
 This class extends [[\faravaghi\jalaliDatePicker\jalaliDatePicker]]. 
 Idea of creating this widget is to simplify creating date picker widgets.
 There is three attribute to set and the widget works:

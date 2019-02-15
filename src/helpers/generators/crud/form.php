@@ -2,7 +2,7 @@
 /**
  *
  * @package KHanS\Utils
- * @version 0.2.1-971020
+ * @version 0.2.2-971122
  * @since   1.0
  */
 
@@ -11,6 +11,7 @@
 /* @var $generator khans\utils\helpers\generators\crud\Generator */
 
 echo $form->field($generator, 'modelClass');
+echo $form->field($generator, 'enableEAV')->checkbox();
 echo $form->field($generator, 'searchModelClass');
 echo $form->field($generator, 'controllerClass');
 echo $form->field($generator, 'viewPath');
@@ -22,5 +23,4 @@ echo $form->field($generator, 'indexWidgetType')->dropDownList([
     'list' => 'ListView',
 ]);
 echo $form->field($generator, 'enableI18N')->checkbox();
-//echo $form->field($generator, 'enablePjax')->checkbox();
 echo $form->field($generator, 'messageCategory');

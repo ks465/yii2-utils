@@ -64,6 +64,8 @@ class Jalali extends BaseObject
     const KHAN_SHORT = "Y/m/d H:i:s";
     const KHAN_LONG = "l S F Y، H و i دقیقه";
     const KHAN_FILENAME = "Y_m_d-H_i";
+    const KHAN_LOG = "Y_m_d-H_i_s";
+    const KHAN_DATE = "Y/m/d";
 
     /**
      * @var int
@@ -430,20 +432,6 @@ class Jalali extends BaseObject
     }
 
     /**
-     * Calculates the years from reference Rasad year
-     *
-     * @param int $yearValue
-     *
-     * @return int
-     */
-    private static function calcRasad($yearValue)
-    {
-        $Rasad = $yearValue + 2346;
-
-        return $Rasad;
-    }
-
-    /**
      * Returns abbreviated --single letter-- names of the weekday.
      *
      * @param int $dayValue 0-based week-day number
@@ -595,8 +583,6 @@ class Jalali extends BaseObject
         return $monthShort[$monthValue];
     }
 
-    //<editor-fold desc="Getters">
-
     /**
      * Converts digits to Persian traditional font face and
      * corrects the no-width space in words.
@@ -612,6 +598,22 @@ class Jalali extends BaseObject
         $F = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
 
         return str_replace($L, $F, $phrase);
+    }
+
+    //<editor-fold desc="Getters">
+
+    /**
+     * Calculates the years from reference Rasad year
+     *
+     * @param int $yearValue
+     *
+     * @return int
+     */
+    private static function calcRasad($yearValue)
+    {
+        $Rasad = $yearValue + 2346;
+
+        return $Rasad;
     }
 
     /**

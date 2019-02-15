@@ -1,7 +1,6 @@
 #ArrayHelper Class
-Documentation Edition: 1.0-970803
-
-Class Version: 0.2-970803
+Documentation Edition: 1.2-971112
+Class Version: 0.3.1-971027
 
 This class contains more methods for transforming and reshaping arrays.
 It extends \yii\helpers\ArrayHelper so there is only one class to import into namespace.
@@ -109,3 +108,12 @@ ArrayHelper::groupBy($query->all(), 'short_name', function ($dataArray){
  'PhD.Female' => ['active_year' => 93, 'grade' => 'PhD', 'enter_type' => 'Pardis', 'gender' => 'Female', 'students' => 44, '_data_' => '93/44',],
 ];
 ```
+
+##appendTo
+Appends the given string to each value in the array recursively.
+##prependTo
+Prepends the given string to each value in the array recursively.
+##appendToKeys
+Appends the given string to each key in the array recursively.
+##prependToKeys
+Prepends the given string to each key in the array recursively.

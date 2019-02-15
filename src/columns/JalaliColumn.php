@@ -9,7 +9,6 @@
 
 namespace khans\utils\columns;
 
-
 use khans\utils\components\Jalali;
 use khans\utils\components\StringHelper;
 
@@ -36,7 +35,7 @@ class JalaliColumn extends DataColumn
     public function init()
     {
         if (empty($this->width)) {
-            $this->width = '75px';
+            $this->width = '100px';
         }
         $this->filterWidgetOptions['htmlOptions']['autocomplete'] = 'off'; //disable browser autocomplete for all filter input elements
         $this->filterType = 'khans\utils\widgets\DatePicker';

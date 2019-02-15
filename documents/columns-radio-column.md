@@ -1,4 +1,7 @@
 #RadioColumn Class
+Documentation Edition: 1.0-970904
+Class Version: 0.1.0-970904
+
 [[khans\utils\columns\RadioColumn|This class]] extends \kartik\grid\RadioColumn only to simplify routine, uniform development.
 Vertical alignment is set to _middle_, and horizontal alignment is set to _center_.
 This is true for both the header and the content. 

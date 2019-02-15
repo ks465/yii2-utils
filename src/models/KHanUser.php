@@ -9,36 +9,20 @@
 
 namespace khans\utils\models;
 
-
 use yii\base\InvalidConfigException;
 use yii\web\User;
 
 /**
- * User model
+ * User is the class for the `user` application component that manages the user authentication status.
+ *
+ * @property string       $fullName             نام کامل کاربر
+ * @property string       $fullId               نام کامل کاربر و کد شناسایی
+ * @property boolean      $isSuperAdmin         یک مدیر سیستم است
+ * @property KHanIdentity $identity
  *
  * @package KHanS\Utils
- * @version 0.3-0-970803
+ * @version 0.4-1-971111
  * @since   1.0
- * // * @property integer $id                   شماره کاربر
- * // * @property string $username             شناسه کاربر
- * // * @property string $auth_key             کلید تشخیص هویت
- * // * @property string $password_hash        رمز گذرواژه
- * // * @property string $password_reset_token بلیت بازنشانی گذرواژه
- * // * @property string $access_token         کلید دسترسی خودکار
- * // *
- * // * @property string $name                  نام کاربر
- * // * @property string $family                نام خانوادگی کاربر
- * // * @property string $email                ایمیل کاربر
- * // *
- * // * @property integer $status               وضعیت فعال بودن کاربر
- * // * @property integer $last_visit_time       زمان آخرین ورود کاربر به سامانه
- * // * @property integer $create_time           زمان ساخت رکورد کاربر
- * // * @property integer $update_time           زمان آخرین ویرایش رکورد کاربر
- * // * @property integer $delete_time           زمان پاک کردن رکورد کاربر از سامانه
- * // *
- * @property string  $fullName             نام کامل کاربر
- * @property string  $fullId               نام کامل کاربر و کد شناسایی
- * @property boolean $isSuperAdmin         یک مدیر سیستم است
  */
 class KHanUser extends User
 {
@@ -58,7 +42,7 @@ class KHanUser extends User
     /**
      * @throws \yii\base\InvalidConfigException
      */
-    public function init()
+    public function init(): void
     {
         if (empty($this->userTable)) {
             throw new InvalidConfigException('userTable is not defined in user component');
@@ -68,11 +52,29 @@ class KHanUser extends User
     }
 
     /**
+     * Save last login time of the user in the identity table. By doing this a behavior
+     *
+     * @param KHanIdentity $identity the user identity information
+     * @param bool         $cookieBased whether the login is cookie-based
+     * @param int          $duration number of seconds that the user can remain in logged-in status.
+     * If 0, it means login till the user closes the browser or the session is manually destroyed.
+     */
+    protected function afterLogin($identity, $cookieBased, $duration): void
+    {
+        $b = $this->identity->detachBehavior('timestamp');
+        $this->identity->last_visit_time = time();
+        $this->identity->save();
+        $this->identity->attachBehavior('timestamp', $b);
+
+        parent::afterLogin($identity, $cookieBased, $duration);
+    }
+
+    /**
      * Add extra fields sometimes required
      *
      * @return array
      */
-    public function extraFields()
+    public function extraFields(): array
     {
         return ['fullId', 'fullName'];
     }
@@ -82,7 +84,7 @@ class KHanUser extends User
      *
      * @return string
      */
-    public function getFullName()
+    public function getFullName(): ?string
     {
         return $this->identity->fullName;
     }
@@ -92,7 +94,7 @@ class KHanUser extends User
      *
      * @return string
      */
-    public function getFullId()
+    public function getFullId(): string
     {
         return $this->identity->fullId;
     }
@@ -102,7 +104,7 @@ class KHanUser extends User
      *
      * @return bool whether the current user is an admin.
      */
-    public function getIsSuperAdmin()
+    public function getIsSuperAdmin(): bool
     {
         if ($this->isGuest) {
             return false;

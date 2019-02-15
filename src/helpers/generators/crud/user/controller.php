@@ -3,7 +3,7 @@
  * This is the template for generating a User CRUD controller class file.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.2-971012
+ * @version 0.2.0-971111
  * @since   1.0
  */
 
@@ -43,6 +43,7 @@ use <?= ltrim($generator->searchModelClass, '\\') . (isset($searchModelAlias) ? 
 use yii\data\ActiveDataProvider;
 <?php endif; ?>
 use <?= ltrim($generator->baseControllerClass, '\\') ?>;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use \yii\web\Response;
 use yii\helpers\Html;
@@ -51,7 +52,7 @@ use yii\helpers\Html;
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> User model.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.2-971012
+ * @version 0.2.0-971111
  * @since   1.0
  */
 class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
@@ -93,8 +94,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         $request = Yii::$app->request;
         $model = $this->findModel(<?= $actionParams ?>);
 
-        if(!$request->isAjax){
-            throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
+       if(!$request->isAjax){
+            throw new NotFoundHttpException('دسترسی مستقیم به این برگه مجاز نیست.');
         }
 
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -122,8 +123,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     {
         $request = Yii::$app->request;
 
-        if(!$request->isAjax){
-            throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
+       if(!$request->isAjax){
+            throw new NotFoundHttpException('دسترسی مستقیم به این برگه مجاز نیست.');
         }
 
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -167,8 +168,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     {
         $request = Yii::$app->request;
 
-        if(!$request->isAjax){
-            throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
+       if(!$request->isAjax){
+            throw new NotFoundHttpException('دسترسی مستقیم به این برگه مجاز نیست.');
         }
 
         if(0 == <?= $actionParams ?>){
@@ -220,8 +221,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     {
         $request = Yii::$app->request;
 
-        if(!$request->isAjax){
-            throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
+       if(!$request->isAjax){
+            throw new NotFoundHttpException('دسترسی مستقیم به این برگه مجاز نیست.');
         }
 
         if(0 == $id){
@@ -283,8 +284,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     {
         $request = Yii::$app->request;
 
-        if(!$request->isAjax){
-            throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
+       if(!$request->isAjax){
+            throw new NotFoundHttpException('دسترسی مستقیم به این برگه مجاز نیست.');
         }
 
         $this->findModel(<?= $actionParams ?>)->delete();
@@ -351,8 +352,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     {
         $request = Yii::$app->request;
 
-        if(!$request->isAjax){
-            throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
+       if(!$request->isAjax){
+            throw new NotFoundHttpException('دسترسی مستقیم به این برگه مجاز نیست.');
         }
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -370,6 +371,30 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             'title'       => "افزودن کاربر تازه به داوطلبان ورود به دانشگاه",
             'content'     => '<span class="text-success">' .$counter . ' رکورد از ' . count($pks). ' انتخاب شده پاک شد.' . '</span>',
             'footer'      => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal'])
+        ];
+    }
+
+    /**
+     * Show history of login attempts for the given user
+     *
+     * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
+     *
+     * @return array AJAX grid view of login history
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionAudit(<?= $actionParams ?>)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $model = $this->findModel($id);
+        $dataProvider = new ActiveDataProvider(['query' => $model->getLoginHistory()]);
+
+        return [
+            'title'   => "رکورد #" . $model->id . ' جدول <?= $generator->tableTitle ?>',
+            'content' => $this->renderAjax('@khan/tools/views/history-users/record', [
+                'dataProvider' => $dataProvider,
+            ]),
+            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal'])
         ];
     }
 

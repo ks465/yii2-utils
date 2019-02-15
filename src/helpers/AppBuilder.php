@@ -28,7 +28,6 @@ class AppBuilder extends BaseObject
     const ACTIONS_USER_DEFAULT = 'behaviors, actions, login, login-attempts, logout, sign-up, request-password-reset, reset-password, ';
 
     //<editor-fold Desc="Model generators">
-
     /**
      * Create or overwrite model and query for the given table in the given namespace
      *
@@ -71,8 +70,7 @@ class AppBuilder extends BaseObject
                 'queryNs'                    => $modelsNS . '\\queries',
                 'generateLabelsFromComments' => true,
                 'interactive'                => false,
-//                'overwrite'                  => true,
-//                'template'                   => 'giiModel',
+                'overwrite'                  => true,
             ]);
         } catch (InvalidRouteException $e) {
             echo $e->getMessage();
@@ -121,7 +119,7 @@ class AppBuilder extends BaseObject
 
         return $result;
     }
-    //</editor-fold>
+    //</editor-fold Desc="Model generators">
 
     //<editor-fold Desc="Model Removers">
     /**
@@ -167,7 +165,7 @@ class AppBuilder extends BaseObject
     public static function unlinkMultiModels($models, $modelsNS): int
     {
         if (strpos($models, '*', 1) === false) {
-            throw new InvalidConfigException('You did not end the models names with *. May be you should use [[unlinkMultiModels]]');
+            throw new InvalidConfigException('You did not end the models names with *. May be you should use [[unlinkSingleModel]]');
         }
 
         $result = ExitCode::OK;
@@ -180,7 +178,7 @@ class AppBuilder extends BaseObject
 
         return $result;
     }
-    //</editor-fold>
+    //</editor-fold Desc="Model Removers">
 
     //<editor-fold Desc="CRUD Generators">
     /**
@@ -221,7 +219,6 @@ class AppBuilder extends BaseObject
                 'tableTitle'          => $tableTitle,
                 'enablePjax'          => true,
                 'interactive'         => false,
-//                'overwrite'          => true,
                 'template'            => 'giiCrudList',
             ]);
         } catch (InvalidRouteException $e) {
@@ -273,8 +270,6 @@ class AppBuilder extends BaseObject
                 'baseControllerClass' => $baseControllerClass,
                 'tableTitle'          => $tableTitle,
                 'interactive'         => false,
-//                'overwrite'           => true,
-//                'template'            => 'giiCrudAjax',
             ]);
         } catch (InvalidRouteException $e) {
             echo $e->getMessage();
@@ -330,7 +325,6 @@ class AppBuilder extends BaseObject
                 'tableTitle'          => $tableTitle,
                 'enablePjax'          => true,
                 'interactive'         => false,
-//                'overwrite'           => true,
                 'template'            => 'giiCrudUser',
             ]);
         } catch (InvalidRouteException $e) {
@@ -386,7 +380,6 @@ class AppBuilder extends BaseObject
                 'enablePjax'          => true,
                 'authForms'           => $modelNS,
                 'interactive'         => false,
-//                'overwrite'           => true,
                 'template'            => 'giiCrudAuth',
             ]);
         } catch (InvalidRouteException $e) {
@@ -401,44 +394,7 @@ class AppBuilder extends BaseObject
 
         return ExitCode::OK;
     }
-    //</editor-fold>
-
-    //<editor-fold Desc="CRUD Remover">
-    /**
-     * Remove CRUD files for the given controller in the given namespace.
-     *
-     * @param string $controllerClass controller fully qualified class with namespace in CamelCase (with first
-     *    uppercase letter and ending with Controller (app\\controllers\\PostController)
-     * @param string $viewPath Directory path or alias for the view files.
-     *
-     * @return int ExitCode If completed successfully
-     */
-    public static function unlinkCrud($controllerClass, $viewPath): int
-    {
-        try {
-            $controllerFilename = \Yii::getAlias('@' . str_replace('\\', '/', $controllerClass) . '.php');
-        } catch (InvalidArgumentException $e) {
-            Console::error($e->getMessage());
-
-            return ExitCode::UNAVAILABLE;
-        }
-
-        if (file_exists($controllerFilename)) {
-            if (!unlink($controllerFilename)) {
-                return ExitCode::OSERR;
-            }
-        }
-
-        $glob = \Yii::getAlias($viewPath) . '/*';
-        foreach (glob($glob) as $filename) {
-            if (!unlink($filename)) {
-                return ExitCode::OSERR;
-            }
-        }
-
-        return ExitCode::OK;
-    }
-    //</editor-fold>
+    //</editor-fold Desc="CRUD Generators">
 
     //<editor-fold Desc="Controller Generators">
     /**
@@ -473,8 +429,6 @@ class AppBuilder extends BaseObject
                 'baseClass'       => $baseClass,
                 'enablePjax'      => true,
                 'interactive'     => false,
-//                'overwrite'           => true,
-//                'template'        => 'giiController',
             ]);
         } catch (InvalidRouteException $e) {
             echo $e->getMessage();
@@ -488,9 +442,9 @@ class AppBuilder extends BaseObject
 
         return ExitCode::OK;
     }
-    //</editor-fold>
+    //</editor-fold Desc="Controller Generators">
 
-    //<editor-fold Desc="Controller Remover">
+    //<editor-fold Desc="CRUD Remover">
     /**
      * Remove Controller files for the given controller in the given namespace.
      *
@@ -504,5 +458,40 @@ class AppBuilder extends BaseObject
     {
         return self::unlinkCrud($controllerClass, $viewPath);
     }
-    //</editor-fold>
+
+    /**
+     * Remove CRUD files for the given controller in the given namespace.
+     *
+     * @param string $controllerClass controller fully qualified class with namespace in CamelCase (with first
+     *    uppercase letter and ending with Controller (app\\controllers\\PostController)
+     * @param string $viewPath Directory path or alias for the view files.
+     *
+     * @return int ExitCode If completed successfully
+     */
+    public static function unlinkCrud($controllerClass, $viewPath): int
+    {
+        try {
+            $controllerFilename = \Yii::getAlias('@' . str_replace('\\', '/', $controllerClass) . '.php');
+        } catch (InvalidArgumentException $e) {
+            Console::error($e->getMessage());
+
+            return ExitCode::UNAVAILABLE;
+        }
+
+        if (file_exists($controllerFilename)) {
+            if (!unlink($controllerFilename)) {
+                return ExitCode::OSERR;
+            }
+        }
+
+        $glob = \Yii::getAlias($viewPath) . '/*';
+        foreach (glob($glob) as $filename) {
+            if (!unlink($filename)) {
+                return ExitCode::OSERR;
+            }
+        }
+
+        return ExitCode::OK;
+    }
+    //</editor-fold Desc="CRUD Remover">
 }

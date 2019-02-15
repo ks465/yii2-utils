@@ -51,7 +51,8 @@ class ConfirmButton extends Dialog
      */
     public $id = null;
     /**
-     * @var string type of dialog modal. One of Confirm::TYPE_* constants. Default is [[\khans\utils\widgets\ConfirmButton::TYPE_DANGER]].
+     * @var string type of dialog modal. One of Confirm::TYPE_* constants. Default is
+     *     [[\khans\utils\widgets\ConfirmButton::TYPE_DANGER]].
      */
     public $type = ConfirmButton::TYPE_DANGER;
     /**
@@ -106,7 +107,8 @@ class ConfirmButton extends Dialog
     /**
      * Set the required setup configurations.
      *
-     * @throws InvalidConfigException if the [[\khans\utils\widgets\ConfirmButton\formId]] is not set in the configuration.
+     * @throws InvalidConfigException if the [[\khans\utils\widgets\ConfirmButton\formId]] is not set in the
+     *     configuration.
      */
     public function init()
     {

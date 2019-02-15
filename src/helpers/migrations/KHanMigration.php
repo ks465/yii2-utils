@@ -20,7 +20,7 @@ use yii\db\Migration;
  * Most of these capabilities are targeted toward MariaDB only.
  *
  * @package KHanS\Utils
- * @version 0.4.0-971013
+ * @version 0.5.2-971122
  * @since   1.0
  */
 class KHanMigration extends Migration
@@ -43,6 +43,20 @@ class KHanMigration extends Migration
     }
 
     /**
+     * Create a field of type ENUM
+     *
+     * @param array list of ENUMs
+     *
+     * @return \yii\db\ColumnSchemaBuilder|\yii\db\mysql\ColumnSchemaBuilder the column instance which can be further
+     * customized.
+     * @throws NotSupportedException
+     */
+    protected function enum(array $enum)
+    {
+        return $this->getDb()->getSchema()->createColumnSchemaBuilder('ENUM', '"' . implode('", "', $enum) . '"');
+    }
+
+    /**
      * Create an auto increment primary key of type SMALLINT
      *
      * @param integer $length precision definition
@@ -55,6 +69,20 @@ class KHanMigration extends Migration
         return $this->smallInteger($length)->unique()->notNull()->append(' NOT NULL AUTO_INCREMENT');
     }
 
+    /**
+     * Creates a BIT column.
+     *
+     * @return \yii\db\ColumnSchemaBuilder|\yii\db\mysql\ColumnSchemaBuilder the column instance which can be further
+     * customized.
+     */
+    protected function bit()
+    {
+        try {
+            return $this->getDb()->getSchema()->createColumnSchemaBuilder('bit');
+        } catch (NotSupportedException $e) {
+            return $this->boolean();
+        }
+    }
 
     /**
      * Creates a longtext column.

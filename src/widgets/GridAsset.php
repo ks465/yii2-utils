@@ -14,7 +14,7 @@ class GridAsset extends AssetBundle
     /**
      * @var string the directory that contains the source asset files for this asset bundle.
      */
-    public $sourcePath = '@khan/src/widgets/assets';
+    public $sourcePath = '@khan/widgets/assets';
 
     /**
      * @var array list of CSS files that this bundle contains. Each CSS file can be specified

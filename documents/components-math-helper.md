@@ -1,4 +1,7 @@
 #MathHelper Class
+Documentation Edition: 1.2-971112
+Class Version: 0.1.2-971112
+
 This class contains methods to do some mathematical routines easier.
 
 ##floorBy()
@@ -67,4 +70,20 @@ This method converts given number from digital presentation to textual presentat
 echo MathHelper::numberToWord(-690); //منهای ششصد و نود
 echo MathHelper::numberToWord(100001); //یکصد هزار و یک
 echo MathHelper::numberToWord(3.936); //سه ممیز نهصد و سی و شش هزارم
+```
+
+##checkDigit
+This method calculates a check digit (in fact two-digit check number) for the given number
+
+```php
+expect("12", MathHelper::checkDigit(12))->equals("26");
+expect("866", MathHelper::checkDigit(866))->equals("34");
+expect("3,283", MathHelper::checkDigit(3283))->equals("35");
+expect("31,201", MathHelper::checkDigit(31201))->equals("28");
+expect("895,031", MathHelper::checkDigit(895031))->equals("41");
+expect("1,275,830", MathHelper::checkDigit(1275830))->equals("10");
+expect("48,152,709", MathHelper::checkDigit(48152709))->equals("41");
+expect("397,029,806", MathHelper::checkDigit(397029806))->equals("81");
+expect("4,853,951,413", MathHelper::checkDigit(4853951413))->equals("22");
+expect("71,971,865,297", MathHelper::checkDigit(71971865297))->equals("40");
 ```

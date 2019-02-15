@@ -16,7 +16,7 @@ use yii\base\InvalidConfigException;
  * Show CAPTCHA with additional hint and unique look
  *
  * @package khans\utils\widgets
- * @version 2.1.0-971007
+ * @version 2.1.1-971112
  * @since   1.0.0
  */
 class Captcha extends \yii\base\Widget
@@ -57,8 +57,8 @@ class Captcha extends \yii\base\Widget
         if (!($this->form instanceof \kartik\form\ActiveForm)) {
             throw new InvalidConfigException('The form should be \kartik\form\ActiveForm');
         }
-        if (!($this->model instanceof \yii\base\Model)) {
-            throw new InvalidConfigException('The model should be \yii\base\Model');
+        if (!($this->model instanceof \khans\utils\models\KHanModel)) {
+            throw new InvalidConfigException('The model should be \khans\utils\models\KHanModel');
         }
         parent::init();
     }

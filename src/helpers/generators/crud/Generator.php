@@ -3,14 +3,18 @@
 
 namespace khans\utils\helpers\generators\crud;
 
+use khans\utils\components\StringHelper;
+use khans\utils\tools\models\SysEavAttributes;
 use Yii;
+use yii\db\Query;
 use yii\gii\CodeFile;
+use yii\helpers\Inflector;
 
 /**
  * This generator will set defaults for the parent generator only.
  *
  * @package KHanS\Utils
- * @version 0.2.1-971020
+ * @version 0.4.0-971122
  * @since   1.0
  */
 class Generator extends \yii\gii\generators\crud\Generator
@@ -24,9 +28,14 @@ class Generator extends \yii\gii\generators\crud\Generator
      */
     public $tableTitle;
     /**
-     * @var string namespace for the data model classes in the unique case of creating authentication controller and actions.
+     * @var string namespace for the data model classes in the unique case of creating authentication controller and
+     *     actions.
      */
     public $authForms = '';
+    /**
+     * @var bool activate EAV pattern for the model and actions
+     */
+    public $enableEAV = false;
 
     /**
      * @return string name of the code generator
@@ -69,7 +78,7 @@ class Generator extends \yii\gii\generators\crud\Generator
     {
         return array_merge(parent::rules(), [
             [['authForms'], 'filter', 'filter' => function($value) { return trim($value, '\\'); }],
-
+            [['enableEAV'], 'boolean'],
         ]);
     }
 
@@ -80,6 +89,7 @@ class Generator extends \yii\gii\generators\crud\Generator
     {
         return array_merge(parent::attributeLabels(), [
             'authForms' => 'Namespace of the Authentication Forms',
+            'enableEAV' => 'Enable EAV pattern',
         ]);
     }
 
@@ -92,6 +102,7 @@ class Generator extends \yii\gii\generators\crud\Generator
             'authForms' => 'If the template is <code>giiCrudAuth</code>, the generator can generate models for authentications forms
 (LoginForm, PasswordResetRequestForm, ResetPasswordForm, SignupForm). If you have already these model leave this box empty. If you need
 These authentication validation models to be created, set the namespace of the created models here.',
+            'enableEAV' => 'If the given model is designed using EAV pattern, enabling this option adds <code>the attributes</code> to the CRUD pages.',
         ]);
     }
 
@@ -103,6 +114,10 @@ These authentication validation models to be created, set the namespace of the c
      */
     public function generate()
     {
+        if (empty($this->tableTitle)) {
+            $this->tableTitle = $this->getTableComment();
+        }
+
         $files = parent::generate();
 
         if (!empty($this->authForms)) {
@@ -122,5 +137,50 @@ These authentication validation models to be created, set the namespace of the c
         }
 
         return $files;
+    }
+
+    /**
+     * Generates customized code for active field when database column type is bit, which translates to PHP boolean
+     * type. Otherwise pass control to parent class to generate codes.
+     *
+     * @param string $attribute name of attribute to process
+     *
+     * @return string form input element
+     */
+    public function generateActiveField($attribute)
+    {
+        $tableSchema = $this->getTableSchema();
+            $column = $tableSchema->columns[$attribute];
+            if ($column->phpType === 'boolean') {
+                return "\$form->field(\$model, '$attribute', [
+                'template'     => '{input} {label}{error}{hint}',
+            ])->widget(CheckboxX::class, [
+                'autoLabel' => false,
+                'pluginOptions' => [
+                    'threeState' => false,
+                ],
+            ]);";
+            }
+
+        return parent::generateActiveField($attribute);
+    }
+
+    /**
+     * If title is not given in the config, produce it from comment of the table in database.
+     * If comment is not available return Table Name
+     *
+     * @return string
+     */
+    private function getTableComment()
+    {
+        $tableName = $this->getTableSchema()->fullName;
+        $query = new Query();
+
+        $comment = $query->from('INFORMATION_SCHEMA.TABLES')
+            ->select(['table_comment'])
+            ->where(['table_name' => $tableName])
+            ->scalar();
+
+        return $comment ? : Inflector::humanize($tableName, true);
     }
 }

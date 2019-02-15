@@ -1,0 +1,53 @@
+@font-face {
+    font-family: "parsi-u";
+    src: url('IRANSansWebFaNum_UltraLight.woff') format('woff2');
+}
+
+@font-face {
+    font-family: "parsi-l";
+    src: url('IRANSansWebFaNum_Light.woff') format('woff2');
+}
+
+@font-face {
+    font-family: "parsi-n";
+    src: url('IRANSansWebFaNum.woff') format('woff2');
+}
+
+@font-face {
+    font-family: "parsi-m";
+    src: url('IRANSansWebFaNum_Medium.woff') format('woff2');
+}
+
+@font-face {
+    font-family: "parsi-b";
+    src: url('IRANSansWebFaNum_Bold.woff') format('woff2');
+}
+
+@font-face {
+    font-family: "parsi-old";
+url('BKoodakBold.woff') format('woff2');
+}
+
+.parsi-u {
+    font-family: "parsi-u" !important;
+}
+
+.parsi-l {
+    font-family: "parsi-l" !important;
+}
+
+.parsi-n {
+    font-family: "parsi-n" !important;
+}
+
+.parsi-m {
+    font-family: "parsi-m" !important;
+}
+
+.parsi-b {
+    font-family: "parsi-b" !important;
+}
+
+.parsi-old {
+    font-family: "parsi-old" !important;
+}

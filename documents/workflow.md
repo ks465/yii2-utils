@@ -1,4 +1,6 @@
 #Workflow
+Documentation Edition: 1.0-970820
+Class Version: 
 
 #Workflow Manager
 In this version workflow are saved in the database tables and managed using [[\cornernote\workflow\manager\Module]].
@@ -73,6 +75,7 @@ ActiveForm::end();
 + [$statusTable] name of table containing all statuses. 
 + [workflowID] ID of the workflow which the model is part of.
 
+#WorkflowField
 
 #ProgressColumn
 

@@ -9,7 +9,6 @@
 
 namespace khans\utils\components;
 
-
 use yii\base\BaseObject;
 
 /**

@@ -29,7 +29,7 @@ class Generator extends \yii\gii\generators\form\Generator
     public function getDescription()
     {
         return '<div class=" alert alert-info">' .
-            'This generator generates a view script file that displays a form to collect input for the specified model class.' .
+            'This generator helps you generate a script file that displays a form to collect input for the specified model class, and an action for receiving the posted data and show the generated view file.' .
             '</div>';
     }
 

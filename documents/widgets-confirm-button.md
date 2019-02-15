@@ -1,4 +1,7 @@
 #Confirm Button
+Documentation Edition: 1.0-970929
+Class Version: 1.1.0-970929
+
 This widget is a submit button in essence, which shows a confirmation dialog before submitting the form. It extends the [\kartik\dialog\Dialog] directly, so all of the parent widget are usable.
 It could submit form using both AJAX POST or normal POST. Remember that this widget should be placed in a form with POST method. The common parts of the setup are as follows:
 

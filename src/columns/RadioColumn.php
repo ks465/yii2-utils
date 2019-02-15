@@ -9,7 +9,6 @@
 
 namespace khans\utils\columns;
 
-
 use kartik\grid\GridView;
 
 /**

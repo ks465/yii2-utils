@@ -1,4 +1,7 @@
 #ViewHelper Class
+Documentation Edition: 1.0-971012
+Class Version: 0.3.0-971012
+
 This class contains all the utilities required for simpler and better view of objects in output.
 Normally output of the methods in this class is used only in the views.
 

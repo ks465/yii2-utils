@@ -1,4 +1,7 @@
 #DateRangePicker Widget
+Documentation Edition: 1.0-970802
+Class Version: 0.1.0-970802-dev
+
 This class extends [[\faravaghi\jalaliDateRangePicker\jalaliDateRangePicker]].
 This class presets many options and simplifies getting user input.
 The main attributes to set are:

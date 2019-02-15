@@ -1,4 +1,7 @@
 #SqlFormatter Class
+Documentation Edition: 1.0-960420
+Class Version: 0.1.1-960420
+
 This class is a third party Object. It is capable of producing well formatted SQL statements with coloring.
 The coloring is available in CLI and web. There is no need to do anything special to recognize the environment.
 Obviously if the CLI environment is not capable of highlighting, the output is in plain normal text. But there is no
@@ -15,7 +18,7 @@ _**There is no need to call methods in this class directly. Just use `explain` o
 You should require the containing class early in your scripts, in order to activate these shortcuts._**
 
 ```php
-require_once \Yii::getAlias('@khan/src/components/VarDump.php');
+require_once \Yii::getAlias('@khan/components/VarDump.php');
 ```
 
 Examples:

@@ -3,13 +3,12 @@
  * This is the template for generating a CRUD controller class file.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.0-970910
+ * @version 0.2.0-971111
  * @since   1.0
  */
 
 use yii\db\ActiveRecordInterface;
 use yii\helpers\StringHelper;
-
 
 /* @var $this yii\web\View */
 /* @var $generator khans\utils\helpers\generators\crud\Generator */
@@ -37,17 +36,18 @@ use Yii;
 use <?= ltrim($generator->modelClass, '\\') ?>;
 <?php if (!empty($generator->searchModelClass)): ?>
 use <?= ltrim($generator->searchModelClass, '\\') . (isset($searchModelAlias) ? " as $searchModelAlias" : "") ?>;
-<?php else: ?>
-use yii\data\ActiveDataProvider;
 <?php endif; ?>
+use yii\data\ActiveDataProvider;
 use <?= ltrim($generator->baseControllerClass, '\\') ?>;
+use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> model.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.0-970910
+ * @version 0.2.0-971111
  * @since   1.0
  */
 class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
@@ -140,6 +140,30 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         $this->findModel(<?= $actionParams ?>)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Show history of changes in the given record
+     *
+     * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
+     *
+     * @return array AJAX grid view of changes in the given record
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionAudit(<?= $actionParams ?>)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $model = $this->findModel($id);
+        $dataProvider = new ActiveDataProvider(['query' => $model->getActionHistory()]);
+
+        return [
+            'title'   => "رکورد #" . $model->id . ' جدول <?= $generator->tableTitle ?>',
+            'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
+                'dataProvider' => $dataProvider,
+            ]),
+            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal'])
+        ];
     }
 
     /**
