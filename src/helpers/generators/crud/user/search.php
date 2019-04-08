@@ -3,7 +3,7 @@
  * This is the template for generating CRUD search class of the specified model.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.2-971013
+ * @version 0.1.4-980119
  * @since   1.0
  */
 
@@ -22,6 +22,7 @@ $rules = $generator->generateSearchRules();
 $labels = $generator->generateSearchLabels();
 $searchAttributes = $generator->getSearchAttributes();
 $searchConditions = $generator->generateSearchConditions();
+$queryClass = get_class($generator->modelClass::find());
 
 echo "<?php\n";
 ?>
@@ -32,20 +33,20 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use <?= ltrim($generator->modelClass, '\\') . (isset($modelAlias) ? " as $modelAlias" : "") ?>;
-use yii\db\ActiveQuery;
+use <?= $queryClass ?>;
 
 /**
  * <?= $searchModelClass ?> represents the model behind the search form about `<?= $generator->modelClass ?>`.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.3-971104
+ * @version 0.1.4-980119
  * @since   1.0
  */
 class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $modelClass ?>
 
 {
     /**
-     * @var ActiveQuery centralized query object for this search model
+     * @var <?= $queryClass ?> centralized query object for this search model
      */
     public $query;
 

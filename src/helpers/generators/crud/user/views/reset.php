@@ -33,7 +33,8 @@ use kartik\form\ActiveForm;
 
         <?= "<?= " ?>$form->field($model, 'password_hash')->passwordInput() ?>
 
-        <?= "<?= " ?>$form->field($model, 'access_token')->textArea() ?>
+        <?= "<?= " ?>$form->field($model, 'access_token')->textArea(['rows' => 3)
+            ->hint('خالی گذاشتن این جعبه توکن دسترسی را پاک می‌کند. هر مقدار دیگر توکن ایمن تازه خواهد ساخت.') ?>
 
 
         <?='<?php if (!Yii::$app->request->isAjax){ ?>'."\n"?>

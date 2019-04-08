@@ -1,6 +1,6 @@
 #Generators
-Documentation Edition: 1.2-971126
-Class Version: 0.4.0-971122
+Documentation Edition: 1.3-980119
+Class Version: 0.5.0-980119
 
 `Yii2` comes with a handful of good generators for agile development. In addition to that, `johnitvn/yii2-ajaxcrud` has a very beautiful AJAX modal CRUD system.
 So these generators are mostly useful for setting some defaults.
@@ -26,6 +26,7 @@ This generator has four templates:
   - `_view` has specific form fields for `status`, `created_at`, and `updated_at` attributes.
   
 + `giiCrudList`: Generates a typical CRUD similar to `yii\gii\generators\crud\Generator`.
++ `giiCrudRead`: Generates a read-only index with modal view page. There is not any actions for create, update, or delete records.
 + `giiCrudUser`: Generates an AJAX CRUD based on `giiCrudAjax` specially designed to manger user tables.
 + `giiCrudAuth`: Generates a normal CRUD based on `giiCrudList` for authentication tasks. This template has the option to generate form models (LoginForm, PasswordResetRequestForm, ResetPasswordForm, SignupForm) for authentication.
  

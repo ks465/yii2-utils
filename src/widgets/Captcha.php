@@ -57,9 +57,7 @@ class Captcha extends \yii\base\Widget
         if (!($this->form instanceof \kartik\form\ActiveForm)) {
             throw new InvalidConfigException('The form should be \kartik\form\ActiveForm');
         }
-        if (!($this->model instanceof \khans\utils\models\KHanModel)) {
-            throw new InvalidConfigException('The model should be \khans\utils\models\KHanModel');
-        }
+
         parent::init();
     }
 

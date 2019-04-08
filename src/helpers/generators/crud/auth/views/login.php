@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= "<?= " ?>$form->field($model, 'username', [
         'options' => [
             'class' => 'form-group ltr text-right',
+            'style' => 'direction: ltr;',
         ],
         'addon'   => [
             'groupOptions' => ['class' => 'input-group-lg'],
@@ -52,6 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= "<?= " ?>$form->field($model, 'password', [
         'options' => [
             'class' => 'form-group ltr text-right',
+            'style' => 'direction: ltr;',
         ],
         'addon'   => [
             'groupOptions' => ['class' => 'input-group-lg'],

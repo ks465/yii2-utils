@@ -1,3 +1,4 @@
+Documentation Edition: 1.1-980119
 
 Personal Utilities for Simpler Coding
 =====================================
@@ -12,7 +13,7 @@ Add the newly created repo to your composer.json.
 "repositories":[
     {
         "type": "git",
-        "url": "https://github.com/ks465/"
+        "url": "https://github.com/ks465/yii2-utils.git"
     }
 ]
 ```

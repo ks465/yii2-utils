@@ -22,7 +22,7 @@ use khans\utils\models\queries\KHanQuery;
  * @property int    $type گونه ویرایش
  *
  * @package KHanS\Utils
- * @version 0.1.3-971125
+ * @version 0.2.0-971114
  * @since   1.0
  */
 class SysHistoryDatabase extends \khans\utils\models\KHanModel

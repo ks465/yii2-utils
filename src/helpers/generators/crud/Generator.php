@@ -3,8 +3,6 @@
 
 namespace khans\utils\helpers\generators\crud;
 
-use khans\utils\components\StringHelper;
-use khans\utils\tools\models\SysEavAttributes;
 use Yii;
 use yii\db\Query;
 use yii\gii\CodeFile;
@@ -14,7 +12,7 @@ use yii\helpers\Inflector;
  * This generator will set defaults for the parent generator only.
  *
  * @package KHanS\Utils
- * @version 0.4.0-971122
+ * @version 0.4.1-980119
  * @since   1.0
  */
 class Generator extends \yii\gii\generators\crud\Generator
@@ -60,6 +58,9 @@ class Generator extends \yii\gii\generators\crud\Generator
             '</li>' .
             '<li>' . '<code>giiCrudList</code> ' .
             'Generates general-use controller and actions and normal views.' .
+            '</li>' .
+            '<li>' . '<code>giiCrudRead</code> ' .
+            'Generates read-only controller and views.' .
             '</li>' .
             '<li>' . '<code>giiCrudUser</code> ' .
             'Generates controller and actions for user management.' .
@@ -110,7 +111,6 @@ These authentication validation models to be created, set the namespace of the c
      * Generates the code based on the current user input and the specified code template files.
      *
      * @return CodeFile[] a list of code files to be created.
-     * @throws \yii\base\InvalidConfigException
      */
     public function generate()
     {
@@ -150,9 +150,9 @@ These authentication validation models to be created, set the namespace of the c
     public function generateActiveField($attribute)
     {
         $tableSchema = $this->getTableSchema();
-            $column = $tableSchema->columns[$attribute];
-            if ($column->phpType === 'boolean') {
-                return "\$form->field(\$model, '$attribute', [
+        $column = $tableSchema->columns[$attribute];
+        if ($column->phpType === 'boolean') {
+            return "\$form->field(\$model, '$attribute', [
                 'template'     => '{input} {label}{error}{hint}',
             ])->widget(CheckboxX::class, [
                 'autoLabel' => false,
@@ -160,9 +160,23 @@ These authentication validation models to be created, set the namespace of the c
                     'threeState' => false,
                 ],
             ]);";
-            }
+        }
 
         return parent::generateActiveField($attribute);
+    }
+
+
+    /**
+     * Correct the conditions to include `$this->query` instead of `$query`
+     *
+     * @return array|void
+     */
+    public function generateSearchConditions()
+    {
+        $conditions = parent::generateSearchConditions();
+        $conditions = str_replace('$query', '$this->query', $conditions);
+
+        return $conditions;
     }
 
     /**
@@ -176,10 +190,20 @@ These authentication validation models to be created, set the namespace of the c
         $tableName = $this->getTableSchema()->fullName;
         $query = new Query();
 
-        $comment = $query->from('INFORMATION_SCHEMA.TABLES')
-            ->select(['table_comment'])
-            ->where(['table_name' => $tableName])
-            ->scalar();
+        if (Yii::$app->db->driverName === 'mysql') {
+            $comment = $query->from('INFORMATION_SCHEMA.TABLES')
+                ->select(['table_comment'])
+                ->where(['table_name' => $tableName])
+                ->scalar();
+        } elseif (Yii::$app->db->driverName === 'pgsql') {
+            $comment = $query->from('pg_description')
+                ->select(['description'])
+                ->innerJoin('pg_class', '{{pg_description}}.[[objoid]] = {{pg_class}}.[[relnamespace]]')
+                ->where(['relname' => $tableName])
+                ->scalar();
+        } else {
+            $comment = false;
+        }
 
         return $comment ? : Inflector::humanize($tableName, true);
     }

@@ -67,7 +67,6 @@ class KHanIdentity extends KHanModel implements IdentityInterface
     private $_isSuperAdmin = null;
 
     //<editor-fold Desc="Finders">
-
     /**
      * Finds user by email -- email is used as username
      *
@@ -139,7 +138,7 @@ class KHanIdentity extends KHanModel implements IdentityInterface
     {
         return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
-//    </editor-fold>
+    //</editor-fold>
 
     //<editor-fold Desc="Getters">
     /**
@@ -153,6 +152,7 @@ class KHanIdentity extends KHanModel implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null): KHanIdentity
     {
+        //todo: implement this!
 //        throw new \Exception('attach to database table');
 //        if (Authenticate::unlock($token)) {
 //            return new static([
@@ -242,7 +242,7 @@ class KHanIdentity extends KHanModel implements IdentityInterface
     {
         static::$_tableName = $tableName;
     }
-//    </editor-fold>
+    //</editor-fold>
 
     //<editor-fold Desc="Generators">
     /**

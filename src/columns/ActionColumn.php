@@ -22,7 +22,7 @@ use yii\helpers\{ArrayHelper, Url};
  * See [ActionColumn Guide](guide:columns-action-column.md)
  *
  * @package common\widgets
- * @version 2.3.0-971122
+ * @version 2.3.1-980119
  * @since   1.0
  */
 class ActionColumn extends \kartik\grid\ActionColumn
@@ -63,7 +63,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
         if ($this->dropdown and $this->runAsAjax) {
             throw new InvalidConfigException('Modal actions and dropdown menu are not compatible. Disable one of those.');
         }
-        if (Yii::$app->user->isSuperAdmin) {
+        if (isset(Yii::$app->user->isSuperAdmin) and Yii::$app->user->isSuperAdmin) {
             $this->audit = true;
         }
 

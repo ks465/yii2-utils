@@ -201,6 +201,7 @@ if (YII_ENV_DEV) {
                'class'     => 'khans\utils\helpers\generators\crud\Generator',
                'templates' => [
                    'giiCrudAjax' => '@khan/helpers/generators/crud/ajax',
+                   'giiCrudRead' => '@khan/helpers/generators/crud/read',
                    'giiCrudList' => '@khan/helpers/generators/crud/grid',
                    'giiCrudUser' => '@khan/helpers/generators/crud/user',
                    'giiCrudAuth' => '@khan/helpers/generators/crud/auth',

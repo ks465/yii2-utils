@@ -1,5 +1,5 @@
 #Full Config
-Documentation Edition: 1.3-971126
+Documentation Edition: 1.4-971209
 
 Contains the full detailed config for the applications.
 The full config is divided into two sections:
@@ -26,6 +26,48 @@ SpinnerAsset::register($this);
 ...
 ```
 
+##Database Config
+```php
+...
+'sqlite' => [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'sqlite:@app/db/database.db',
+    'charset' => 'utf8',
+    // Schema cache options (for production environment)
+    'enableSchemaCache' => true,
+    'schemaCacheDuration' => 60,
+    'schemaCache' => 'db-cache-sqlite',
+],
+'mysql' => [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=localhost;dbname=test',
+    'username' => 'phpmyadmin',
+    'password' => '123456',
+    'charset' => 'utf8',
+    // Schema cache options (for production environment)
+    'enableSchemaCache' => true,
+    'schemaCacheDuration' => 60,
+    'schemaCache' => 'db-cache-mysql',
+],
+'pgsql' => [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'pgsql:host=localhost;dbname=db_name',
+    'username' => 'db_username',
+     'password' => 'db_password',
+     'charset' => 'utf8',
+     'schemaMap' => [
+        'pgsql'=> [
+             'class'=>'yii\db\pgsql\Schema',
+             'defaultSchema' => 'public' //specify your schema here
+         ],
+     ],
+    // Schema cache options (for production environment)
+    'enableSchemaCache' => true,
+    'schemaCacheDuration' => 60,
+    'schemaCache' => 'db-cache-pgsql',
+],
+...
+```
 ##Console.config
 ###Components
 
@@ -105,6 +147,7 @@ if (YII_ENV_DEV) {
                 'templates' => [
                     'default' => '@khan/helpers/generators/crud/ajax',
                     'giiCrudList' => '@khan/helpers/generators/crud/grid',
+                    'giiCrudRead' => '@khan/helpers/generators/crud/read',
                     'giiCrudUser' => '@khan/helpers/generators/crud/user',
                     'giiCrudAuth' => '@khan/helpers/generators/crud/auth',
                 ],
