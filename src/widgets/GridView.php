@@ -34,7 +34,7 @@ use yii\i18n\Formatter;
  * For details of bulkAction usage see [guide]
  *
  * @package khans\utils\widgets
- * @version 2.3.6-971125
+ * @version 2.4.2-980128
  * @since   1.0
  */
 class GridView extends \kartik\grid\GridView
@@ -125,7 +125,7 @@ class GridView extends \kartik\grid\GridView
      */
     protected $content = '';
     /**
-     * @var string the modal size. Can be Modal::SIZE_LARGE or Modal::SIZE_SMALL, or empty for default.
+     * @var array the modal size. Can be Modal::SIZE_LARGE or Modal::SIZE_SMALL, or empty for default.
      */
     private $_createAction = [
         'action' => 'create',
@@ -148,13 +148,19 @@ class GridView extends \kartik\grid\GridView
             'size'    => Modal::SIZE_LARGE,
             "footer"  => "",// always need it for jquery plugin
             'options' => [
-                'tabindex' => false // important for Select2 to work properly
+                "id"      => "ajaxCrudModal",
+                'tabindex' => false, // important for Select2 to work properly
             ],
         ]);
         Modal::end();
 
         $this->pager = Yii::$app->params['pager'];
-        $this->dataProvider->getPagination()->pageParam = $this->id . '-page';
+
+        $page = $this->dataProvider->getPagination();
+        if (!empty($page)) {
+            $page->pageParam = $this->id . '-page';
+        }
+
         if (!empty($this->dataProvider->getSort())) {
             $this->dataProvider->getSort()->sortParam = $this->id . '-sort';
         }
@@ -165,7 +171,7 @@ class GridView extends \kartik\grid\GridView
             $this->dataProvider->pagination = ['pageSize' => 25];
         }
 
-        if (empty($this->title)) {
+        if (empty($this->title) and $this->title !== false) {
             $this->title = $this->getView()->title;
         }
 
@@ -175,8 +181,10 @@ class GridView extends \kartik\grid\GridView
                 $exporter = '';
                 break;
             case self::EXPORTER_MENU:
+                $exporterDP = clone $this->dataProvider;
+                $exporterDP->pagination = false;
                 $exporter = ExportMenu::widget([
-                    'dataProvider' => $this->dataProvider,
+                    'dataProvider' => $exporterDP,
                 ]);
                 $this->export = false;
                 break;
@@ -225,6 +233,9 @@ class GridView extends \kartik\grid\GridView
         }
 
         if (!empty($this->createAction) && $this->createAction !== false) {
+            if(isset($this->columns['action']['controller'])){
+                $this->_createAction['action'] = $this->columns['action']['controller'] . '/' . $this->_createAction['action'];
+            }
             if ($this->createAction === true) {
                 $this->createAction = $this->_createAction;
             } else {
@@ -248,7 +259,7 @@ class GridView extends \kartik\grid\GridView
     private function loadExportSegment()
     {
         Icon::map($this->getView(), Icon::FA); //required for font awesome
-        if ($this->export === true) {
+        if ($this->export === true or $this->export === GridView::EXPORTER_SIMPLE) {
             $this->export = [
                 'icon'        => 'download',
                 'fontAwesome' => true,
@@ -290,11 +301,17 @@ class GridView extends \kartik\grid\GridView
         if (empty($this->bulkAction['class'])) {
             $this->bulkAction['class'] = 'default';
         }
+        if (empty($this->bulkAction['icon'])) {
+            $this->bulkAction['icon'] = 'glyphicon-cog';
+        }
         if (empty($this->bulkAction['message'])) {
             $this->bulkAction['message'] = 'از انجام این دستور اطمینان دارید؟';
         }
         if (empty($this->bulkAction['hint'])) {
             $this->bulkAction['hint'] = 'با همه انتخاب شده‌ها';
+        }
+        if (empty($this->bulkAction['label'])) {
+            $this->bulkAction['label'] = '';
         }
 
         $this->panel['before'] .= '<div class="pull-left rtl">' .

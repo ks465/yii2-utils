@@ -1,6 +1,6 @@
 #GridView Class
 Documentation Edition: 1.1-971112
-Class Version: 2.3.5-971111
+Class Version: 2.4.2-980128
 
 GridView 1.* and AjaxGridView 1.* are merged together, and there is no AjaxGridView in the 2.* version.
 In order to reach AJAX activity, use [[\khans\utils\columns\ActionColumn|ActionColumn]] and set `runAsAjax = true,` for

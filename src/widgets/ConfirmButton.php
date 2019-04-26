@@ -40,7 +40,7 @@ use yii\helpers\Html;
  *```
  *
  * @package khans\utils\widgets
- * @version 1.1.0-970929
+ * @version 1.1.1-980130
  * @since   1.0.0
  */
 class ConfirmButton extends Dialog
@@ -82,11 +82,11 @@ class ConfirmButton extends Dialog
     /**
      * @var string label of the OK button in the modal dialog
      */
-    public $btnOKLabel = '';
+    public $btnOKLabel = 'آری';
     /**
      * @var string label of the Cancel button in the modal dialog
      */
-    public $btnCancelLabel = '';
+    public $btnCancelLabel = 'خیر';
     /**
      * @var string glyphicon icon name  of the OK button in the modal dialog. Default is "ok".
      */
@@ -117,7 +117,7 @@ class ConfirmButton extends Dialog
         }
 
         if (is_null($this->id)) {
-            $this->id = 'KHan_' . time();
+            $this->id = 'KHan_btn_' . str_replace('.', '_', microtime(true));
         }
 
         // multi-line messages would distort without this

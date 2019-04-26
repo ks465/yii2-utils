@@ -1,38 +1,30 @@
 <?php
-
-use khans\utils\widgets\GridView;
 use yii\helpers\Html;
+use khans\utils\widgets\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel khans\utils\tools\models\search\\SysEavAttributesSearch */
+/* @var $searchModel khans\utils\demos\data\SysEavAttributesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'EAV Attributes Table';
+$this->title = 'List of EAV Attributes';
+$this->params['breadcrumbs'][] = ['label' => 'Admin Tools', 'url' => ['/khan']];
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
 <div class="sys-eav-attributes-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <div id="ajaxCrudDatatable">
-        <?= GridView::widget([
-            'id'                 => 'sys-eav-attributes-datatable-pjax',
-            'dataProvider'       => $dataProvider,
-            'filterModel'        => $searchModel,
-            'columns'            => require(__DIR__ . '/_columns.php'),
-            'export'             => true,
-            'showRefreshButtons' => true,
-            'bulkAction'         => [
-                'action'  => 'bulk-delete',
-                'label'   => 'پاک‌کن',
-                'icon'    => 'trash',
-                'class'   => 'btn btn-danger btn-xs',
-                'message' => 'آیا اطمینان دارید همه را پا کنید؟',
-            ],
-            'createAction'       => [
-                'ajax' => true,
-            ],
-        ]) ?>
-    </div>
+    <?= GridView::widget([
+        'dataProvider'       => $dataProvider,
+        'filterModel'        => $searchModel,
+        'columns'            => require(__DIR__.'/_columns.php'),
+        'export'             => true,
+        'showRefreshButtons' => true,
+        'itemLabelSingle'    => 'داده',
+        'itemLabelPlural'    => 'داده‌ها',
+        'createAction'       => [
+            'ajax' => false,
+        ],
+    ]); ?>
 </div>

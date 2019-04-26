@@ -18,14 +18,6 @@ use yii\db\ActiveQuery;
 class SysEavValuesSearch extends SysEavValues
 {
     /**
-     * @var string Name of table in the [[SysEavAttributes]]
-     */
-    public $tableName;
-    /**
-     * @var string Name of attribute in the [[SysEavAttributes]]
-     */
-    public $attributeName;
-    /**
      * @var ActiveQuery centralized query object for this search model
      */
     public $query;
@@ -74,22 +66,22 @@ class SysEavValuesSearch extends SysEavValues
     {
         $dataProvider = new ActiveDataProvider([
             'query' => $this->query,
-            'sort'  => [
-                'attributes' => [
-                    'attribute_id',
-                    'record_id',
-                    'value',
-                    'status',
-                    'tableName'     => [
-                        'asc'  => ['entity_table' => SORT_ASC],
-                        'desc' => ['entity_table' => SORT_DESC],
-                    ],
-                    'attributeName' => [
-                        'asc'  => ['attr_name' => SORT_ASC],
-                        'desc' => ['attr_name' => SORT_DESC],
-                    ],
-                ],
-            ],
+//            'sort'  => [
+//                'attributes' => [
+//                    'attribute_id',
+//                    'record_id',
+//                    'value',
+//                    'status',
+//                    'tableName'     => [
+//                        'asc'  => ['entity_table' => SORT_ASC],
+//                        'desc' => ['entity_table' => SORT_DESC],
+//                    ],
+//                    'attributeName' => [
+//                        'asc'  => ['attr_name' => SORT_ASC],
+//                        'desc' => ['attr_name' => SORT_DESC],
+//                    ],
+//                ],
+//            ],
         ]);
 
         $this->load($params);
@@ -99,11 +91,14 @@ class SysEavValuesSearch extends SysEavValues
         }
 
         $this->query->andFilterWhere([
-            'id'            => $this->id,
-            'attribute_id'  => $this->attribute_id,
-            'tableName'     => $this->tableName,
-            'attributeName' => $this->attributeName,
-            'record_id'     => $this->record_id,
+            'id' => $this->id,
+            'attribute_id' => $this->attribute_id,
+            'record_id' => $this->record_id,
+            'status'     => $this->status,
+            'created_by' => $this->created_by,
+            'updated_by' => $this->updated_by,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $this->query->andFilterWhere(['like', 'value', $this->value]);

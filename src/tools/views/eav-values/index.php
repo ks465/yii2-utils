@@ -1,13 +1,14 @@
 <?php
-
-use khans\utils\widgets\GridView;
+use yii\helpers\Url;
 use yii\helpers\Html;
+use khans\utils\widgets\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel khans\utils\tools\models\search\\SysEavValuesSearch */
+/* @var $searchModel khans\utils\demos\data\SysEavValuesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'EAV Values Table';
+$this->title = 'List of EAV Values';
+$this->params['breadcrumbs'][] = ['label' => 'Admin Tools', 'url' => ['/khan']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -16,13 +17,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <div id="ajaxCrudDatatable">
-        <?= GridView::widget([
+        <?=GridView::widget([
             'id'                 => 'sys-eav-values-datatable-pjax',
             'dataProvider'       => $dataProvider,
             'filterModel'        => $searchModel,
-            'columns'            => require(__DIR__ . '/_columns.php'),
+            'columns'            => require(__DIR__.'/_columns.php'),
             'export'             => true,
             'showRefreshButtons' => true,
+            'itemLabelSingle'    => 'داده',
+            'itemLabelPlural'    => 'داده‌ها',
             'bulkAction'         => [
                 'action'  => 'bulk-delete',
                 'label'   => 'پاک‌کن',
@@ -31,8 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'message' => 'آیا اطمینان دارید همه را پا کنید؟',
             ],
             'createAction'       => [
-                'ajax' => true,
+                'ajax'    => true,
             ],
-        ]) ?>
+        ])?>
     </div>
 </div>

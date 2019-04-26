@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/9af6a611/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/737f8c60/solarized_light.css" rel="stylesheet">
+<link href="./assets/5990948b/style.css" rel="stylesheet">
+<script src="./assets/55fd58d4/jquery.js"></script>
+<script src="./assets/9af6a611/js/bootstrap.js"></script>
+<script src="./assets/40b76dd/jssearch.js"></script>    <title>EavAttributesController, khans\utils\demos\controllers\EavAttributesController - KHanUtilsAPI</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w2428" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w2428-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">KHanUtilsAPI</a></div><div id="w2428-collapse" class="collapse navbar-collapse"><ul id="w2429" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./g_README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-2400" data-toggle="collapse" data-parent="#navigation">common\actions <b class="caret"></b></a><div id="navigation-2400" class="submenu panel-collapse collapse"><a class="list-group-item" href="./common-actions-helpaction.html">HelpAction</a></div>
+<a class="list-group-item" href="#navigation-2401" data-toggle="collapse" data-parent="#navigation">khans\utils <b class="caret"></b></a><div id="navigation-2401" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-settings.html">Settings</a></div>
+<a class="list-group-item" href="#navigation-2402" data-toggle="collapse" data-parent="#navigation">khans\utils\behaviors <b class="caret"></b></a><div id="navigation-2402" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-behaviors-eavbehavior.html">EavBehavior</a>
+<a class="list-group-item" href="./khans-utils-behaviors-eavquerytrait.html">EavQueryTrait</a>
+<a class="list-group-item" href="./khans-utils-behaviors-workflowbehavior.html">WorkflowBehavior</a></div>
+<a class="list-group-item" href="#navigation-2403" data-toggle="collapse" data-parent="#navigation">khans\utils\columns <b class="caret"></b></a><div id="navigation-2403" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-columns-arithmeticcolumn.html">ArithmeticColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-booleancolumn.html">BooleanColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-datacolumn.html">DataColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-enumcolumn.html">EnumColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-jalalicolumn.html">JalaliColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-progresscolumn.html">ProgressColumn</a>
+<a class="list-group-item" href="./khans-utils-columns-radiocolumn.html">RadioColumn</a></div>
+<a class="list-group-item" href="#navigation-2404" data-toggle="collapse" data-parent="#navigation">khans\utils\components <b class="caret"></b></a><div id="navigation-2404" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-arrayhelper.html">ArrayHelper</a>
+<a class="list-group-item" href="./khans-utils-components-filehelper.html">FileHelper</a>
+<a class="list-group-item" href="./khans-utils-components-jalali.html">Jalali</a>
+<a class="list-group-item" href="./khans-utils-components-jalalix.html">JalaliX</a>
+<a class="list-group-item" href="./khans-utils-components-jwtpayload.html">JwtPayload</a>
+<a class="list-group-item" href="./khans-utils-components-mathhelper.html">MathHelper</a>
+<a class="list-group-item" href="./khans-utils-components-sqlformatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./khans-utils-components-stringhelper.html">StringHelper</a>
+<a class="list-group-item" href="./khans-utils-components-viewhelper.html">ViewHelper</a></div>
+<a class="list-group-item" href="#navigation-2405" data-toggle="collapse" data-parent="#navigation">khans\utils\components\rest_v1 <b class="caret"></b></a><div id="navigation-2405" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-rest_v1-authenticate.html">Authenticate</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v1-client.html">Client</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v1-security.html">Security</a></div>
+<a class="list-group-item" href="#navigation-2406" data-toggle="collapse" data-parent="#navigation">khans\utils\components\rest_v2 <b class="caret"></b></a><div id="navigation-2406" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-rest_v2-restcommand.html">RestCommand</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v2-restdataprovider.html">RestDataProvider</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v2-restquery.html">RestQuery</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v2-restsearchmodel.html">RestSearchModel</a></div>
+<a class="list-group-item" href="#navigation-2407" data-toggle="collapse" data-parent="#navigation">khans\utils\components\rest_v2\builders <b class="caret"></b></a><div id="navigation-2407" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-rest_v2-builders-betweenconditionbuilder.html">BetweenConditionBuilder</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v2-builders-conjunctionconditionbuilder.html">ConjunctionConditionBuilder</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v2-builders-existsconditionbuilder.html">ExistsConditionBuilder</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v2-builders-hashconditionbuilder.html">HashConditionBuilder</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v2-builders-inconditionbuilder.html">InConditionBuilder</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v2-builders-likeconditionbuilder.html">LikeConditionBuilder</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v2-builders-notconditionbuilder.html">NotConditionBuilder</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v2-builders-querybuilder.html">QueryBuilder</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v2-builders-queryexpressionbuilder.html">QueryExpressionBuilder</a>
+<a class="list-group-item" href="./khans-utils-components-rest_v2-builders-simpleconditionbuilder.html">SimpleConditionBuilder</a></div>
+<a class="list-group-item" href="#navigation-2408" data-toggle="collapse" data-parent="#navigation">khans\utils\components\workflow <b class="caret"></b></a><div id="navigation-2408" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-components-workflow-wizflowmanager.html">WizflowManager</a></div>
+<a class="list-group-item" href="#navigation-2409" data-toggle="collapse" data-parent="#navigation">khans\utils\controllers <b class="caret"></b></a><div id="navigation-2409" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-controllers-khanconsolecontroller.html">KHanConsoleController</a>
+<a class="list-group-item" href="./khans-utils-controllers-khanrestcontroller.html">KHanRestController</a>
+<a class="list-group-item" href="./khans-utils-controllers-khanwebcontroller.html">KHanWebController</a>
+<a class="list-group-item" href="./khans-utils-controllers-systemtablescontroller.html">SystemTablesController</a></div>
+<a class="list-group-item" href="#navigation-2410" data-toggle="collapse" data-parent="#navigation">khans\utils\demos <b class="caret"></b></a><div id="navigation-2410" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-demos-module.html">Module</a></div>
+<a class="list-group-item active" href="#navigation-2411" data-toggle="collapse" data-parent="#navigation">khans\utils\demos\controllers <b class="caret"></b></a><div id="navigation-2411" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./khans-utils-demos-controllers-componentscontroller.html">ComponentsController</a>
+<a class="list-group-item" href="./khans-utils-demos-controllers-defaultcontroller.html">DefaultController</a>
+<a class="list-group-item active" href="./khans-utils-demos-controllers-eavattributescontroller.html">EavAttributesController</a>
+<a class="list-group-item" href="./khans-utils-demos-controllers-eavsamplecontroller.html">EavSampleController</a>
+<a class="list-group-item" href="./khans-utils-demos-controllers-eavvaluescontroller.html">EavValuesController</a>
+<a class="list-group-item" href="./khans-utils-demos-controllers-entitiesrcontroller.html">EntitiesRController</a>
+<a class="list-group-item" href="./khans-utils-demos-controllers-gridviewcontroller.html">GridViewController</a>
+<a class="list-group-item" href="./khans-utils-demos-controllers-historydatabasecontroller.html">HistoryDatabaseController</a>
+<a class="list-group-item" href="./khans-utils-demos-controllers-historyuserscontroller.html">HistoryUsersController</a>
+<a class="list-group-item" href="./khans-utils-demos-controllers-pcchildrencontroller.html">PcChildrenController</a>
+<a class="list-group-item" href="./khans-utils-demos-controllers-pcparentscontroller.html">PcParentsController</a></div>
+<a class="list-group-item" href="#navigation-2412" data-toggle="collapse" data-parent="#navigation">khans\utils\demos\data <b class="caret"></b></a><div id="navigation-2412" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-demos-data-eavbehavior.html">EavBehavior</a>
+<a class="list-group-item" href="./khans-utils-demos-data-multiformatdata.html">MultiFormatData</a>
+<a class="list-group-item" href="./khans-utils-demos-data-multiformatdataquery.html">MultiFormatDataQuery</a>
+<a class="list-group-item" href="./khans-utils-demos-data-multiformatdatasearch.html">MultiFormatDataSearch</a>
+<a class="list-group-item" href="./khans-utils-demos-data-multiformateav.html">MultiFormatEav</a>
+<a class="list-group-item" href="./khans-utils-demos-data-multiformateavquery.html">MultiFormatEavQuery</a>
+<a class="list-group-item" href="./khans-utils-demos-data-multiformateavsearch.html">MultiFormatEavSearch</a>
+<a class="list-group-item" href="./khans-utils-demos-data-pcchildren.html">PcChildren</a>
+<a class="list-group-item" href="./khans-utils-demos-data-pcchildrenquery.html">PcChildrenQuery</a>
+<a class="list-group-item" href="./khans-utils-demos-data-pcchildrensearch.html">PcChildrenSearch</a>
+<a class="list-group-item" href="./khans-utils-demos-data-pcparents.html">PcParents</a>
+<a class="list-group-item" href="./khans-utils-demos-data-pcparentsquery.html">PcParentsQuery</a>
+<a class="list-group-item" href="./khans-utils-demos-data-pcparentssearch.html">PcParentsSearch</a>
+<a class="list-group-item" href="./khans-utils-demos-data-syseavattributes.html">SysEavAttributes</a>
+<a class="list-group-item" href="./khans-utils-demos-data-syseavattributesquery.html">SysEavAttributesQuery</a>
+<a class="list-group-item" href="./khans-utils-demos-data-syseavattributessearch.html">SysEavAttributesSearch</a>
+<a class="list-group-item" href="./khans-utils-demos-data-syseavvalues.html">SysEavValues</a>
+<a class="list-group-item" href="./khans-utils-demos-data-syseavvaluesquery.html">SysEavValuesQuery</a>
+<a class="list-group-item" href="./khans-utils-demos-data-syseavvaluessearch.html">SysEavValuesSearch</a>
+<a class="list-group-item" href="./khans-utils-demos-data-syshistorydatabase.html">SysHistoryDatabase</a>
+<a class="list-group-item" href="./khans-utils-demos-data-syshistorydatabasesearch.html">SysHistoryDatabaseSearch</a>
+<a class="list-group-item" href="./khans-utils-demos-data-syshistoryusers.html">SysHistoryUsers</a>
+<a class="list-group-item" href="./khans-utils-demos-data-syshistoryuserssearch.html">SysHistoryUsersSearch</a>
+<a class="list-group-item" href="./khans-utils-demos-data-wf.html">WF</a></div>
+<a class="list-group-item" href="#navigation-2413" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers <b class="caret"></b></a><div id="navigation-2413" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-systemtablebuilder.html">SystemTableBuilder</a></div>
+<a class="list-group-item" href="#navigation-2414" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\component <b class="caret"></b></a><div id="navigation-2414" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-component-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-2415" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\controller <b class="caret"></b></a><div id="navigation-2415" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-controller-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-2416" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\form <b class="caret"></b></a><div id="navigation-2416" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-form-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-2417" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\generators\model <b class="caret"></b></a><div id="navigation-2417" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-generators-model-generator.html">Generator</a></div>
+<a class="list-group-item" href="#navigation-2418" data-toggle="collapse" data-parent="#navigation">khans\utils\helpers\migrations <b class="caret"></b></a><div id="navigation-2418" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-helpers-migrations-khanmigration.html">KHanMigration</a></div>
+<a class="list-group-item" href="#navigation-2419" data-toggle="collapse" data-parent="#navigation">khans\utils\models\queries <b class="caret"></b></a><div id="navigation-2419" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-models-queries-khanquery.html">KHanQuery</a></div>
+<a class="list-group-item" href="#navigation-2420" data-toggle="collapse" data-parent="#navigation">khans\utils\rbac <b class="caret"></b></a><div id="navigation-2420" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-rbac-abacmanager.html">AbacManager</a>
+<a class="list-group-item" href="./khans-utils-rbac-khanrule.html">KHanRule</a></div>
+<a class="list-group-item" href="#navigation-2421" data-toggle="collapse" data-parent="#navigation">khans\utils\tools <b class="caret"></b></a><div id="navigation-2421" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-tools-module.html">Module</a></div>
+<a class="list-group-item" href="#navigation-2422" data-toggle="collapse" data-parent="#navigation">khans\utils\tools\controllers <b class="caret"></b></a><div id="navigation-2422" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-tools-controllers-defaultcontroller.html">DefaultController</a>
+<a class="list-group-item" href="./khans-utils-tools-controllers-eavattributescontroller.html">EavAttributesController</a>
+<a class="list-group-item" href="./khans-utils-tools-controllers-eavvaluescontroller.html">EavValuesController</a>
+<a class="list-group-item" href="./khans-utils-tools-controllers-historydatabasecontroller.html">HistoryDatabaseController</a>
+<a class="list-group-item" href="./khans-utils-tools-controllers-historyuserscontroller.html">HistoryUsersController</a>
+<a class="list-group-item" href="./khans-utils-tools-controllers-importcsvcontroller.html">ImportCsvController</a></div>
+<a class="list-group-item" href="#navigation-2423" data-toggle="collapse" data-parent="#navigation">khans\utils\tools\models <b class="caret"></b></a><div id="navigation-2423" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-tools-models-importcsv.html">ImportCsv</a>
+<a class="list-group-item" href="./khans-utils-tools-models-syseavattributes.html">SysEavAttributes</a>
+<a class="list-group-item" href="./khans-utils-tools-models-syseavvalues.html">SysEavValues</a>
+<a class="list-group-item" href="./khans-utils-tools-models-syshistorydatabase.html">SysHistoryDatabase</a>
+<a class="list-group-item" href="./khans-utils-tools-models-syshistoryusers.html">SysHistoryUsers</a></div>
+<a class="list-group-item" href="#navigation-2424" data-toggle="collapse" data-parent="#navigation">khans\utils\tools\models\queries <b class="caret"></b></a><div id="navigation-2424" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-tools-models-queries-syseavattributesquery.html">SysEavAttributesQuery</a>
+<a class="list-group-item" href="./khans-utils-tools-models-queries-syseavvaluesquery.html">SysEavValuesQuery</a>
+<a class="list-group-item" href="./khans-utils-tools-models-queries-syshistorydatabasequery.html">SysHistoryDatabaseQuery</a>
+<a class="list-group-item" href="./khans-utils-tools-models-queries-syshistoryusersquery.html">SysHistoryUsersQuery</a></div>
+<a class="list-group-item" href="#navigation-2425" data-toggle="collapse" data-parent="#navigation">khans\utils\tools\models\search <b class="caret"></b></a><div id="navigation-2425" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-tools-models-search-syseavattributessearch.html">SysEavAttributesSearch</a>
+<a class="list-group-item" href="./khans-utils-tools-models-search-syseavvaluessearch.html">SysEavValuesSearch</a>
+<a class="list-group-item" href="./khans-utils-tools-models-search-syshistorydatabasesearch.html">SysHistoryDatabaseSearch</a>
+<a class="list-group-item" href="./khans-utils-tools-models-search-syshistoryuserssearch.html">SysHistoryUsersSearch</a></div>
+<a class="list-group-item" href="#navigation-2426" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets <b class="caret"></b></a><div id="navigation-2426" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-captcha.html">Captcha</a>
+<a class="list-group-item" href="./khans-utils-widgets-confirmbutton.html">ConfirmButton</a>
+<a class="list-group-item" href="./khans-utils-widgets-datepicker.html">DatePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-daterangepicker.html">DateRangePicker</a>
+<a class="list-group-item" href="./khans-utils-widgets-dropdownx.html">DropdownX</a>
+<a class="list-group-item" href="./khans-utils-widgets-exportmenu.html">ExportMenu</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridasset.html">GridAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-gridview.html">GridView</a>
+<a class="list-group-item" href="./khans-utils-widgets-workflowfield.html">WorkflowField</a></div>
+<a class="list-group-item" href="#navigation-2427" data-toggle="collapse" data-parent="#navigation">khans\utils\widgets\menu <b class="caret"></b></a><div id="navigation-2427" class="submenu panel-collapse collapse"><a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenu.html">OverlayMenu</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenuasset.html">OverlayMenuAsset</a>
+<a class="list-group-item" href="./khans-utils-widgets-menu-overlaymenufiller.html">OverlayMenuFiller</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Class khans\utils\demos\controllers\EavAttributesController</h1>
+<div class="top-nav">
+    <a href="index.html">All Classes</a>
+                | <a href="#methods">Methods</a>
+            </div>
+
+<table class="summaryTable docClass table table-bordered">
+    <colgroup>
+        <col class="col-name" />
+        <col class="col-value" />
+    </colgroup>
+            <tr><th>Inheritance</th><td><a href="khans-utils-demos-controllers-eavattributescontroller.html">khans\utils\demos\controllers\EavAttributesController</a> &raquo;
+<a href="khans-utils-controllers-khanwebcontroller.html">khans\utils\controllers\KHanWebController</a> &raquo;
+yii\web\Controller</td></tr>
+                                        <tr><th>Available since version</th><td>1.0</td></tr>
+            </table>
+
+<div class="class-description">
+    <p><strong>EavAttributesController implements the CRUD actions for SysEavAttributes model.</strong></p>
+    
+    </div>
+
+<a id="properties"></a>
+
+<a id="methods"></a>
+
+<div class="summary doc-method">
+<h2>Public Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="actionAudit()">
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html#actionAudit()-detail">actionAudit()</a></td>
+        <td>Show history of changes in the given record</td>
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html">khans\utils\demos\controllers\EavAttributesController</a></td>
+    </tr>
+            <tr id="actionCreate()">
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html#actionCreate()-detail">actionCreate()</a></td>
+        <td>Creates a new SysEavAttributes model.</td>
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html">khans\utils\demos\controllers\EavAttributesController</a></td>
+    </tr>
+            <tr id="actionDelete()">
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html#actionDelete()-detail">actionDelete()</a></td>
+        <td>Deletes an existing SysEavAttributes model.</td>
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html">khans\utils\demos\controllers\EavAttributesController</a></td>
+    </tr>
+            <tr id="actionIndex()">
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html#actionIndex()-detail">actionIndex()</a></td>
+        <td>Lists all SysEavAttributes models.</td>
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html">khans\utils\demos\controllers\EavAttributesController</a></td>
+    </tr>
+            <tr class="inherited" id="actionParentsList()">
+        <td><a href="khans-utils-controllers-khanwebcontroller.html#actionParentsList()-detail">actionParentsList()</a></td>
+        <td>Find and filter data for Parent/child pattern</td>
+        <td><a href="khans-utils-controllers-khanwebcontroller.html">khans\utils\controllers\KHanWebController</a></td>
+    </tr>
+            <tr id="actionUpdate()">
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html#actionUpdate()-detail">actionUpdate()</a></td>
+        <td>Updates an existing SysEavAttributes model.</td>
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html">khans\utils\demos\controllers\EavAttributesController</a></td>
+    </tr>
+            <tr id="actionView()">
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html#actionView()-detail">actionView()</a></td>
+        <td>Displays a single SysEavAttributes model.</td>
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html">khans\utils\demos\controllers\EavAttributesController</a></td>
+    </tr>
+            <tr class="inherited" id="behaviors()">
+        <td><a href="khans-utils-controllers-khanwebcontroller.html#behaviors()-detail">behaviors()</a></td>
+        <td></td>
+        <td><a href="khans-utils-controllers-khanwebcontroller.html">khans\utils\controllers\KHanWebController</a></td>
+    </tr>
+        </table>
+</div>
+
+<div class="summary doc-method">
+<h2>Protected Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+                                        <tr id="findModel()">
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html#findModel()-detail">findModel()</a></td>
+        <td>Finds the SysEavAttributes model based on its primary key value.</td>
+        <td><a href="khans-utils-demos-controllers-eavattributescontroller.html">khans\utils\demos\controllers\EavAttributesController</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="events"></a>
+
+<a id="constants"></a>
+
+<h2>Method Details</h2>
+
+<div class="method-doc">
+
+    <div class="detail-header h3" id="actionAudit()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-demos-controllers-eavattributescontroller.html#actionAudit()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionAudit()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Show history of changes in the given record</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="khans-utils-demos-controllers-eavattributescontroller.html#actionAudit()-detail">actionAudit</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>AJAX grid view of changes in the given record</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\web\NotFoundHttpException</td>
+                  <td class="param-desc-col"><p>if the model cannot be found</p>
+</td>
+                </tr>
+                        </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionCreate()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-demos-controllers-eavattributescontroller.html#actionCreate()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionCreate()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Creates a new SysEavAttributes model.</strong></p>
+
+        <p>If creation is successful, the browser will be redirected to the 'view' page.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-demos-controllers-eavattributescontroller.html#actionCreate()-detail">actionCreate</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionDelete()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-demos-controllers-eavattributescontroller.html#actionDelete()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionDelete()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Deletes an existing SysEavAttributes model.</strong></p>
+
+        <p>If deletion is successful, the browser will be redirected to the 'index' page.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-demos-controllers-eavattributescontroller.html#actionDelete()-detail">actionDelete</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                    <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\web\NotFoundHttpException</td>
+                  <td class="param-desc-col"><p>if the model cannot be found</p>
+</td>
+                </tr>
+                        </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionIndex()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-demos-controllers-eavattributescontroller.html#actionIndex()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionIndex()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Lists all SysEavAttributes models.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-demos-controllers-eavattributescontroller.html#actionIndex()-detail">actionIndex</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionUpdate()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-demos-controllers-eavattributescontroller.html#actionUpdate()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionUpdate()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Updates an existing SysEavAttributes model.</strong></p>
+
+        <p>If update is successful, the browser will be redirected to the 'view' page.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-demos-controllers-eavattributescontroller.html#actionUpdate()-detail">actionUpdate</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                    <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\web\NotFoundHttpException</td>
+                  <td class="param-desc-col"><p>if the model cannot be found</p>
+</td>
+                </tr>
+                        </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionView()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-demos-controllers-eavattributescontroller.html#actionView()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionView()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Displays a single SysEavAttributes model.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="khans-utils-demos-controllers-eavattributescontroller.html#actionView()-detail">actionView</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                    <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\web\NotFoundHttpException</td>
+                  <td class="param-desc-col"><p>if the model cannot be found</p>
+</td>
+                </tr>
+                        </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="findModel()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="khans-utils-demos-controllers-eavattributescontroller.html#findModel()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        findModel()
+        <span class="detail-header-tag small">
+            protected                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Finds the SysEavAttributes model based on its primary key value.</strong></p>
+
+        <p>If the model is not found, a 404 HTTP exception will be thrown.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="khans-utils-demos-data-syseavattributes.html">khans\utils\demos\data\SysEavAttributes</a></span> <strong><a href="khans-utils-demos-controllers-eavattributescontroller.html#findModel()-detail">findModel</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="khans-utils-demos-data-syseavattributes.html">khans\utils\demos\data\SysEavAttributes</a></td>
+                  <td class="param-desc-col"><p>The loaded model</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\web\NotFoundHttpException</td>
+                  <td class="param-desc-col"><p>if the model cannot be found</p>
+</td>
+                </tr>
+                        </table>
+
+<!--	-->
+</div>
+        </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Fri, 26 Apr 2019 14:19:26 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

@@ -15,6 +15,8 @@ use kartik\grid\GridView;
 use kartik\select2\Select2;
 use khans\utils\behaviors\WorkflowBehavior;
 use khans\utils\models\KHanModel;
+use raoul2000\workflow\helpers\WorkflowHelper;
+use yii\base\InvalidConfigException;
 use yii\db\Exception;
 
 /**
@@ -24,30 +26,40 @@ use yii\db\Exception;
  *[
  *   'class' => 'khans\utils\columns\ProgressColumn',
  *   'attribute'  => 'progress_column',
- *   'workflowID' => 'TestWF',
  *],
  * ```
  *
  * @package khans\utils
- * @version 0.2.0-971021
+ * @version 0.3.1-980202
  * @since   1.0
  */
 class ProgressColumn extends DataColumn
 {
-    public $workflowID;
+    /**
+     * @var string ID of the workflow
+     */
+    private $workflowID;
 
     /**
      * Setup filter and value tuned for models containing WorkflowBehavior.
-     * If [[workflowID]] is not set, no filter would be rendered.
      *
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
     public function init()
     {
+            /* @var KHanModel $model */
+            $model = new $this->grid->filterModel->query->modelClass();
+            $model->enterWorkflow(null);
+            $this->workflowID = $model->getWorkflow()->getId();
         try {
             $filterList = WorkflowBehavior::readStatusesFromTable($this->workflowID);
         } catch (Exception $e) {
-            $filterList = [];
+            if($e->getCode() == 42){//Base table or view not found
+                /** @noinspection PhpParamsInspection */
+                $filterList = WorkflowHelper::getAllStatusListData($this->workflowID, $model->getWorkflowSource());
+            }else{
+                $filterList = [];
+            }
         }
 
         if (count($filterList) > 1) {

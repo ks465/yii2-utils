@@ -1,3 +1,5 @@
+/*version: 5.1.0-980121*/
+
 @font-face {
     font-family: "parsi";
     src: url('IRANSansWebFaNum_UltraLight.woff') format('woff2');
@@ -11,6 +13,10 @@ html, body, input, .rtl {
     direction: rtl;
     color: #0e7f08;
     background-color: #fffff2;
+}
+
+.ltr {
+    direction: ltr;
 }
 
 .pars-wrap {
@@ -52,3 +58,13 @@ a.goToday {
     top: auto !important;
     right: calc(100% - 5px);
 }
+
+.checkbox label, .radio label {
+    padding-right: 15px;
+}
+
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+    position: absolute;
+    margin-right: -20px;
+}
+/* Setup dropdown menu button for Persian*/

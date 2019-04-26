@@ -6,7 +6,7 @@ namespace khans\utils\helpers\migrations;
  * Class m190211_093452_CreateEAVTables creates tables required for implementing EAV pattern
  *
  * @package KHanS\Utils
- * @version 0.1.5-971125
+ * @version 0.1.6-971125
  * @since   1.0
  */
 class m190211_093452_CreateEAVTables extends KHanMigration
@@ -74,5 +74,7 @@ protected $valueTable = 'sys_eav_values';
 
         $this->addForeignKey('fk_attributes_values', $this->valueTable, 'attribute_id', $this->attributeTable, 'id',
             'CASCADE', 'CASCADE');
+
+        $this->createIndex('uq_entity_tables_values', $this->valueTable, ['attribute_id', 'record_id'], true);
     }
 }

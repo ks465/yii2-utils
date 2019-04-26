@@ -34,15 +34,6 @@ table.kv-child-table {
     padding: 0 !important;
 }
 
-.checkbox label, .radio label {
-    padding-right: 20px;
-}
-
-.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
-    position: absolute;
-    margin-right: -20px;
-}
-
 .x-dropdown .checkbox {
     margin-right: 15px;
     padding-left: 2px;

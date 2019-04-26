@@ -3,7 +3,7 @@
  * This is the template for generating a AJAX CRUD index view file.
  *
  * @package khans\utils\generatedControllers
- * @version 0.3.1-971125
+ * @version 0.4.0-980130
  * @since   1.0
  */
 use yii\helpers\Inflector;
@@ -25,9 +25,12 @@ echo "<?php\n";
 
 use kartik\checkbox\CheckboxX;
 use kartik\form\ActiveForm;
-<?= $generator->enableEAV? 'use khans\utils\tools\models\SysEavAttributes;':'' ?>
-
 use yii\helpers\Html;
+<?= $generator->enableEAV? 'use khans\utils\tools\models\SysEavAttributes;':'' ?>
+<?php if (defined($generator->modelClass . '::THIS_TABLE_ROLE') and $generator->modelClass::THIS_TABLE_ROLE == 'ROLE_CHILD'): ?>
+    use yii\helpers\Url;
+    use yii\web\JsExpression;
+<?php endif; ?>
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
@@ -49,7 +52,7 @@ use yii\helpers\Html;
 <?php if($generator->enableEAV): ?>
     <?= "<?php " ?>foreach (SysEavAttributes::find()->where(['entity_table' => '<?= $generator->modelClass::tableName() ?>'])->all() as $field) {
         /* @var SysEavAttributes $field */
-        if ($field->attr_type == 'boolean') {
+        if ($field->attr_type == SysEavAttributes::DATA_TYPE_BOOLEAN) {
             echo $form->field($model, $field->attr_name, [
                 'template' => '{input} {label} {error} {hint}',
             ])->widget(CheckboxX::class, [

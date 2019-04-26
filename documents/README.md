@@ -12,11 +12,16 @@ Guides, notes, and anything regarding good style programming and documenting:
 1. [Setup for Persian](persian.md) Settings and tweaks for activating and tuning pages for RTL Persian language.
 1. [Complete Config](full-config.md) A complete `config.php` file for utilizing full power
 1. [Workflow](workflow.md) Setup for workflow, workflow manager, and workflow components. 
+1. [Tools](tools.md)
+1. [Demos](demos.md)
+
 
 #Behaviors
 1. [WorkflowBehavior](workflow.md#WorkflowBehavior)
 1. [EavBehavior](behaviors-eav-behavior.md)
 1. [EavQueryTrait](behaviors-eav-trait.md)
+1. [ParentChildTrait](behaviors-parent-child-trait.md)
+1. [WorkflowBehavior](behaviors-workflow-behavior.md)
  
 #Components
 All the classes in the component directory of the package:
@@ -47,6 +52,8 @@ They are specialized versions for Kartik Gridview.
 1. [Progress Column](workflow.md#ProgressColumn) contains a workflow progress status for GridView.
 1. [Radio Column](columns-radio-column.md) contains RadioColumn for GridViews to select row and work with bulk action.
 1. [Related Column](columns-related-column.md)
+1. [ProgressColumn](columns-progress-column.md)
+1. [ArithmeticColumn](columns-arithmetic-column.md)
 
 #Models
 1. [Base Model](models-khan-model.md) contains basic skeleton for all models.

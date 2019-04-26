@@ -1,0 +1,9 @@
+id,title,url,image,class,tab,order
+1,Answering,http://172.25.5.3/ost10/scp,ticket-pgrad,success,general,1
+2,Statistics,http://192.168.1.58/stats2/,stats-pgrad,danger,management,1
+3,Portal,https://education.aut.ac.ir,portal-aut,warning,others,2
+4,Phone Book,http://phone.aut.ac.ir/,phone-aut,,general,3
+5,eMails,https://webmail.aut.ac.ir/,mail-aut,,general,4
+6,Official Site,http://edu.aut.ac.ir/iCMS/pg/,edu-aut,,general,5
+7,AUT Site,http://aut.ac.ir,main-aut,,general,6
+8,Internet,http://internet.aut.ac.ir,internet,,general,7

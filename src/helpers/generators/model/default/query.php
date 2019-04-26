@@ -28,6 +28,8 @@ echo "<?php\n";
 
 namespace <?= $generator->queryNs ?>;
 
+<?= ($generator->typeParentChild != \khans\utils\helpers\generators\model\Generator::ROLE_NONE) ? 'use \khans\utils\behaviors\ParentChildTrait;' : '' ?>
+
 /**
  * This is the ActiveQuery class for [[<?= $modelFullClassName ?>]].
  *
@@ -39,5 +41,36 @@ namespace <?= $generator->queryNs ?>;
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\') . "\n" ?>
 {
+    <?= ($generator->typeParentChild != \khans\utils\helpers\generators\model\Generator::ROLE_NONE) ? "use ParentChildTrait;\n" : '' ?>
+<?php if($generator->typeParentChild == \khans\utils\helpers\generators\model\Generator::ROLE_PARENT): ?>
 
+    /**
+     * Get an array suitable for Select2 selection dropdown
+     *
+     * @return array
+     */
+    public function getSelectionList()
+    {
+        return $this
+            ->getTitle()
+            ->all()
+        ;
+    }
+
+    /**
+     * Create a meaningful title for the list of system database tables
+     *
+     * @param string $title column name for the title field
+     *
+     * @return $this
+     */
+    public function getTitle($title = 'title')
+    {
+        return $this
+            ->select(['id', $title => '<?= $generator->relatedFields ?>'])
+            ->orderBy(['<?= $generator->relatedFields ?>' => SORT_ASC])
+            ->asArray()
+        ;
+    }
+<?php endif; ?>
 }

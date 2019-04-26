@@ -17,7 +17,25 @@ use yii\base\UnknownPropertyException;
 use yii\validators\Validator;
 
 /**
- * Class EavBehavior
+ * Class EavBehavior enables EAV behavior for the owner model
+ * Add the following to behaviors method
+ *
+ * ```php
+ * ...
+ * 'EAV' => [
+ *    'class' => '\khans\utils\demos\data\EavBehavior',
+ *    'id'    => 'multi_format_data',
+ * ],
+ * ...
+ * ```
+ *
+ * Add the following to the attributeLabels method results
+ *
+ *```php
+ * return parent::attributeLabels() + $this->_labels + [
+ * // model specific labels
+ * [;
+ *```
  *
  * @package khans\utils\behaviors
  * @version 0.1.2-971125

@@ -2,21 +2,21 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model khans\utils\tools\models\SysEavAttributes */
 
-if (!Yii::$app->request->isAjax) {
-    $this->title = 'افزودن به EAV Attributes Table';
-    $this->params['breadcrumbs'][] = ['label' => 'EAV Attributes Table', 'url' => ['index']];
-    $this->params['breadcrumbs'][] = $this->title;
-}
+/* @var $this yii\web\View */
+/* @var $model khans\utils\demos\data\SysEavAttributes */
+
+$this->title = 'افزودن به List of EAV Attributes';
+$this->params['breadcrumbs'][] = ['label' => 'Admin Tools', 'url' => ['/khan']];
+$this->params['breadcrumbs'][] = ['label' => 'List of EAV Attributes', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sys-eav-attributes-create">
-    <?php if (!Yii::$app->request->isAjax) { ?>
-        <h1><?= Html::encode($this->title) ?></h1>
-    <?php } ?>
+
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
+
 </div>

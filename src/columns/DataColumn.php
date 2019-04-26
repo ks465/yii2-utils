@@ -17,7 +17,7 @@ use kartik\grid\GridView;
  * See [DataColumn Guide](guide:columns-data-column.md)
  *
  * @package khans\utils\columns
- * @version 0.1.0-970820
+ * @version 0.1.1-980123
  * @since 1.0
  */
 class DataColumn extends \kartik\grid\DataColumn
@@ -35,10 +35,10 @@ class DataColumn extends \kartik\grid\DataColumn
             $this->hAlign = GridView::ALIGN_CENTER;
         }
         if (empty($this->vAlign)) {
-            $this->vAlign = GridView::ALIGN_CENTER;
+            $this->vAlign = GridView::ALIGN_MIDDLE;
         }
         if (empty($this->headerOptions)) {
-            $this->headerOptions = ['class' => 'kv-align-center kv-align-middle'];
+            $this->headerOptions = ['style' => 'text-align: center;'];
         }
         if (empty($this->contentOptions)) {
             $this->contentOptions = ['class' => 'pars-wrap'];

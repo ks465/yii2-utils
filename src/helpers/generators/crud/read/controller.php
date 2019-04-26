@@ -4,7 +4,7 @@
  * This template generates only `index` and `view` actions for readonly models.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.0-980119
+ * @version 0.2.0-980119
  * @since   1.0
  */
 
@@ -49,7 +49,7 @@ use yii\helpers\Html;
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> model.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.0-980119
+ * @version 0.2.0-980119
  * @since   1.0
  */
 class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
@@ -104,6 +104,29 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             ]);
         }
     }
+
+<?php if (defined($generator->modelClass . '::THIS_TABLE_ROLE') and $generator->modelClass::THIS_TABLE_ROLE == 'ROLE_CHILD'): ?>
+    /**
+     * React to search component of filter or form looking for list of
+     *
+     * @param string $q part of title/name field of the parent referee table
+     *
+     * @return array
+     */
+    public function actionParentsList($q)
+    {
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $query = <?= $generator->modelClass::getParentTable() ?>::find()
+            ->getTitle('text')
+            ->orWhere(['id' => $q])
+            ->orWhere(['like', '<?= $generator->modelClass::getParentTable()::getTitleField() ?>', $q])
+    ;
+        $out['results'] = $query->all();
+
+        return $out;
+    }
+<?php endif; ?>
 
     /**
      * Finds the <?= $modelClass ?> model based on its primary key value.

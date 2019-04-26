@@ -44,6 +44,10 @@ use yii\helpers\ArrayHelper;
 class KHanModel extends ActiveRecord
 {
     /**
+     * @var string Comment given to the table in the database
+     */
+    public static $tableComment = '';
+    /**
      * record is marked as deleted -- destroyed -- and users can not see it at all
      */
     const STATUS_DELETED = 0;
@@ -69,6 +73,13 @@ class KHanModel extends ActiveRecord
         KHanModel::STATUS_ACTIVE  => 'فعال',
     ];
 
+    /**
+     * @return string
+     */
+    public static function getTableComment(): string
+    {
+        return static::$tableComment;
+    }
     /**
      * Show a string representation of boolean fields instead of 0/1
      *

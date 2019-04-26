@@ -9,13 +9,14 @@
 
 namespace khans\utils\behaviors;
 
-use yii\db\ExpressionInterface;
+use khans\utils\tools\models\SysEavAttributes;
+use yii\db\ActiveRecord;
 
 /**
- * Class EavQueryTrait modifies an KHanModel query to support EAV
+ * Class EavQueryTrait modifies an KHanQuery to support EAV
  *
  * @package KHanS\Utils
- * @version 0.1-1-971125
+ * @version 0.2.1-980121
  * @since   1.0
  */
 trait EavQueryTrait
@@ -169,9 +170,18 @@ trait EavQueryTrait
         }
         $this->joined = true;
 
+        /* @var $modelClass ActiveRecord */
+        $modelClass = $this->modelClass;
+        $pk = $modelClass::primaryKey();
+
         return $this
-            ->andWhere('{{sys_eav_values}}.[[record_id]] = {{' . $this->getPrimaryTableName() . '}}.[[id]]')
-            ->innerJoin('sys_eav_attributes', ['[[entity_table]]' => $this->getPrimaryTableName()])
-            ->innerJoin('sys_eav_values', '{{sys_eav_attributes}}.[[id]] = {{sys_eav_values}}.[[attribute_id]]');
+            ->distinct()
+            ->innerJoin('sys_eav_attributes')
+            ->andWhere(['{{sys_eav_attributes}}.[[entity_table]]' => $this->getPrimaryTableName()])
+            ->andWhere(['{{sys_eav_attributes}}.[[status]]' => SysEavAttributes::STATUS_ACTIVE])
+            ->leftJoin('sys_eav_values', '{{sys_eav_attributes}}.[[id]] = {{sys_eav_values}}.[[attribute_id]]' .
+                ' AND ' .
+                '{{sys_eav_values}}.[[record_id]] = {{' . $this->getPrimaryTableName() . '}}.[[' . $pk[0] . ']]'
+            );
     }
 }

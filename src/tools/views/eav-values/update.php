@@ -3,12 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model khans\utils\tools\models\SysEavValues */
+/* @var $model khans\utils\demos\data\SysEavValues */
 
 
 if (!Yii::$app->request->isAjax) {
-    $this->title = 'ویرایش EAV Values Table: ' . $model->id;
-    $this->params['breadcrumbs'][] = ['label' => 'EAV Values Table', 'url' => ['index']];
+    $this->title = 'ویرایش List of EAV Values: ' . $model->id;
+    $this->params['breadcrumbs'][] = ['label' => 'Admin Tools', 'url' => ['/khan']];
+    $this->params['breadcrumbs'][] = ['label' => 'List of EAV Values', 'url' => ['index']];
     $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
     $this->params['breadcrumbs'][] = 'ویرایش';
 }

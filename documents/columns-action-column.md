@@ -1,6 +1,6 @@
 #ActionColumn Class
-Documentation Edition: 2.4-971122
-Class Version: 2.3.0-971122
+Documentation Edition: 2.5-980206
+Class Version: 2.4.1-980129
 
 [[khans\utils\columns\ActionColumn|This class]] extends \kartik\grid\ActionColumn only to simplify routine, uniform development.
 As it is seen in the example, there is no limit in numbers of **ActionColumn**s in a _GridView_.
@@ -47,7 +47,7 @@ echo khans\utils\widgets\GridView::widget([
 ...
 ```
 
-+ _class_ It is of course mandatory and should always set to _**'khans\utils\columns\ActionColumn'**_.
++ _class_ It is of course mandatory and should always set to `khans\utils\columns\ActionColumn`.
 
 + _audit_ Adds an icon to each row that shows creator and updater data (time and person) in the tooltip. By clicking the icon, a modal grid shows the history of changes in the record.
 
@@ -111,3 +111,5 @@ _Array Values_
    + **confirm** If the action runs as AJAX and confirm is not empty of `false`, a confirming dialog is shown to the user to confirm the action. If the value is `true`, a generic message is used. Otherwise the following two elements should be present:
       - _title_ Text for title of the dialog.
       - _message_ Body of the confirm dialog.
+   + **disabled** Accepts boolean or closure and shows the icon as disabled.
+   + **disabledComment** is a string added to the title of the disabled action. Defaults to _Disabled_.

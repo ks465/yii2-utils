@@ -3,7 +3,7 @@
  * This is the template for generating a CRUD index view file.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.1-971013
+ * @version 0.1.2-980129
  * @since   1.0
  */
 use yii\helpers\Inflector;
@@ -37,12 +37,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php if ($generator->indexWidgetType === 'grid'): ?>
     <?= "<?= " ?>GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel'  => $searchModel,
-        'columns'      => require(__DIR__.'/_columns.php'),
-        'export'       => true,
-        'createAction' => [
-            'ajax'   => false,
+        'dataProvider'       => $dataProvider,
+        'filterModel'        => $searchModel,
+        'columns'            => require(__DIR__.'/_columns.php'),
+        'export'             => true,
+        'showRefreshButtons' => true,
+        'itemLabelSingle'    => 'داده',
+        'itemLabelPlural'    => 'داده‌ها',
+        'createAction'       => [
+            'ajax' => false,
         ],
     ]); ?>
 <?php else: ?>

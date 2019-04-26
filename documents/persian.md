@@ -53,6 +53,10 @@ html, body, input, .rtl {
     background-color: #fffff2;
 }
 
+.ltr {
+    direction: ltr;
+}
+
 .pars-wrap {
     overflow: auto;
     word-wrap: break-word;

@@ -3,7 +3,7 @@
  * This is the template for generating the model class of a specified table.
  *
  * @package KHanS\Utils
- * @version 0.2.1-971126
+ * @version 0.3.0-980123
  * @since   1.0
  */
 
@@ -30,6 +30,9 @@ use khans\utils\tools\models\SysEavAttributes;
 /**
  * This is the model class for table "<?= $generator->generateTableName($tableName) ?>".
  *
+ * @property string $tableComment <?= $generator->getTableComment($tableName) ?>
+
+ *
 <?php foreach ($properties as $property => $data): ?>
  * @property <?= "{$data['type']} \${$property}"  . ($data['comment'] ? ' ' . strtr($data['comment'], ["\n" => ' ']) : '') . "\n" ?>
 <?php endforeach; ?>
@@ -44,11 +47,16 @@ use khans\utils\tools\models\SysEavAttributes;
  * @property array    $_attributes
  *
  * @package KHanS\Utils
- * @version 0.2.1-971126
+ * @version 0.3.0-980123
  * @since   1.0
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . "\n" ?>
 {
+    /**
+     * @var string Comment given to the table in the database
+     */
+    public static $tableComment = '<?= $generator->getTableComment($tableName) ?>';
+
     /**
      * {@inheritdoc}
      */

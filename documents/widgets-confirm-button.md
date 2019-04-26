@@ -11,7 +11,9 @@ It could submit form using both AJAX POST or normal POST. Remember that this wid
  
 All of widget config elements are optional. They have defaults when required. 
 
-+ `id` is used for setting up the javascript assets. It is really important when there is more than one ConfirmButton on a page. This is set to a unique string if ommited.
++ `id` is used for setting up the javascript assets. 
+It is really important when there is more than one ConfirmButton on a page. 
+This is set to a unique string if omitted.
 + `type` is the dialog type from ConfirmButton::TYPE_* constants, which are equivalent to [\kartik\dialog\Dialog::TYPE_*] ones. Default is [ConfirmButton::TYPE_DANGER].
 + `formID` is the ID of the form to submit and this button is part of.
 + `buttonLabel` a text to show on the submit button in the form. Default is `بنویس`.

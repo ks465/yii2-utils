@@ -1,6 +1,6 @@
 #AppBuilder Class
-Documentation Edition: 2.0-971112
-Class Version: 1.4.1-971020
+Documentation Edition: 2.1-980205
+Class Version: 1.5.0-980130
 
 Example:
 
@@ -22,6 +22,93 @@ $this->builder->unlinkSingleModel('SysUsersApplicantQuery' , Settings::NS_MODELS
 $this->builder->unlinkMultiModels('SysUsers*' , Settings::NS_MODELS);
 $this->builder->unlinkMultiModels('SysUsers*' , Settings::NS_MODELS . '\\queries');
 
+```
+
+###Generic Generators
++ generateModelGeneric($config = [])
+
+In the following example of the argument all parameters set to false are required to be set.
+The other values show the defaults.
+
+```php
+$config = [
+//    'tableName'                  => false,
+//    'modelClass'                 => false,
+//    'queryClass'                 => false,
+//    'ns'                         => false,
+//    'queryNs'                    => false,
+    'db'                         => 'db',
+    'generateQuery'              => true,
+    'baseClass'                  => '\\khans\\utils\\models\\KHanModel',
+    'queryBaseClass'             => '\\khans\\utils\\models\\queries\\KHanQuery',
+    'generateLabelsFromComments' => true,
+    'interactive'                => false,
+    'overwrite'                  => true,
+    'template'                   => 'default',
+];
+```
+
++ generateCrudGeneric($config = [])
+
+In the following example of the argument all parameters set to false are required to be set.
+The other values show the defaults.
+
+```php
+$config = [
+//    'controllerClass'     => false,
+//    'modelClass'          => false,
+//    'searchModelClass'    => false,
+//    'viewPath'            => false,
+//    'tableTitle'          => false,
+    'indexWidgetType'     => 'grid',
+    'baseControllerClass' => '\\khans\\utils\\controllers\\KHanWebController',
+    'enablePjax'          => true,
+    'interactive'         => false,
+    'template'            => 'giiCrudList',
+];
+```
+
++ generateParentChildModule($config = [])
+
+There is no default defined yet!
+
+```php
+$config = [
+    'interactive'                => true,//for BOTH models and BOTH controllers
+    'overwrite'                  => true,//for BOTH models and BOTH controllers
+    'generateLabelsFromComments' => true,//for BOTH models
+    'db'                         => 'test',//for BOTH models
+    'ns'                         => '\\khans\\utils\\demos\\data',//for BOTH models
+    'queryNs'                    => '\\khans\\utils\\demos\\data',//for BOTH models
+    'generateQuery'              => true,//for BOTH models
+    'baseClass'                  => '\\khans\\utils\\demos\\data\\KHanModel',//for BOTH models
+    'childModelTemplate'         => 'default',//for CHILD model ONLY
+    'childTableName'             => 'pc_children',//for CHILD model ONLY
+    'childModelClass'            => 'PcChildren',//for CHILD model ONLY
+    'childQueryClass'            => 'PcChildrenQuery',//for CHILD model ONLY
+    'childLinkFields'            => 'table_id,',//for CHILD model ONLY
+    'parentModelTemplate'        => 'default',//for PARENT model ONLY
+    'parentTableName'            => 'pc_parents',//for PARENT model ONLY
+    'parentModelClass'           => 'PcParents',//for PARENT model ONLY
+    'parentQueryClass'           => 'PcParentsQuery',//for PARENT model ONLY
+    'parentTitleField'           => 'comment',//for PARENT model ONLY
+    'baseControllerClass'        => '\\khans\\utils\\controllers\\KHanWebController',//for BOTH controllers
+    'childControllerTemplate'    => 'default',//for CHILD controller ONLY
+    'childEnablePjax'            => true,//for CHILD controller ONLY
+    'childControllerClass'       => '\\khans\\utils\\demos\\controllers\\PcChildrenController',//for CHILD controller ONLY
+    'childSearchModelClass'      => '\\khans\\utils\\demos\\data\\PcChildrenSearch',//for CHILD controller ONLY
+    'childViewPath'              => '@khans/utils/demos/views/pc-children',//for CHILD controller ONLY
+    'childTableTitle'            => 'List of data having parent record',//for CHILD controller ONLY
+    'parentControllerTemplate'   => 'giiCrudList',//for PARENT controller ONLY
+    'parentEnablePjax'           => false,//for PARENT controller ONLY
+    'parentControllerClass'      => '\\khans\\utils\\demos\\controllers\\PcParentsController',//for PARENT controller ONLY
+    'parentSearchModelClass'     => '\\khans\\utils\\demos\\data\\PcParentsSearch',//for PARENT controller ONLY
+    'parentViewPath'             => '@khans/utils/demos/views/pc-parents',//for PARENT controller ONLY
+    'parentTableTitle'           => 'List of records having children data',//for PARENT controller ONLY
+    'childColumnsPath'           => '__DIR__ . \'/../pc-children',//for PARENT controller ONLY
+    'childControllerId'          => '/demos/pc-children',//for PARENT controller ONLY
+    'parentControllerId'         => '/demos/pc-parent',//for CHILD controller ONLY
+];
 ```
 
 ###generateSingleModel

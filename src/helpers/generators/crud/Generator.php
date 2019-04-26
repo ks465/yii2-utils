@@ -12,7 +12,7 @@ use yii\helpers\Inflector;
  * This generator will set defaults for the parent generator only.
  *
  * @package KHanS\Utils
- * @version 0.4.1-980119
+ * @version 0.5.0-980202
  * @since   1.0
  */
 class Generator extends \yii\gii\generators\crud\Generator
@@ -35,6 +35,14 @@ class Generator extends \yii\gii\generators\crud\Generator
      */
     public $enableEAV = false;
 
+    /**
+     * @var string View path of the children model in the Parent-Child Pattern
+     */
+    public $childControllerId = '';
+    public $parentControllerId = '';
+    public $childColumnsPath = '';
+    public $childLinkFields='';
+    public $childSearchModelClass='';
     /**
      * @return string name of the code generator
      */
@@ -115,7 +123,11 @@ These authentication validation models to be created, set the namespace of the c
     public function generate()
     {
         if (empty($this->tableTitle)) {
-            $this->tableTitle = $this->getTableComment();
+            if(!empty($this->modelClass::getTableComment())){
+                $this->tableTitle = $this->modelClass::getTableComment();
+            }else{
+                $this->tableTitle = $this->getTableComment();
+            }
         }
 
         $files = parent::generate();
@@ -161,7 +173,23 @@ These authentication validation models to be created, set the namespace of the c
                 ],
             ]);";
         }
-
+        if (defined($this->modelClass . '::THIS_TABLE_ROLE') and $this->modelClass::THIS_TABLE_ROLE == 'ROLE_CHILD' and in_array($attribute, $this->modelClass::getLinkFields())){
+            return "\$form->field(\$model, '$attribute')->widget(\kartik\select2\Select2::class, [
+            'initValueText' => \$model->getParentTitle(),
+            'hideSearch'    => false,
+            'pluginOptions' => [
+                'dropdownParent' => new yii\web\JsExpression('$(\"#ajaxCrudModal .modal-body\")'), // make sure search element of Select2 is working in modal dialog
+                'allowClear'         => false,
+                'dir'                => 'rtl',
+                'minimumInputLength' => 3,
+                'ajax'               => [
+                    'url'      => Url::to(['parents-list']),
+                    'dataType' => 'json',
+                    'data'     => new JsExpression('function(params) { return {q:params.term}; }'),
+                ],
+            ],
+            ]);";
+        }
         return parent::generateActiveField($attribute);
     }
 

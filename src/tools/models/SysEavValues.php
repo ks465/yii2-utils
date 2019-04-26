@@ -3,6 +3,7 @@
 
 namespace khans\utils\tools\models;
 
+use khans\utils\behaviors\ParentChildTrait;
 use khans\utils\models\queries\KHanQuery;
 
 /**
@@ -12,20 +13,36 @@ use khans\utils\models\queries\KHanQuery;
  * @property int              $attribute_id Attribute ID
  * @property int              $record_id Entity Table Record ID
  * @property string           $value Data Value
- * @property int              $status وضعیت رکورد
- * @property int              $created_by سازنده
- * @property int              $updated_by ویرایشگر
- * @property int              $created_at زمان افزودن
- * @property int              $updated_at زمان آخرین ویرایش
  *
  * @property SysEavAttributes $parent
  *
  * @package KHanS\Utils
- * @version 0.2.0-971114
+ * @version 0.3.0-980123
  * @since   1.0
  */
 class SysEavValues extends \khans\utils\models\KHanModel
 {
+    /**
+     * @var string Comment given to the table in the database
+     */
+    public static $tableComment = 'EAV Values Table';
+
+    //<editor-fold Desc="Parent/Child Pattern">
+    use ParentChildTrait;
+    
+    //This is used for creating required CRUD config!
+    const THIS_TABLE_ROLE = 'ROLE_CHILD';
+    
+    /**
+     * @var string Name of parent table
+     */
+    private static $parentTable = '\khans\utils\demos\data\SysEavAttributes';
+    /**
+     * @var array Foreign key(s) of this model linking primary key(s) in parent table.
+     */
+    private static $linkFields = ['attribute_id'];
+    //</editor-fold>
+
     /**
      * {@inheritdoc}
      */
@@ -42,7 +59,7 @@ class SysEavValues extends \khans\utils\models\KHanModel
         return array_merge(parent::rules(), [
             [['attribute_id', 'record_id', 'value'], 'required'],
             [
-                ['attribute_id', 'record_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'],
+                ['attribute_id', 'record_id'],
                 'integer',
             ],
             [['value'], 'string', 'max' => 1023],
@@ -63,11 +80,6 @@ class SysEavValues extends \khans\utils\models\KHanModel
                 'attribute_id' => 'Attribute ID',
                 'record_id'    => 'Entity Table Record ID',
                 'value'        => 'Data Value',
-                'status'       => 'وضعیت رکورد',
-                'created_by'   => 'سازنده',
-                'updated_by'   => 'ویرایشگر',
-                'created_at'   => 'زمان افزودن',
-                'updated_at'   => 'زمان آخرین ویرایش',
             ];
     }
 

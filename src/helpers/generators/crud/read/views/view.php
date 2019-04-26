@@ -3,7 +3,7 @@
  * This is the template for generating a AJAX CRUD index view file.
  *
  * @package khans\utils\generatedControllers
- * @version 0.2.4-971125
+ * @version 0.3.1-980130
  * @since   1.0
  */
 use yii\helpers\Inflector;
@@ -66,7 +66,18 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                 echo "            ],\n";
                 break;
             default:
-                echo "            '" . $name . "',\n";
+                if (defined($generator->modelClass . '::THIS_TABLE_ROLE') and $generator->modelClass::THIS_TABLE_ROLE == 'ROLE_CHILD' and in_array($name, $generator->modelClass::getLinkFields())){
+                    echo "    '$name' => [\n";
+                    echo "                'attribute' => '" . $name . "',\n";
+                    echo "                'value' => \$model->getParentTitle() . Html::a('abc'\n";
+                    echo "                       ['$generator->parentControllerId/view'] +\n";
+                    echo "                       array_combine(\$model->parent::primaryKey(), ArrayHelper::filter(\$model->attributes, \$model->getLinkFields())\n";
+                    echo "                ),\n";
+                    echo "                'format'=>'html',\n";
+                    echo "    ],\n";
+                }else{
+                    echo "            '" . $name . "',\n";
+                }
         }
     }
 } else {
@@ -98,8 +109,19 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                 echo "    ],\n";
                 break;
             default:
-                $format = $generator->generateColumnFormat($column);
-                echo "    '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+                if (defined($generator->modelClass . '::THIS_TABLE_ROLE') and $generator->modelClass::THIS_TABLE_ROLE == 'ROLE_CHILD' and in_array($column->name, $generator->modelClass::getLinkFields())){
+                    echo "    [\n";
+                    echo "        'attribute' => '" . $column->name . "',\n";
+                    echo "        'value' => \$model->getParentTitle() . Html::a(' <i class=\"glyphicon glyphicon-link\"></i>',\n";
+                    echo "               ['$generator->parentControllerId/view'] +\n";
+                    echo "               array_combine(\$model->parent::primaryKey(), khans\utils\components\ArrayHelper::filter(\$model->attributes, \$model->getLinkFields())\n";
+                    echo "        )),\n";
+                    echo "        'format'=>'html',\n";
+                    echo "    ],\n";
+                }else{
+                    $format = $generator->generateColumnFormat($column);
+                    echo "    '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+                }
         }
     }
 }
@@ -109,7 +131,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
 <?php if($generator->enableEAV): ?>
     foreach (SysEavAttributes::find()->where(['entity_table' => '<?= $generator->modelClass::tableName() ?>'])->all() as $field) {
         /* @var SysEavAttributes $field */
-        if ($field->attr_type == 'boolean') {
+        if ($field->attr_type == SysEavAttributes::DATA_TYPE_BOOLEAN) {
             $attributes[] = [
                 'attribute' => $field->attr_name,
                 'value'     => $model->getBooleanView($field->attr_name),

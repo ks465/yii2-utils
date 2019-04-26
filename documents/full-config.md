@@ -75,6 +75,9 @@ SpinnerAsset::register($this);
 ###Components
 
 ```php
+$config['modules']['khan'] = [
+    'class' => 'khans\utils\tools\Module',
+];
 'user' => [
     'class' => '\khans\utils\models\KHanUser',
     'identityClass'   => '\khans\utils\models\KHanIdentity',
@@ -113,6 +116,10 @@ if (YII_ENV_DEV) {
     require_once (__DIR__ . '/../vendor/khans465/yii2-utils/src/components/VarDump.php');
      $config['components']['errorHandler'] = ['errorAction' => 'khan/default/error'];
    
+    $config['modules']['demos'] = [
+        'class' => 'khans\utils\demos\Module',
+    ];
+       
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class'      => 'yii\gii\Module',

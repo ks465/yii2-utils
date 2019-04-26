@@ -1,5 +1,5 @@
 #KHanModel Class
-Documentation Edition: 1.1-971112
+Documentation Edition: 1.2-980205
 Class Version: 0.4.6-971027
 
 All of the standard globally required methods and properties are set here for simplicity.
@@ -24,20 +24,8 @@ data is available.
 1. isVisible Shows if the status of the record is _**NOT**_ equal to `KHanModel::STATUS_DELETED`
 1. getLastFlow shows the updated time
 1. Get list of changes in the record through the history data
+1. The `$tableComment` holds a definition for the table. 
+This is set to table comment by the model generators.
+It is primarily used for titles of the action pages in generated CRUD.
 
 For details see [[khans\utils\models\KHanModel]] and [[khans\utils\models\queries\KHanQuery]]
-
-A `sqlite` database is ready in the `demos` directory, which contains all models needed for the demos. In order to activate it,
-load `db` component as follows:
-
-```php
-'db' => [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'sqlite:@app/db/database.db',
-    'charset' => 'utf8',
-    // Schema cache options (for production environment)
-    //'enableSchemaCache' => true,
-    //'schemaCacheDuration' => 60,
-    //'schemaCache' => 'cache',
-],
-```

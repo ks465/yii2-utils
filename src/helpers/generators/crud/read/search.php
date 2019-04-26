@@ -3,7 +3,7 @@
  * This is the template for generating CRUD search class of the specified model.
  *
  * @package khans\utils\generatedControllers
- * @version 0.2.2-980119
+ * @version 0.2.3-980119
  * @since   1.0
  */
 
@@ -42,7 +42,7 @@ use <?= $queryClass ?>;
  * <?= $searchModelClass ?> represents the model behind the search form about `<?= $generator->modelClass ?>`.
  *
  * @package khans\utils\generatedControllers
- * @version 0.2.2-980119
+ * @version 0.2.3-980119
  * @since   1.0
  */
 class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $modelClass ?>
@@ -109,9 +109,11 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
 <?php if($generator->enableEAV): ?>
         foreach (SysEavAttributes::find()->where(['entity_table' => '<?= $generator->modelClass::tableName() ?>'])->all() as $field) {
             /* @var SysEavAttributes $field */
-            if ($field->attr_type == 'number') {
+            if ($field->attr_type == SysEavAttributes::DATA_TYPE_NUMBER) {
                 $this->query->andEavFilterCompare($field->attr_name, $this->{$field->attr_name});
-            } elseif ($field->attr_type == 'string') {
+            } elseif ($field->attr_type == SysEavAttributes::DATA_TYPE_BOOLEAN) {
+                $this->query->andEavFilterCompare($field->attr_name,$this->{$field->attr_name});
+            } elseif ($field->attr_type == SysEavAttributes::DATA_TYPE_STRING) {
                 $this->query->andEavFilterCompare($field->attr_name, $this->{$field->attr_name}, 'like');
             } else {
                 $this->query->andEavFilterWhere($field->attr_name, $this->{$field->attr_name});

@@ -1,6 +1,6 @@
 #VarDump Class
-Documentation Edition: 1.0-970920
-Class Version: 0.3.2-970920
+Documentation Edition: 1.1-980206
+Class Version: 0.3.3-980206
 
 This is a third party class offering dumping variables with ability to expand or hide parts of data. 
 In this way it can keep the display clear.
@@ -56,3 +56,7 @@ array(6) [...] [reduce]
 ``` 
 
 Each `expand` and `reduce` link is used to show or hide one part of the dump, one level each time.
+
+1. `explain` Dumps a Query using [SqlFormatter](components-sql-formatter.md).
+It can distinguish between Query and [RestQuery](compoents-rest-v1.md) variants.
+1. `xd` Dumps the query string and exit the code. 

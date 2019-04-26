@@ -28,6 +28,7 @@ echo "<?php\n";
 
 namespace <?= $generator->queryNs ?>;
 
+
 use khans\utils\behaviors\EavQueryTrait;
 
 /**
@@ -42,5 +43,4 @@ use khans\utils\behaviors\EavQueryTrait;
 class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\') . "\n" ?>
 {
     use EavQueryTrait;
-
 }

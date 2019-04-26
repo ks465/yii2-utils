@@ -3,6 +3,8 @@
 
 namespace khans\utils\tools\models\queries;
 
+use khans\utils\behaviors\ParentChildTrait;
+
 /**
  * This is the ActiveQuery class for [[\khans\utils\tools\models\SysEavValues]].
  *
@@ -14,5 +16,6 @@ namespace khans\utils\tools\models\queries;
  */
 class SysEavValuesQuery extends \khans\utils\models\queries\KHanQuery
 {
+    use ParentChildTrait;
 
 }

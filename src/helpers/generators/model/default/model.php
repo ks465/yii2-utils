@@ -3,7 +3,7 @@
  * This is the template for generating the model class of a specified table.
  *
  * @package KHanS\Utils
- * @version 0.1.1-971030
+ * @version 0.3.0-980123
  * @since   1.0
  */
 
@@ -25,9 +25,14 @@ namespace <?= $generator->ns ?>;
 
 use Yii;
 use \khans\utils\models\queries\KHanQuery;
+<?= ($generator->typeParentChild != \khans\utils\helpers\generators\model\Generator::ROLE_NONE) ? 'use \khans\utils\behaviors\ParentChildTrait;' : '' ?>
+
 
 /**
  * This is the model class for table "<?= $generator->generateTableName($tableName) ?>".
+ *
+ * @property string $tableComment <?= $generator->getTableComment($tableName) ?>
+
  *
 <?php foreach ($properties as $property => $data): ?>
  * @property <?= "{$data['type']} \${$property}"  . ($data['comment'] ? ' ' . strtr($data['comment'], ["\n" => ' ']) : '') . "\n" ?>
@@ -40,11 +45,63 @@ use \khans\utils\models\queries\KHanQuery;
 <?php endif; ?>
  *
  * @package KHanS\Utils
- * @version 0.2.0-971114
+ * @version 0.3.0-980123
  * @since   1.0
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . "\n" ?>
 {
+    /**
+     * @var string Comment given to the table in the database
+     */
+    public static $tableComment = '<?= $generator->getTableComment($tableName) ?>';
+
+<?php
+switch($generator->typeParentChild){
+    case \khans\utils\helpers\generators\model\Generator::ROLE_NONE:
+        break;
+    case \khans\utils\helpers\generators\model\Generator::ROLE_PARENT:
+        echo <<<PCP
+    //<editor-fold Desc="Parent/Child Pattern">
+    use ParentChildTrait;
+    
+    //This is used for creating required CRUD config!
+    const THIS_TABLE_ROLE = 'ROLE_PARENT';
+    
+    /**
+     * @var string Name of child table
+     */
+    private static \$childTable = '$generator->relatedModel';
+    /**
+     * @var string Name of field containing descriptive title for the record
+     */
+    private static \$titleField = '$generator->relatedFields';
+    //</editor-fold>
+
+PCP;
+        break;
+    case \khans\utils\helpers\generators\model\Generator::ROLE_CHILD:
+        echo <<<PCP
+    //<editor-fold Desc="Parent/Child Pattern">
+    use \khans\utils\behaviors\ParentChildTrait;
+    
+    //This is used for creating required CRUD config!
+    const THIS_TABLE_ROLE = 'ROLE_CHILD';
+    
+    /**
+     * @var string Name of parent table
+     */
+    private static \$parentTable = '$generator->relatedModel';
+    /**
+     * @var array Foreign key(s) of this model linking primary key(s) in parent table.
+     */
+    private static \$linkFields = $generator->generatedRelation;
+    //</editor-fold>
+
+PCP;
+        break;
+}
+?>
+
     /**
      * {@inheritdoc}
      */
@@ -91,9 +148,10 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     {
         <?= $relation[0] . "\n" ?>
     }
-<?php endforeach; ?>
-<?php if ($queryClassName): ?>
 <?php
+endforeach;
+
+if ($queryClassName):
     $queryClassFullName = ($generator->ns === $generator->queryNs) ? $queryClassName : '\\' . $generator->queryNs . '\\' . $queryClassName;
     echo "\n";
 ?>

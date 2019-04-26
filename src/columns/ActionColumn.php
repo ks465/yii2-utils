@@ -13,7 +13,6 @@ use kartik\helpers\Html;
 use khans\utils\components\Jalali;
 use khans\utils\models\{KHanModel};
 use Yii;
-use yii\base\InvalidConfigException;
 use yii\helpers\{ArrayHelper, Url};
 
 /**
@@ -22,7 +21,7 @@ use yii\helpers\{ArrayHelper, Url};
  * See [ActionColumn Guide](guide:columns-action-column.md)
  *
  * @package common\widgets
- * @version 2.3.1-980119
+ * @version 2.4.1-980129
  * @since   1.0
  */
 class ActionColumn extends \kartik\grid\ActionColumn
@@ -60,9 +59,6 @@ class ActionColumn extends \kartik\grid\ActionColumn
      */
     public function init()
     {
-        if ($this->dropdown and $this->runAsAjax) {
-            throw new InvalidConfigException('Modal actions and dropdown menu are not compatible. Disable one of those.');
-        }
         if (isset(Yii::$app->user->isSuperAdmin) and Yii::$app->user->isSuperAdmin) {
             $this->audit = true;
         }
@@ -71,23 +67,25 @@ class ActionColumn extends \kartik\grid\ActionColumn
         $this->vAlign = 'middle';
         $this->hAlign = 'center';
 
-        if (empty($this->viewOptions) && empty($this->viewOptions['runAsAjax'])) {
+        if (empty($this->viewOptions)) {
             $this->viewOptions = [
                 'role'        => $this->runAsAjax ? 'modal-remote' : null,
                 'title'       => 'تماشا',
                 'data-toggle' => 'tooltip',
             ];
-        } else {
+        }
+        if (isset($this->viewOptions['runAsAjax'])) {
             $this->viewOptions['role'] = $this->viewOptions['runAsAjax'] ? 'modal-remote' : null;
         }
 
-        if (empty($this->updateOptions) && empty($this->updateOptions['runAsAjax'])) {
+        if (empty($this->updateOptions)) {
             $this->updateOptions = [
                 'role'        => $this->runAsAjax ? 'modal-remote' : null,
                 'title'       => 'ویرایش',
                 'data-toggle' => 'tooltip',
             ];
-        } else {
+        }
+        if (isset($this->updateOptions['runAsAjax'])) {
             $this->updateOptions['role'] = $this->updateOptions['runAsAjax'] ? 'modal-remote' : null;
         }
 
@@ -212,6 +210,17 @@ class ActionColumn extends \kartik\grid\ActionColumn
             $this->template .= ' {' . $title . '}';
 
             $this->buttons[$title] = function($url, $model, $key) use ($title, $data) {
+                if (array_key_exists('disabled', $data)) {
+                    if (is_bool($data['disabled']) and $data['disabled'] === true) {
+                        $_action = false;
+                        $data['icon'] = 'ban-circle text-muted';
+                    } elseif ($data['disabled'] instanceof \Closure) {
+                        $_action = !call_user_func($data['disabled'], $model, $key, $this);
+                        $data['icon'] = $_action ? $data['icon'] : 'ban-circle text-muted';
+                    }
+                } else {
+                    $_action = true;
+                }
                 if (array_key_exists('icon', $data)) {
                     $icon = '<span class="glyphicon glyphicon-' . $data['icon'] . '"></span>';
                 } else {
@@ -258,7 +267,16 @@ class ActionColumn extends \kartik\grid\ActionColumn
                         }
                     }
                 }
+                if ($_action === false) {
+                    $data['config']['title'] .= ' -- ' . (isset($data['disabledComment']) ? : 'Disabled');
+                    if ($this->dropdown) {
+                        $this->dropdownOptions = $data['config'];
 
+                        return '<li>' . Html::tag('a', $icon . ' ' . ucwords($data['config']['title'])) . '</li>';
+                    }
+
+                    return Html::tag('span', $icon);
+                }
                 if ($this->dropdown) {
                     $this->dropdownOptions = $data['config'];
 

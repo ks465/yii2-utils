@@ -20,12 +20,180 @@ use yii\helpers\Inflector;
  * generators.
  *
  * @package khans\utils
- * @version 1.4.1-971020
+ * @version 1.5.0-980130
  * @since   1.0
  */
 class AppBuilder extends BaseObject
 {
     const ACTIONS_USER_DEFAULT = 'behaviors, actions, login, login-attempts, logout, sign-up, request-password-reset, reset-password, ';
+
+    //<editor-fold Desc="Generic generators">
+    /**
+     * @var array Default values for generating CRUD. Main settings are deliberately missing.
+     */
+    private static $_CRUDConfig = [
+//        'controllerClass'     => false,
+//        'modelClass'          => false,
+//        'searchModelClass'    => false,
+//        'viewPath'            => false,
+//        'tableTitle'          => false,
+        'indexWidgetType'     => 'grid',
+        'baseControllerClass' => '\\khans\\utils\\controllers\\KHanWebController',
+        'enablePjax'          => true,
+        'interactive'         => false,
+        'template'            => 'giiCrudList',
+    ];
+    /**
+     * @var array Default values for generating models. Main settings are deliberately missing.
+     */
+    private static $_ModelConfig = [
+//        'tableName'                  => false,
+//        'modelClass'                 => false,
+//        'queryClass'                 => false,
+//        'ns'                         => false,
+//        'queryNs'                    => false,
+        'db'                         => 'db',
+        'generateQuery'              => true,
+        'baseClass'                  => '\\khans\\utils\\models\\KHanModel',
+        'queryBaseClass'             => '\\khans\\utils\\models\\queries\\KHanQuery',
+        'generateLabelsFromComments' => true,
+        'interactive'                => false,
+        'overwrite'                  => true,
+        'template'                   => 'default',
+    ];
+
+    /**
+     * Generate model using a single argument [$_ModelConfig] containing all the required parameters.
+     *
+     * @param array $config
+     *
+     * @return int
+     * @throws Exception
+     * @throws InvalidRouteException
+     */
+    public static function generateModelGeneric($config = [])
+    {
+        $config = array_merge(self::$_ModelConfig, $config);
+
+        Yii::$app->runAction('gii/model', $config);
+
+        return ExitCode::OK;
+    }
+
+    /**
+     * Generate CRUD using a single argument [$_CRUDConfig] containing all the required parameters.
+     *
+     * @param array $config
+     *
+     * @return int
+     * @throws Exception
+     * @throws InvalidRouteException
+     */
+    public static function generateCrudGeneric($config = [])
+    {
+        $config = array_merge(self::$_CRUDConfig, $config);
+
+        $controllersDirectory = dirname(Yii::getAlias('viewPath'));
+        if (!is_dir($controllersDirectory)) {
+            try {
+                mkdir($controllersDirectory);
+            } catch (\Exception $e) {
+                Console::error($e->getMessage() . $controllersDirectory);
+
+                return ExitCode::OSFILE;
+            }
+        }
+
+        Yii::$app->runAction('gii/crud', $config);
+
+        return ExitCode::OK;
+    }
+
+    /**
+     * Generate required models and CRUD for Parent/Child Pattern combination
+     *
+     * @param array $config
+     *
+     * @throws Exception
+     * @throws InvalidRouteException
+     */
+    public static function generateParentChildModule($config = [])
+    {
+        //Parent Model:
+        vd(AppBuilder::generateModelGeneric([
+                'interactive'                => $config['interactive'],
+                'overwrite'                  => $config['overwrite'],
+                'generateLabelsFromComments' => $config['generateLabelsFromComments'],
+                'db'                         => $config['db'],
+                'ns'                         => $config['ns'],
+                'queryNs'                    => $config['queryNs'],
+                'generateQuery'              => $config['generateQuery'],
+                'baseClass'                  => $config['baseClass'],
+                'template'                   => $config['parentModelTemplate'],
+                'tableName'                  => $config['parentTableName'],
+                'modelClass'                 => $config['parentModelClass'],
+                'queryClass'                 => $config['parentQueryClass'],
+                'typeParentChild'            => 'parent',
+                'relatedModel'               => $config['ns'] . '\\' . $config['childModelClass'],
+                'relatedFields'              => $config['parentTitleField'],
+            ]
+        ));
+        //Child Model:
+        vd(AppBuilder::generateModelGeneric([
+                'interactive'                => $config['interactive'],
+                'overwrite'                  => $config['overwrite'],
+                'generateLabelsFromComments' => $config['generateLabelsFromComments'],
+                'db'                         => $config['db'],
+                'ns'                         => $config['ns'],
+                'queryNs'                    => $config['queryNs'],
+                'generateQuery'              => $config['generateQuery'],
+                'baseClass'                  => $config['baseClass'],
+                'template'                   => $config['parentModelTemplate'],
+                'tableName'                  => $config['childTableName'],
+                'modelClass'                 => $config['childModelClass'],
+                'queryClass'                 => $config['childQueryClass'],
+                'typeParentChild'            => 'child',
+                'relatedModel'               => $config['ns'] . '\\' . $config['parentModelClass'],
+                'relatedFields'              => $config['childLinkFields'],
+            ]
+        ));
+        //Parent CRUD:
+        vd(AppBuilder::generateCrudGeneric([
+                'indexWidgetType'     => 'grid',
+                'interactive'         => $config['interactive'],
+                'baseControllerClass' => $config['baseControllerClass'],
+                'enablePjax'          => $config['parentEnablePjax'],
+                'template'            => $config['parentControllerTemplate'],
+                'controllerClass'     => $config['parentControllerClass'],
+                'modelClass'          => $config['ns'] . '\\' . $config['parentModelClass'],
+                'searchModelClass'    => $config['parentSearchModelClass'],
+                'viewPath'            => $config['parentViewPath'],
+                'tableTitle'          => $config['parentTableTitle'],
+
+                'childControllerId'     => $config['childControllerId'],
+                'childColumnsPath'      => $config['childColumnsPath'],
+                'childLinkFields'       => $config['childLinkFields'],
+                'childSearchModelClass' => $config['childSearchModelClass'],
+            ]
+        ));
+        //Child CRUD:
+        vd(AppBuilder::generateCrudGeneric([
+                'indexWidgetType'     => 'grid',
+                'interactive'         => $config['interactive'],
+                'baseControllerClass' => $config['baseControllerClass'],
+                'enablePjax'          => $config['childEnablePjax'],
+                'template'            => $config['childControllerTemplate'],
+                'controllerClass'     => $config['childControllerClass'],
+                'modelClass'          => $config['ns'] . '\\' . $config['childModelClass'],
+                'searchModelClass'    => $config['childSearchModelClass'],
+                'viewPath'            => $config['childViewPath'],
+                'tableTitle'          => $config['childTableTitle'],
+
+                'parentControllerId' => $config['parentControllerId'],
+            ]
+        ));
+    }
+    //</editor-fold>
 
     //<editor-fold Desc="Model generators">
     /**
@@ -59,7 +227,7 @@ class AppBuilder extends BaseObject
             $baseQueryClass = '\\khans\\utils\\models\\queries\\KHanQuery';
         }
         try {
-            \Yii::$app->runAction('gii/model', [
+            Yii::$app->runAction('gii/model', [
                 'generateQuery'              => true,
                 'tableName'                  => $tableName,
                 'modelClass'                 => $modelName,
@@ -107,7 +275,7 @@ class AppBuilder extends BaseObject
         $tableName = str_replace('*', '.*', $tableName);
 
         $result = ExitCode::OK;
-        foreach (preg_grep('/' . $tableName . '/', \Yii::$app->db->schema->tableNames) as $table) {
+        foreach (preg_grep('/' . $tableName . '/', Yii::$app->db->schema->tableNames) as $table) {
             try {
                 $result += self::generateSingleModel($table, '-', $modelsNS, $baseModelClass, $baseQueryClass);
             } catch (Exception $e) {
@@ -133,7 +301,7 @@ class AppBuilder extends BaseObject
     public static function unlinkSingleModel($modelClass, $modelNS): int
     {
         try {
-            $modelFilename = \Yii::getAlias('@' . str_replace('\\', '/', $modelNS) . '/' . $modelClass . '.php');
+            $modelFilename = Yii::getAlias('@' . str_replace('\\', '/', $modelNS) . '/' . $modelClass . '.php');
         } catch (InvalidArgumentException $e) {
             Console::error($e->getMessage());
 
@@ -169,7 +337,7 @@ class AppBuilder extends BaseObject
         }
 
         $result = ExitCode::OK;
-        $glob = \Yii::getAlias('@' . str_replace('\\', '/', $modelsNS) . '/' . $models . '.php');
+        $glob = Yii::getAlias('@' . str_replace('\\', '/', $modelsNS) . '/' . $models . '.php');
         foreach (glob($glob) as $filename) {
             if (!unlink($filename)) {
                 $result = ExitCode::OSERR;
@@ -199,7 +367,7 @@ class AppBuilder extends BaseObject
         $baseControllerClass = null,
         $indexWidget = 'grid'): int
     {
-        $controllersDirectory = dirname(\Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
+        $controllersDirectory = dirname(Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
 
         if (!is_dir($controllersDirectory)) {
             mkdir($controllersDirectory);
@@ -209,7 +377,7 @@ class AppBuilder extends BaseObject
             $baseControllerClass = '\\khans\\utils\\controllers\\KHanWebController';
         }
         try {
-            \Yii::$app->runAction('gii/crud', [
+            Yii::$app->runAction('gii/crud', [
                 'controllerClass'     => $controllerClass,
                 'modelClass'          => $modelClass,
                 'searchModelClass'    => $modelClass . 'Search',
@@ -251,7 +419,7 @@ class AppBuilder extends BaseObject
     public static function generateAjaxCrud($controllerClass, $modelClass, $viewPath, $tableTitle,
         $baseControllerClass = null): int
     {
-        $controllersDirectory = dirname(\Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
+        $controllersDirectory = dirname(Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
 
         if (!is_dir($controllersDirectory)) {
             mkdir($controllersDirectory);
@@ -262,7 +430,7 @@ class AppBuilder extends BaseObject
         }
 
         try {
-            \Yii::$app->runAction('gii/crud', [
+            Yii::$app->runAction('gii/crud', [
                 'controllerClass'     => $controllerClass,
                 'modelClass'          => $modelClass,
                 'searchModelClass'    => $modelClass . 'Search',
@@ -300,7 +468,7 @@ class AppBuilder extends BaseObject
     public static function generateUserCrud($controllerClass, $modelClass, $viewPath, $tableTitle,
         $baseControllerClass = null): int
     {
-        $controllersDirectory = dirname(\Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
+        $controllersDirectory = dirname(Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
 
         if (!is_dir($controllersDirectory)) {
             try {
@@ -316,7 +484,7 @@ class AppBuilder extends BaseObject
             $baseControllerClass = '\\khans\\utils\\controllers\\KHanWebController';
         }
         try {
-            \Yii::$app->runAction('gii/crud', [
+            Yii::$app->runAction('gii/crud', [
                 'controllerClass'     => $controllerClass,
                 'modelClass'          => $modelClass,
                 'searchModelClass'    => $modelClass . 'Search',
@@ -356,7 +524,7 @@ class AppBuilder extends BaseObject
     public static function generateUserAuth($controllerClass, $modelClass, $viewPath, $modelNS,
         $baseControllerClass = null): int
     {
-        $controllersDirectory = dirname(\Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
+        $controllersDirectory = dirname(Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
 
         if (!is_dir($controllersDirectory)) {
             try {
@@ -372,7 +540,7 @@ class AppBuilder extends BaseObject
             $baseControllerClass = '\\khans\\utils\\controllers\\KHanWebController';
         }
         try {
-            \Yii::$app->runAction('gii/crud', [
+            Yii::$app->runAction('gii/crud', [
                 'controllerClass'     => $controllerClass,
                 'modelClass'          => $modelClass,
                 'viewPath'            => $viewPath,
@@ -412,7 +580,7 @@ class AppBuilder extends BaseObject
      */
     public static function generateController($controllerClass, $actions, $viewPath, $baseClass = null): int
     {
-        $controllersDirectory = dirname(\Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
+        $controllersDirectory = dirname(Yii::getAlias('@' . str_replace('\\', '/', $controllerClass)));
 
         if (!is_dir($controllersDirectory)) {
             mkdir($controllersDirectory);
@@ -422,7 +590,7 @@ class AppBuilder extends BaseObject
             $baseClass = '\\khans\\utils\\controllers\\KHanWebController';
         }
         try {
-            \Yii::$app->runAction('gii/controller', [
+            Yii::$app->runAction('gii/controller', [
                 'controllerClass' => $controllerClass,
                 'actions'         => $actions,
                 'viewPath'        => $viewPath,
@@ -471,7 +639,7 @@ class AppBuilder extends BaseObject
     public static function unlinkCrud($controllerClass, $viewPath): int
     {
         try {
-            $controllerFilename = \Yii::getAlias('@' . str_replace('\\', '/', $controllerClass) . '.php');
+            $controllerFilename = Yii::getAlias('@' . str_replace('\\', '/', $controllerClass) . '.php');
         } catch (InvalidArgumentException $e) {
             Console::error($e->getMessage());
 
@@ -484,7 +652,7 @@ class AppBuilder extends BaseObject
             }
         }
 
-        $glob = \Yii::getAlias($viewPath) . '/*';
+        $glob = Yii::getAlias($viewPath) . '/*';
         foreach (glob($glob) as $filename) {
             if (!unlink($filename)) {
                 return ExitCode::OSERR;

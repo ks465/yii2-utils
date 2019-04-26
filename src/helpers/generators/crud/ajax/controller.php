@@ -3,7 +3,7 @@
  * This is the template for generating a CRUD controller class file.
  *
  * @package khans\utils\generatedControllers
- * @version 0.2.1-971122
+ * @version 0.3.1-980121
  * @since   1.0
  */
 
@@ -48,7 +48,7 @@ use yii\helpers\Html;
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> model.
  *
  * @package khans\utils\generatedControllers
- * @version 0.2.1-971122
+ * @version 0.3.1-980121
  * @since   1.0
  */
 class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
@@ -96,7 +96,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                         'model' => $model,
                     ]),
                     'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
-                            Html::a('ویرایش', ['update','<?= substr($actionParams,1) ?>'=><?= $actionParams ?>],
+                            Html::a('ویرایش', ['update', <?= $urlParams ?>],
                                 ['class'=>'btn btn-primary','role'=>'modal-remote'])
                 ];
         }else{
@@ -304,6 +304,29 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal'])
         ];
     }
+
+<?php if (defined($generator->modelClass . '::THIS_TABLE_ROLE') and $generator->modelClass::THIS_TABLE_ROLE == 'ROLE_CHILD'): ?>
+    /**
+     * React to search component of filter or form looking for list of
+     *
+     * @param string $q part of title/name field of the parent referee table
+     *
+     * @return array
+     */
+    public function actionParentsList($q)
+    {
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $query = <?= $generator->modelClass::getParentTable() ?>::find()
+            ->getTitle('text')
+            ->orWhere(['id' => $q])
+            ->orWhere(['like', '<?= $generator->modelClass::getParentTable()::getTitleField() ?>', $q])
+    ;
+        $out['results'] = $query->all();
+
+        return $out;
+    }
+<?php endif; ?>
 
     /**
      * Finds the <?= $modelClass ?> model based on its primary key value.

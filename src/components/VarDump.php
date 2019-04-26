@@ -11,12 +11,12 @@
  * Module VarDump defines functions to replace PHP var_dump with a cleaner look
  *
  * @package khans\utils
- * @version 0.3.2-970920
+ * @version 0.3.3-980206
  * @since   1.0
  */
 namespace {
 
-    use khans\utils\components\{SqlFormatter, VarDump};
+    use khans\utils\components\{rest_v2\RestQuery, SqlFormatter, VarDump};
     use khans\utils\Settings;
     use yii\db\Query;
 
@@ -61,14 +61,16 @@ namespace {
          */
         function explain($query): void
         {
-            if ($query instanceof Query) {
+            if ($query instanceof RestQuery) {
                 $query = $query->createCommand()->rawSql;
+            }elseif ($query instanceof Query) {
+                $query = SqlFormatter::format($query->createCommand()->rawSql);
             }
             if (php_sapi_name() === 'cli') {
-                echo getTrace() . "\n" . SqlFormatter::format($query);
+                echo getTrace() . "\n" . $query;
             } else {
                 echo '<p dir="ltr">' . getTrace() . '</p>';
-                echo '<span dir="ltr">' . SqlFormatter::format($query) . '</span>';
+                echo '<span dir="ltr">' . $query . '</span>';
             }
 
         }

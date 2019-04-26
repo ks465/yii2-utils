@@ -31,21 +31,22 @@ class WorkflowBehavior extends \raoul2000\workflow\base\SimpleWorkflowBehavior
     /**
      * @var string ID of the planned workflow for this table
      */
-    public $workflowID;
+//    public $workflowID;
+    public $defaultWorkflowId;
 
-    /**
-     * Ensure the workflow ID is set. This is forced in order to use it in various parts of code,
-     * and avoid complex coding.
-     *
-     * @throws InvalidConfigException
-     */
-    public function init()
-    {
-        if (empty($this->workflowID)) {
-            throw new InvalidConfigException('Setting ID for workflow behavior is mandatory.');
-        }
-        parent::init();
-    }
+//    /**
+//     * Ensure the workflow ID is set. This is forced in order to use it in various parts of code,
+//     * and avoid complex coding.
+//     *
+//     * @throws InvalidConfigException
+//     */
+//    public function init()
+//    {
+//        if (empty($this->workflowID)) {
+//            $this->workflowID = $this->getDefaultWorkflowId();
+//        }
+//        parent::init();
+//    }
 
     /**
      * Get the label for the workflow of the current record.
@@ -55,7 +56,7 @@ class WorkflowBehavior extends \raoul2000\workflow\base\SimpleWorkflowBehavior
      */
     public function getWorkflowState()
     {
-        return $this->getWorkflowStatus()->getLabel() . ' (' . $this->{$this->statusAttribute} . ')';
+        return $this->getWorkflowStatus()->getLabel() . ' (' . $this->owner->{$this->statusAttribute} . ')';
     }
 
     /**
