@@ -24,7 +24,8 @@ use yii\web\HttpException;
 use yii\web\Response;
 
 /**
- * Class KHanRestController offers common behavior for REST controllers
+ * Class KHanRestController offers common behavior for REST controllers base on version 1 of the REST server
+ * @see [components/rest_v1](components-rest-v1.md)
  *
  * @package khans\utils\controllers
  * @version 2.0.0-970912

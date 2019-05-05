@@ -3,16 +3,16 @@
 
 namespace khans\utils\helpers\generators\crud;
 
+use khans\utils\models\KHanModel;
+use khans\utils\tools\components\TableHelper;
 use Yii;
-use yii\db\Query;
 use yii\gii\CodeFile;
-use yii\helpers\Inflector;
 
 /**
  * This generator will set defaults for the parent generator only.
  *
  * @package KHanS\Utils
- * @version 0.5.0-980202
+ * @version 0.5.1-980210
  * @since   1.0
  */
 class Generator extends \yii\gii\generators\crud\Generator
@@ -41,8 +41,9 @@ class Generator extends \yii\gii\generators\crud\Generator
     public $childControllerId = '';
     public $parentControllerId = '';
     public $childColumnsPath = '';
-    public $childLinkFields='';
-    public $childSearchModelClass='';
+    public $childLinkFields = '';
+    public $childSearchModelClass = '';
+
     /**
      * @return string name of the code generator
      */
@@ -123,9 +124,9 @@ These authentication validation models to be created, set the namespace of the c
     public function generate()
     {
         if (empty($this->tableTitle)) {
-            if(!empty($this->modelClass::getTableComment())){
+            if (!empty($this->modelClass::getTableComment())) {
                 $this->tableTitle = $this->modelClass::getTableComment();
-            }else{
+            } else {
                 $this->tableTitle = $this->getTableComment();
             }
         }
@@ -173,7 +174,7 @@ These authentication validation models to be created, set the namespace of the c
                 ],
             ]);";
         }
-        if (defined($this->modelClass . '::THIS_TABLE_ROLE') and $this->modelClass::THIS_TABLE_ROLE == 'ROLE_CHILD' and in_array($attribute, $this->modelClass::getLinkFields())){
+        if (defined($this->modelClass . '::THIS_TABLE_ROLE') and $this->modelClass::THIS_TABLE_ROLE == 'ROLE_CHILD' and in_array($attribute, $this->modelClass::getLinkFields())) {
             return "\$form->field(\$model, '$attribute')->widget(\kartik\select2\Select2::class, [
             'initValueText' => \$model->getParentTitle(),
             'hideSearch'    => false,
@@ -190,6 +191,7 @@ These authentication validation models to be created, set the namespace of the c
             ],
             ]);";
         }
+
         return parent::generateActiveField($attribute);
     }
 
@@ -215,24 +217,10 @@ These authentication validation models to be created, set the namespace of the c
      */
     private function getTableComment()
     {
-        $tableName = $this->getTableSchema()->fullName;
-        $query = new Query();
-
-        if (Yii::$app->db->driverName === 'mysql') {
-            $comment = $query->from('INFORMATION_SCHEMA.TABLES')
-                ->select(['table_comment'])
-                ->where(['table_name' => $tableName])
-                ->scalar();
-        } elseif (Yii::$app->db->driverName === 'pgsql') {
-            $comment = $query->from('pg_description')
-                ->select(['description'])
-                ->innerJoin('pg_class', '{{pg_description}}.[[objoid]] = {{pg_class}}.[[relnamespace]]')
-                ->where(['relname' => $tableName])
-                ->scalar();
-        } else {
-            $comment = false;
+        if ($this->modelClass instanceof KHanModel and !empty($this->modelClass::getTableComment())) {
+            return $this->modelClass::getTableComment();
         }
 
-        return $comment ? : Inflector::humanize($tableName, true);
+        return TableHelper::getTableComment($this->getTableSchema()->fullName);
     }
 }

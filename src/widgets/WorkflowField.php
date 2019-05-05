@@ -26,6 +26,7 @@ class WorkflowField extends \kartik\select2\Select2
      * @var KHanModel model containing the workflow and field
      */
     public $model;
+
 //todo: prepare selection for input field and view element
     public function init()
     {

@@ -181,7 +181,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         $query = <?= $generator->modelClass::getParentTable() ?>::find()
             ->getTitle('text')
             ->orWhere(['id' => $q])
-            ->orWhere(['like', '<?= $generator->modelClass::getParentTable()::getTitleField() ?>', $q])
+            ->orWhere(['ilike', '<?= $generator->modelClass::getParentTable()::getTitleField() ?>', $q])
     ;
         $out['results'] = $query->all();
 

@@ -7,6 +7,7 @@ use khans\utils\components\ArrayHelper;
 use khans\utils\components\Jalali;
 use khans\utils\models\KHanIdentity;
 use khans\utils\models\queries\KHanQuery;
+use nhkey\arh\managers\BaseManager;
 
 /**
  * This is the model class for table "sys_history_database".
@@ -22,7 +23,7 @@ use khans\utils\models\queries\KHanQuery;
  * @property int    $type گونه ویرایش
  *
  * @package KHanS\Utils
- * @version 0.2.0-971114
+ * @version 0.3.0-980212
  * @since   1.0
  */
 class SysHistoryDatabase extends \khans\utils\models\KHanModel
@@ -30,19 +31,27 @@ class SysHistoryDatabase extends \khans\utils\models\KHanModel
     /**
      * Event types of history to the AR object (insert, update, delete or update primary key)
      */
-    const AR_INSERT = 0;
-    const AR_UPDATE = 1;
-    const AR_DELETE = 2;
-    const AR_UPDATE_PK = 3;
+    const AR_INSERT = BaseManager::AR_INSERT;
+    const AR_UPDATE = BaseManager::AR_UPDATE;
+    const AR_DELETE = BaseManager::AR_DELETE;
+    const AR_UPDATE_PK = BaseManager::AR_UPDATE_PK;
+    const CSV_TRUNCATE = 10;
+    const CSV_INSERT = 11;
+    const CSV_UPDATE = 12;
+    const CSV_UPSERT = 13;
 
     /**
      * @var array list of event types in this context
      */
     private static $eventTypes = [
         self::AR_INSERT    => 'افزودن رکورد',
-        self::AR_UPDATE    => 'ویرایش داده',
-        self::AR_DELETE    => 'پاک کردن',
-        self::AR_UPDATE_PK => 'ویرایش کلید',
+        self::AR_UPDATE    => 'ویرایش رکورد',
+        self::AR_DELETE    => 'پاک کردن رکوزد',
+        self::AR_UPDATE_PK => 'ویرایش کلید رکوزد',
+        self::CSV_TRUNCATE => 'خالی کردن',
+        self::CSV_INSERT   => 'افزودن از فایل',
+        self::CSV_UPDATE   => 'ویرایش از فایل',
+        self::CSV_UPSERT   => 'بهنگام‌سازی از فایل',
     ];
 
     /**

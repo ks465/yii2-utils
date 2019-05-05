@@ -10,8 +10,20 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
+/**
+ *
+ * @property mixed $actionHistory
+ */
 class KHanModel extends \khans\utils\models\KHanModel
 {
+    /**
+     * @return \yii\db\Connection the database connection used by this AR class.
+     */
+    public static function getDb()
+    {
+        return Yii::$app->get('test');
+    }
+
     /**
      * @inheritDoc
      *
@@ -39,10 +51,11 @@ class KHanModel extends \khans\utils\models\KHanModel
                 'ignoreFields'   => ['created_at', 'created_by', 'updated_at', 'updated_by'],
                 'managerOptions' => [
                     'tableName' => 'sys_history_database',
-                    ],
+                ],
             ],
         ];
     }
+
     /**
      * @inheritDoc
      *
@@ -50,8 +63,17 @@ class KHanModel extends \khans\utils\models\KHanModel
      *
      * @return KHanIdentity
      */
-    protected function getResponsibleUser(int $ownerID=null): ?KHanIdentity
+    protected function getResponsibleUser(int $ownerID = null): ?KHanIdentity
     {
         return Yii::$app->user->identityClass::findOne(1);
+    }
+
+    /**
+     * Get list of recorded history for this record
+     */
+    public function getActionHistory()
+    {
+        return $this->hasMany(SysHistoryDatabase::class, ['field_id' => 'id'])
+            ->andWhere(['table' => static::tableName()]);
     }
 }

@@ -2,7 +2,7 @@
 /**
  *
  * @package KHanS\Utils
- * @version 0.2.0-980123
+ * @version 0.2.1-980207
  * @since   1.0
  */
 
@@ -35,15 +35,4 @@ echo $form->field($generator, 'enableI18N')->checkbox();
 echo $form->field($generator, 'messageCategory');
 echo $form->field($generator, 'useSchemaName')->checkbox();
 
-//This part is for Parent/Child Pattern
-return;
-//echo '<div class="well-lg panel panel-info">';
-//echo $form->field($generator, 'typeParentChild')->dropDownList([
-//    Generator::ROLE_NONE   => 'Not in a Parent/Child Pattern',
-//    Generator::ROLE_PARENT => 'Plays Parent Role in P/C Pattern',
-//    Generator::ROLE_CHILD  => 'Plays Child Role in P/C Pattern',
-//]);
-//echo $form->field($generator, 'relatedModel');
-//echo $form->field($generator, 'relatedFields');
-//
-//echo '</div>';
+echo $form->field($generator, 'optionalPK');

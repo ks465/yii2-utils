@@ -1,10 +1,9 @@
 #ActionColumn Class
-Documentation Edition: 2.5-980206
-Class Version: 2.4.1-980129
+Documentation Edition: 2.5-980211
+Class Version: 2.4.2-980129
 
-[[khans\utils\columns\ActionColumn|This class]] extends \kartik\grid\ActionColumn only to simplify routine, uniform development.
-As it is seen in the example, there is no limit in numbers of **ActionColumn**s in a _GridView_.
-By setting the visibility of standard action in one and adding _extraColumns_, there would be two distinctive columns.
+There is no limit in numbers of **ActionColumn**s in a _GridView_.
+By setting the visibility of standard actions and adding _extraColumns_, there would be two distinctive columns.
 
 ```php
 echo khans\utils\widgets\GridView::widget([
@@ -60,6 +59,11 @@ This value is available for the column and the unique actions (see below).
 
 + _dropdown_ shows the icons in the form of a dropdown menu. _**The two options dropdown and runAsAjax are not compatible with each other. Activate only one of them at a time.**_
 + _deleteAlert_ text used in the alert popup. defaults to `از پاک نمودن این {item} اطمینان دارید؟` 
+
+
+###Modal Actions and Dropdown Buttons
+When setting the dropdown value of the `ActionColumn` to `true`, it is best to set 
+`ActionColumn.runAsAjax` to `false` and set the `runAsAjax` for every action to `true if required.
 
 ###Extra Columns
 This config adds one or more options to the `ActionColumn`.

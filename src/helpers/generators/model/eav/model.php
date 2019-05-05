@@ -3,7 +3,7 @@
  * This is the template for generating the model class of a specified table.
  *
  * @package KHanS\Utils
- * @version 0.3.0-980123
+ * @version 0.3.1-980207
  * @since   1.0
  */
 
@@ -17,6 +17,10 @@
 /* @var $labels string[] list of attribute labels (name => label) */
 /* @var $rules string[] list of validation rules */
 /* @var $relations array list of relations (name => relation declaration) */
+
+if (!empty($generator->optionalPK)) {
+    $pk = "['" . implode("', '", $generator->optionalPK) . "']";;
+}
 
 echo "<?php\n";
 ?>
@@ -47,7 +51,7 @@ use khans\utils\tools\models\SysEavAttributes;
  * @property array    $_attributes
  *
  * @package KHanS\Utils
- * @version 0.3.0-980123
+ * @version 0.3.1-980207
  * @since   1.0
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . "\n" ?>
@@ -74,7 +78,16 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
         return Yii::$app->get('<?= $generator->db ?>');
     }
 <?php endif; ?>
+<?php if (!empty($generator->optionalPK)): ?>
 
+    /**
+     * @return string[] primary key(s).
+     */
+    public static function primaryKey()
+    {
+        return <?= $pk ?>;
+    }
+<?php endif; ?>
     /**
      * Add EAV behavior by default
      */

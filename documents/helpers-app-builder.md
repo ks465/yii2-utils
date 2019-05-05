@@ -70,7 +70,7 @@ $config = [
 
 + generateParentChildModule($config = [])
 
-There is no default defined yet!
+The following setup is designed for a demo module pair in demo module.
 
 ```php
 $config = [

@@ -9,11 +9,9 @@
 
 namespace khans\utils\behaviors;
 
-use khans\utils\components\ArrayHelper;
 use khans\utils\models\KHanModel;
 use khans\utils\models\queries\KHanQuery;
 use yii\base\Exception;
-use yii\helpers\Html;
 
 /**
  * Trait ParentChildTrait adds required properties methods to models to enable utilities to connect together.
@@ -113,10 +111,10 @@ trait ParentChildTrait
      *
      * @return string
      */
-    public function getParentTitle(): string
+    public function getParentTitle(): ?string
     {
         if (empty($this->parent)) {
-            return '';
+            return 'شناخته نشد!';
         }
 
         return $this->parent->{$this->parent->getTitleField()};

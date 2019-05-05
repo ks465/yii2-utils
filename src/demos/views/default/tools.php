@@ -1,8 +1,8 @@
 <?php
 /* @var $this yii\web\View */
+
 /* @var $dataProvider \yii\data\ArrayDataProvider */
 
-use khans\utils\widgets\menu\OverlayMenu;
 use yii\helpers\Url;
 
 $this->title = 'System Tool Demo Pages';
@@ -38,13 +38,17 @@ $this->params['breadcrumbs'][] = $this->title;
         </a>
 
         <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/eav-attributes']) ?>"
-            title="List of defined EAV attributes for the application tables.">
+           title="List of defined EAV attributes for the application tables.">
             EAV Attributes
         </a>
         <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/eav-values']) ?>"
-            title="List os values set for individual records of data.">
+           title="List os values set for individual records of data.">
             EAV Values
         </a>
+
+        <a class="btn btn-default col-sm-3" href="<?= Url::to(['/khan/import-csv', 'db' => 'test']) ?>"
+           title="Use `test` for connection and `test_import_csv` for target table for test.">
+            Import CSV into Database</a>
     </div>
     <div class="panel-footer">
     </div>

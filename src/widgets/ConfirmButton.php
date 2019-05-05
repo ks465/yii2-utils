@@ -26,6 +26,7 @@ use yii\helpers\Html;
  * echo \khans\utils\widgets\ConfirmButton::widget([
  *    'type'           => ConfirmButton::TYPE_INFO,
  *    'formID'         => 'any-form',
+ *    'formAction'     => Url::to(['truncate', 'id' => $id]),
  *    'sendAjax'       => true,
  *    'buttonLabel'    => 'text to use as the form submitting button text',
  *    'buttonClass'    => 'btn btn-warning pull-left',
@@ -40,7 +41,7 @@ use yii\helpers\Html;
  *```
  *
  * @package khans\utils\widgets
- * @version 1.1.1-980130
+ * @version 1.2.0-980210
  * @since   1.0.0
  */
 class ConfirmButton extends Dialog
@@ -103,6 +104,11 @@ class ConfirmButton extends Dialog
      * @var string javascript code for showing the modal dialog
      */
     private $js = '';
+
+    /**
+     * @var string Target action for the button. If left blank, action of the form --whatever it is-- will be used.
+     */
+    public $formAction = null;
 
     /**
      * Set the required setup configurations.
@@ -194,10 +200,11 @@ JS;
         $this->getView()->registerJs($this->js);
 
         echo Html::submitButton($this->buttonLabel, [
-            'id'    => 'btn-confirm',
-            'class' => $this->buttonClass,
-            'style' => $this->buttonStyle,
-            'name'  => 'confirm-button',
+            'formaction' => $this->formAction,
+            'id'         => 'btn-confirm',
+            'class'      => $this->buttonClass,
+            'style'      => $this->buttonStyle,
+            'name'       => 'confirm-button',
         ]);
     }
 }

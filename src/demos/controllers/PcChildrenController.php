@@ -1,15 +1,16 @@
 <?php
 
+
 namespace khans\utils\demos\controllers;
 
-use Yii;
+use khans\utils\controllers\KHanWebController;
 use khans\utils\demos\data\PcChildren;
 use khans\utils\demos\data\PcChildrenSearch;
+use Yii;
 use yii\data\ActiveDataProvider;
-use khans\utils\controllers\KHanWebController;
-use yii\web\NotFoundHttpException;
-use \yii\web\Response;
 use yii\helpers\Html;
+use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * PcChildrenController implements the CRUD actions for PcChildren model.
@@ -22,6 +23,7 @@ class PcChildrenController extends KHanWebController
 {
     /**
      * Lists all PcChildren models.
+     *
      * @return mixed
      */
     public function actionIndex()
@@ -37,7 +39,9 @@ class PcChildrenController extends KHanWebController
 
     /**
      * Displays a single PcChildren model.
+     *
      * @param integer $id
+     *
      * @return mixed
      */
     public function actionView($id)
@@ -45,18 +49,19 @@ class PcChildrenController extends KHanWebController
         $request = Yii::$app->request;
         $model = $this->findModel($id);
 
-        if($request->isAjax){
+        if ($request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
+
             return [
-                    'title'   => "List of data having parent record #" . $model->id,
-                    'content' => $this->renderAjax('view', [
-                        'model' => $model,
-                    ]),
-                    'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
-                            Html::a('ویرایش', ['update', 'id' => $model->id],
-                                ['class'=>'btn btn-primary','role'=>'modal-remote'])
-                ];
-        }else{
+                'title'   => "List of data having parent record #" . $model->id,
+                'content' => $this->renderAjax('view', [
+                    'model' => $model,
+                ]),
+                'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']) .
+                    Html::a('ویرایش', ['update', 'id' => $model->id],
+                        ['class' => 'btn btn-primary', 'role' => 'modal-remote']),
+            ];
+        } else {
             return $this->render('view', [
                 'model' => $model,
             ]);
@@ -64,9 +69,28 @@ class PcChildrenController extends KHanWebController
     }
 
     /**
+     * Finds the PcChildren model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     *
+     * @param integer $id
+     *
+     * @return PcChildren the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = PcChildren::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
+        }
+    }
+
+    /**
      * Creates a new PcChildren model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
+     *
      * @return mixed
      */
     public function actionCreate()
@@ -74,37 +98,47 @@ class PcChildrenController extends KHanWebController
         $request = Yii::$app->request;
         $model = new PcChildren();
 
-        if($request->isAjax){
+        if ($request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
-            if($request->isGet){
+            if ($request->isGet) {
                 return [
                     'title'   => "افزودن به List of data having parent record تازه",
                     'content' => $this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
-                            Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit'])
+                    'footer'  => Html::button('ببند', [
+                            'class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal',
+                        ]) .
+                        Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit']),
 
                 ];
-            }else if($model->load($request->post()) && $model->save()){
-                return [
-                    'forceReload' => '#pc-children-datatable-pjax',
-                    'title'       => "افزودن List of data having parent record تازه",
-                    'content'     => '<span class="text-success">افزودن List of data having parent record موفق</span>',
-                    'footer'      => Html::button('ببند', ['class' => 'btn btn-default pull-left','data-dismiss' => 'modal']).
-                            Html::a('افزودن بیشتر', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
-                ];
-            }else{
-                return [
-                    'title'   => "افزودن List of data having parent record تازه",
-                    'content' => $this->renderAjax('create', [
-                        'model' => $model,
-                    ]),
-                    'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
-                            Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit'])
-                ];
+            } else {
+                if ($model->load($request->post()) && $model->save()) {
+                    return [
+                        'forceReload' => '#pc-children-datatable-pjax',
+                        'title'       => "افزودن List of data having parent record تازه",
+                        'content'     => '<span class="text-success">افزودن List of data having parent record موفق</span>',
+                        'footer'      => Html::button('ببند', [
+                                'class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal',
+                            ]) .
+                            Html::a('افزودن بیشتر', ['create'], [
+                                'class' => 'btn btn-primary', 'role' => 'modal-remote',
+                            ]),
+                    ];
+                } else {
+                    return [
+                        'title'   => "افزودن List of data having parent record تازه",
+                        'content' => $this->renderAjax('create', [
+                            'model' => $model,
+                        ]),
+                        'footer'  => Html::button('ببند', [
+                                'class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal',
+                            ]) .
+                            Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit']),
+                    ];
+                }
             }
-        }else{
+        } else {
             /*
             *   Process for non-ajax request
             */
@@ -122,7 +156,9 @@ class PcChildrenController extends KHanWebController
      * Updates an existing PcChildren model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
+     *
      * @param integer $id
+     *
      * @return mixed
      */
     public function actionUpdate($id)
@@ -130,43 +166,51 @@ class PcChildrenController extends KHanWebController
         $request = Yii::$app->request;
         $model = $this->findModel($id);
 
-        if($request->isAjax){
+        if ($request->isAjax) {
             /*
             *   Process for ajax request
             */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            if($request->isGet){
+            if ($request->isGet) {
                 return [
                     'title'   => "ویرایش List of data having parent record #" . $model->id,
-                    'content' =>$this->renderAjax('update', [
+                    'content' => $this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
-                                Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit'])
+                    'footer'  => Html::button('ببند', [
+                            'class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal',
+                        ]) .
+                        Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit']),
                 ];
-            }else if($model->load($request->post()) && $model->save()){
-                return [
-                    'forceReload' => '#pc-children-datatable-pjax',
-                    'title'       => "List of data having parent record #".$id,
-                    'content'     => $this->renderAjax('view', [
-                        'model' => $model,
-                    ]),
-                    'footer'      => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
-                        Html::a('ویرایش', ['update', 'id' => $id],
-                            ['class' => 'btn btn-primary', 'role'=>'modal-remote']
-                        )
-                ];
-            }else{
-                 return [
-                    'title'   => "ویرایش List of data having parent record #".$id,
-                    'content' =>$this->renderAjax('update', [
-                        'model' => $model,
-                    ]),
-                    'footer'  => Html::button('ببند',['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
-                        Html::button('بنویس',['class' => 'btn btn-primary', 'type' => 'submit'])
-                ];
+            } else {
+                if ($model->load($request->post()) && $model->save()) {
+                    return [
+                        'forceReload' => '#pc-children-datatable-pjax',
+                        'title'       => "List of data having parent record #" . $id,
+                        'content'     => $this->renderAjax('view', [
+                            'model' => $model,
+                        ]),
+                        'footer'      => Html::button('ببند', [
+                                'class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal',
+                            ]) .
+                            Html::a('ویرایش', ['update', 'id' => $id],
+                                ['class' => 'btn btn-primary', 'role' => 'modal-remote']
+                            ),
+                    ];
+                } else {
+                    return [
+                        'title'   => "ویرایش List of data having parent record #" . $id,
+                        'content' => $this->renderAjax('update', [
+                            'model' => $model,
+                        ]),
+                        'footer'  => Html::button('ببند', [
+                                'class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal',
+                            ]) .
+                            Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit']),
+                    ];
+                }
             }
-        }else{
+        } else {
             /*
             *   Process for non-ajax request
             */
@@ -184,7 +228,9 @@ class PcChildrenController extends KHanWebController
      * Delete an existing List of data having parent record model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
+     *
      * @param integer $id
+     *
      * @return mixed
      */
     public function actionDelete($id)
@@ -192,13 +238,14 @@ class PcChildrenController extends KHanWebController
         $request = Yii::$app->request;
         $this->findModel($id)->delete();
 
-        if($request->isAjax){
+        if ($request->isAjax) {
             /*
             *   Process for ajax request
             */
             Yii::$app->response->format = Response::FORMAT_JSON;
+
             return ['forceClose' => true, 'forceReload' => '#pc-children-datatable-pjax'];
-        }else{
+        } else {
             /*
             *   Process for non-ajax request
             */
@@ -206,7 +253,7 @@ class PcChildrenController extends KHanWebController
         }
     }
 
-     /**
+    /**
      * Delete multiple existing PcChildren model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
@@ -218,19 +265,20 @@ class PcChildrenController extends KHanWebController
     public function actionBulkDelete()
     {
         $request = Yii::$app->request;
-        $pks = explode(',', $request->post( 'pks' )); // Array or selected records primary keys
-        foreach ( $pks as $pk ) {
+        $pks = explode(',', $request->post('pks')); // Array or selected records primary keys
+        foreach ($pks as $pk) {
             $model = $this->findModel($pk);
             $model->delete();
         }
 
-        if($request->isAjax){
+        if ($request->isAjax) {
             /*
             *   Process for ajax request
             */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return ['forceClose'=>true,'forceReload'=>'#pc-children-datatable-pjax'];
-        }else{
+
+            return ['forceClose' => true, 'forceReload' => '#pc-children-datatable-pjax'];
+        } else {
             /*
             *   Process for non-ajax request
             */
@@ -251,14 +299,17 @@ class PcChildrenController extends KHanWebController
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $model = $this->findModel($id);
-        $dataProvider = new ActiveDataProvider(['query' => $model->getActionHistory()]);
+        $dataProvider = new ActiveDataProvider([
+            'db'    => Yii::$app->get('test'),
+            'query' => $model->getActionHistory(),
+        ]);
 
         return [
             'title'   => "رکورد #" . $model->id . ' جدول List of data having parent record',
             'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
                 'dataProvider' => $dataProvider,
             ]),
-            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal'])
+            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']),
         ];
     }
 
@@ -276,28 +327,9 @@ class PcChildrenController extends KHanWebController
         $query = \khans\utils\demos\data\PcParents::find()
             ->getTitle('text')
             ->orWhere(['id' => $q])
-            ->orWhere(['like', 'comment', $q])
-    ;
+            ->orWhere(['like', 'comment', $q]);
         $out['results'] = $query->all();
 
         return $out;
-    }
-
-    /**
-     * Finds the PcChildren model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     *
-     * @param integer $id
-     *
-     * @return PcChildren the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = PcChildren::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
-        }
     }
 }

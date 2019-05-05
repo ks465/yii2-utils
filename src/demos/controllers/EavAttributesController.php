@@ -1,12 +1,13 @@
 <?php
 
+
 namespace khans\utils\demos\controllers;
 
-use Yii;
+use khans\utils\controllers\KHanWebController;
 use khans\utils\demos\data\SysEavAttributes;
 use khans\utils\demos\data\SysEavAttributesSearch;
+use Yii;
 use yii\data\ActiveDataProvider;
-use khans\utils\controllers\KHanWebController;
 use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -22,6 +23,7 @@ class EavAttributesController extends KHanWebController
 {
     /**
      * Lists all SysEavAttributes models.
+     *
      * @return mixed
      */
     public function actionIndex()
@@ -30,14 +32,16 @@ class EavAttributesController extends KHanWebController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
      * Displays a single SysEavAttributes model.
+     *
      * @param integer $id
+     *
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -49,8 +53,27 @@ class EavAttributesController extends KHanWebController
     }
 
     /**
+     * Finds the SysEavAttributes model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     *
+     * @param integer $id
+     *
+     * @return SysEavAttributes the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = SysEavAttributes::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
+    }
+
+    /**
      * Creates a new SysEavAttributes model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     *
      * @return mixed
      */
     public function actionCreate()
@@ -69,7 +92,9 @@ class EavAttributesController extends KHanWebController
     /**
      * Updates an existing SysEavAttributes model.
      * If update is successful, the browser will be redirected to the 'view' page.
+     *
      * @param integer $id
+     *
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -89,7 +114,9 @@ class EavAttributesController extends KHanWebController
     /**
      * Deletes an existing SysEavAttributes model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     *
      * @param integer $id
+     *
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -113,31 +140,17 @@ class EavAttributesController extends KHanWebController
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $model = $this->findModel($id);
-        $dataProvider = new ActiveDataProvider(['query' => $model->getActionHistory()]);
+        $dataProvider = new ActiveDataProvider([
+            'db'    => Yii::$app->get('test'),
+            'query' => $model->getActionHistory(),
+        ]);
 
         return [
             'title'   => "رکورد #" . $model->id . ' جدول List of EAV Attributes',
             'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
                 'dataProvider' => $dataProvider,
             ]),
-            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal'])
+            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']),
         ];
-    }
-
-
-    /**
-     * Finds the SysEavAttributes model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return SysEavAttributes the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = SysEavAttributes::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
     }
 }

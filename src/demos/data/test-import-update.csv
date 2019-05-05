@@ -1,0 +1,8 @@
+faculty_id,faculty_semester_id,faculty_grade,BASE,employment_type,employment_status,MAJORGROUPNAME,MINORGROUPNAME
+10822,842,2503,14,2401,3000,init value,update value
+10823,841,2504,18,2401,3000,init value,update value
+10824,841,2505,19,2401,3000,insert value,update value
+10825,842,2503,3,2402,3000,insert value,update value
+10481,842,2504,11,2404,3004,update value,
+10481,851,2504,12,2404,3004,update value,
+10481,841,2504,11,2404,3004,update value,

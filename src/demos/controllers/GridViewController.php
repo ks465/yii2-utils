@@ -209,6 +209,133 @@ class GridViewController extends KHanWebController
         ]);
     }
 
+    private function getSimpleDataColumns()
+    {
+        return [
+            'checkbox' => [
+                'class' => 'kartik\grid\CheckboxColumn',
+            ],
+            'radio'    => [
+                'class' => 'khans\utils\columns\RadioColumn',
+            ],
+            'serial'   => [
+                'class' => 'kartik\grid\SerialColumn',
+            ],
+            'a'        => [
+                'attribute' => 'a',
+                'class'     => 'khans\utils\columns\DataColumn',
+                'width'     => '100px',
+            ],
+            'b'        => [
+                'attribute' => 'b',
+                'class'     => 'khans\utils\columns\DataColumn',
+                'width'     => '100px',
+            ],
+            'e'        => [
+                'class'     => 'khans\utils\columns\BooleanColumn',
+                'attribute' => 'e',
+                'width'     => '100px',
+            ],
+            'action'   => [
+                'class'     => 'khans\utils\columns\ActionColumn',
+                'runAsAjax' => true,
+                'dropdown'  => false,
+            ],
+        ];
+    }
+
+    private function firstRow()
+    {
+        return [
+            [
+                'content' => 'Control',
+                'options' => [
+                    'colspan' => 3,
+                    'class'   => 'text-center skip-export',
+                ],
+            ],
+            [
+                'content' => 'Data ID',
+                'options' => [
+                    'colspan' => 3,
+                    'class'   => 'text-center',
+                ],
+            ],
+            [
+                'content' => 'Action',
+                'options' => [
+                    'colspan' => 1,
+                    'rowspan' => 2,
+                    'class'   => 'text-center skip-export text-danger text-bold',
+                    'style'   => 'vertical-align: middle;',
+                ],
+            ],
+        ];
+    }
+
+    private function secondRow()
+    {
+        return [
+            [
+                'content' => 'Select',
+                'options' => [
+                    'colspan' => 2,
+                    'class'   => 'text-center skip-export',
+                ],
+            ],
+            [
+                'content' => '#',
+                'options' => [
+                    'colspan' => 1,
+                    'class'   => 'text-center skip-export',
+                ],
+            ],
+            [
+                'content' => 'Title',
+                'options' => [
+                    'colspan' => 2,
+                    'class'   => 'text-center',
+                ],
+            ],
+            [
+                'content' => 'Result',
+                'options' => [
+                    'colspan' => 1,
+                    'class'   => 'text-center skip-export',
+                ],
+            ],
+//            [
+//                'content' => '',
+//                'options' => [
+//                    'colspan' => 1,
+//                    'class'   => 'text-center skip-export',
+//                ],
+//            ],
+        ];
+    }
+
+    private function buildSimpleGridData($requestedRecords = 100)
+    {
+        $faker = \Faker\Factory::create();
+        $faker->seed(26465);
+        $output = [];
+        for ($i = 0; $i < $requestedRecords; $i++) {
+            $output[] = [
+                'a'          => $faker->name,
+                'b'          => $faker->year,
+                'c'          => $faker->text(5),
+                'd'          => $faker->numberBetween(6, 9),
+                'e'          => $faker->boolean(75),
+                'created_by' => $faker->firstName,
+                'created_at' => $faker->unixTime,
+                'updated_by' => $faker->firstName,
+                'updated_at' => $faker->unixTime,
+            ];
+        }
+
+        return $output;
+    }
+
     public function actionExportTrue()
     {
         $columns = $this->getSimpleDataColumns();
@@ -321,6 +448,75 @@ class GridViewController extends KHanWebController
             'config'       => $config,
         ]);
     }
+    //</editor-fold>
+
+    //<editor-fold Desc="Configs">
+
+    private function getTableDataColumns()
+    {
+        return [
+            [
+                'class' => 'kartik\grid\CheckboxColumn',
+                'width' => '20px',
+            ],
+            [
+                'class' => 'kartik\grid\SerialColumn',
+                'width' => '30px',
+            ],
+            [
+                'class'          => '\khans\utils\columns\DataColumn',
+                'attribute'      => 'integer_column',
+                'hAlign'         => GridView::ALIGN_RIGHT,
+                'vAlign'         => GridView::ALIGN_MIDDLE,
+                'width'          => '100px',
+                'headerOptions'  => ['style' => 'text-align: center;'],
+                'contentOptions' => ['class' => 'pars-wrap'],
+            ],
+            [
+                'class'          => '\khans\utils\columns\DataColumn',
+                'attribute'      => 'text_column',
+                'hAlign'         => GridView::ALIGN_RIGHT,
+                'vAlign'         => GridView::ALIGN_MIDDLE,
+                'width'          => '150px',
+                'headerOptions'  => ['style' => 'text-align: center;'],
+                'contentOptions' => ['class' => 'pars-wrap'],
+            ],
+            [
+                'class'          => '\khans\utils\columns\ArithmeticColumn',
+                'attribute'      => 'real_column',
+                'hAlign'         => GridView::ALIGN_RIGHT,
+                'vAlign'         => GridView::ALIGN_MIDDLE,
+                'width'          => '100px',
+                'headerOptions'  => ['style' => 'text-align: center;'],
+                'contentOptions' => ['class' => 'pars-wrap'],
+            ],
+            [
+                'class'     => '\khans\utils\columns\BooleanColumn',
+                'attribute' => 'boolean_column',
+                'width'     => '100px',
+            ],
+            [
+                'class'          => '\khans\utils\columns\JalaliColumn',
+                'attribute'      => 'timestamp_column',
+                'hAlign'         => GridView::ALIGN_RIGHT,
+                'vAlign'         => GridView::ALIGN_MIDDLE,
+                'width'          => '200px',
+                'headerOptions'  => ['style' => 'text-align: center;'],
+                'contentOptions' => ['class' => 'pars-wrap'],
+            ],
+            [
+                'class'     => '\khans\utils\columns\EnumColumn',
+                'attribute' => 'status',
+                'enum'      => KHanModel::getStatuses(),
+                'width'     => '100px',
+            ],
+            [
+                'class'     => '\khans\utils\columns\ProgressColumn',
+                'attribute' => 'progress_column',
+                'width'     => '100px',
+            ],
+        ];
+    }
 
     public function actionBulkAction()
     {
@@ -336,12 +532,59 @@ class GridViewController extends KHanWebController
         ]);
     }
 
+    private function getBulkAction()
+    {
+        return [
+            'dropdown' => true,
+            'action'   => DropdownX::widget([
+                'items' => [
+                    [
+                        'label' => 'عنوان منوی اصلی',
+                    ],
+                    [
+                        'label'   => 'View',
+                        'url'     => 'view-b',
+                        'message' => 'پیام شماره یک',
+                        'class'   => 'default',
+                    ],
+                    [
+                        'label'   => 'Update',
+                        'url'     => 'update-b',
+                        'message' => 'پیام شماره پنج',
+                    ],
+                    '<li class="divider"></li>',
+                    [
+                        'label' => 'کلید زیرمنوی یکم',
+                        'class' => 'danger',
+                        'items' => [
+                            [
+                                'label' => 'عنوان منوی فرعی',
+                            ],
+                            [
+                                'label'   => 'دستور سه',
+                                'url'     => 'rename-b',
+                                'message' => 'پیام شماره سه',
+                                'class'   => 'danger',
+                            ],
+                            [
+                                'label'   => 'دستور',
+                                'message' => 'پیام شماره چهار',
+                                'url'     => 'reset-b',
+                            ],
+                        ],
+                    ],
+                ],
+            ]),
+        ];
+    }
+
     public function actionDropdownAction()
     {
         $columns = $this->getSimpleDataColumns();
         unset($columns['checkbox']);
         unset($columns['radio']);
         $columns['action'] = $this->getActionColumn();
+        $columns['action']['runAsAjax'] = false;
 
         return $this->render('grid', [
             'dataProvider' => new ArrayDataProvider(['allModels' => $this->buildSimpleGridData()]),
@@ -349,6 +592,37 @@ class GridViewController extends KHanWebController
             'title'        => 'Dropdown Action Menu',
             'description'  => 'Testing Action Columns in Dropdown Menu-- Array',
         ]);
+    }
+
+    private function getActionColumn()
+    {
+        return [
+            'class'          => 'khans\utils\columns\ActionColumn',
+            'runAsAjax'      => true,
+            'dropdown'       => true,
+            'dropdownButton' => [
+                'class' => 'btn btn-default alert-success', 'label' => '<i class="glyphicon glyphicon-cog"></i>',
+            ],
+            'header'         => 'Extra Actions',
+            'visibleButtons' => [
+                'view'     => true,
+                'update'   => true,
+                'delete'   => true,
+                'download' => false,
+                'audit'    => false,
+            ],
+            'extraItems'     => [
+                'rename' => [
+                    'title' => 'Rename Me',
+                    'icon'  => 'list',
+                ],
+                'reset'  => [
+                    'title'     => 'This is not Modal!',
+                    'config'    => ['class' => 'text-danger'],
+                    'runAsAjax' => false,
+                ],
+            ],
+        ];
     }
 
     public function actionDisabledActions()
@@ -440,278 +714,6 @@ class GridViewController extends KHanWebController
             'title'        => 'Test Confirmation for `ExtraItems` Actions',
             'description'  => 'Test generic, detailed, or no confirmation for row actions.',
         ]);
-    }
-    //</editor-fold>
-
-    //<editor-fold Desc="Configs">
-    private function buildSimpleGridData($requestedRecords = 100)
-    {
-        $faker = \Faker\Factory::create();
-        $faker->seed(26465);
-        $output = [];
-        for ($i = 0; $i < $requestedRecords; $i++) {
-            $output[] = [
-                'a'          => $faker->name,
-                'b'          => $faker->year,
-                'c'          => $faker->text(5),
-                'd'          => $faker->numberBetween(6, 9),
-                'e'          => $faker->boolean(75),
-                'created_by' => $faker->firstName,
-                'created_at' => $faker->unixTime,
-                'updated_by' => $faker->firstName,
-                'updated_at' => $faker->unixTime,
-            ];
-        }
-
-        return $output;
-    }
-
-    private function getSimpleDataColumns()
-    {
-        return [
-            'checkbox' => [
-                'class' => 'kartik\grid\CheckboxColumn',
-            ],
-            'radio'    => [
-                'class' => 'khans\utils\columns\RadioColumn',
-            ],
-            'serial'   => [
-                'class' => 'kartik\grid\SerialColumn',
-            ],
-            'a'        => [
-                'attribute' => 'a',
-                'class'     => 'khans\utils\columns\DataColumn',
-                'width'     => '100px',
-            ],
-            'b'        => [
-                'attribute' => 'b',
-                'class'     => 'khans\utils\columns\DataColumn',
-                'width'     => '100px',
-            ],
-            'e'        => [
-                'class'     => 'khans\utils\columns\BooleanColumn',
-                'attribute' => 'e',
-                'width'     => '100px',
-            ],
-            'action'   => [
-                'class'     => 'khans\utils\columns\ActionColumn',
-                'runAsAjax' => true,
-                'dropdown'  => false,
-            ],
-        ];
-    }
-
-    private function getTableDataColumns()
-    {
-        return [
-            [
-                'class' => 'kartik\grid\CheckboxColumn',
-                'width' => '20px',
-            ],
-            [
-                'class' => 'kartik\grid\SerialColumn',
-                'width' => '30px',
-            ],
-            [
-                'class'          => '\khans\utils\columns\DataColumn',
-                'attribute'      => 'integer_column',
-                'hAlign'         => GridView::ALIGN_RIGHT,
-                'vAlign'         => GridView::ALIGN_MIDDLE,
-                'width'          => '100px',
-                'headerOptions'  => ['style' => 'text-align: center;'],
-                'contentOptions' => ['class' => 'pars-wrap'],
-            ],
-            [
-                'class'          => '\khans\utils\columns\DataColumn',
-                'attribute'      => 'text_column',
-                'hAlign'         => GridView::ALIGN_RIGHT,
-                'vAlign'         => GridView::ALIGN_MIDDLE,
-                'width'          => '150px',
-                'headerOptions'  => ['style' => 'text-align: center;'],
-                'contentOptions' => ['class' => 'pars-wrap'],
-            ],
-            [
-                'class'          => '\khans\utils\columns\ArithmeticColumn',
-                'attribute'      => 'real_column',
-                'hAlign'         => GridView::ALIGN_RIGHT,
-                'vAlign'         => GridView::ALIGN_MIDDLE,
-                'width'          => '100px',
-                'headerOptions'  => ['style' => 'text-align: center;'],
-                'contentOptions' => ['class' => 'pars-wrap'],
-            ],
-            [
-                'class'     => '\khans\utils\columns\BooleanColumn',
-                'attribute' => 'boolean_column',
-                'width'     => '100px',
-            ],
-            [
-                'class'          => '\khans\utils\columns\JalaliColumn',
-                'attribute'      => 'timestamp_column',
-                'hAlign'         => GridView::ALIGN_RIGHT,
-                'vAlign'         => GridView::ALIGN_MIDDLE,
-                'width'          => '200px',
-                'headerOptions'  => ['style' => 'text-align: center;'],
-                'contentOptions' => ['class' => 'pars-wrap'],
-            ],
-            [
-                'class'     => '\khans\utils\columns\EnumColumn',
-                'attribute' => 'status',
-                'enum'      => KHanModel::getStatuses(),
-                'width'     => '100px',
-            ],
-            [
-                'class'      => '\khans\utils\columns\ProgressColumn',
-                'attribute'  => 'progress_column',
-                'width'      => '100px',
-            ],
-        ];
-    }
-
-    private function getActionColumn()
-    {
-        return [
-            'class'          => 'khans\utils\columns\ActionColumn',
-            'runAsAjax'      => true,
-            'dropdown'       => true,
-            'dropdownButton' => [
-                'class' => 'btn btn-default alert-success', 'label' => '<i class="glyphicon glyphicon-cog"></i>',
-            ],
-            'header'         => 'Extra Actions',
-            'visibleButtons' => [
-                'view'     => true,
-                'update'   => true,
-                'delete'   => true,
-                'download' => false,
-                'audit'    => false,
-            ],
-            'extraItems'     => [
-                'rename' => [
-                    'title' => 'Rename Me',
-                    'icon'  => 'list',
-                ],
-                'reset'  => [
-                    'title'     => 'This is not Modal!',
-                    'config'    => ['class' => 'text-danger'],
-                    'runAsAjax' => false,
-                ],
-            ],
-        ];
-    }
-
-    private function firstRow()
-    {
-        return [
-            [
-                'content' => 'Control',
-                'options' => [
-                    'colspan' => 3,
-                    'class'   => 'text-center skip-export',
-                ],
-            ],
-            [
-                'content' => 'Data ID',
-                'options' => [
-                    'colspan' => 3,
-                    'class'   => 'text-center',
-                ],
-            ],
-            [
-                'content' => 'Action',
-                'options' => [
-                    'colspan' => 1,
-                    'rowspan' => 2,
-                    'class'   => 'text-center skip-export text-danger text-bold',
-                    'style'   => 'vertical-align: middle;',
-                ],
-            ],
-        ];
-    }
-
-    private function secondRow()
-    {
-        return [
-            [
-                'content' => 'Select',
-                'options' => [
-                    'colspan' => 2,
-                    'class'   => 'text-center skip-export',
-                ],
-            ],
-            [
-                'content' => '#',
-                'options' => [
-                    'colspan' => 1,
-                    'class'   => 'text-center skip-export',
-                ],
-            ],
-            [
-                'content' => 'Title',
-                'options' => [
-                    'colspan' => 2,
-                    'class'   => 'text-center',
-                ],
-            ],
-            [
-                'content' => 'Result',
-                'options' => [
-                    'colspan' => 1,
-                    'class'   => 'text-center skip-export',
-                ],
-            ],
-//            [
-//                'content' => '',
-//                'options' => [
-//                    'colspan' => 1,
-//                    'class'   => 'text-center skip-export',
-//                ],
-//            ],
-        ];
-    }
-
-    private function getBulkAction()
-    {
-        return [
-            'dropdown' => true,
-            'action'   => DropdownX::widget([
-                'items' => [
-                    [
-                        'label' => 'عنوان منوی اصلی',
-                    ],
-                    [
-                        'label'   => 'View',
-                        'url'     => 'view-b',
-                        'message' => 'پیام شماره یک',
-                        'class'   => 'default',
-                    ],
-                    [
-                        'label'   => 'Update',
-                        'url'     => 'update-b',
-                        'message' => 'پیام شماره پنج',
-                    ],
-                    '<li class="divider"></li>',
-                    [
-                        'label' => 'کلید زیرمنوی یکم',
-                        'class' => 'danger',
-                        'items' => [
-                            [
-                                'label' => 'عنوان منوی فرعی',
-                            ],
-                            [
-                                'label'   => 'دستور سه',
-                                'url'     => 'rename-b',
-                                'message' => 'پیام شماره سه',
-                                'class'   => 'danger',
-                            ],
-                            [
-                                'label'   => 'دستور',
-                                'message' => 'پیام شماره چهار',
-                                'url'     => 'reset-b',
-                            ],
-                        ],
-                    ],
-                ],
-            ]),
-        ];
     }
     //</editor-fold>
 }

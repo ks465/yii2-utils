@@ -1,6 +1,6 @@
 #EavQueryTrait
 Documentation Edition: 1.0-971126
-Class Version: 0.1.1-971125
+Class Version: 0.2.1-980121
 
 This document is only explaining the _trait_ used to change the query.
 As this trait only changes the query, setting up the Entities utilizing the EAV attributes 

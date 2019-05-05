@@ -8,6 +8,7 @@ use khans\utils\widgets\menu\OverlayMenu;
 use yii\base\DynamicModel;
 use yii\helpers\Html;
 use yii\helpers\Url;
+
 $this->title = 'Available Components';
 $this->params['breadcrumbs'][] = ['label' => 'List of Demo Pages', 'url' => ['/demos']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -114,11 +115,41 @@ $this->params['breadcrumbs'][] = $this->title;
            title="Rest Client for PostgREST.">
             REST Client 2
         </a>
+        <div class="btn-group bt">
+            <button data-toggle="dropdown" class="dropdown-toggle btn btn-default" title="List of Tools">
+                <i class="glyphicon glyphicon-cog"></i>&nbsp;
+                Tools
+                &nbsp;<b class="caret"></b>
+            </button>
+            <?= \khans\utils\widgets\DropdownX::widget([
+                'items' => [
+                    '<li role="presentation" class="dropdown-header">KHanS Tools</li>',
+                    ['label' => 'RBAC Lists', 'url' => '#', 'title' => 'Extra Lists', 'class' => 'dropdown-toggle'],
+                    [
+                        'label' => 'System Tables', 'items' => [
+                        '<li role="presentation" class="dropdown-header">System Utilities</li>',
+                        ['label' => 'Setup', 'url' => '#'],
+                        '<li class="divider"></li>',
+                        ['label' => 'Tables', 'url' => '#'],
+                        ['label' => 'Fields', 'url' => '#'],
+                    ],
+                    ],
+                    ['label' => 'Help Files', 'url' => '#'],
+                    ['label' => 'Loading ', 'url' => '#'],
+                    '<li class="divider"></li>',
+                    ['label' => 'Records History', 'url' => '/khan/history-database'],
+                    ['label' => 'Login History', 'url' => '/khan/history-users'],
+                    '<li class="divider"></li>',
+                    ['label' => 'EAV Attributes', 'url' => '/khan/eav-attributes'],
+                ],
+            ]);
+            ?>
+        </div>
     </div>
     <div class="panel-footer">
     </div>
 </div>
-<?=  DateRangePicker::widget([
+<?= DateRangePicker::widget([
     'id'        => 'attribute-one',
     'attribute' => 'from_date',
     'model'     => new DynamicModel(['from_date' => Jalali::date('Y/m/d', time())]),
@@ -126,4 +157,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'minDate' => '1395/01/01',
         'maxDate' => '1398/12/29',
     ],
-]);?>
+]); ?>
+
+<pre class="ltr text-left code col-md-8">
+    $totalRecords = 10;
+
+    Console::startProgress(0, $totalRecords, 'Explain the process ', 0.75);
+
+    for ($record = 1; $record <= $totalRecords; $record++) {
+        // do loop stuff here
+        Console::updateProgress($record, $totalRecords);
+    }
+
+    Console::endProgress(' ... done.' . PHP_EOL, true);
+</pre>
+<div class="col-md-4">
+    Use this code to output a progress bar in CLI
+</div>

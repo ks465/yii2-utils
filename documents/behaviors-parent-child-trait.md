@@ -2,8 +2,7 @@
 Documentation Edition: 1.0-980202
 Class Version:  0.1.0-980121
 
-The concept of Parent Child Pattern is defined in [this document](concept-parent-child.md). 
-Here only 
+The concept of Parent Child Pattern is defined in [P/C Pattern Concept](concept-parent-child.md). 
 
 This trait should be used by both models to complete the relation. 
 

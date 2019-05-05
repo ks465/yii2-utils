@@ -17,7 +17,7 @@ use yii\data\ArrayDataProvider;
  * to ActiveDataProvider
  *
  * @package khans\utils\components\rest_v2
- * @version 0.1.0-980107
+ * @version 0.2.0-980215
  * @since   1.0
  */
 class RestDataProvider extends ArrayDataProvider
@@ -25,7 +25,7 @@ class RestDataProvider extends ArrayDataProvider
     /**
      * @var RestQuery Used to retrieve `allModels`
      */
-public $query;
+    public $query;
 
     /**
      * Load data from the REST server and build a class of type ArrayDataProvider
@@ -37,9 +37,16 @@ public $query;
         $query = clone $this->query;
         $this->allModels = $query->all();
 
-    $this->sort=[
-        'attributes'=> $query->select,
-    ];
+        if (empty($query->select)) {
+            $tableSchema = new RestTableSchema(['name' => $query->from]);
+            $columns = $tableSchema->columnNames;
+
+        } else {
+            $columns = $query->select;
+        }
+        $this->sort = [
+            'attributes' => $columns,
+        ];
 
         parent::init();
 

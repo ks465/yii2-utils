@@ -96,6 +96,7 @@ class MultiFormatData extends KHanModel
     public static function find(): \khans\utils\models\queries\KHanQuery    {
         return new MultiFormatDataQuery(get_called_class());
     }
+
     /**
      * @inheritdoc
      */

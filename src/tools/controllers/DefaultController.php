@@ -7,7 +7,10 @@ use yii\web\Controller;
 
 /**
  * Default controller for the `khan` module
- */
+ *
+ * @package khans\utils\generatedControllers
+ * @version 0.2.0-980208
+ * @since   1.0 */
 class DefaultController extends Controller
 {
     /**

@@ -17,14 +17,17 @@ class ComponentsController extends KHanWebController
     {
         return $this->render('jalali');
     }
+
     public function actionDatePicker()
     {
         return $this->render('date-picker');
     }
+
     public function actionJwt()
     {
         return $this->render('jwt');
     }
+
     public function actionRestV2()
     {
         return $this->render('rest-v2');

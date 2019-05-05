@@ -4,6 +4,7 @@ Documentation Edition: 1.0-980205
 - A *Parent* model by definition is a model which has **One to Many** relation to the child model.
 - A *Child* model is on the other hand a model which has **Many to One** relation to the parent model.
 
+**Although the generator recognizes multiple primary keys, it is _NOT_ a good idea to use that!**
 
 + Grid View for the child controller utilizes the title field in the parent model to search and filter
 data.

@@ -110,6 +110,6 @@ echo $form->field(
         'class' => 'form-control',
     ],
 ]);
-$form->end();',
+$form->end();
 </pre>
 

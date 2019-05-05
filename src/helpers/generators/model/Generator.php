@@ -3,6 +3,7 @@
 
 namespace khans\utils\helpers\generators\model;
 
+use khans\utils\tools\components\TableHelper;
 use Yii;
 use yii\db\Query;
 use yii\helpers\Inflector;
@@ -11,7 +12,7 @@ use yii\helpers\Inflector;
  * This generator will set defaults for the parent generator only.
  *
  * @package KHanS\Utils
- * @version 0.3.0-980123
+ * @version 0.3.1-980207
  * @since   1.0
  */
 class Generator extends \yii\gii\generators\model\Generator
@@ -31,6 +32,11 @@ class Generator extends \yii\gii\generators\model\Generator
      * @var string Name of Parent or Child model to be used in the relation
      */
     public $relatedModel;
+    /**
+     * @var string Comma separated list of fields to use in the primaryKey() method of the generated model,
+     * when the table does not have primary key
+     */
+    public $optionalPK;
 
     /**
      * Prepare array of linked fields in a string notation to inject into the model
@@ -108,7 +114,7 @@ class Generator extends \yii\gii\generators\model\Generator
         return array_merge(parent::rules(), [
             [['typeParentChild'], 'in', 'range' => [self::ROLE_NONE, self::ROLE_PARENT, self::ROLE_CHILD]],
             [['withSearchModel'], 'boolean'],
-            [['relatedModel', 'relatedFields'], 'filter', 'filter' => 'trim'],
+            [['relatedModel', 'relatedFields', 'optionalPK'], 'filter', 'filter' => 'trim'],
 //            [['relatedModel'], 'validateClass'],
 //            [['relatedFields'], 'validateLinkedFields'],
         ]);
@@ -162,6 +168,7 @@ class Generator extends \yii\gii\generators\model\Generator
             'withSearchModel' => 'Generate searchModel?',
             'relatedModel'    => 'Name of Parent or Child Model',
             'relatedFields'   => 'Field containing Parent.Title of Child.Foreign Keys',
+            'optionalPK'      => 'Optional primary key(s) for the model.',
         ]);
     }
 
@@ -175,6 +182,7 @@ class Generator extends \yii\gii\generators\model\Generator
             'withSearchModel' => 'Create SearchModel alongside main model and query model?',
             'relatedModel'    => 'Name of Parent or Child model --based on the chosen type-- to use for connection',
             'relatedFields'   => 'Field containing record title in Parent model, or fields linking to parent in Child model',
+            'optionalPK'      => 'This is useful for situations that the table does not contain real primary key. Enter comma separated of the columns in the PK here.',
         ]);
     }
 
@@ -190,27 +198,12 @@ class Generator extends \yii\gii\generators\model\Generator
      * If title is not given in the config, produce it from comment of the table in database.
      * If comment is not available return Table Name
      *
+     * @param string $tableName Name of table to get the comment
+     *
      * @return string
      */
     public function getTableComment($tableName)
     {
-        $query = new Query();
-
-        if (Yii::$app->db->driverName === 'mysql') {
-            $comment = $query->from('INFORMATION_SCHEMA.TABLES')
-                ->select(['table_comment'])
-                ->where(['table_name' => $tableName])
-                ->scalar();
-        } elseif (Yii::$app->db->driverName === 'pgsql') {
-            $comment = $query->from('pg_description')
-                ->select(['description'])
-                ->innerJoin('pg_class', '{{pg_description}}.[[objoid]] = {{pg_class}}.[[relnamespace]]')
-                ->where(['relname' => $tableName])
-                ->scalar();
-        } else {
-            $comment = false;
-        }
-
-        return $comment ? : Inflector::humanize($tableName, true);
+        return TableHelper::getTableComment($tableName);
     }
 }

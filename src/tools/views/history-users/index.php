@@ -8,6 +8,7 @@ use yii\helpers\Html;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'تاریخچه ورود به سامانه';
+$this->params['breadcrumbs'][] = ['label' => 'Admin Tools', 'url' => ['/khan']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sys-history-users-index">

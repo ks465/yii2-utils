@@ -156,3 +156,53 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
         'attributes' => $attributes,
     ]) ?>
 </div>
+
+<?php
+if(defined($generator->modelClass . '::THIS_TABLE_ROLE') and $generator->modelClass::THIS_TABLE_ROLE == 'ROLE_PARENT'):
+    echo "<?php\n";
+?>
+$searchModel = new <?= $generator->childSearchModelClass ?>([
+   'query'=> $model->getChildren(),
+]);
+$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+$columns = require(<?= $generator->childColumnsPath ?>/_columns.php');
+$columns['action']['controller'] = '<?= $generator->childControllerId ?>';
+<?php
+foreach (explode(',', $generator->childLinkFields) as $item){
+    if(empty($item)){
+        continue;
+    }
+    echo "unset(\$columns['$item']);\n";
+}
+?>
+?>
+<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-children-index">
+
+    <h2>List of Child Data</h2>
+
+    <div id="ajaxCrudDatatable">
+        <?= "<?= " ?>GridView::widget([
+            'id'                 => '<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-children-datatable-pjax',
+            'dataProvider'       => $dataProvider,
+            'filterModel'        => $searchModel,
+            'columns'            => $columns,
+            'export'             => true,
+            'showRefreshButtons' => true,
+            'itemLabelSingle'    => 'داده',
+            'itemLabelPlural'    => 'داده‌ها',
+            'bulkAction'         => [
+                'action'  => 'bulk-delete',
+                'label'   => 'پاک‌کن',
+                'icon'    => 'trash',
+                'class'   => 'btn btn-danger btn-xs',
+                'message' => 'آیا اطمینان دارید همه را پا کنید؟',
+            ],
+            'createAction'       => [
+                'ajax'    => true,
+            ],
+        ])?>
+    </div>
+</div>
+<?php
+endif;

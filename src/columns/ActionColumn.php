@@ -21,7 +21,7 @@ use yii\helpers\{ArrayHelper, Url};
  * See [ActionColumn Guide](guide:columns-action-column.md)
  *
  * @package common\widgets
- * @version 2.4.1-980129
+ * @version 2.5.1-980215
  * @since   1.0
  */
 class ActionColumn extends \kartik\grid\ActionColumn
@@ -113,9 +113,9 @@ class ActionColumn extends \kartik\grid\ActionColumn
 
         if ($this->dropdown) {
             $this->dropdownMenu = ['class' => 'text-right']; // instead of dropdown-menu-right use this to avoid horizontal scrolling
-            $this->viewOptions  ['label'] = '<span class="glyphicon glyphicon-eye-open"></span> تماشا';
-            $this->updateOptions  ['label'] = '<span class="glyphicon glyphicon-pencil"></span> ویرایش';
-            $this->deleteOptions  ['label'] = '<span class="glyphicon glyphicon-trash"></span> پاک‌کن';
+            $this->viewOptions  ['label'] = '<span class="text-primary">' . '<i class="glyphicon glyphicon-eye-open"></i> تماشا' . '</span>';
+            $this->updateOptions  ['label'] = '<span class="text-primary">' . '<i class="glyphicon glyphicon-pencil"></i> ' . 'ویرایش' . '</span>';
+            $this->deleteOptions  ['label'] = '<span class="text-primary">' . '<i class="glyphicon glyphicon-trash"></i> ' . 'پاک‌کن' . '</span>';
         }
 //        $this->template = Helper::filterActionColumn($this->template);
 
@@ -131,7 +131,10 @@ class ActionColumn extends \kartik\grid\ActionColumn
 //        if(!\Yii::$app->user->can('download')){
 //            return;
 //        }
-        $this->template .= ' {download}';
+
+        if (strpos($this->template, '{download}') === false) {
+            $this->template .= ' {download}';
+        }
 
         $this->buttons['download'] = function($url, $model, $key) {
             $config = [
@@ -161,7 +164,9 @@ class ActionColumn extends \kartik\grid\ActionColumn
 //        if(!\Yii::$app->user->can('audit')){
 //            return;
 //        }
-        $this->template .= ' {audit}';
+        if (strpos($this->template, '{audit}') === false) {
+            $this->template .= ' {audit}';
+        }
 
         $this->buttons['audit'] = function($url, $model, $key) {
             $config = [
@@ -207,7 +212,9 @@ class ActionColumn extends \kartik\grid\ActionColumn
 //                continue;
 //            }
 
-            $this->template .= ' {' . $title . '}';
+            if (strpos($this->template, '{' . $title . '}') === false) {
+                $this->template .= ' {' . $title . '}';
+            }
 
             $this->buttons[$title] = function($url, $model, $key) use ($title, $data) {
                 if (array_key_exists('disabled', $data)) {
@@ -248,11 +255,10 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     $data['config']['data-request-method'] = 'post';
                 }
 
-
                 $data['config']['data-confirm'] = false; // for override default confirmation
                 $data['config']['data-method'] = false; // for override yii data api
 
-                if ($this->runAsAjax && ArrayHelper::getValue($data, 'runAsAjax') !== false) {
+                if ($this->runAsAjax or ArrayHelper::getValue($data, 'runAsAjax') !== false) {
                     $data['config']['data-toggle'] = 'tooltip';
                     $data['config']['role'] = 'modal-remote';
                     $data['config']['data-pjax'] = '0';
@@ -268,7 +274,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     }
                 }
                 if ($_action === false) {
-                    $data['config']['title'] .= ' -- ' . (isset($data['disabledComment']) ? : 'Disabled');
+                    $data['config']['title'] .= ' -- ' . (isset($data['disabledComment']) ? $data['disabledComment'] : 'Disabled');
                     if ($this->dropdown) {
                         $this->dropdownOptions = $data['config'];
 
@@ -280,7 +286,9 @@ class ActionColumn extends \kartik\grid\ActionColumn
                 if ($this->dropdown) {
                     $this->dropdownOptions = $data['config'];
 
-                    return '<li>' . Html::a($icon . ' ' . ucwords($data['config']['title']), Url::toRoute($params), $data['config']) . '</li>';
+                    return '<li>' . Html::a(
+                            '<span class="text-primary">' . $icon . ' ' . ucwords($data['config']['title']) . '</span>',
+                            Url::toRoute($params), $data['config']) . '</li>';
                 }
 
                 return Html::a($icon, Url::toRoute($params), $data['config']);

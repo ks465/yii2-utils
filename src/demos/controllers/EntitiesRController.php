@@ -1,17 +1,15 @@
 <?php
 
+
 namespace khans\utils\demos\controllers;
 
+use khans\utils\controllers\KHanWebController;
 use khans\utils\demos\data\MultiFormatData;
 use khans\utils\demos\data\MultiFormatDataSearch;
 use Yii;
-use app\models\TestEntities;
-use app\models\TestEntitiesRSearch;
-use yii\data\ActiveDataProvider;
-use khans\utils\controllers\KHanWebController;
-use yii\web\NotFoundHttpException;
-use \yii\web\Response;
 use yii\helpers\Html;
+use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * EntitiesRController implements the CRUD actions for TestEntities model.
@@ -24,6 +22,7 @@ class EntitiesRController extends KHanWebController
 {
     /**
      * Lists all TestEntities models.
+     *
      * @return mixed
      */
     public function actionIndex()
@@ -39,7 +38,9 @@ class EntitiesRController extends KHanWebController
 
     /**
      * Displays a single TestEntities model.
+     *
      * @param integer $id
+     *
      * @return mixed
      */
     public function actionView($id)
@@ -47,16 +48,17 @@ class EntitiesRController extends KHanWebController
         $request = Yii::$app->request;
         $model = $this->findModel($id);
 
-        if($request->isAjax){
+        if ($request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
+
             return [
-                    'title'   => "Read Only #" . $model->pk_column,
-                    'content' => $this->renderAjax('view', [
-                        'model' => $model,
-                    ]),
-                    'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal'])
-                ];
-        }else{
+                'title'   => "Read Only #" . $model->pk_column,
+                'content' => $this->renderAjax('view', [
+                    'model' => $model,
+                ]),
+                'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']),
+            ];
+        } else {
             return $this->render('view', [
                 'model' => $model,
             ]);

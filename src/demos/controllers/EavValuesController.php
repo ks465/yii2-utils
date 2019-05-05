@@ -1,15 +1,16 @@
 <?php
 
+
 namespace khans\utils\demos\controllers;
 
-use Yii;
+use khans\utils\controllers\KHanWebController;
 use khans\utils\demos\data\SysEavValues;
 use khans\utils\demos\data\SysEavValuesSearch;
+use Yii;
 use yii\data\ActiveDataProvider;
-use khans\utils\controllers\KHanWebController;
-use yii\web\NotFoundHttpException;
-use \yii\web\Response;
 use yii\helpers\Html;
+use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * EavValuesController implements the CRUD actions for SysEavValues model.
@@ -22,6 +23,7 @@ class EavValuesController extends KHanWebController
 {
     /**
      * Lists all SysEavValues models.
+     *
      * @return mixed
      */
     public function actionIndex()
@@ -37,7 +39,9 @@ class EavValuesController extends KHanWebController
 
     /**
      * Displays a single SysEavValues model.
+     *
      * @param integer $id
+     *
      * @return mixed
      */
     public function actionView($id)
@@ -45,18 +49,19 @@ class EavValuesController extends KHanWebController
         $request = Yii::$app->request;
         $model = $this->findModel($id);
 
-        if($request->isAjax){
+        if ($request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
+
             return [
-                    'title'   => "List of EAV Values #" . $model->id,
-                    'content' => $this->renderAjax('view', [
-                        'model' => $model,
-                    ]),
-                    'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
-                            Html::a('ویرایش', ['update', 'id' => $model->id],
-                                ['class'=>'btn btn-primary','role'=>'modal-remote'])
-                ];
-        }else{
+                'title'   => "List of EAV Values #" . $model->id,
+                'content' => $this->renderAjax('view', [
+                    'model' => $model,
+                ]),
+                'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']) .
+                    Html::a('ویرایش', ['update', 'id' => $model->id],
+                        ['class' => 'btn btn-primary', 'role' => 'modal-remote']),
+            ];
+        } else {
             return $this->render('view', [
                 'model' => $model,
             ]);
@@ -64,9 +69,28 @@ class EavValuesController extends KHanWebController
     }
 
     /**
+     * Finds the SysEavValues model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     *
+     * @param integer $id
+     *
+     * @return SysEavValues the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = SysEavValues::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
+        }
+    }
+
+    /**
      * Creates a new SysEavValues model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
+     *
      * @return mixed
      */
     public function actionCreate()
@@ -74,37 +98,47 @@ class EavValuesController extends KHanWebController
         $request = Yii::$app->request;
         $model = new SysEavValues();
 
-        if($request->isAjax){
+        if ($request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
-            if($request->isGet){
+            if ($request->isGet) {
                 return [
                     'title'   => "افزودن به List of EAV Values تازه",
                     'content' => $this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
-                            Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit'])
+                    'footer'  => Html::button('ببند', [
+                            'class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal',
+                        ]) .
+                        Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit']),
 
                 ];
-            }else if($model->load($request->post()) && $model->save()){
-                return [
-                    'forceReload' => '#sys-eav-values-datatable-pjax',
-                    'title'       => "افزودن List of EAV Values تازه",
-                    'content'     => '<span class="text-success">افزودن List of EAV Values موفق</span>',
-                    'footer'      => Html::button('ببند', ['class' => 'btn btn-default pull-left','data-dismiss' => 'modal']).
-                            Html::a('افزودن بیشتر', ['create'], ['class' => 'btn btn-primary', 'role' => 'modal-remote'])
-                ];
-            }else{
-                return [
-                    'title'   => "افزودن List of EAV Values تازه",
-                    'content' => $this->renderAjax('create', [
-                        'model' => $model,
-                    ]),
-                    'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
-                            Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit'])
-                ];
+            } else {
+                if ($model->load($request->post()) && $model->save()) {
+                    return [
+                        'forceReload' => '#sys-eav-values-datatable-pjax',
+                        'title'       => "افزودن List of EAV Values تازه",
+                        'content'     => '<span class="text-success">افزودن List of EAV Values موفق</span>',
+                        'footer'      => Html::button('ببند', [
+                                'class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal',
+                            ]) .
+                            Html::a('افزودن بیشتر', ['create'], [
+                                'class' => 'btn btn-primary', 'role' => 'modal-remote',
+                            ]),
+                    ];
+                } else {
+                    return [
+                        'title'   => "افزودن List of EAV Values تازه",
+                        'content' => $this->renderAjax('create', [
+                            'model' => $model,
+                        ]),
+                        'footer'  => Html::button('ببند', [
+                                'class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal',
+                            ]) .
+                            Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit']),
+                    ];
+                }
             }
-        }else{
+        } else {
             /*
             *   Process for non-ajax request
             */
@@ -122,7 +156,9 @@ class EavValuesController extends KHanWebController
      * Updates an existing SysEavValues model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
+     *
      * @param integer $id
+     *
      * @return mixed
      */
     public function actionUpdate($id)
@@ -130,43 +166,51 @@ class EavValuesController extends KHanWebController
         $request = Yii::$app->request;
         $model = $this->findModel($id);
 
-        if($request->isAjax){
+        if ($request->isAjax) {
             /*
             *   Process for ajax request
             */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            if($request->isGet){
+            if ($request->isGet) {
                 return [
                     'title'   => "ویرایش List of EAV Values #" . $model->id,
-                    'content' =>$this->renderAjax('update', [
+                    'content' => $this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
-                                Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit'])
+                    'footer'  => Html::button('ببند', [
+                            'class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal',
+                        ]) .
+                        Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit']),
                 ];
-            }else if($model->load($request->post()) && $model->save()){
-                return [
-                    'forceReload' => '#sys-eav-values-datatable-pjax',
-                    'title'       => "List of EAV Values #".$id,
-                    'content'     => $this->renderAjax('view', [
-                        'model' => $model,
-                    ]),
-                    'footer'      => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
-                        Html::a('ویرایش', ['update', 'id' => $id],
-                            ['class' => 'btn btn-primary', 'role'=>'modal-remote']
-                        )
-                ];
-            }else{
-                 return [
-                    'title'   => "ویرایش List of EAV Values #".$id,
-                    'content' =>$this->renderAjax('update', [
-                        'model' => $model,
-                    ]),
-                    'footer'  => Html::button('ببند',['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']).
-                        Html::button('بنویس',['class' => 'btn btn-primary', 'type' => 'submit'])
-                ];
+            } else {
+                if ($model->load($request->post()) && $model->save()) {
+                    return [
+                        'forceReload' => '#sys-eav-values-datatable-pjax',
+                        'title'       => "List of EAV Values #" . $id,
+                        'content'     => $this->renderAjax('view', [
+                            'model' => $model,
+                        ]),
+                        'footer'      => Html::button('ببند', [
+                                'class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal',
+                            ]) .
+                            Html::a('ویرایش', ['update', 'id' => $id],
+                                ['class' => 'btn btn-primary', 'role' => 'modal-remote']
+                            ),
+                    ];
+                } else {
+                    return [
+                        'title'   => "ویرایش List of EAV Values #" . $id,
+                        'content' => $this->renderAjax('update', [
+                            'model' => $model,
+                        ]),
+                        'footer'  => Html::button('ببند', [
+                                'class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal',
+                            ]) .
+                            Html::button('بنویس', ['class' => 'btn btn-primary', 'type' => 'submit']),
+                    ];
+                }
             }
-        }else{
+        } else {
             /*
             *   Process for non-ajax request
             */
@@ -184,7 +228,9 @@ class EavValuesController extends KHanWebController
      * Delete an existing List of EAV Values model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
+     *
      * @param integer $id
+     *
      * @return mixed
      */
     public function actionDelete($id)
@@ -192,13 +238,14 @@ class EavValuesController extends KHanWebController
         $request = Yii::$app->request;
         $this->findModel($id)->delete();
 
-        if($request->isAjax){
+        if ($request->isAjax) {
             /*
             *   Process for ajax request
             */
             Yii::$app->response->format = Response::FORMAT_JSON;
+
             return ['forceClose' => true, 'forceReload' => '#sys-eav-values-datatable-pjax'];
-        }else{
+        } else {
             /*
             *   Process for non-ajax request
             */
@@ -206,7 +253,7 @@ class EavValuesController extends KHanWebController
         }
     }
 
-     /**
+    /**
      * Delete multiple existing SysEavValues model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
@@ -218,19 +265,20 @@ class EavValuesController extends KHanWebController
     public function actionBulkDelete()
     {
         $request = Yii::$app->request;
-        $pks = explode(',', $request->post( 'pks' )); // Array or selected records primary keys
-        foreach ( $pks as $pk ) {
+        $pks = explode(',', $request->post('pks')); // Array or selected records primary keys
+        foreach ($pks as $pk) {
             $model = $this->findModel($pk);
             $model->delete();
         }
 
-        if($request->isAjax){
+        if ($request->isAjax) {
             /*
             *   Process for ajax request
             */
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return ['forceClose'=>true,'forceReload'=>'#sys-eav-values-datatable-pjax'];
-        }else{
+
+            return ['forceClose' => true, 'forceReload' => '#sys-eav-values-datatable-pjax'];
+        } else {
             /*
             *   Process for non-ajax request
             */
@@ -251,14 +299,17 @@ class EavValuesController extends KHanWebController
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $model = $this->findModel($id);
-        $dataProvider = new ActiveDataProvider(['query' => $model->getActionHistory()]);
+        $dataProvider = new ActiveDataProvider([
+            'db'    => Yii::$app->get('test'),
+            'query' => $model->getActionHistory(),
+        ]);
 
         return [
             'title'   => "رکورد #" . $model->id . ' جدول List of EAV Values',
             'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
                 'dataProvider' => $dataProvider,
             ]),
-            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal'])
+            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']),
         ];
     }
 
@@ -276,28 +327,9 @@ class EavValuesController extends KHanWebController
         $query = \khans\utils\demos\data\SysEavAttributes::find()
             ->getTitle('text')
             ->orWhere(['id' => $q])
-            ->orWhere(['like', 'attr_label', $q])
-    ;
+            ->orWhere(['like', 'attr_label', $q]);
         $out['results'] = $query->all();
 
         return $out;
-    }
-
-    /**
-     * Finds the SysEavValues model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     *
-     * @param integer $id
-     *
-     * @return SysEavValues the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = SysEavValues::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
-        }
     }
 }

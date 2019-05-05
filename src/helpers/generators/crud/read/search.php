@@ -3,7 +3,7 @@
  * This is the template for generating CRUD search class of the specified model.
  *
  * @package khans\utils\generatedControllers
- * @version 0.2.3-980119
+ * @version 0.3.1-980212
  * @since   1.0
  */
 
@@ -32,7 +32,7 @@ namespace <?= StringHelper::dirname(ltrim($generator->searchModelClass, '\\')) ?
 
 use Yii;
 use yii\base\Model;
-<?= $generator->enableEAV ? 'use khans\utils\tools\models\SysEavAttributes;' : '' ?>
+<?= $generator->enableEAV ? 'use \khans\utils\tools\models\SysEavAttributes;' : '' ?>
 
 use yii\data\ActiveDataProvider;
 use <?= ltrim($generator->modelClass, '\\') . (isset($modelAlias) ? " as $modelAlias" : "") ?>;
@@ -42,7 +42,7 @@ use <?= $queryClass ?>;
  * <?= $searchModelClass ?> represents the model behind the search form about `<?= $generator->modelClass ?>`.
  *
  * @package khans\utils\generatedControllers
- * @version 0.2.3-980119
+ * @version 0.3.1-980212
  * @since   1.0
  */
 class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $modelClass ?>
@@ -81,6 +81,15 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors(): array
+    {
+        // bypass behaviors() implementation in the parent class
+        return [];
     }
 
     /**

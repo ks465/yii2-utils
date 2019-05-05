@@ -3,42 +3,62 @@
 
 namespace khans\utils\demos\controllers;
 
+use khans\utils\components\ArrayHelper;
+use khans\utils\controllers\KHanWebController;
 use khans\utils\demos\data\MultiFormatData;
 use khans\utils\demos\data\SysEavAttributes;
 use khans\utils\demos\data\SysEavValues;
+use khans\utils\demos\data\TestWorkflowEvents;
+use khans\utils\demos\data\WF;
 use Yii;
 use yii\db\Exception;
-use yii\web\Controller;
 
 /**
  * Default controller for the `khan` module
  *
  * @package KHanS\Utils
- * @version 0.2.0-980202
+ * @version 0.3.1-980211
  * @since   1.0
  */
-class DefaultController extends Controller
+class DefaultController extends KHanWebController
 {
     /**
      * Action classes used in this module
      */
     public function actions()
     {
-        return [
+        return array_merge(parent::actions(), [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
-        ];
+        ]);
     }
 
     /**
-     * Renders the index view for the module
+     * Renders the index view for the module after logging
      *
      * @return string
      */
     public function actionIndex()
     {
+        $user = Yii::$app->user->identityClass::findOne(1);
+
+        Yii::$app->user->switchIdentity($user);
+
         return $this->render('index');
+    }
+
+    /**
+     * Prepare a list of statuses in the test workflow `WF` for updating data
+     *
+     * @return array
+     */
+    private function getWFStatuses()
+    {
+        $list = ArrayHelper::getValue(WF::getDefinition(), 'status');
+        $list = array_keys($list);
+
+        return array_map(function($item) { return 'WF/' . $item; }, $list);
     }
 
     /**
@@ -53,7 +73,9 @@ class DefaultController extends Controller
         $faker = \Faker\Factory::create();
         $faker->seed(26465);
 
-        Yii::$app->get('test')->createCommand()->truncateTable(MultiFormatData::tableName())->execute();
+        $connection = Yii::$app->get('test')->createCommand();
+
+        $connection->truncateTable(MultiFormatData::tableName())->execute();
         for ($i = 1; $i <= 50; $i++) {
             $output = [
                 'pk_column'        => $i,
@@ -62,7 +84,7 @@ class DefaultController extends Controller
                 'real_column'      => $faker->randomFloat(3, 123, 321),
                 'boolean_column'   => $faker->boolean(75),
                 'timestamp_column' => $faker->unixTime,
-                'progress_column'  => $faker->randomElement(['WF/One', 'WF/Two', 'WF/Three', 'WF/Four']),
+                'progress_column'  => $faker->randomElement($this->getWFStatuses()),
 
                 'status'     => $faker->boolean(75) * 10,
                 'created_by' => $faker->randomElement([1, 2, 3, 4]),
@@ -70,14 +92,7 @@ class DefaultController extends Controller
                 'updated_by' => $faker->randomElement([1, 2, 3, 4]),
                 'updated_at' => $faker->unixTime,
             ];
-            $model = new MultiFormatData();
-            $model->detachBehavior('Workflow');
-            $model->setAttributes($output);
-            $model->save();
-
-            if ($model->hasErrors()) {
-                vd($model->errors);
-            }
+            $connection->insert(MultiFormatData::tableName(), $output)->execute();
         }
 
         Yii::$app->session->addFlash('success', 'Test Data reset successfully (' . MultiFormatData::find()->count() . ' records).');
@@ -129,16 +144,10 @@ class DefaultController extends Controller
             'created_by', 'created_at', 'updated_by', 'updated_at',
         ];
 
-        Yii::$app->get('test')->createCommand()->truncateTable(SysEavAttributes::tableName())->execute();
+        $connection = Yii::$app->get('test')->createCommand();
+        $connection->truncateTable(SysEavAttributes::tableName())->execute();
         foreach ($attributes as $attribute) {
-
-            $model = new SysEavAttributes();
-            $model->setAttributes(array_combine($fields, $attribute));
-            $model->save();
-
-            if ($model->hasErrors()) {
-                vd($model->errors);
-            }
+            $connection->insert(SysEavAttributes::tableName(), array_combine($fields, $attribute))->execute();
         }
 
         Yii::$app->session->addFlash('success', 'EAV Test Attributes reset successfully (' . SysEavAttributes::find()->count() . ' records).');
@@ -147,7 +156,7 @@ class DefaultController extends Controller
         $faker = \Faker\Factory::create();
         $faker->seed(26465);
 
-        Yii::$app->get('test')->createCommand()->truncateTable(SysEavValues::tableName())->execute();
+        $connection->truncateTable(SysEavValues::tableName())->execute();
 
         $activeTables = SysEavAttributes::find()->indexBy('id')->asArray()->all();
         foreach ($activeTables as &$item) {
@@ -190,20 +199,54 @@ class DefaultController extends Controller
                 'updated_by' => $faker->randomElement([1, 2, 3, 4]),
                 'updated_at' => $faker->unixTime,
             ];
-            $model = new SysEavValues();
-            $model->setAttributes($output);
             try {
-                $model->save();
+                $connection->insert(SysEavValues::tableName(), $output)->execute();
             } catch (\Exception $e) {
-            }
-
-            if ($model->hasErrors()) {
-                vd($model->errors);
             }
         }
 
-        Yii::$app->session->addFlash('success', 'EAV Test Data reset successfully (' . SysEavValues::find()->count() . ' records).');
+        Yii::$app->session->addFlash('success', 'EAV Test Data Reset Successfully (' . SysEavValues::find()->count() . ' records).');
 
         return $this->redirect('index');
     }
+
+    /**
+     * Generate multiple records with simple data for testing workflow events and other features.
+     * These data are used for demos.
+     *
+     * @return \yii\web\Response
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionResetWorkflow()
+    {
+        $faker = \Faker\Factory::create();
+        $faker->seed(26465);
+
+        /* @var $connection \yii\db\Connection */
+        $connection = Yii::$app->get('test')->createCommand();
+        $connection->delete('sys_history_database', ['table' => 'test_workflow_events'])->execute();
+        $connection->delete('sys_history_emails', ['responsible_model' => 'test_workflow_events'])->execute();
+        $connection->truncateTable(TestWorkflowEvents::tableName())->execute();
+
+        for ($i = 1; $i <= 25; $i++) {
+            $time = $faker->unixTime;
+            $output = [
+                'id'              => $i,
+                'title'           => $faker->city,
+                'workflow_status' => $faker->randomElement($this->getWFStatuses()),
+
+                'status'     => $faker->boolean(75) * 10,
+                'created_by' => $faker->randomElement([1, 2, 3, 4]),
+                'created_at' => $time,
+                'updated_by' => $faker->randomElement([1, 2, 3, 4]),
+                'updated_at' => $time + $faker->randomNumber(7),
+            ];
+            $connection->insert('test_workflow_events', $output)->execute();
+        }
+
+        Yii::$app->session->addFlash('success', 'Test Data reset successfully (' . TestWorkflowEvents::find()->count() . ' records).');
+
+        return $this->redirect('index');
+    }
+
 }

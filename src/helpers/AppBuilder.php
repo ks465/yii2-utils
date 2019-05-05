@@ -20,7 +20,7 @@ use yii\helpers\Inflector;
  * generators.
  *
  * @package khans\utils
- * @version 1.5.0-980130
+ * @version 1.5.1-980207
  * @since   1.0
  */
 class AppBuilder extends BaseObject
@@ -60,6 +60,47 @@ class AppBuilder extends BaseObject
         'interactive'                => false,
         'overwrite'                  => true,
         'template'                   => 'default',
+    ];
+    /**
+     * @var array Default values for generating Parent Child pattern modules
+     */
+    private static $_PCConfig = [
+//        'ns'                         => false,//for BOTH models
+//        'queryNs'                    => 'false,//for BOTH models
+//        'childTableName'             => false,//for CHILD model ONLY
+//        'childModelClass'            => false,//for CHILD model ONLY
+//        'childQueryClass'            => false,//for CHILD model ONLY
+//        'childLinkFields'            => false,//for CHILD model ONLY
+//        'parentTableName'            => false,//for PARENT model ONLY
+//        'parentModelClass'           => false,//for PARENT model ONLY
+//        'parentQueryClass'           => false,//for PARENT model ONLY
+//        'parentTitleField'           => false,//for PARENT model ONLY
+//        'childControllerClass'       => false,//for CHILD controller ONLY
+//        'childSearchModelClass'      => false,//for CHILD controller ONLY
+//        'childViewPath'              => false,//for CHILD controller ONLY
+//        'childTableTitle'            => false,//for CHILD controller ONLY
+//        'parentControllerClass'      => false,//for PARENT controller ONLY
+//        'parentSearchModelClass'     => false,//for PARENT controller ONLY
+//        'parentViewPath'             => false,//for PARENT controller ONLY
+//        'parentTableTitle'           => false,//for PARENT controller ONLY
+//        'childControllerId'          => false,//for PARENT controller ONLY
+//        'parentControllerId'         => false,//for CHILD controller ONLY
+        'interactive'                => true,//for BOTH models and BOTH controllers
+        'overwrite'                  => true,//for BOTH models and BOTH controllers
+        'generateLabelsFromComments' => true,//for BOTH models
+        'db'                         => 'db',//for BOTH models
+        'generateQuery'              => true,//for BOTH models
+        'baseClass'                  => '\\khans\\utils\\models\\KHanModel',//for BOTH models
+        'parentControllerTemplate'   => 'giiCrudList',//for PARENT controller ONLY
+        'childControllerTemplate'    => 'default',//for CHILD controller ONLY
+        'parentModelTemplate'        => 'default',//for PARENT model ONLY
+        'childModelTemplate'         => 'default',//for CHILD model ONLY
+        'baseControllerClass'        => '\\khans\\utils\\controllers\\KHanWebController',//for BOTH controllers
+        'childEnablePjax'            => true,//for CHILD controller ONLY
+        'parentEnablePjax'           => false,//for PARENT controller ONLY
+        'childColumnsPath'           => '__DIR__ . \'/../pc-children',//for PARENT controller ONLY
+        'parentPK'                   => null,//for PARENT model
+        'childPK'                    => null,//for CHILD model
     ];
 
     /**
@@ -119,8 +160,10 @@ class AppBuilder extends BaseObject
      */
     public static function generateParentChildModule($config = [])
     {
+        $config = array_merge(self::$_PCConfig, $config);
+
         //Parent Model:
-        vd(AppBuilder::generateModelGeneric([
+        AppBuilder::generateModelGeneric([
                 'interactive'                => $config['interactive'],
                 'overwrite'                  => $config['overwrite'],
                 'generateLabelsFromComments' => $config['generateLabelsFromComments'],
@@ -136,10 +179,11 @@ class AppBuilder extends BaseObject
                 'typeParentChild'            => 'parent',
                 'relatedModel'               => $config['ns'] . '\\' . $config['childModelClass'],
                 'relatedFields'              => $config['parentTitleField'],
+                'optionalPK'                 => $config['parentPK'],
             ]
-        ));
+        );
         //Child Model:
-        vd(AppBuilder::generateModelGeneric([
+        AppBuilder::generateModelGeneric([
                 'interactive'                => $config['interactive'],
                 'overwrite'                  => $config['overwrite'],
                 'generateLabelsFromComments' => $config['generateLabelsFromComments'],
@@ -155,29 +199,29 @@ class AppBuilder extends BaseObject
                 'typeParentChild'            => 'child',
                 'relatedModel'               => $config['ns'] . '\\' . $config['parentModelClass'],
                 'relatedFields'              => $config['childLinkFields'],
+                'optionalPK'                 => $config['childPK'],
             ]
-        ));
+        );
         //Parent CRUD:
-        vd(AppBuilder::generateCrudGeneric([
-                'indexWidgetType'     => 'grid',
-                'interactive'         => $config['interactive'],
-                'baseControllerClass' => $config['baseControllerClass'],
-                'enablePjax'          => $config['parentEnablePjax'],
-                'template'            => $config['parentControllerTemplate'],
-                'controllerClass'     => $config['parentControllerClass'],
-                'modelClass'          => $config['ns'] . '\\' . $config['parentModelClass'],
-                'searchModelClass'    => $config['parentSearchModelClass'],
-                'viewPath'            => $config['parentViewPath'],
-                'tableTitle'          => $config['parentTableTitle'],
-
+        AppBuilder::generateCrudGeneric([
+                'indexWidgetType'       => 'grid',
+                'interactive'           => $config['interactive'],
+                'baseControllerClass'   => $config['baseControllerClass'],
+                'enablePjax'            => $config['parentEnablePjax'],
+                'template'              => $config['parentControllerTemplate'],
+                'controllerClass'       => $config['parentControllerClass'],
+                'modelClass'            => $config['ns'] . '\\' . $config['parentModelClass'],
+                'searchModelClass'      => $config['parentSearchModelClass'],
+                'viewPath'              => $config['parentViewPath'],
+                'tableTitle'            => $config['parentTableTitle'],
                 'childControllerId'     => $config['childControllerId'],
                 'childColumnsPath'      => $config['childColumnsPath'],
                 'childLinkFields'       => $config['childLinkFields'],
                 'childSearchModelClass' => $config['childSearchModelClass'],
             ]
-        ));
-        //Child CRUD:
-        vd(AppBuilder::generateCrudGeneric([
+        );
+//        Child CRUD:
+        AppBuilder::generateCrudGeneric([
                 'indexWidgetType'     => 'grid',
                 'interactive'         => $config['interactive'],
                 'baseControllerClass' => $config['baseControllerClass'],
@@ -188,10 +232,9 @@ class AppBuilder extends BaseObject
                 'searchModelClass'    => $config['childSearchModelClass'],
                 'viewPath'            => $config['childViewPath'],
                 'tableTitle'          => $config['childTableTitle'],
-
-                'parentControllerId' => $config['parentControllerId'],
+                'parentControllerId'  => $config['parentControllerId'],
             ]
-        ));
+        );
     }
     //</editor-fold>
 

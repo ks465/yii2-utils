@@ -18,7 +18,7 @@ use yii\web\JsExpression;
             'initValueText' => $model->getParentTitle(),
             'hideSearch'    => false,
             'pluginOptions' => [
-'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal .modal-body")'),
+                'dropdownParent' => new yii\web\JsExpression('$("#ajaxCrudModal .modal-body")'),
                 'allowClear'         => false,
                 'dir'                => 'rtl',
                 'minimumInputLength' => 3,

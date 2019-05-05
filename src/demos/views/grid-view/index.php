@@ -63,6 +63,10 @@ $this->params['breadcrumbs'][] = $this->title;
            title="This Controller does not include Update, Create, and Delete actions and pages. The generator is different from the normal CRUD generator.">
             Read-only Controller
         </a>
+        <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/test-workflow-events']) ?>"
+           title="This Controller is used to manipulate data status and workflow to check different aspects of workflow behavior.">
+            Workflow Play Ground
+        </a>
 
     </div>
     <div class="panel-footer">

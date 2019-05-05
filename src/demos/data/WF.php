@@ -9,40 +9,50 @@ class WF implements IWorkflowDefinitionProvider
 {
     public function getDefinition()
     {
-        return static::$definitions;
+        return [
+            'initialStatusId' => 'One',
+            'status'          => [
+                'One'   => [
+                    'transition' => ['Two'],
+                    'label'      => 'یکم',
+                    'metadata'   => [
+                        'description' => 'Start Status',
+//                        'email' => ['mailer', 'tester'],
+//                        'email' => false,
+//                        'email' => true,
+//                        'email' => 'Some template string',
+//                        'email' => function($model) { return $model->id; },
+                    ],
+                ],
+                'Two'   => [
+                    'transition' => ['One', 'Three'],
+                    'label'      => 'دوم',
+                    'metadata'   => [
+                        'email' => true,
+                    ],
+                ],
+                'Three' => [
+                    'transition' => ['Two', 'Four'],
+                    'label'      => 'سوم',
+                    'metadata'   => [
+                        'email' => false,
+                    ],
+                ],
+                'Four'  => [
+                    'transition' => ['Three', 'Five'],
+                    'label'      => 'چهارم',
+                    'metadata'   => [
+                        'email' => 'Link to some template',
+                    ],
+                ],
+                'Five'  => [
+                    'transition' => ['Four'],
+                    'label'      => 'پنجم',
+                    'metadata'   => [
+                        'email' => function($model) { return $model->id; },
+                    ],
+                ],
+            ],
+        ];
     }
-
-    private static $definitions = [
-        'initialStatusId' => 'One',
-        'status'          => [
-            'One'   => [
-                'transition' => ['Two'],
-                'label'      => 'یکم',
-                'metadata'   => [
-                    'stage' => [1],
-                ],
-            ],
-            'Two'   => [
-                'transition' => ['One', 'Three'],
-                'label'      => 'دوم',
-                'metadata'   => [
-                    'stage' => [2],
-                ],
-            ],
-            'Three' => [
-                'transition' => ['Two', 'Four'],
-                'label'      => 'سوم',
-                'metadata'   => [
-                    'stage' => [3],
-                ],
-            ],
-            'Four'  => [
-                'transition' => ['Three'],
-                'label'      => 'چهارم',
-                'metadata'   => [
-                    'stage' => [4],
-                ],
-            ],
-        ],
-    ];
 }
