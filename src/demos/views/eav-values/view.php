@@ -20,7 +20,7 @@ $attributes = [
     [
         'attribute' => 'attribute_id',
         'value' => $model->getParentTitle() . Html::a(' <i class="glyphicon glyphicon-link"></i>',
-               ['/demos/eav-attributes/view'] +
+               ['eav-attributes/view'] +
                array_combine($model->parent::primaryKey(), khans\utils\components\ArrayHelper::filter($model->attributes, $model->getLinkFields())
         )),
         'format'=>'html',

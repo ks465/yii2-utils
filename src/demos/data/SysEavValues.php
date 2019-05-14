@@ -22,7 +22,7 @@ use yii\db\Query;
  * @property int $created_at
  * @property int $updated_at
  *
- * @property SysEavAttributes $attribute0
+ * @property SysEavAttributes $parent
  *
  * @package KHanS\Utils
  * @version 0.3.0-980123
@@ -100,7 +100,7 @@ class SysEavValues extends \khans\utils\demos\data\KHanModel
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAttribute0()
+    public function getParent()
     {
         return $this->hasOne(SysEavAttributes::className(), ['id' => 'attribute_id']);
     }

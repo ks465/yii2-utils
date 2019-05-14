@@ -75,7 +75,7 @@ $searchModel = new SysEavValuesSearch([
 $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 $columns = require(__DIR__ . '/../eav-values/_columns.php');
-$columns['action']['controller'] = '/demos/eav-values';
+$columns['action']['controller'] = 'eav-values';
 unset($columns['attribute_id']);
 ?>
 <div class="sys-eav-attributes-children-index">

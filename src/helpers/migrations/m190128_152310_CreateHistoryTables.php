@@ -11,7 +11,7 @@ use khans\utils\tools\models\SysHistoryUsers;
  * Class m190128_152310_CreateHistoryTables creates tables containing history of login and changes in records
  *
  * @package KHanS\Utils
- * @version 0.1.4-971111
+ * @version 0.2.1-980219
  * @since   1.0
  */
 class m190128_152310_CreateHistoryTables extends KHanMigration
@@ -24,6 +24,11 @@ class m190128_152310_CreateHistoryTables extends KHanMigration
      * @var string table containing history of editing records all around the database
      */
     protected $historyTable;
+    /**
+     *
+     * @var string table containing history of sent emails
+     */
+    protected $emailsTable;
 
     /**
      * Set name of tables to values set in the models
@@ -32,6 +37,8 @@ class m190128_152310_CreateHistoryTables extends KHanMigration
     {
         $this->loginTable   = SysHistoryUsers::tableName();
         $this->historyTable   = SysHistoryDatabase::tableName();
+        $this->emailsTable = \khans\utils\tools\models\SysHistoryEmails::tableName();
+        
         parent::init();
     }
 
@@ -42,6 +49,7 @@ class m190128_152310_CreateHistoryTables extends KHanMigration
     {
         $this->dropTable($this->loginTable);
         $this->dropTable($this->historyTable);
+        $this->dropTable($this->emailsTable);
     }
 
     /**
@@ -51,6 +59,7 @@ class m190128_152310_CreateHistoryTables extends KHanMigration
     {
         $this->createHistoryTable();
         $this->createLogsTable();
+        $this->createEmailsTable();
     }
 
     private function createHistoryTable()
@@ -94,5 +103,27 @@ class m190128_152310_CreateHistoryTables extends KHanMigration
         $this->createIndex('idx-login-user_table', $this->loginTable, 'user_table');
         $this->createIndex('idx-login-username', $this->loginTable, 'username');
         $this->createIndex('idx-login-date', $this->loginTable, 'date');
+    }
+    
+    private function createEmailsTable(){
+        $fields = [
+            'id'=> $this->bigPrimaryKey()->unsigned()->comment('شناسه جدول'),
+            'responsible_model'=> $this->string(127)->notNull()->comment('مدل/حدول فعال کننده ایمیل'),
+            'responsible_record'=> $this->string(127)->notNull()->comment('رکورد مرتبط در جدول'),
+            'workflow_transition'=> $this->string(127)->comment('انتقال گردش کار انجام شده'),
+            'content'=> $this->text()->notNull()->comment('متن ایمیل'),
+            'user_id'=> $this->string(127)->notNull()->comment('شناسه کاربر تغییر دهنده گردش کار'),
+            'enqueue_timestamp'=> $this->bigInteger()->notNull()->comment('زمان افزایش به صف ارسال'),
+            'recipient_id'=> $this->string(127)->notNull()->comment('شناسه گیرنده'),
+            'recipient_email'=> $this->string(127)->notNull()->comment('ایمیل گیرنده'),
+            'cc_receivers'=> $this->string(127)->notNull()->comment('ایمیل گیرندگان رونوشت'),
+            'attachments'=> $this->string(127)->notNull()->comment('نام فایلهای پیوست'),
+        ];
+        
+        $this->createTable($this->emailsTable, $fields, $this->comment('تاریخچه ارسال ایمیل خودکار گردش کار'));
+        
+        $this->createIndex('idx_email-user_id', $this->emailsTable, 'user_id');
+        $this->createIndex('idx_email-recipient_id', $this->emailsTable, 'recipient_id');
+        $this->createIndex('idx_email-workflow_transition', $this->emailsTable, 'workflow_transition');
     }
 }

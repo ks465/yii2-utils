@@ -3,7 +3,7 @@
 use khans\utils\widgets\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel khans\utils\demos\data\search\SysHistoryDatabaseSearch */
+/* @var $searchModel khans\utils\demos\data\SysHistoryDatabaseSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $columns = require(__DIR__ . '/_columns.php');

@@ -1,6 +1,6 @@
 #StringHelper Class
 Documentation Edition: 1.2-971112
-Class Version: 0.3.2-971112
+Class Version: 0.3.3-980217
 
 This class contains all the utilities for formatting, correcting and shaping strings for saving or showing.
 It is extending `\yii\helpers\StringHelper` class to simplify imports.

@@ -12,7 +12,7 @@ use yii\db\ActiveQuery;
  * SysEavAttributesSearch represents the model behind the search form of `khans\utils\tools\models\SysEavAttributes`.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.3-971104
+ * @version 0.2.2-980119
  * @since   1.0
  */
 class SysEavAttributesSearch extends SysEavAttributes

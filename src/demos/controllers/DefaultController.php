@@ -4,7 +4,6 @@
 namespace khans\utils\demos\controllers;
 
 use khans\utils\components\ArrayHelper;
-use khans\utils\controllers\KHanWebController;
 use khans\utils\demos\data\MultiFormatData;
 use khans\utils\demos\data\SysEavAttributes;
 use khans\utils\demos\data\SysEavValues;
@@ -12,6 +11,7 @@ use khans\utils\demos\data\TestWorkflowEvents;
 use khans\utils\demos\data\WF;
 use Yii;
 use yii\db\Exception;
+use \khans\utils\components\workflow\KHanWorkflowHelper;
 
 /**
  * Default controller for the `khan` module
@@ -23,14 +23,48 @@ use yii\db\Exception;
 class DefaultController extends KHanWebController
 {
     /**
-     * Action classes used in this module
+     * Renders a page containing definition of a selected workflow along with 
+     * visual representation of workflow
+     * 
+     * @return string
      */
-    public function actions()
-    {
-        return array_merge(parent::actions(), [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
+    public function actionWorkflow() {
+        $selectedWF = $email = '';
+        $allModels = $model = null;
+        $showVisual = false;
+        $wfDefinition = (new WF)::getDefinition();
+        
+        $source = '@khan/demos/data';
+        $files = ['WF' => $wfDefinition['metadata']['description']];
+        
+        if (Yii::$app->request->isPost) {
+            $selectedWF = 'WF';
+            
+            $model = new \khans\utils\demos\data\TestWorkflowEvents();
+            $model->enterWorkflow($selectedWF);
+
+            $check = KHanWorkflowHelper::checkWorkflowStructure($model->getWorkflow());
+            if ($check['result'] === false) {
+                foreach ($check['messages'] as $key => $message) {
+                    \Yii::$app->session->addFlash('error', $key . ': ' . implode(', ', $message));
+                }
+            }
+
+            $allModels = $model->getWorkflow()->getAllStatuses();
+            $email = KHanWorkflowHelper::getDefaultMailTemplate($model->getWorkflow());
+            $showVisual = true;
+        }
+
+        return $this->render('@khan/tools/views/default/workflow', [
+                    'selectedWF'   => 'WF',
+                    'files'        => $files,
+                    'defaultEmail' => $email,
+                    'testModel'    => $model,
+                    'showVisual'   => $showVisual,
+                    'dataProvider' => new \yii\data\ArrayDataProvider([
+                        'allModels'  => $allModels,
+                        'pagination' => false,
+                            ]),
         ]);
     }
 
@@ -39,8 +73,7 @@ class DefaultController extends KHanWebController
      *
      * @return string
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $user = Yii::$app->user->identityClass::findOne(1);
 
         Yii::$app->user->switchIdentity($user);
@@ -53,12 +86,13 @@ class DefaultController extends KHanWebController
      *
      * @return array
      */
-    private function getWFStatuses()
-    {
+    private function getWFStatuses() {
         $list = ArrayHelper::getValue(WF::getDefinition(), 'status');
         $list = array_keys($list);
 
-        return array_map(function($item) { return 'WF/' . $item; }, $list);
+        return array_map(function($item) {
+            return 'WF/' . $item;
+        }, $list);
     }
 
     /**
@@ -68,8 +102,7 @@ class DefaultController extends KHanWebController
      * @return \yii\web\Response
      * @throws \yii\base\InvalidConfigException
      */
-    public function actionResetTable()
-    {
+    public function actionResetTable() {
         $faker = \Faker\Factory::create();
         $faker->seed(26465);
 
@@ -85,12 +118,11 @@ class DefaultController extends KHanWebController
                 'boolean_column'   => $faker->boolean(75),
                 'timestamp_column' => $faker->unixTime,
                 'progress_column'  => $faker->randomElement($this->getWFStatuses()),
-
-                'status'     => $faker->boolean(75) * 10,
-                'created_by' => $faker->randomElement([1, 2, 3, 4]),
-                'created_at' => $faker->unixTime,
-                'updated_by' => $faker->randomElement([1, 2, 3, 4]),
-                'updated_at' => $faker->unixTime,
+                'status'           => $faker->boolean(75) * 10,
+                'created_by'       => $faker->randomElement([1, 2, 3, 4]),
+                'created_at'       => $faker->unixTime,
+                'updated_by'       => $faker->randomElement([1, 2, 3, 4]),
+                'updated_at'       => $faker->unixTime,
             ];
             $connection->insert(MultiFormatData::tableName(), $output)->execute();
         }
@@ -107,8 +139,7 @@ class DefaultController extends KHanWebController
      * @return \yii\web\Response
      * @throws \yii\base\InvalidConfigException
      */
-    public function actionResetEav()
-    {
+    public function actionResetEav() {
         $attributes = [
             [
                 1, 'multi_format_data', 'eav_column_1', 'انتخاب شماره یک', 'number', '', 'default', 10, 1, 1,
@@ -191,17 +222,17 @@ class DefaultController extends KHanWebController
                 'id'           => $i,
                 'attribute_id' => $id,
                 'record_id'    => $recordId,
-                'value'        => (string)$value,
-
-                'status'     => $status,
-                'created_by' => $faker->randomElement([1, 2, 3, 4]),
-                'created_at' => $faker->unixTime,
-                'updated_by' => $faker->randomElement([1, 2, 3, 4]),
-                'updated_at' => $faker->unixTime,
+                'value'        => (string) $value,
+                'status'       => $status,
+                'created_by'   => $faker->randomElement([1, 2, 3, 4]),
+                'created_at'   => $faker->unixTime,
+                'updated_by'   => $faker->randomElement([1, 2, 3, 4]),
+                'updated_at'   => $faker->unixTime,
             ];
             try {
                 $connection->insert(SysEavValues::tableName(), $output)->execute();
             } catch (\Exception $e) {
+                
             }
         }
 
@@ -217,8 +248,7 @@ class DefaultController extends KHanWebController
      * @return \yii\web\Response
      * @throws \yii\base\InvalidConfigException
      */
-    public function actionResetWorkflow()
-    {
+    public function actionResetWorkflow() {
         $faker = \Faker\Factory::create();
         $faker->seed(26465);
 
@@ -234,12 +264,11 @@ class DefaultController extends KHanWebController
                 'id'              => $i,
                 'title'           => $faker->city,
                 'workflow_status' => $faker->randomElement($this->getWFStatuses()),
-
-                'status'     => $faker->boolean(75) * 10,
-                'created_by' => $faker->randomElement([1, 2, 3, 4]),
-                'created_at' => $time,
-                'updated_by' => $faker->randomElement([1, 2, 3, 4]),
-                'updated_at' => $time + $faker->randomNumber(7),
+                'status'          => $faker->boolean(75) * 10,
+                'created_by'      => $faker->randomElement([1, 2, 3, 4]),
+                'created_at'      => $time,
+                'updated_by'      => $faker->randomElement([1, 2, 3, 4]),
+                'updated_at'      => $time + $faker->randomNumber(7),
             ];
             $connection->insert('test_workflow_events', $output)->execute();
         }

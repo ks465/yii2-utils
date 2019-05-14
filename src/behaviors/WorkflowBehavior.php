@@ -6,38 +6,43 @@
  * Time: 18:59
  */
 
-
 namespace khans\utils\behaviors;
 
-use khans\utils\components\ArrayHelper;
-use khans\utils\models\KHanModel;
 use raoul2000\workflow\base\SimpleWorkflowBehavior;
 use raoul2000\workflow\base\WorkflowException;
 use raoul2000\workflow\events\WorkflowEvent;
 use raoul2000\workflow\validation\WorkflowValidator;
 use Yii;
-use yii\db\Exception;
 use yii\validators\Validator;
+use khans\utils\components\workflow\KHanWorkflowHelper;
 
 /**
  * Class WorkflowBehavior adds extra methods to SimpleWorkflowBehavior and concentrates all of methods in the
  * workflow behavior.
  *
  * @package khans\utils\widgets
- * @version 0.2.0-980212
- * @since   1.0.0
+ * @version 0.3.2-980219
+ * @since   1.0
  *
  * @property string $defaultWorkflowId
  */
 class WorkflowBehavior extends \raoul2000\workflow\base\SimpleWorkflowBehavior
 {
-    const STATUS_TABLE = 'sw_status';
+//    const STATUS_TABLE = 'sw_status';
 
     /**
      * @var KHanModel|null the owner of this behavior
      */
     public $owner;
-
+    /**
+     *
+     * @var
+     */
+    public $emailAction;
+//     /**
+//      * @var string Value to use when the email setting of the workflow status is `TRUE` instead of text template
+//      */
+//     public $defaultEmailText = 'وضعیت تغییر نموده است. پورتال خود را ببینید.';
     /**
      * Define interesting events AND add validator to check possible transitions.
      *
@@ -52,27 +57,46 @@ class WorkflowBehavior extends \raoul2000\workflow\base\SimpleWorkflowBehavior
         ]);
 
         return parent::events() + [
+//                SimpleWorkflowBehavior::EVENT_BEFORE_CHANGE_STATUS=> 'flowAfterChange',// kept for testing purpose only
                 SimpleWorkflowBehavior::EVENT_AFTER_CHANGE_STATUS => 'flowAfterChange',
             ];
     }
 
-    private function doSomething($text, $id)
+    private function doSomething($text, $transitionID)
     {
+//Yii::$app->session->addFlash('info', $text);
         $recordId = $this->owner->getPrimaryKey();
         if (empty($recordId)) {
             return;
         }
+
+        if($this->owner->hasMethod('getFullAttributes')){
+            //if the owner model has EAV behavior check for them too
+            foreach ($this->owner->getFullAttributes() as $attr => $value){
+                $text = str_replace('{' . $attr . '}', $value, $text);
+//Yii::$app->session->addFlash('warning', $value);
+//Yii::$app->session->addFlash('error', ($value ?? '--'));
+            }
+//Yii::$app->session->addFlash('info', 11 . $text);
+        }else{
+            foreach ($this->owner->attributes as $attr => $value){
+                $text = str_replace('{' . $attr . '}', $value , $text);
+            }
+//Yii::$app->session->addFlash('info', 12 . $text);
+        }
+
         $data = [
             'responsible_model'   => $this->owner->tableName(),
             'responsible_record'  => $recordId,
-            'timestamp'           => null, //the mail is not sent yet
+            'enqueue_timestamp'   => time(),
             'content'             => $text,
             'recipient_email'     => 'student@khan.org',
             'cc_receivers'        => 'faculty@khan.org,department@khan.org',
             'attachments'         => null,
-            'workflow_transition' => $id,
+            'workflow_transition' => $transitionID,
             'user'                => Yii::$app->user->id,
         ];
+
         $connection = Yii::$app->get('test')->createCommand();
         $connection->insert('sys_history_emails', $data)->execute();
 
@@ -82,44 +106,70 @@ class WorkflowBehavior extends \raoul2000\workflow\base\SimpleWorkflowBehavior
     public function flowAfterChange(WorkflowEvent $event)
     {
         //currently critical one
-        $result = $this->shouldSendEmail($event);
-
-        if (is_null($event->getStartStatus()) and $result === false) {
+        $sendEmail = $this->shouldSendEmail($event);
+// vdd($result);
+        if ($sendEmail === false) {
+            $this->doSomething('EMail will not be sent', 'N/A');
+//Yii::$app->session->addFlash('info', 0);
+            return true;
+        }
+        if (is_null($event->getStartStatus())) {
             $this->doSomething('flowAfterChange (Null Start Status)', 'N/A');
-
+//Yii::$app->session->addFlash('info', 1);
             return true;
         }
-        $result = $result ? $result : 'EMail will not be sent';
         if (is_null($event->getTransition())) {
-            $this->doSomething('flowAfterChange::' . $result, 'NULL Transition');
-
+            $this->doSomething('flowAfterChange::' . $sendEmail, 'NULL Transition');
+//Yii::$app->session->addFlash('info', 2);
             return true;
         }
-        $this->doSomething('flowAfterChange::' . $result, $event->getTransition()->getId());
+//         if($sendEmail === true){
+//             $sendEmail = $this->defaultEmailText;
+//         }
+        $this->doSomething(KHanWorkflowHelper::getEmailTemplate($status), $event->getTransition()->getId());
 
         //todo: run a customized event handler set in the owner model
-
+//Yii::$app->session->addFlash('info', 3);
         return true;
     }
 
     /**
-     * Check the metadata of the end state of transition and returns the value of email config.
+     * Check the metadata of the workflow and the end state of transition and returns the value of email config.
      * If the value is missing, `false` is the default.
-     * If the argument is omitted --which means it is called by the model itself-- then the setting for
-     * current status is returned.
      *
      * @param null|WorkflowEvent $event
      *
-     * @return mixed
+     * @return boolean
      * @throws \yii\base\InvalidConfigException
      */
-    public function shouldSendEmail(WorkflowEvent $event = null)
+    private function shouldSendEmail(WorkflowEvent $event = null)
     {
         if (is_null($event)) {
-            return $this->getWorkflowStatus()->getMetadata('email', false);
+            $status = $this->getWorkflowStatus();
+//             return $this->getWorkflowStatus()->getMetadata('email', false);
+        }else{
+            $status = $event->getEndStatus();
         }
 
-        return $event->getEndStatus()->getMetadata('email', false);
+        return KHanWorkflowHelper::shouldSendEmail($status);
+//         if (is_null($status->getWorkflow()->getMetadata('email'))) {
+//             return FALSE;
+//         }
+
+//         return $status->getMetadata('email', false);
+// //         return $event->getEndStatus()->getMetadata('email', false);
+    }
+
+    /**
+     * Check the metadata of the current state of transition and returns the actor role for that.
+     * If the value is missing, `null` is the default.
+     *
+     * @return null|string
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getActor()
+    {
+        return $this->getWorkflowStatus()->getMetadata('actor', null);
     }
 
     /**
@@ -143,10 +193,10 @@ class WorkflowBehavior extends \raoul2000\workflow\base\SimpleWorkflowBehavior
     public function getStatusesLabels()
     {
         if (empty($this->getWorkflow())) {
-            try {
-                return static::readStatusesFromTable($this->getDefaultWorkflowId());
-            } catch (Exception $e) {
-            }
+//            try {
+//                return static::readStatusesFromTable($this->getDefaultWorkflowId());
+//            } catch (Exception $e) {
+//            }
             $this->owner->enterWorkflow($this->getDefaultWorkflowId());
         }
         $list = [];
@@ -162,24 +212,24 @@ class WorkflowBehavior extends \raoul2000\workflow\base\SimpleWorkflowBehavior
         return $list;
     }
 
-    /**
-     * Read list of statuses for this model directly from database.
-     * This method is designed for situations which a valid model record in a workflow does not exist,
-     * and list of statuses labels is required --like creating an active record.
-     *
-     * @param string $workflowID workflow ID for the requested list
-     *
-     * @return array [status_id => status_label]
-     * @throws Exception
-     * @see getStatusesLabels
-     *
-     */
-    public static function readStatusesFromTable($workflowID)
-    {
-        $tableSchema = Yii::$app->db->schema->getTableSchema('tableName');
-
-        return ArrayHelper::map(
-            \Yii::$app->db->createCommand('SELECT `id`, `label` FROM `' . static::STATUS_TABLE . '` WHERE `workflow_id` = :W ORDER BY `sort_order`;',
-                [':W' => $workflowID])->queryAll(), 'id', 'label');
-    }
+//    /**
+//     * Read list of statuses for this model directly from database.
+//     * This method is designed for situations which a valid model record in a workflow does not exist,
+//     * and list of statuses labels is required --like creating an active record.
+//     *
+//     * @param string $workflowID workflow ID for the requested list
+//     *
+//     * @return array [status_id => status_label]
+//     * @throws Exception
+//     * @see WorkflowBehavior::getStatusesLabels
+//     *
+//     */
+//    public static function readStatusesFromTable($workflowID)
+//    {
+//        $tableSchema = Yii::$app->db->schema->getTableSchema('tableName');
+//
+//        return ArrayHelper::map(
+//            \Yii::$app->db->createCommand('SELECT `id`, `label` FROM `' . static::STATUS_TABLE . '` WHERE `workflow_id` = :W ORDER BY `sort_order`;',
+//                [':W' => $workflowID])->queryAll(), 'id', 'label');
+//    }
 }

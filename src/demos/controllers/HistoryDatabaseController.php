@@ -3,7 +3,6 @@
 
 namespace khans\utils\demos\controllers;
 
-use khans\utils\controllers\KHanWebController;
 use khans\utils\demos\data\SysHistoryDatabaseSearch;
 use Yii;
 

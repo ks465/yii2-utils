@@ -209,8 +209,8 @@ class KHanIdentity extends KHanModel implements IdentityInterface
      * @param integer $result result of login method of the [[KHanUser]] class
      * @param integer $attempts number of attempts to login
      *
-     * @see logSuccessLogin
-     * @see logFailedLogin
+     * @see KHanIdentity::logSuccessLogin
+     * @see KHanIdentity::logFailedLogin
      * @see SysHistoryUsers
      * @return bool result of saving the log
      */

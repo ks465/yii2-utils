@@ -36,7 +36,7 @@ final class ArrayHelper extends \yii\helpers\ArrayHelper
      * Convert an array to a pivot one based on at least one column and one row.
      * Note that the closure output of multiple rows are not aggregated.
      *
-     * @see    groupBy
+     * @see    ArrayHelper::groupBy
      * @since  0.2-970803
      *
      * @param  array          $inputArray A two-dimensional array containing data

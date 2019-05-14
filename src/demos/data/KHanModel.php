@@ -69,11 +69,26 @@ class KHanModel extends \khans\utils\models\KHanModel
     }
 
     /**
-     * Get list of recorded history for this record
+     * Get list of recorded history for this record, and include the EAV attributes.
      */
     public function getActionHistory()
     {
-        return $this->hasMany(SysHistoryDatabase::class, ['field_id' => 'id'])
-            ->andWhere(['table' => static::tableName()]);
+        $eavListQuery = new \yii\db\Query();
+        $eavListQuery
+            ->select(['val.id'])
+            ->from(['attr'=> SysEavAttributes::tableName()])
+            ->leftJoin(['val'=>SysEavValues::tableName()], 'val.attribute_id = attr.id')
+            ->andWhere(['record_id' => $this->primaryKey])
+            ->andWhere(['entity_table' => static::tableName()]);
+
+        $sql = SysHistoryDatabase::find()
+            ->orWhere(['and',
+                ['table' => static::tableName()], 
+                ['field_id' => $this->primaryKey]
+            ]);
+
+        $sql->orWhere(['field_id' => $eavListQuery]);
+       
+        return $sql;
     }
 }

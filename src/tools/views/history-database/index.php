@@ -24,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns'            => require(__DIR__ . '/_columns.php'),
             'export'             => true,
             'showRefreshButtons' => true,
+            'footer'             => '<strong class="text-info pull-left ltr">'. '* These are EAV Fields' . '</strong>',
         ]) ?>
     </div>
 </div>

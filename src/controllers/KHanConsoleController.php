@@ -17,7 +17,7 @@ use yii\console\ExitCode;
  * Class KHanWebController offers common behavior for console controllers
  *
  * @package khans\utils\controllers
- * @version 0.2.0-971030
+ * @version 0.2.1-980217
  * @since 1.0
  */
 class KHanConsoleController extends Controller
@@ -62,7 +62,7 @@ class KHanConsoleController extends Controller
      *
      * @return int Exit code showing the status. 0 means no error.
      */
-    public function actionClearLogs($logsSubDir): int
+    protected function actionClearLogs($logsSubDir): int
     {
         $targetPath = '@runtime/logs/' . $logsSubDir;
 

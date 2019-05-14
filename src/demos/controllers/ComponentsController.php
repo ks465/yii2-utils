@@ -4,8 +4,6 @@
 namespace khans\utils\demos\controllers;
 
 
-use khans\utils\controllers\KHanWebController;
-
 class ComponentsController extends KHanWebController
 {
     public function actionIndex()

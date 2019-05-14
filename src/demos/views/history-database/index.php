@@ -4,7 +4,7 @@ use khans\utils\widgets\GridView;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $searchModel khans\utils\demos\data\search\SysHistoryDatabaseSearch */
+/* @var $searchModel \khans\utils\demos\data\SysHistoryDatabaseSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'تاریخچه ویرایش رکوردهای جدولهای سامانه';
@@ -24,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns'            => require(__DIR__ . '/_columns.php'),
             'export'             => true,
             'showRefreshButtons' => true,
+            'footer'             => '<strong class="text-info pull-left ltr">'. '* These are EAV Fields' . '</strong>',
         ]) ?>
     </div>
 </div>

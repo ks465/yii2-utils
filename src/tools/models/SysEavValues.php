@@ -9,6 +9,8 @@ use khans\utils\models\queries\KHanQuery;
 /**
  * This is the model class for table "sys_eav_values".
  *
+ * @property string $tableComment EAV Values Table
+
  * @property int              $id ID
  * @property int              $attribute_id Attribute ID
  * @property int              $record_id Entity Table Record ID

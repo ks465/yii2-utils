@@ -20,7 +20,7 @@ use khans\utils\demos\data\PcParentsQuery;
 class PcParentsSearch extends PcParents
 {
     /**
-     * @var khans\utils\demos\data\PcParentsQuery centralized query object for this search model
+     * @var \khans\utils\demos\data\PcParentsQuery centralized query object for this search model
      */
     public $query;
 

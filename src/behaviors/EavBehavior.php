@@ -38,7 +38,7 @@ use yii\validators\Validator;
  *```
  *
  * @package khans\utils\behaviors
- * @version 0.1.2-971125
+ * @version 0.2.1-980219
  * @since   1.0
  *
  */
@@ -138,7 +138,7 @@ class EavBehavior extends Behavior
             $valueModel->save();
         }
     }
-
+    
     /**
      * Event handler for after deleting a model
      */
@@ -241,5 +241,16 @@ class EavBehavior extends Behavior
                 $this->_values[$name] = $value;
             }
         }
+    }
+    
+    /**
+     * Return all of attributes values
+     * 
+     * @param type $names
+     * @param type $except
+     * @return array
+     */
+    public function getFullAttributes($names = null, $except = array()) {
+        return $this->_values + $this->owner->getAttributes($names, $except);
     }
 }

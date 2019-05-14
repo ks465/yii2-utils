@@ -17,7 +17,7 @@ use yii\data\ActiveDataProvider;
 class TestWorkflowEventsSearch extends TestWorkflowEvents
 {
     /**
-     * @var khans\utils\demos\data\TestWorkflowEventsQuery centralized query object for this search model
+     * @var \khans\utils\demos\data\TestWorkflowEventsQuery centralized query object for this search model
      */
     public $query;
 

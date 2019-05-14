@@ -1,9 +1,8 @@
 <?php
 
 use kartik\select2\Select2;
-use khans\utils\components\ArrayHelper;
-use khans\utils\components\StringHelper;
 use khans\utils\demos\data\SysHistoryDatabase;
+use khans\utils\demos\data\SysEavValues;
 use khans\utils\widgets\GridView;
 use yii\helpers\Url;
 use yii\web\JsExpression;
@@ -84,18 +83,31 @@ $column = [
     [
         'class'          => '\khans\utils\columns\DataColumn',
         'attribute'      => 'field_name',
+        'value'          => function(SysHistoryDatabase $model) {
+            if($model->table == SysEavValues::tableName()){
+                $eav = SysEavValues::findOne($model->field_id);
+                if(empty($eav->parent)) {
+                    return $model->field_name;
+                }
+                
+                $model->field_name = $eav->parent->attr_name . '.' . $model->field_name .
+                        ' <strong class="text-danger">*</strong>';
+            }
+            return $model->field_name;
+        },
+        'format'         => 'html',
         'width'          => '80px',
         'hAlign'         => GridView::ALIGN_LEFT,
         'vAlign'         => GridView::ALIGN_MIDDLE,
         'headerOptions'  => ['style' => 'text-align: center;'],
-        'contentOptions' => ['class' => 'pars-wrap'],
+        'contentOptions' => ['class' => 'pars-wrap ltr'],
     ],
     [
         'class'          => '\khans\utils\columns\DataColumn',
         'attribute'      => 'old_value',
-        'value'          => function(\khans\utils\tools\models\SysHistoryDatabase $model) {
-            return StringHelper::truncate($model->old_value, 20);
-        },
+//        'value'          => function(SysHistoryDatabase $model) {
+//            return StringHelper::truncate($model->old_value, 10);
+//        },
         'width'          => '100px',
         'hAlign'         => GridView::ALIGN_RIGHT,
         'vAlign'         => GridView::ALIGN_MIDDLE,
@@ -105,9 +117,9 @@ $column = [
     [
         'class'          => '\khans\utils\columns\DataColumn',
         'attribute'      => 'new_value',
-        'value'          => function(SysHistoryDatabase $model) {
-            return StringHelper::truncate($model->new_value, 20);
-        },
+//        'value'          => function(SysHistoryDatabase $model) {
+//            return StringHelper::truncate($model->new_value, 10);
+//        },
         'width'          => '100px',
         'hAlign'         => GridView::ALIGN_RIGHT,
         'vAlign'         => GridView::ALIGN_MIDDLE,

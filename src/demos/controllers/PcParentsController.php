@@ -3,14 +3,10 @@
 
 namespace khans\utils\demos\controllers;
 
-use khans\utils\controllers\KHanWebController;
 use khans\utils\demos\data\PcParents;
 use khans\utils\demos\data\PcParentsSearch;
 use Yii;
-use yii\data\ActiveDataProvider;
-use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
-use yii\web\Response;
 
 /**
  * PcParentsController implements the CRUD actions for PcParents model.
@@ -125,32 +121,5 @@ class PcParentsController extends KHanWebController
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Show history of changes in the given record
-     *
-     * @param integer $id
-     *
-     * @return array AJAX grid view of changes in the given record
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionAudit($id)
-    {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        $model = $this->findModel($id);
-        $dataProvider = new ActiveDataProvider([
-            'db'    => Yii::$app->get('test'),
-            'query' => $model->getActionHistory(),
-        ]);
-
-        return [
-            'title'   => "رکورد #" . $model->id . ' جدول List of records having children data',
-            'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
-                'dataProvider' => $dataProvider,
-            ]),
-            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']),
-        ];
     }
 }

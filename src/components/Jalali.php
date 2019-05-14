@@ -44,7 +44,7 @@ use yii\db\Exception;
  * @subpackage Jalali Date
  * @author     keyhan sedaghat<keyhansedaghat@netscape.net>
  * @copyright  1371-1397(1991-2018)
- * @version    3.2.4-970816
+ * @version    3.3.1-980217
  */
 class Jalali extends BaseObject
 {
@@ -650,6 +650,42 @@ class Jalali extends BaseObject
         return $timeStamp;
     }
 
+    /**
+     * Convert a typical date string into timestamp. 
+     * Note that time part of the timestamp is set to zero.
+     *
+     * @param string $dateString
+     *
+     * @return int
+     */
+    public static function getTimestampFromString($dateString)
+    {
+        if (empty($dateString)) {
+            return null;
+        }
+        $rx = '~^(\d{2,4})\D(\d{1,2})\D(\d{1,2})$~';
+        preg_match($rx, $dateString, $segments);
+
+        return Jalali::mktime($segments[1], $segments[2], $segments[3]);
+    }
+    
+    /**
+     * Rewrites a date string in standardize format based on the given format
+     *
+     * @param string $dateString typical date string
+     * @param string $format the output format. Defaults to [Jalali::KHAN_SHORT]
+     *
+     * @return mixed
+     */
+    public static function standardize($dateString, $format = Jalali::KHAN_SHORT)
+    {
+        if (empty($dateString)) {
+            return null;
+        }
+        
+        return Jalali::date($format, time($dateString));
+    }
+    
     /**
      * Get second
      *

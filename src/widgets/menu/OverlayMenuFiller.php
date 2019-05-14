@@ -41,10 +41,12 @@ use yii\helpers\ArrayHelper;
  * @package   app\widgets\menu
  * @author    Keyhan Sedaghat <keyhansedaghat@netscape.net>
  * @copyright khans 2018
- * @version   0.1.0-970717
+ * @version   0.1.1-980223
  */
 class OverlayMenuFiller extends BaseObject
 {
+    /* FIXME: URL is not correct */
+
     /**
      * @var string Full path to CSV file
      * Full path to a CSV file containing the data required for rendering menu.
@@ -75,6 +77,13 @@ class OverlayMenuFiller extends BaseObject
             throw new \Exception('File not found: ' . $this->csvFileUrl);
         }
         $this->menuData = FileHelper::loadCSV($this->csvFileUrl, true);
+        usort($this->menuData, function ($a, $b){
+            if ($a['tab'] == $b['tab']) {
+                return strcmp($a["order"], $b["order"]);
+            }
+
+            return strcmp($a["tab"], $b["tab"]);
+        });
 
         if (empty($this->tabs)) {
             $this->generateTabsData();

@@ -10,14 +10,13 @@
 namespace khans\utils\columns;
 
 use khans\utils\components\Jalali;
-use khans\utils\components\StringHelper;
 
 /**
  * Class JalaliColumn holds the desired defaults for Jalali date columns, which include unified format.
  * See [JalaliColumn Guide](guide:columns-jalali-column.md)
  *
  * @package khans\utils\columns
- * @version 0.1.1-971025
+ * @version 0.1.2-980217
  * @since 1.0
  */
 class JalaliColumn extends DataColumn
@@ -39,6 +38,7 @@ class JalaliColumn extends DataColumn
         }
         $this->filterWidgetOptions['htmlOptions']['autocomplete'] = 'off'; //disable browser autocomplete for all filter input elements
         $this->filterType = 'khans\utils\widgets\DatePicker';
+//        $this->grid->filterModel->{$this->attribute} = Jalali::date($this->JFormat, $this->grid->filterModel->{$this->attribute});
 
         parent::init();
     }
@@ -64,11 +64,7 @@ class JalaliColumn extends DataColumn
             return Jalali::date($this->JFormat, $value);
         }
         if (is_string($value)) {
-            $value = preg_match(StringHelper::DATE_STRING, $value, $segments);
-
-            if ($value !== false and $value > 0) {
-                return Jalali::date($this->JFormat, Jalali::mktime($segments[1], $segments[2], $segments[3]));
-            }
+                return Jalali::standardize($value, $this->JFormat);
         }
 
         return $value;

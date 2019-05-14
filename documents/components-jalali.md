@@ -1,16 +1,23 @@
 #Jalali and JalaliX Classes
-Documentation Edition: 1.0-970820
-Class Version: 3.2.4-970816
+Documentation Edition: 1.1-980218
+Class Version: 3.3.1-980217
 
 Jalali class is an attempt to use astronomical calculations of Khayyam and keep the interface 
 as similar as possible to `PHP::date()` function.
 
 Jalali has two main public methods:
-1. `Jalali::date()` which by accepting format and timestamp returns a date string.
 
+1. `Jalali::date()` which by accepting format and timestamp returns a date string.
 1. `Jalali::mktime()` which accepts elements of date and time and returns timestamp integer.
- 
-1. Other public methods, show output based on the last static usage of any of the above methods:
+
+Other useful methods with most usage are:
+
+1. `getTimestampFromString()` Convert arbitrary date string to a timestamp
+1. `standardize()` Rewrite arbitrary date string into a well-formatted one
+
+
+Other public methods, show output based on the last static usage of any of the above methods:
+
    + `date()` This is a clone of the internal php function date(). 
    + `dayName()` Returns names of the weekday in full 
    + `dayOfWeek()` Get number of days from starting of the current week 
@@ -76,6 +83,12 @@ echo Jalali::date(Jalali::KHAN_LONG, $time);
 
 echo Jalali::date(Jalali::KHAN_FILENAME, $time);
 //1397_08_17-08_48
+
+echo Jalali::getTimestampFromString('97/8/17');
+//1541653803
+
+echo Jalali::standardize('97/8/17');
+//1397//08/17
 ```
 
 `JalaliX` tries to fulfills other requirements in a date object. 

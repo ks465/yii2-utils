@@ -16,7 +16,7 @@ use yii\base\InvalidConfigException;
  * Class StringHelper contains all the utilities for formatting, correcting and shaping strings for saving or showing.
  *
  * @package khans\utils
- * @version 0.3.2-971112
+ * @version 0.3.3-980217
  * @since   1.0
  */
 class StringHelper extends \yii\helpers\StringHelper
@@ -35,7 +35,7 @@ class StringHelper extends \yii\helpers\StringHelper
     /**
      * preg_match pattern to check date string especially for Jalali dates
      */
-    const DATE_STRING = '~^(\d{2,4})[.-/](\d{1,2})[.-/](\d{1,2})$~';
+    const DATE_STRING = '~^(\d{2,4})\D(\d{1,2})\D(\d{1,2})$~';
 
     /**
      * Make sure all of Persian inputs are corrected for the Ya & Ka before application starts processing the input.

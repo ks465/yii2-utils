@@ -12,7 +12,7 @@ use yii\db\ActiveQuery;
  * SysEavValuesSearch represents the model behind the search form of `khans\utils\tools\models\SysEavValues`.
  *
  * @package khans\utils\generatedControllers
- * @version 0.1.4-971126
+ * @version 0.2.3-980219
  * @since   1.0
  */
 class SysEavValuesSearch extends SysEavValues
@@ -39,11 +39,8 @@ class SysEavValuesSearch extends SysEavValues
     public function rules(): array
     {
         return [
-            [
-                ['id', 'attribute_id', 'record_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'],
-                'integer',
-            ],
-            [['value', 'tableName', 'attributeName'], 'safe'],
+            [['id', 'attribute_id', 'record_id', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
+            [['value'], 'safe'],
         ];
     }
 
@@ -66,22 +63,6 @@ class SysEavValuesSearch extends SysEavValues
     {
         $dataProvider = new ActiveDataProvider([
             'query' => $this->query,
-//            'sort'  => [
-//                'attributes' => [
-//                    'attribute_id',
-//                    'record_id',
-//                    'value',
-//                    'status',
-//                    'tableName'     => [
-//                        'asc'  => ['entity_table' => SORT_ASC],
-//                        'desc' => ['entity_table' => SORT_DESC],
-//                    ],
-//                    'attributeName' => [
-//                        'asc'  => ['attr_name' => SORT_ASC],
-//                        'desc' => ['attr_name' => SORT_DESC],
-//                    ],
-//                ],
-//            ],
         ]);
 
         $this->load($params);
@@ -91,7 +72,7 @@ class SysEavValuesSearch extends SysEavValues
         }
 
         $this->query->andFilterWhere([
-            'id' => $this->id,
+            'sys_eav_values.id' => $this->id,
             'attribute_id' => $this->attribute_id,
             'record_id' => $this->record_id,
             'status'     => $this->status,

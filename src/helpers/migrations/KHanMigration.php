@@ -174,7 +174,7 @@ class KHanMigration extends Migration
      * @param string $comment Comment for the table.
      *
      * @return string $tableOptions
-     * @see tableOptions
+     * @see KHanMigration::tableOptions
      */
     protected function comment($comment)
     {

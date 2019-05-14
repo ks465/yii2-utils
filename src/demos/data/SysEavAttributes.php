@@ -111,6 +111,7 @@ class SysEavAttributes extends \khans\utils\demos\data\KHanModel
             [['attr_type'], 'in', 'range' => array_keys(SysEavAttributes::getDataTypes())],
             [['entity_table', 'attr_name'], 'string', 'max' => 63],
             [['attr_label'], 'string', 'max' => 127],
+            [['status'], 'safe'],
             [['attr_length', 'attr_scenario'], 'string', 'max' => 31],
             [['entity_table', 'attr_name'], 'unique', 'targetAttribute' => ['entity_table', 'attr_name']],
         ]);

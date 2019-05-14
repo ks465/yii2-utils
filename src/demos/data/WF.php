@@ -7,27 +7,32 @@ use raoul2000\workflow\source\file\IWorkflowDefinitionProvider;
 
 class WF implements IWorkflowDefinitionProvider
 {
-    public function getDefinition()
-    {
+
+    public function getDefinition() {
         return [
             'initialStatusId' => 'One',
+            'metadata'        => [
+                'description' => 'گردش کار دارای ...',
+                'email'       => 'ایمیل ارسال شده برای حالات عمومی آزمایشی',
+            ],
             'status'          => [
                 'One'   => [
                     'transition' => ['Two'],
                     'label'      => 'یکم',
                     'metadata'   => [
-                        'description' => 'Start Status',
-//                        'email' => ['mailer', 'tester'],
+                        'description' => 'Start Status sample description',
 //                        'email' => false,
 //                        'email' => true,
-//                        'email' => 'Some template string',
-//                        'email' => function($model) { return $model->id; },
+//                        'email' => 'Some fixed string',
+//                        'email' => 'Link to some EAV-enabled template {test_eav_workflow}',
+//                        'email' => 'Link to some template container {id}: {title}',
                     ],
                 ],
                 'Two'   => [
                     'transition' => ['One', 'Three'],
                     'label'      => 'دوم',
                     'metadata'   => [
+                        'actor' => 'Actor_1',
                         'email' => true,
                     ],
                 ],
@@ -42,14 +47,14 @@ class WF implements IWorkflowDefinitionProvider
                     'transition' => ['Three', 'Five'],
                     'label'      => 'چهارم',
                     'metadata'   => [
-                        'email' => 'Link to some template',
+                        'email' => 'Link to some EAV-enabled template {test_eav_workflow}',
                     ],
                 ],
                 'Five'  => [
                     'transition' => ['Four'],
                     'label'      => 'پنجم',
                     'metadata'   => [
-                        'email' => function($model) { return $model->id; },
+                        'email' => 'Link to some template container {id}: {title}',
                     ],
                 ],
             ],

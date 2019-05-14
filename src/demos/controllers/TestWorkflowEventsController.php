@@ -3,7 +3,6 @@
 
 namespace khans\utils\demos\controllers;
 
-use khans\utils\controllers\KHanWebController;
 use khans\utils\demos\data\TestWorkflowEvents;
 use khans\utils\demos\data\TestWorkflowEventsSearch;
 use Yii;
@@ -233,33 +232,6 @@ class TestWorkflowEventsController extends KHanWebController
             */
             return $this->redirect(['index']);
         }
-    }
-
-    /**
-     * Show history of changes in the given record
-     *
-     * @param integer $id
-     *
-     * @return array AJAX grid view of changes in the given record
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionAudit($id)
-    {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        $model = $this->findModel($id);
-        $dataProvider = new ActiveDataProvider([
-            'db'    => Yii::$app->get('test'),
-            'query' => $model->getActionHistory(),
-        ]);
-
-        return [
-            'title'   => "رکورد #" . $model->id . ' جدول Test Workflow Events',
-            'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
-                'dataProvider' => $dataProvider,
-            ]),
-            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']),
-        ];
     }
 
     /**

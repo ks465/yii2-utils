@@ -14,13 +14,13 @@ use khans\utils\demos\data\SysEavValuesQuery;
  * SysEavValuesSearch represents the model behind the search form about `\khans\utils\demos\data\SysEavValues`.
  *
  * @package khans\utils\generatedControllers
- * @version 0.2.2-980119
+ * @version 0.2.3-980219
  * @since   1.0
  */
 class SysEavValuesSearch extends SysEavValues
 {
     /**
-     * @var khans\utils\demos\data\SysEavValuesQuery centralized query object for this search model
+     * @var \khans\utils\demos\data\SysEavValuesQuery centralized query object for this search model
      */
     public $query;
 
@@ -77,7 +77,7 @@ class SysEavValuesSearch extends SysEavValues
         }
 
         $this->query->andFilterWhere([
-            'id' => $this->id,
+            'sys_eav_values.id' => $this->id,
             'attribute_id' => $this->attribute_id,
             'record_id' => $this->record_id,
             'status'     => $this->status,
@@ -88,7 +88,6 @@ class SysEavValuesSearch extends SysEavValues
         ]);
 
         $this->query->andFilterWhere(['like', 'value', $this->value]);
-
 
         return $dataProvider;
     }

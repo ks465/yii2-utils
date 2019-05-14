@@ -1,6 +1,6 @@
 #KHanModel Class
-Documentation Edition: 1.2-980205
-Class Version: 0.4.6-971027
+Documentation Edition: 1.3-980224
+Class Version: 0.4.10-980224
 
 All of the standard globally required methods and properties are set here for simplicity.
 Some of these methods are gathered in the main model, and some are in the accompanied [[khans\utils\models\queries\KHanQuery|query]]
@@ -20,10 +20,11 @@ data is available.
    + If there is more than one table holding users --like pGrad-- change:
        - [[khans\utils\models\KHanModel::getResponsibleUser]] to be able to see all the users in the above methods, 
        - [[khans\utils\helpers\migrations\KHanMigration::$user_models]] to create all the tables and models,
-1. isActive Shows if the status of the record is equal to `KHanModel::STATUS_ACTIVE`
-1. isVisible Shows if the status of the record is _**NOT**_ equal to `KHanModel::STATUS_DELETED`
-1. getLastFlow shows the updated time
-1. Get list of changes in the record through the history data
+1. `isActive` Shows if the status of the record is equal to `KHanModel::STATUS_ACTIVE`
+1. `isVisible` Shows if the status of the record is _**NOT**_ equal to `KHanModel::STATUS_DELETED`
+1. `getLastFlow` shows the updated time
+1. `getActionHistory` returns list of changes in the record through the history data, 
+including changes in EAV data.
 1. The `$tableComment` holds a definition for the table. 
 This is set to table comment by the model generators.
 It is primarily used for titles of the action pages in generated CRUD.

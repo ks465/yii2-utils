@@ -223,7 +223,7 @@ namespace khans\utils\components {
          * @param array $items Items formatted by formatListItem
          *
          * @return string Output of the list
-         * @see formatListItem
+         * @see VarDump::formatListItem
          */
         public function formatListItems(array $items);
     }

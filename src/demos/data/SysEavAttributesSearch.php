@@ -20,7 +20,7 @@ use khans\utils\demos\data\SysEavAttributesQuery;
 class SysEavAttributesSearch extends SysEavAttributes
 {
     /**
-     * @var khans\utils\demos\data\SysEavAttributesQuery centralized query object for this search model
+     * @var \khans\utils\demos\data\SysEavAttributesQuery centralized query object for this search model
      */
     public $query;
 
@@ -77,8 +77,8 @@ class SysEavAttributesSearch extends SysEavAttributes
         }
 
         $this->query->andFilterWhere([
-            'id' => $this->id,
-            'status' => $this->status,
+            'id'         => $this->id,
+            'status'     => $this->status,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
             'created_at' => $this->created_at,
@@ -91,7 +91,6 @@ class SysEavAttributesSearch extends SysEavAttributes
             ->andFilterWhere(['like', 'attr_type', $this->attr_type])
             ->andFilterWhere(['like', 'attr_length', $this->attr_length])
             ->andFilterWhere(['like', 'attr_scenario', $this->attr_scenario]);
-
 
         return $dataProvider;
     }

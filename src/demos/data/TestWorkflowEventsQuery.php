@@ -15,4 +15,5 @@ namespace khans\utils\demos\data;
  */
 class TestWorkflowEventsQuery extends \khans\utils\models\queries\KHanQuery
 {
+    use \khans\utils\behaviors\EavQueryTrait;
 }

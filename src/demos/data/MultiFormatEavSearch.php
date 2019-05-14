@@ -21,7 +21,7 @@ use yii\db\ActiveRecord;
 class MultiFormatEavSearch extends MultiFormatEav
 {
     /**
-     * @var khans\utils\demos\data\MultiFormatEavQuery centralized query object for this search model
+     * @var \khans\utils\demos\data\MultiFormatEavQuery centralized query object for this search model
      */
     public $query;
 

@@ -1,5 +1,5 @@
 #Migrations
-Documentation Edition: 1.2-971122
+Documentation Edition: 1.3-980224
 Class Version: 0.5.2-971122
 
 [[KHanMigration]] is the base class for migration. It has multiple new methods
@@ -32,9 +32,10 @@ Class Version: 0.5.2-971122
 + m140506_102106_InitRbacTables.php Create RBAC tables.
 + m140602_111327_CreateMenuTable.php Create menu table for application main menu.
 + m190103_083414_InitSystemTables.php Create two tables for structure of system critical tables. See [SystemTableBuilder](helpers-system-table-builder.md) for more details.
-+ m190128_152310_CreateHistoryTables.php Creates two table for logging history.
-   - one for saving the history of changes in the models extending [[KHanModel]]
-   - one for saving history of login attempts to site.
++ m190128_152310_CreateHistoryTables.php Creates three table for logging history.
+   - one for saving the history of changes in the models extending [[KHanModel]],
+   - one for saving history of login attempts to site,
+   - the last one saves history of sent emails.
 
 ##Init System tables
 Two system table containing table definition and field definitions

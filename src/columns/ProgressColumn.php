@@ -30,7 +30,7 @@ use yii\db\Exception;
  * ```
  *
  * @package khans\utils
- * @version 0.3.1-980202
+ * @version 0.4.1-980219
  * @since   1.0
  */
 class ProgressColumn extends DataColumn
@@ -51,16 +51,16 @@ class ProgressColumn extends DataColumn
             $model = new $this->grid->filterModel->query->modelClass();
             $model->enterWorkflow(null);
             $this->workflowID = $model->getWorkflow()->getId();
-        try {
-            $filterList = WorkflowBehavior::readStatusesFromTable($this->workflowID);
-        } catch (Exception $e) {
-            if($e->getCode() == 42){//Base table or view not found
-                /** @noinspection PhpParamsInspection */
+//        try {
+//            $filterList = WorkflowBehavior::readStatusesFromTable($this->workflowID);
+//        } catch (Exception $e) {
+//            if($e->getCode() == 42){//Base table or view not found
+//                /** @noinspection PhpParamsInspection */
                 $filterList = WorkflowHelper::getAllStatusListData($this->workflowID, $model->getWorkflowSource());
-            }else{
-                $filterList = [];
-            }
-        }
+//            }else{
+//                $filterList = [];
+//            }
+//        }
 
         if (count($filterList) > 1) {
             $this->filterType = GridView::FILTER_SELECT2;

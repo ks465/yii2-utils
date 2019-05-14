@@ -1,6 +1,6 @@
 #OverlayMenu Class
-Documentation Edition: 1.1-971112
-Class Version: 0.1.0-970717
+Documentation Edition: 1.2-980224
+Class Version: 0.1.1-980223
 
 This is a simple widget class to render the menu. It consists of: 
 + OverlayMenuFiller
@@ -12,7 +12,7 @@ echo OverlayMenu::widget([
     'title'      => 'General Menu',
     'label'      => 'This Is the Output',
     'tag'        => 'button',
-    'csvFileUrl' => '@khan/tests/demos/sample-menu.csv',
+    'csvFileUrl' => '@khan/demos/sample-menu.csv',
     'options'    => ['class' => 'btn btn-danger'],
     'tabs'       => [
         'general'    => [
@@ -39,6 +39,46 @@ echo OverlayMenu::widget([
 
 The above code renders a button on the page to activate the overlay menu.
 By rendering the widget, a button is placed on the page. You can render the button in the `NavBar`.
+Or you can add a unified menu item like this:
+
+```php
+echo Nav::widget([
+    'options' => ['class' => 'navbar-nav navbar-right'],
+    'items'   => [
+        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'About', 'url' => ['/site/about']],
+          '<li>' . OverlayMenu::widget([
+            'title'      => 'General Menu',
+            'label'      => 'منوی سریع',
+            'tag'        => 'a',
+            'csvFileUrl' => '@khan/demos/data/sample-menu.csv',
+            'options'    => ['class' => 'btn btn-link'],
+            'tabs'       => [
+                'general'    => [
+                    'id'    => 'general',
+                    'title' => 'General',
+                    'icon'  => 'heart',
+                    'admin' => false,
+                ],
+                'others'     => [
+                    'id'    => 'others',
+                    'title' => 'Others',
+                    'icon'  => 'user',
+                    'admin' => false,
+                ],
+                'management' => [
+                    'id'    => 'management',
+                    'title' => 'Manager',
+                    'icon'  => 'alert',
+                    'admin' => true,
+                ],
+            ],
+        ]) . '</li>',
+        ...
+```
+Setting `tag` => `a` and `class` => `btn-link` is a very good --and required-- choice.
+
+
 The `tabs` section is optional. The [[\khans\utils\widgets\menu\OverlayFiller]] creates it if omitted.
 
 ##subsection

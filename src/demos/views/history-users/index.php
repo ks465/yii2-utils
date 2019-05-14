@@ -4,7 +4,7 @@ use khans\utils\widgets\GridView;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $searchModel khans\utils\demos\data\search\SysHistoryUsersSearch */
+/* @var $searchModel khans\utils\demos\data\SysHistoryUsersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'تاریخچه ورود به سامانه';

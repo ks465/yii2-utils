@@ -10,7 +10,7 @@
 namespace khans\utils\controllers;
 
 
-use khans\utils\components\rest\Security;
+use khans\utils\components\rest_v1\Security;
 use khans\utils\Settings;
 use Yii;
 use yii\data\ActiveDataProvider;

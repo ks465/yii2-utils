@@ -19,20 +19,32 @@ Although it is not ver good for building new workflow from scratch.
 Name of tables are hard-coded.
 
 ```php
-'modules'    => [
-    'workflow' => [
-        'class' => 'cornernote\workflow\manager\Module',
-    ],
-],
+
+?'modules'    => [
+?    'workflow' => [
+?        'class' => 'cornernote\workflow\manager\Module',
+?    ],
+?],
 'components' => [
-    'wizflowManager' => [
-        'class' => 'khans\utils\components\workflow\WizflowManager',
-        'workflowSourceName' => 'workflowSource',
-    ],
+?    'wizflowManager' => [
+?        'class' => 'khans\utils\components\workflow\WizflowManager',
+?        'workflowSourceName' => 'workflowSource',
+?    ],
+X    'workflowSource' => [
+X        'class' => 'cornernote\workflow\manager\components\WorkflowDbSource',
+X    ],
     'workflowSource' => [
-        'class' => 'cornernote\workflow\manager\components\WorkflowDbSource',
+        'class' => 'raoul2000\workflow\source\file\WorkflowFileSource',
+        'definitionLoader' => [
+            // use return [...] syntax:
+            'class' => 'raoul2000\workflow\source\file\PhpArrayLoader',
+            'path'  => '@app/models/workflow',
+            // use WorkflowClass implements IWorkflowDefinitionProvider syntax:
+            'class' => 'raoul2000\workflow\source\file\PhpClassLoader',
+            'namespace'  => 'app\\models\\workflow'
+        ]
     ],
-],
+    ],
 ```
 
 ```php

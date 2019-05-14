@@ -3,14 +3,10 @@
 
 namespace khans\utils\demos\controllers;
 
-use khans\utils\controllers\KHanWebController;
 use khans\utils\demos\data\SysEavAttributes;
 use khans\utils\demos\data\SysEavAttributesSearch;
 use Yii;
-use yii\data\ActiveDataProvider;
-use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
-use yii\web\Response;
 
 /**
  * EavAttributesController implements the CRUD actions for SysEavAttributes model.
@@ -50,24 +46,6 @@ class EavAttributesController extends KHanWebController
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
-
-    /**
-     * Finds the SysEavAttributes model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     *
-     * @param integer $id
-     *
-     * @return SysEavAttributes the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = SysEavAttributes::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
     }
 
     /**
@@ -126,31 +104,22 @@ class EavAttributesController extends KHanWebController
 
         return $this->redirect(['index']);
     }
-
+    
     /**
-     * Show history of changes in the given record
+     * Finds the SysEavAttributes model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
      *
      * @param integer $id
      *
-     * @return array AJAX grid view of changes in the given record
+     * @return SysEavAttributes the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionAudit($id)
+    protected function findModel($id)
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
+        if (($model = SysEavAttributes::findOne($id)) !== null) {
+            return $model;
+        }
 
-        $model = $this->findModel($id);
-        $dataProvider = new ActiveDataProvider([
-            'db'    => Yii::$app->get('test'),
-            'query' => $model->getActionHistory(),
-        ]);
-
-        return [
-            'title'   => "رکورد #" . $model->id . ' جدول List of EAV Attributes',
-            'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
-                'dataProvider' => $dataProvider,
-            ]),
-            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']),
-        ];
+        throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
     }
 }

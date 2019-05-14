@@ -4,6 +4,7 @@
 namespace khans\utils\demos\data;
 
 use Yii;
+use khans\utils\demos\data\SysEavAttributes;
 
 
 /**
@@ -91,10 +92,27 @@ class TestWorkflowEvents extends \khans\utils\demos\data\KHanModel
      */
     public function behaviors(): array
     {
-        //Facilitate reading workflow definitions from demo section
+        /* Facilitate reading workflow definitions from demo section.
+         * This is not very clean and nice way, but it ensures that demo workflow works
+         * in any configuration of the main application.
+         * Note: This demo does not use array loader as is the case in the documentations!
+         */
+        Yii::$app->set('workflowSource', 
+            Yii::createObject([
+                'class' => 'raoul2000\workflow\source\file\WorkflowFileSource',
+                'definitionLoader' => [
+                    'class' => 'raoul2000\workflow\source\file\PhpClassLoader',
+                    'namespace'  => 'khans\\utils\\demos\\data'
+                ]
+            ])
+        );
         Yii::setAlias('@workflowDefinitionNamespace', 'khans\\utils\\demos\\data');
 
         return array_merge([
+            'EAV' => [
+                'class' => '\khans\utils\demos\data\EavBehavior',
+                'id'    => 'test_workflow_events',
+            ],
             'Workflow' => [
                 'class'                  => '\khans\utils\behaviors\WorkflowBehavior',
                 'statusAttribute'        => 'workflow_status',
@@ -104,4 +122,21 @@ class TestWorkflowEvents extends \khans\utils\demos\data\KHanModel
             ],
         ], parent::behaviors());
     }
+    
+    /**
+     * THe error message is somehow static in the validator.
+     * 
+     * @param type $attribute
+     * @param type $error
+     */
+    public function addError($attribute, $error = '') {
+        if('workflow_status' == $attribute){
+            $error = str_ireplace('Workflow validation failed : No transition found between status', 
+                    'تغییر وضعیت مجاز نیست.', 
+                    $error);
+            $error ='تغییر وضعیت مجاز نیست.';
+        }
+        parent::addError($attribute, $error);
+    }
+
 }

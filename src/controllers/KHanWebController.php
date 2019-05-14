@@ -13,12 +13,16 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\data\ActiveDataProvider;
+use yii\helpers\Html;
+
+
 
 /**
  * Class KHanWebController offers common behavior for web controllers
  *
  * @package khans\utils\controllers
- * @version 0.2.3-980215
+ * @version 0.3.1-980219
  * @since 1.0
  */
 class KHanWebController extends Controller
@@ -60,6 +64,31 @@ class KHanWebController extends Controller
             'list-users'   => [
                 'class' => '\khans\utils\actions\ListUsersAction',
             ],
+        ];
+    }
+    
+    /**
+     * Show history of changes in the given record
+     *
+     * @param integer $id
+     *
+     * @return array AJAX grid view of changes in the given record
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionAudit($id)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $model = $this->findModel($id);
+        $dataProvider = new ActiveDataProvider(['query' => $model->getActionHistory()]);
+
+        return [
+            'title'   => "رکورد #" . $model->id . ' جدول Test Workflow Events with EAV',
+            'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
+                'dataProvider' => $dataProvider,
+            ]),
+            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']) .
+            '<strong class="text-info pull-right">'. '* These are EAV Fields' . '</strong>',
         ];
     }
 

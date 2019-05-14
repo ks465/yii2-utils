@@ -142,29 +142,29 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         return $this->redirect(['index']);
     }
 
-    /**
-     * Show history of changes in the given record
-     *
-     * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
-     *
-     * @return array AJAX grid view of changes in the given record
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionAudit(<?= $actionParams ?>)
-    {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        $model = $this->findModel($id);
-        $dataProvider = new ActiveDataProvider(['query' => $model->getActionHistory()]);
-
-        return [
-            'title'   => "رکورد #" . $model->id . ' جدول <?= $generator->tableTitle ?>',
-            'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
-                'dataProvider' => $dataProvider,
-            ]),
-            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal'])
-        ];
-    }
+//    /**
+//     * Show history of changes in the given record
+//     *
+//     * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
+//     *
+//     * @return array AJAX grid view of changes in the given record
+//     * @throws NotFoundHttpException if the model cannot be found
+//     */
+//    public function actionAudit(<?= $actionParams ?>)
+//    {
+//        Yii::$app->response->format = Response::FORMAT_JSON;
+//
+//        $model = $this->findModel($id);
+//        $dataProvider = new ActiveDataProvider(['query' => $model->getActionHistory()]);
+//
+//        return [
+//            'title'   => "رکورد #" . $model->id . ' جدول <?= $generator->tableTitle ?>',
+//            'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
+//                'dataProvider' => $dataProvider,
+//            ]),
+//            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal'])
+//        ];
+//    }
 
 <?php if (defined($generator->modelClass . '::THIS_TABLE_ROLE') and $generator->modelClass::THIS_TABLE_ROLE == 'ROLE_CHILD'): ?>
     /**

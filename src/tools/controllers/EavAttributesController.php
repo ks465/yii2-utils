@@ -55,11 +55,11 @@ class EavAttributesController extends KHanWebController
     /**
      * Creates a new SysEavAttributes model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     *
      * @return mixed
      */
     public function actionCreate()
     {
-        $request = Yii::$app->request;
         $model = new SysEavAttributes();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -74,6 +74,7 @@ class EavAttributesController extends KHanWebController
     /**
      * Updates an existing SysEavAttributes model.
      * If update is successful, the browser will be redirected to the 'view' page.
+     *
      * @param integer $id
      *
      * @return mixed
@@ -81,7 +82,6 @@ class EavAttributesController extends KHanWebController
      */
     public function actionUpdate($id)
     {
-        $request = Yii::$app->request;
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -96,6 +96,7 @@ class EavAttributesController extends KHanWebController
     /**
      * Deletes an existing SysEavAttributes model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     *
      * @param integer $id
      *
      * @return mixed
@@ -103,41 +104,41 @@ class EavAttributesController extends KHanWebController
      */
     public function actionDelete($id)
     {
-        $request = Yii::$app->request;
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
-    /**
-     * Show history of changes in the given record
-     *
-     * @param integer $id
-     *
-     * @return array AJAX grid view of changes in the given record
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionAudit($id)
-    {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        $model = $this->findModel($id);
-        $dataProvider = new ActiveDataProvider(['query' => $model->getActionHistory()]);
-
-        return [
-            'title'   => "رکورد #" . $model->id . ' جدول List of EAV Attributes',
-            'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
-                'dataProvider' => $dataProvider,
-            ]),
-            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal'])
-        ];
-    }
-
-
+//    /**
+//     * Show history of changes in the given record
+//     *
+//     * @param integer $id
+//     *
+//     * @return array AJAX grid view of changes in the given record
+//     * @throws NotFoundHttpException if the model cannot be found
+//     */
+//    public function actionAudit($id)
+//    {
+//        Yii::$app->response->format = Response::FORMAT_JSON;
+//
+//        $model = $this->findModel($id);
+//        $dataProvider = new ActiveDataProvider(['query' => $model->getActionHistory()]);
+//
+//        return [
+//            'title'   => "رکورد #" . $model->id . ' جدول List of EAV Attributes',
+//            'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
+//                'dataProvider' => $dataProvider,
+//            ]),
+//            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']),
+//        ];
+//    }
+    
     /**
      * Finds the SysEavAttributes model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
+     *
      * @param integer $id
+     *
      * @return SysEavAttributes the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

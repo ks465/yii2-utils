@@ -1,14 +1,55 @@
 #HelpAction
-Documentation Edition: 1.0-980208
-Class Version: 2.1.-980208
+Documentation Edition: 1.1-980223
+Class Version: 3.0.1-980223
 
 The base controller [KHanWebController](controllers-khan-web.md) has the help method set. 
-If your controller extends this, then the only thing you need to do is adding the following parts to main layout of the site:
+If your controller extends this, then the only thing you need to do is adding the following part to main layout of the site:
 
 Define a link/button to activate help (it can be in the top menu):
+
+```php
+echo $this->render('@khan/actions/help/button', [
+    'label' => 'Testing Help', 
+    'class' => 'btn btn-info btn-block',
+]);
+```
+Or add the following to `NavBar`:
+
+```php
+echo Nav::widget([
+    'options' => ['class' => 'navbar-nav navbar-right'],
+    'items'   => [
+        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'About', 'url' => ['/site/about']],
+        '<li>' . Html::a('راهنما', '#', [
+                'title' => 'راهنمای به کارگیری این صفحه',
+                'onclick' => "
+$('#modalHelp').modal('show');
+$.ajax({
+    type: 'POST',
+    cache: false,
+    url: '" . Url::to([
+            'help',
+            'action' => $this->context->action->id,
+        ]) . "',
+    success: function(response) {
+        $('#modalHelp .modal-body').html(response);
+    },
+});
+return false;
+",
+            ]) . '</li>',
+...
+```
+
+This --button-- file contains everything required for setting help up.
+
+It will render the following:
 ```html
 <a class="btn btn-info" onclick="<?= $onClick ?>" href="#">Help</a>
 ```
+**_BUT! if you want to put the link button in the NavBar menu, do NOT do that!
+Instead do the following_**
 
 Define Javascript responder to click event of the `Help` button:
 ```php
@@ -17,9 +58,8 @@ $('#modalHelp').modal('show');
 $.ajax({
     type: 'POST',
     cache: false,
-    url: '" . Url::to(['help',
-            'module' => $this->context->module->id,
-            'controller' => $this->context->id,
+    url: '" . Url::to([
+            'help',
             'action' => $this->context->action->id,
         ]) . "',
     success: function(response) {

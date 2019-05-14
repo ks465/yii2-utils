@@ -21,9 +21,9 @@ use yii\helpers\Markdown;
     <?php if ($hint !== false): ?>
         <div class="alert alert-info ltr">
             <h3>Request Data:</h3>
-            <p>Referrer Page: <strong><?= $hint['referer'] ?></strong></p>
-            <p>Help Page: <strong><?= $hint['page'] ?></strong></p>
-            <p>Help File: <strong><?= $hint['file'] ?></strong></p>
+            <p>Referrer: <strong><?= $hint['referer'] ?></strong></p>
+            <p>Requested Help Page: <strong><?= $hint['page'] ?></strong></p>
+            <p>Shown Help File: <strong><?= $hint['file'] ?></strong></p>
         </div>
     <?php endif; ?>
 </div>

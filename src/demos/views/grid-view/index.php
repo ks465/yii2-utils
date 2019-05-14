@@ -63,11 +63,34 @@ $this->params['breadcrumbs'][] = $this->title;
            title="This Controller does not include Update, Create, and Delete actions and pages. The generator is different from the normal CRUD generator.">
             Read-only Controller
         </a>
+    </div>
+    <div class="panel-footer">
+        <p>Most of the actions demonstrate modal action. For reaching the stand alone page, Ctrl + click the
+            actions.</p>
+        <p><sup>*1</sup>
+            <mark>Model with EAV Data</mark> in this group and <mark>Search Model</mark> in grid view demos are essentially the same table.
+            The relative model in EAV data has settings for using the EAV pattern.
+        </p>
+        <p class="text-info"><sup>*2</sup> Action
+            <mark>Reset</mark>
+            in this view only has stand alone response
+        </p>
+    </div>
+</div>
+
+<div class="panel panel-success ltr">
+    <div class="panel-heading">
+        Workflow Playground
+    </div>
+    <div class="panel-body">
         <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/test-workflow-events']) ?>"
            title="This Controller is used to manipulate data status and workflow to check different aspects of workflow behavior.">
-            Workflow Play Ground
+            Workflow Statuses and Emails
         </a>
-
+        <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/test-workflow-eav']) ?>"
+           title="This Controller is used to play with workflow and EAV simultanously.">
+            Workflow Statuses and EAV
+        </a>
     </div>
     <div class="panel-footer">
         <p>Most of the actions demonstrate modal action. For reaching the stand alone page, Ctrl + click the

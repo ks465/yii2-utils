@@ -1,7 +1,7 @@
 <?php
 
 use khans\utils\components\ArrayHelper;
-use khans\utils\demos\data\SysEavValues;
+use khans\utils\tools\models\SysEavValues;
 use khans\utils\models\KHanModel;
 
 use khans\utils\widgets\GridView;

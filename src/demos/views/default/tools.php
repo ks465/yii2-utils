@@ -49,6 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <a class="btn btn-default col-sm-3" href="<?= Url::to(['/khan/import-csv', 'db' => 'test']) ?>"
            title="Use `test` for connection and `test_import_csv` for target table for test.">
             Import CSV into Database</a>
+        <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/default/workflow']) ?>"
+           title="List of workflow defintions and details defined in the application.">
+            Workflow Definitions</a>
     </div>
     <div class="panel-footer">
     </div>

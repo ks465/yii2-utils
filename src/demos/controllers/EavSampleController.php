@@ -3,11 +3,9 @@
 
 namespace khans\utils\demos\controllers;
 
-use khans\utils\controllers\KHanWebController;
 use khans\utils\demos\data\MultiFormatEav;
 use khans\utils\demos\data\MultiFormatEavSearch;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -30,8 +28,6 @@ class EavSampleController extends KHanWebController
     {
         $searchModel = new MultiFormatEavSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-//        vdd(1);
 
         return $this->render('index', [
             'searchModel'  => $searchModel,
@@ -286,32 +282,5 @@ class EavSampleController extends KHanWebController
             */
             return $this->redirect(['index']);
         }
-    }
-
-    /**
-     * Show history of changes in the given record
-     *
-     * @param integer $id
-     *
-     * @return array AJAX grid view of changes in the given record
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionAudit($id)
-    {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        $model = $this->findModel($id);
-        $dataProvider = new ActiveDataProvider([
-            'db'    => Yii::$app->get('test'),
-            'query' => $model->getActionHistory(),
-        ]);
-
-        return [
-            'title'   => "رکورد #" . $model->id . ' جدول EAV Sample Data',
-            'content' => $this->renderAjax('@khan/tools/views/history-database/record', [
-                'dataProvider' => $dataProvider,
-            ]),
-            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']),
-        ];
     }
 }

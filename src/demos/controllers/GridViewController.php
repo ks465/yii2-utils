@@ -5,7 +5,6 @@ namespace khans\utils\demos\controllers;
 
 
 use kartik\growl\Growl;
-use khans\utils\controllers\KHanWebController;
 use khans\utils\demos\data\MultiFormatDataSearch;
 use khans\utils\models\KHanModel;
 use khans\utils\widgets\DropdownX;
@@ -585,6 +584,8 @@ class GridViewController extends KHanWebController
         unset($columns['radio']);
         $columns['action'] = $this->getActionColumn();
         $columns['action']['runAsAjax'] = false;
+        $columns['action']['viewOptions']['runAsAjax'] = true;
+        $columns['action']['updateOptions']['runAsAjax'] = true;
 
         return $this->render('grid', [
             'dataProvider' => new ArrayDataProvider(['allModels' => $this->buildSimpleGridData()]),
@@ -638,6 +639,10 @@ class GridViewController extends KHanWebController
         $columns['action']['visibleButtons']['update'] = function($model) { return $model['e']; };
         $columns['action']['visibleButtons']['delete'] = function($model) { return $model['e']; };
 
+        $columns['action']['runAsAjax'] = false;
+        $columns['action']['viewOptions']['runAsAjax'] = true;
+        $columns['action']['updateOptions']['runAsAjax'] = true;
+        
         $columns['action2'] = $columns['action'];
         $columns['action2']['dropdown'] = false;
         $columns['action2']['header'] = 'Linear Copy';
@@ -716,4 +721,12 @@ class GridViewController extends KHanWebController
         ]);
     }
     //</editor-fold>
+    protected function findModel($id)
+    {
+        if (($model = \khans\utils\demos\data\TestWorkflowEvents::findOne(1)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('صفحه درخواست شده پیدا نشد.');
+        }
+    }
 }
