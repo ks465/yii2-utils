@@ -109,7 +109,7 @@ class KHanSUtilsComponentsStringHelperTest extends \Codeception\Test\Unit
     public function testConvertDigitsFromPersian()
     {
         $test = '1.2 ۱٫۲';
-        expect('All digits are in persian face', StringHelper::convertDigits($test, true))->equals('1.2 1.2');
+        expect('All digits are in persian face', StringHelper::convertDigits($test, '٫', true))->equals('1.2 1.2');
     }
 
     public function testPaddingLeftOdd()

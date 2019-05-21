@@ -19,6 +19,6 @@ vd($jwt);
 <?php
 vd($token);
 ?>
-    <p class="ltr">$jwt->decodeJwt($token)</p>
+    <p class="ltr">JwtPayload::decodeJwt($token)</p>
 <?php
-vd($jwt->decodeJwt($token));
+vd(JwtPayload::decodeJwt($token));

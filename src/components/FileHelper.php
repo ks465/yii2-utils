@@ -15,7 +15,7 @@ use yii\base\BaseObject;
  * make reading and writing file formats simpler
  *
  * @package khans\utils
- * @version 1.2.1-950423
+ * @version 1.2.2-980226
  * @since   1.0
  */
 class FileHelper extends BaseObject
@@ -108,39 +108,6 @@ class FileHelper extends BaseObject
     public static function loadIni($fileURI)
     {
         return parse_ini_file($fileURI, true);
-    }
-
-    /**
-     * Save contents of an associative array as ini file
-     *
-     * @param string $fileURI URI to the CSV file
-     * @param array  $contents data to be saved as ini
-     *
-     * @return int number of keys written to file in all sections
-     */
-    public static function saveIni($fileURI, array $contents)
-    {
-        $tmp = '';
-        $sectionCounter = $keyCounter = 0;
-        foreach ($contents as $section => $values) {
-            $tmp .= "[$section]\n";
-            foreach ($values as $key => $val) {
-                if (is_array($val)) {
-                    foreach ($val as $k => $v) {
-                        $tmp .= "{$key}[$k] = \"$v\"\n";
-                    }
-                } else {
-                    $tmp .= "$key = \"$val\"\n";
-                }
-                $keyCounter++;
-            }
-            $tmp .= "\n";
-            $sectionCounter++;
-        }
-        file_put_contents($fileURI, $tmp);
-        unset($tmp);
-
-        return $keyCounter;
     }
     //</editor-fold>
 }

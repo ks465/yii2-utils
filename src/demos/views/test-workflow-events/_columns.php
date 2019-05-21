@@ -1,6 +1,7 @@
 <?php
 
 use khans\utils\widgets\GridView;
+use khans\utils\components\workflow\KHanWorkflowHelper;
 
 $column = [
     'id'              => [
@@ -24,14 +25,11 @@ $column = [
     ],
     'workflow'        => [
         'value'          => function($model) {
-            $x = $model->shouldSendEmail();
-            if ($x instanceof Closure) {
-                return 'Closure:: ' . call_user_func($x, $model);
-            } elseif (is_bool($x)) {
-                return $x ? 'TRUE' : 'FALSE';
+            if(false === $model->shouldSendEmail()){
+                return 'FALSE';
             }
 
-            return $x;
+            return KHanWorkflowHelper::getEmailTemplate($model->getWorkflowStatus());
         },
         'label'          => 'eMail',
         'mergeHeader'    => true,

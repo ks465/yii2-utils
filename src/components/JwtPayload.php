@@ -18,7 +18,7 @@ use yii\base\BaseObject;
  * PostgREST.
  *
  * @package app\components
- * @version 0.1.1-980101
+ * @version 0.2.1-980226
  * @since   1.0
  */
 class JwtPayload extends BaseObject
@@ -43,7 +43,7 @@ class JwtPayload extends BaseObject
      *
      * to generate eligible new secret key
      */
-    private $key = 'TFhSjkVAwv-mPSwoh3s2KMIWqz4QUZQq_5uXjB5YLg5rouy68i_ESDbU0Mm9NjpM';
+    private static $key = 'TFhSjkVAwv-mPSwoh3s2KMIWqz4QUZQq_5uXjB5YLg5rouy68i_ESDbU0Mm9NjpM';
     /**
      * @var string Database Role to access data
      */
@@ -51,19 +51,31 @@ class JwtPayload extends BaseObject
     /**
      * @var string (Audience) Claim in JWT definition
      */
-    public $aud = 'pgrad.aut.ac.ir';
+    public $aud = 'khan.org';
     /**
      * @var int (Expiration Time) Claim in JWT definition
      */
-    public $exp = 0;
+    public $exp;
     /**
      * @var int (Not Before) Claim in JWT definition
      */
-    public $nbf = 0;
+    public $nbf;
     /**
      * @var string (Subject) Claim in JWT definition
      */
     public $sub = '';
+    /**
+     * @var integer (Issued At) Claim
+     */
+    public $iat = 0;
+    /**
+     * @var string (JWT ID) Claim
+     */
+    public $jti = '_default_UUID';
+    /**
+     * @var string (Issuer) Claim
+     */
+    public $iss = 'KHanS@khan.org';
 
     /**
      * Set default values for the JWT and this classes
@@ -72,11 +84,14 @@ class JwtPayload extends BaseObject
     {
         JWT::$leeway = 5;
 
-        $this->exp = time() + self::TIME_SHIFT_ALLOWED;
-        $this->nbf = time() - self::TIME_SHIFT_ALLOWED;
-//        $this->payLoad->iat = time(); //(Issued At) Claim
-//        $this->payLoad->jti = 'UUID'; //(JWT ID) Claim
-//        $this->payLoad->iss = "example.org"; //(Issuer) Claim
+        if(empty($this->exp)){
+            $this->exp = time() + self::TIME_SHIFT_ALLOWED;
+        }
+        if(empty($this->nbf)){
+            $this->nbf = time() - self::TIME_SHIFT_ALLOWED;
+        }
+//        $this->payLoad->iat = time();
+
     }
 
     /**
@@ -87,9 +102,9 @@ class JwtPayload extends BaseObject
      *
      * @return object payload in the token
      */
-    public function decodeJwt($jwt)
+    public static function decodeJwt($jwt)
     {
-        return JWT::decode($jwt, $this->key, ['HS256']);
+        return JWT::decode($jwt, JwtPayload::$key, ['HS256']);
     }
 
     /**
@@ -104,12 +119,17 @@ class JwtPayload extends BaseObject
         $this->sub = $payloadSubject;
 
         $payLoad = new \stdClass;
+        //main parts
         $payLoad->role = $this->role;
         $payLoad->exp = $this->exp;
         $payLoad->nbf = $this->nbf;
         $payLoad->aud = $this->aud;
         $payLoad->sub = $this->sub;
+        //optional parts
+        $payLoad->iat = $this->iat;
+        $payLoad->jti = $this->jti;
+        $payLoad->iss = $this->iss;
 
-        return JWT::encode($payLoad, $this->key);
+        return JWT::encode($payLoad, JwtPayload::$key);
     }
 }

@@ -142,7 +142,7 @@ class WorkflowBehavior extends \raoul2000\workflow\base\SimpleWorkflowBehavior
      * @return boolean
      * @throws \yii\base\InvalidConfigException
      */
-    private function shouldSendEmail(WorkflowEvent $event = null)
+    public function shouldSendEmail(WorkflowEvent $event = null)
     {
         if (is_null($event)) {
             $status = $this->getWorkflowStatus();

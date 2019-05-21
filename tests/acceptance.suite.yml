@@ -1,0 +1,7 @@
+class_name: AcceptanceTester
+modules:
+   enabled:
+      - WebDriver:
+         url: http://127.0.0.1/khans/web/index.php
+         #browser: chrome
+         browser: firefox

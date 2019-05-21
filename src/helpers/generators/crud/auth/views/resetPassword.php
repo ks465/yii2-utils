@@ -29,18 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="col-md-5 col-md-offset-1">
+        <?= "<?php " ?>$form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
 
-            <?= "<?php " ?>$form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
+        <?= "<?= " ?>$form->field($model, 'password')->passwordInput() ?>
 
-            <?= "<?= " ?>$form->field($model, 'password')->passwordInput() ?>
+        <?= "<?= " ?>$form->field($model, 'password_repeat')->passwordInput() ?>
 
-            <?= "<?= " ?>$form->field($model, 'password_repeat')->passwordInput() ?>
-
-            <div class="form-group">
-                <?= "<?= " ?>Html::submitButton('بنویس', ['class' => 'btn btn-primary pull-left']) ?>
-            </div>
-
-            <?= "<?php " ?>ActiveForm::end(); ?>
+        <div class="form-group">
+            <?= "<?= " ?>Html::submitButton('بنویس', ['class' => 'btn btn-primary pull-left']) ?>
         </div>
+
+        <?= "<?php " ?>ActiveForm::end(); ?>
     </div>
 </div>
