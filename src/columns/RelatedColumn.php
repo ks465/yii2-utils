@@ -39,7 +39,7 @@ use yii\web\JsExpression;
  * [KHanWebController].
  *
  * @package common\widgets
- * @version 0.2.1-980207
+ * @version 0.2.2-980304
  * @since   1.0
  */
 class RelatedColumn extends DataColumn
@@ -72,7 +72,8 @@ class RelatedColumn extends DataColumn
                         $pks = ['id'];
                     }
 
-                    return $model->parentTitle . Html::a(' <i class="glyphicon glyphicon-link"></i>',
+                    $title = $model->parentTitle ?? implode(',' , $model->linkFields);
+                    return $title . Html::a(' <i class="glyphicon glyphicon-link"></i>',
                             [$this->parentController . '/view'] +
                             array_combine($pks, ArrayHelper::filter($model->attributes, $model->linkFields)
                             ),

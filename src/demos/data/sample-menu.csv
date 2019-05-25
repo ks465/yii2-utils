@@ -7,6 +7,6 @@ id,title,url,image,class,tab,order
 6,Official Site,http://edu.aut.ac.ir/iCMS/pg/,edu-aut,,general,5
 7,سایت اصلی دانشگاه,http://aut.ac.ir,main-aut,,general,6
 8,دسترسی به اینترنت,http://internet.aut.ac.ir,internet,,general,2
-9,Demos,demos,cog,,management,3
-10,Database History,demos/history-database,,,management,3
-11,User History,demos/history-users,,,management,2
+9,Demos,/demos,cog,,management,3
+10,Database History,/demos/history-database,,,management,3
+11,User History,/demos/history-users,,,management,2

@@ -1,9 +1,10 @@
 <?php
 
-use khans\utils\components\ArrayHelper;
-use khans\utils\components\StringHelper;
+use khans\utils\components\{ArrayHelper, StringHelper};
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
+use khans\utils\widgets\ConfirmButton;
+use kartik\form\ActiveForm;
 
 $this->title = 'Admin Tools';
 $this->params['breadcrumbs'][] = $this->title;
@@ -24,7 +25,7 @@ foreach ($routes['available'] as $item) {
     ) {
         $routes['admin'] += ArrayHelper::removeValue($routes['available'], $item);
     }
-    
+
     if(StringHelper::startsWith($item, '/demos/')){
         $routes['demos'] += ArrayHelper::removeValue($routes['available'], $item);
     }
@@ -48,7 +49,6 @@ vd($routes);
                 <a class="btn btn-default col-sm-3" target="_blank" href="<?= Url::to(['/khan/eav-values']) ?>">EAV Values</a>
                 <a class="btn btn-danger col-sm-3" target="_blank" href="<?= Url::to(['/khan/import-csv']) ?>">Import CSV into Database</a>
                 <a class="btn btn-default col-sm-3" target="_blank" href="<?= Url::to(['/khan/default/workflow']) ?>">Workflow Definitions</a>
-
             </p>
             <p class="row-no-gutters">Users Management</p>
             <p class="row well-sm">
@@ -58,6 +58,29 @@ vd($routes);
                 <a class="btn btn-info col-sm-3" target="_blank" href="<?= Url::to(['/khan/history-users']) ?>">Users' Login History</a>
                 <span class="col-sm-3">&nbsp;</span>
             </p>
+        </div>
+        <div class="col-sm-3">
+            <?php
+            $form = ActiveForm::begin([
+                'id'     => 'form-cache',
+                'action' => Url::to(['/khan/default/reset-cache']),
+            ]);
+
+            echo ConfirmButton::widget([
+                'type'           => ConfirmButton::TYPE_WARNING,
+                'formID'         => $form->id,
+                'sendAjax'       => true,
+                'buttonLabel'    => 'Clear Cache',
+                'buttonClass'    => 'btn btn-warning btn-block',
+                'title'          => 'Clear all of the system data cache',
+                'message'        => 'All of the cached elements will be deleted. Are you sure?',
+                'btnOKLabel'     => 'Clear All Cached Data',
+                'btnCancelLabel' => 'Keep Current Cache',
+                'btnOKIcon'      => 'fire',
+                'btnCancelIcon'  => 'time',
+            ]);
+            ActiveForm::end();
+            ?>
         </div>
     </div>
     <div class="panel-footer">
@@ -69,20 +92,26 @@ vd($routes);
 </div>
 <!--Demos-->
 <div class="row well-lg">
-    <div class="col-sm-12">
-        <span class="col-md-3">
+    <div class="col-md-12 col-sm-6">
+        <span class="col-md-2">
             <a class="btn btn-success btn-block" href="/khans/vendor/khans465/yii2-utils/docs/index.html"
                target="_blank">API</a>
         </span>
-        <span class="col-md-3">
+        <span class="col-md-2">
             <a class="btn btn-success btn-block" href="/khans/vendor/khans465/yii2-utils/docs/g_README.html"
                target="_blank">Guide</a>
         </span>
-        <span class="col-md-3">
+        <span class="col-md-2">
             <a class="btn btn-default btn-block" target="_blank" href="<?= Url::to(['/demos']) ?>">Demo Pages</a>
         </span>
-        <span class="col-md-3">
+        <span class="col-md-2">
             <?= $this->render('@khan/actions/help/button', ['label' => 'Help', 'class' => 'btn btn-info btn-block']) ?>
+        </span>
+        <span class="col-md-2">
+        	<a class="btn btn-default btn-block" target="_blank" href="http://github.com/ks465">GitHub Rep</a>
+        </span>
+        <span class="col-md-2">
+        	<a class="btn btn-default btn-block" target="_blank" href="http://pgrad.aut.ac.ir/keyhan">KHanLog</a>
         </span>
     </div>
 </div>
@@ -96,7 +125,7 @@ vd($routes);
             <p class="row well-sm">
                 <a class="btn btn-default col-sm-3" target="_blank" href="<?= Url::to(['glyphs']) ?>">Glyph Icons</a>
                 <a class="btn btn-default col-sm-3" target="_blank" href="<?= Url::to(['fa']) ?>">Fontawesome Icons</a>
-                
+
             </p>
             <p class="row-no-gutters">Users Activities</p>
             <p class="row well-sm">
@@ -134,7 +163,7 @@ vd($routes);
     <div class="panel-footer">
      <span class="text-warning">
         <i class="glyphicon glyphicon-question-sign"></i>
-        
+
     </span>
 
     </div>

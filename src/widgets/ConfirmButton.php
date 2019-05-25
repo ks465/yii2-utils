@@ -41,8 +41,8 @@ use yii\helpers\Html;
  *```
  *
  * @package khans\utils\widgets
- * @version 1.2.0-980210
- * @since   1.0.0
+ * @version 1.2.1-980304
+ * @since   1.0
  */
 class ConfirmButton extends Dialog
 {
@@ -145,7 +145,7 @@ $('#$this->formID').on("beforeSubmit", function() {
                     data: form.serialize(), // serializes the form's elements.
                     success: function(data)
                     {
-                        $this->id.alert(data);
+                        $this->id.alert(data.content);
                         // $("#result").html(data);
                     },
                     error: function (data, x, result) {

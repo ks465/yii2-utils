@@ -1,70 +1,76 @@
-/*version: 5.1.0-980121*/
-
+/*version: 5.1.0-980304*/
 @font-face {
-    font-family: "parsi";
-    src: url('IRANSansWebFaNum_UltraLight.woff') format('woff2');
+	font-family: "parsi";
+	src: url('IRANSansWebFaNum_UltraLight.woff') format('woff2');
 }
 
 * {
-    font-family: parsi;
+	font-family: parsi;
 }
 
 html, body, input, .rtl {
-    direction: rtl;
-    color: #0e7f08;
-    background-color: #fffff2;
+	direction: rtl;
+	color: #0e7f08;
+	background-color: #fffff2;
 }
 
 .ltr {
-    direction: ltr;
+	direction: ltr;
 }
 
 .pars-wrap {
-    overflow: auto;
-    word-wrap: break-word;
-    white-space: pre-wrap !important;
+	overflow: auto;
+	word-wrap: break-word;
+	white-space: pre-wrap !important;
 }
 
 .close {
-    float: left;
+	float: left;
 }
 
 a.goToday {
-    margin: -20px;
-    position: fixed;
+	margin: -20px;
+	position: fixed;
 }
 
 #spinner-frame {
-    z-index: 10000;
+	z-index: 10000;
 }
 
 /* Setup dropdown menu button for Persian*/
 .dropdown-menu {
-    text-align: right;
+	text-align: right;
 }
 
-.dropdown-submenu > a:before {
-    content: '◄';
-    float: left;
+.dropdown-submenu>a:before {
+	content: '◄';
+	float: left;
 }
 
-.dropdown-submenu > a:after {
-    display: none !important;
+.dropdown-submenu>a:after {
+	display: none !important;
 }
 
-.dropdown-submenu > .dropdown-menu {
-    border-radius: 6px 0 6px 6px !important;
-    left: auto !important;
-    top: auto !important;
-    right: calc(100% - 5px);
+.dropdown-submenu>.dropdown-menu {
+	border-radius: 6px 0 6px 6px !important;
+	left: auto !important;
+	top: auto !important;
+	right: calc(100% - 5px);
 }
 
 .checkbox label, .radio label {
-    padding-right: 15px;
+	padding-right: 15px;
 }
 
-.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
-    position: absolute;
-    margin-right: -20px;
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"],
+	.checkbox-inline input[type="checkbox"] {
+	position: absolute;
+	margin-right: -20px;
 }
 /* Setup dropdown menu button for Persian*/
+
+/* Setup touchsopin button for RTL*/
+.bootstrap-touchspin {
+	direction: ltr;
+}
+/* Setup touchsopin button for RTL*/

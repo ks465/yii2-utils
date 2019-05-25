@@ -3,11 +3,14 @@
  * @package app\widgets\menu
  * @author Keyhan Sedaghat <keyhansedaghat@netscape.net>
  * @copyright khans 2018
- * @version 0.1.0-970717
+ * @version 0.2.0-980304
  */
 
 
 namespace khans\utils\widgets\menu;
+
+use khans\utils\components\StringHelper;
+use yii\helpers\{Html, Url};
 
 /**
  * Class OverlayMenu creates an overlay menu
@@ -68,50 +71,65 @@ namespace khans\utils\widgets\menu;
  * @package khans\utils\widgets\menu
  * @author Keyhan Sedaghat <keyhansedaghat@netscape.net>
  * @copyright khans 2018
- * @version 0.1.0-970717
+ * @version 0.2.0-980304
  * @since 1.0
  */
 class OverlayMenu extends \yii\base\Widget
 {
+
     /**
+     *
      * @var string Full path to a CSV file containing the data required for rendering menu
      */
     public $csvFileUrl = '';
+
     /**
-     * @var array
-     * List of tabs and view parameters
+     *
+     * @var array List of tabs and view parameters
      */
     public $tabs = [];
+
     /**
-     * @var string
-     * Label for the created button
+     *
+     * @var string Label for the created button
      */
     public $label = 'Offnen';
+
     /**
-     * @var string
-     * Title for the created view
+     *
+     * @var string Title for the created view
      */
     public $title = 'Menu';
+
     /**
-     * @var string
-     * Html tag used for rendering the launcher
+     *
+     * @var string Html tag used for rendering the launcher
      */
     public $tag = 'a';
+
     /**
-     * @var array
-     * List of options passed to the created tag
+     *
+     * @var array List of options passed to the created tag
      */
     public $options = [];
+
     /**
-     * @var OverlayMenuAsset
-     * Asset bundle
+     *
+     * @var OverlayMenuAsset Asset bundle
      */
     private $bundle;
+
     /**
-     * @var OverlayMenuFiller
-     * Object to find and format menu items
+     *
+     * @var OverlayMenuFiller Object to find and format menu items
      */
     private $menuFiller;
+
+    /**
+     *
+     * @var string Name of the cache element
+     */
+    public static $cacheKey = 'cache_overlay_menu_items';
 
     /**
      * Build and configure the widget
@@ -120,13 +138,12 @@ class OverlayMenu extends \yii\base\Widget
     {
         $this->menuFiller = new OverlayMenuFiller([
             'csvFileUrl' => $this->csvFileUrl,
-            'tabs'       => $this->tabs,
-
+            'tabs' => $this->tabs
         ]);
         $this->bundle = OverlayMenuAsset::register($this->getView());
 
         $this->options = array_merge($this->options, [
-            'onCLick' => 'khanMenuOpenNav()',
+            'onCLick' => 'khanMenuOpenNav()'
         ]);
 
         parent::init();
@@ -139,7 +156,53 @@ class OverlayMenu extends \yii\base\Widget
      */
     public function run()
     {
-        return $this->render('menu', ['title' => $this->title]);
+        return $this->render('menu', [
+            'title' => $this->title,
+            'anchors' => $this->getLinkAnchors()
+        ]);
+    }
+
+    /**
+     * Build the menu and save the cache
+     *
+     * @return array
+     */
+    private function getLinkAnchors()
+    {
+        $links = \Yii::$app->cache->get(self::$cacheKey);
+        if ($links === false) {
+            $links = [];
+            foreach ($this->getMenu()->getTabs() as $tabID => $tabData) {
+                if (! array_key_exists('items', $tabData)) {
+                    continue;
+                }
+                $links[$tabID] = [];
+
+                foreach ($tabData['items'] as $index => $tabDatum) {
+                    if (empty($tabDatum['class'])) {
+                        $tabDatum['class'] = 'default';
+                    }
+                    $mainClass = 'well-sm text-center' . ' text-' . $tabDatum['class'];
+
+                    if (StringHelper::startsWith($tabDatum['url'], 'http', false)) {
+                        $target = '_blank';
+                        $link = $tabDatum['url'];
+                    } else {
+                        $target = '_self';
+                        $link = Url::to([
+                            $tabDatum['url']
+                        ]);
+                    }
+                    $links[$tabID][] = Html::a($tabDatum['title'], $link, [
+                        'target' => $target,
+                        'class' => $mainClass
+                    ]);
+                }
+            }
+            \Yii::$app->cache->set(self::$cacheKey, $links);
+        }
+
+        return $links;
     }
 
     /**
@@ -153,6 +216,7 @@ class OverlayMenu extends \yii\base\Widget
     }
 
     /**
+     *
      * @return OverlayMenuFiller
      */
     public function getMenu()
@@ -160,5 +224,3 @@ class OverlayMenu extends \yii\base\Widget
         return $this->menuFiller;
     }
 }
-
-

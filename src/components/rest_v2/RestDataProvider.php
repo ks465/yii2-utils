@@ -17,7 +17,7 @@ use yii\data\ArrayDataProvider;
  * to ActiveDataProvider
  *
  * @package khans\utils\components\rest_v2
- * @version 0.2.0-980215
+ * @version 0.2.1-980304
  * @since   1.0
  */
 class RestDataProvider extends ArrayDataProvider
@@ -38,7 +38,7 @@ class RestDataProvider extends ArrayDataProvider
         $this->allModels = $query->all();
 
         if (empty($query->select)) {
-            $tableSchema = new RestTableSchema(['name' => $query->from]);
+            $tableSchema = new RestTableSchema(['name' => $query->from[0]]);
             $columns = $tableSchema->columnNames;
 
         } else {

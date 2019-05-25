@@ -3,38 +3,19 @@
  * @package app\widgets\menu
  * @author Keyhan Sedaghat <keyhansedaghat@netscape.net>
  * @copyright khans 2018
- * @version 0.1.0-970717
+ * @version 0.1.1-980304
  */
 
 use yii\helpers\Html;
+use khans\utils\components\StringHelper;
+use yii\helpers\Url;
 
 /* @var $this \yii\web\View */
-/* @var $this ->context khans\utils\widgets\menuOverlayMenu */
+/* @var $this->context khans\utils\widgets\menuOverlayMenu */
+/* @var $anchors array */
 
 $baseUrl = $this->context->getBundleUrl();
 $columns = floor(12 / count($this->context->getMenu()->getTabs()));
-
-$html = '';
-foreach ($this->context->getMenu()->getTabs() as $tabID => $tabData) {
-    if (!array_key_exists('items', $tabData)) {
-        continue;
-    }
-    $icon = empty($tabData['icon']) ? '<i class="glyphicon glyphicon-plus"></i>&nbsp;' :
-        '<i class="glyphicon glyphicon-' . $tabData['icon'] . '"></i>&nbsp;';
-
-    $html .= '<div class="' . $tabID . ' col-md-' . $columns . '">' . PHP_EOL;
-    $html .= '<h4 class="text-info">' . $icon . $tabData['title'] . '</h4>' . PHP_EOL;
-    foreach ($tabData['items'] as $index => $tabDatum) {
-        if (empty($tabDatum['class'])) {
-            $tabDatum['class'] = 'default';
-        }
-        $mainClass = 'well-sm text-center' . ' text-' . $tabDatum['class'];
-
-        $link = $tabDatum['title'];
-        $html .= Html::a($link, $tabDatum['url'], ['target' => '_blank', 'class' => $mainClass]);
-    }
-    $html .= '</div>' . PHP_EOL;
-}
 
 ?>
 <!-- The overlay -->
@@ -46,7 +27,21 @@ foreach ($this->context->getMenu()->getTabs() as $tabID => $tabData) {
     </p>
     <!-- Overlay content -->
     <div class="overlay-content">
-        <?= $html ?>
+    <?php
+    foreach ($this->context->getMenu()->getTabs() as $tabID => $tabData) {
+        if (!array_key_exists('items', $tabData)) {
+            continue;
+        }
+        $icon = empty($tabData['icon']) ? '<i class="glyphicon glyphicon-plus"></i>&nbsp;' :
+        '<i class="glyphicon glyphicon-' . $tabData['icon'] . '"></i>&nbsp;';
+    ?>
+        <div class="<?= $tabID ?> col-md-<?=  $columns ?>">
+        <h4 class="text-info"><?= $icon . $tabData['title'] ?></h4>
+			<?= implode(PHP_EOL,$anchors[$tabID]) ?>
+        </div>
+    <?php
+        }
+    ?>
     </div>
 </div>
 <!-- Use any element to open/show the overlay navigation menu -->

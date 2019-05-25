@@ -1,6 +1,6 @@
 #OverlayMenu Class
-Documentation Edition: 1.2-980224
-Class Version: 0.1.1-980223
+Documentation Edition: 1.3-980304
+Class Version: 0.2.0-980304
 
 This is a simple widget class to render the menu. It consists of: 
 + OverlayMenuFiller
@@ -80,6 +80,10 @@ Setting `tag` => `a` and `class` => `btn-link` is a very good --and required-- c
 
 
 The `tabs` section is optional. The [[\khans\utils\widgets\menu\OverlayFiller]] creates it if omitted.
+
+The links are cached and may be deleted from `khan tools`.
+External links --links starting with http-- are opened using `_blank`,
+Local links are opened using `_self` and are handled with `Url::to()`.
 
 ##subsection
 put generic images in package as default.

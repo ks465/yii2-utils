@@ -19,7 +19,7 @@ use yii\helpers\Markdown;
     <?= Markdown::process(file_get_contents($helpFile), 'gfm'); ?>
 
     <?php if ($hint !== false): ?>
-        <div class="alert alert-info ltr">
+        <div class="alert alert-info ltr text-left">
             <h3>Request Data:</h3>
             <p>Referrer: <strong><?= $hint['referer'] ?></strong></p>
             <p>Requested Help Page: <strong><?= $hint['page'] ?></strong></p>
