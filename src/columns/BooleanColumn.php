@@ -17,7 +17,7 @@ use kartik\select2\Select2;
  * See [BooleanColumn Guide](guide:columns-boolean-column.md)
  *
  * @package khans\utils\columns
- * @version 0.1.0-970904
+ * @version 0.1.1-980305
  * @since 1.0
  */
 class BooleanColumn extends \kartik\grid\BooleanColumn
@@ -55,7 +55,7 @@ class BooleanColumn extends \kartik\grid\BooleanColumn
             $this->vAlign = GridView::ALIGN_MIDDLE;
         }
         if (empty($this->headerOptions)) {
-            $this->headerOptions = ['class' => 'kv-align-center kv-align-middle'];
+            $this->headerOptions = ['class' => 'pars-wrap kv-align-center kv-align-middle'];
         }
         if (empty($this->contentOptions)) {
             $this->contentOptions = ['class' => 'pars-wrap'];

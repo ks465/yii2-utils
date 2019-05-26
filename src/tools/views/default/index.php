@@ -44,18 +44,18 @@ vd($routes);
             <p class="row-no-gutters">System Management</p>
             <p class="row well-sm">
                 <a class="btn btn-default col-sm-3" target="_blank" href="<?= Url::to(['/gii']) ?>">GII</a>
-                <a class="btn btn-info col-sm-3" target="_blank" href="<?= Url::to(['/khan/history-database']) ?>">Database History</a>
-                <a class="btn btn-primary col-sm-3" target="_blank" href="<?= Url::to(['/khan/eav-attributes']) ?>">EAV Attributes</a>
-                <a class="btn btn-default col-sm-3" target="_blank" href="<?= Url::to(['/khan/eav-values']) ?>">EAV Values</a>
-                <a class="btn btn-danger col-sm-3" target="_blank" href="<?= Url::to(['/khan/import-csv']) ?>">Import CSV into Database</a>
-                <a class="btn btn-default col-sm-3" target="_blank" href="<?= Url::to(['/khan/default/workflow']) ?>">Workflow Definitions</a>
+                <a class="btn btn-info col-sm-3" href="<?= Url::to(['/khan/history-database']) ?>">Database History</a>
+                <a class="btn btn-primary col-sm-3" href="<?= Url::to(['/khan/eav-attributes']) ?>">EAV Attributes</a>
+                <a class="btn btn-default col-sm-3" href="<?= Url::to(['/khan/eav-values']) ?>">EAV Values</a>
+                <a class="btn btn-danger col-sm-3" href="<?= Url::to(['/khan/import-csv']) ?>">Import CSV into Database</a>
+                <a class="btn btn-default col-sm-3" href="<?= Url::to(['/khan/default/workflow']) ?>">Workflow Definitions</a>
             </p>
             <p class="row-no-gutters">Users Management</p>
             <p class="row well-sm">
-                <a class="btn btn-default col-sm-3" target="_blank" href="<?= Url::to(['system/user-all']) ?>">Users CRUD</a>
+                <a class="btn btn-default col-sm-3" href="<?= Url::to(['system/user-all']) ?>">Users CRUD</a>
                 <a class="btn btn-success col-sm-3" target="_blank" href="<?= Url::to(['/admin']) ?>">MDMSoft Admin</a>
-                <a class="btn btn-default col-sm-3" target="_blank" href="<?= Url::to(['system/menu-all']) ?>">Users Menu</a>
-                <a class="btn btn-info col-sm-3" target="_blank" href="<?= Url::to(['/khan/history-users']) ?>">Users' Login History</a>
+                <a class="btn btn-default col-sm-3" href="<?= Url::to(['system/menu-all']) ?>">Users Menu</a>
+                <a class="btn btn-info col-sm-3" href="<?= Url::to(['/khan/history-users']) ?>">Users' Login History</a>
                 <span class="col-sm-3">&nbsp;</span>
             </p>
         </div>
@@ -123,8 +123,8 @@ vd($routes);
         <div class="well-small">
             <p class="row-no-gutters">Helpers</p>
             <p class="row well-sm">
-                <a class="btn btn-default col-sm-3" target="_blank" href="<?= Url::to(['glyphs']) ?>">Glyph Icons</a>
-                <a class="btn btn-default col-sm-3" target="_blank" href="<?= Url::to(['fa']) ?>">Fontawesome Icons</a>
+                <a class="btn btn-default col-sm-3" href="<?= Url::to(['glyphs']) ?>">Glyph Icons</a>
+                <a class="btn btn-default col-sm-3" href="<?= Url::to(['fa']) ?>">Fontawesome Icons</a>
 
             </p>
             <p class="row-no-gutters">Users Activities</p>

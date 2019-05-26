@@ -18,7 +18,7 @@ use yii\base\InvalidConfigException;
  * See [EnumColumn Guide](guide:columns-enum-column.md)
  *
  * @package khans\utils\columns
- * @version 0.1.0-970904
+ * @version 0.1.1-980305
  * @since 1.0
  */
 class EnumColumn extends \kartik\grid\EnumColumn
@@ -51,7 +51,7 @@ class EnumColumn extends \kartik\grid\EnumColumn
             $this->vAlign = GridView::ALIGN_MIDDLE;
         }
         if (empty($this->headerOptions)) {
-            $this->headerOptions = ['class' => 'kv-align-center kv-align-middle'];
+            $this->headerOptions = ['class' => 'pars-wrap kv-align-center kv-align-middle'];
         }
         if (empty($this->contentOptions)) {
             $this->contentOptions = ['class' => 'pars-wrap'];

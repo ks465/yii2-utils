@@ -64,7 +64,7 @@
 	},
 	"extra" : {
 		"branch-alias" : {
-			"dev-master" : "0.8.3-980304-dev"
+			"dev-master" : "0.8.4-980305-dev"
 		}
 	}
 }

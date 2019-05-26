@@ -91,7 +91,6 @@ class ProgressColumn extends DataColumn
 
         $this->hAlign = GridView::ALIGN_RIGHT;
         $this->vAlign = GridView::ALIGN_MIDDLE;
-        $this->headerOptions = ['style' => 'text-align: center;'];
 
         parent::init();
     }

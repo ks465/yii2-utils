@@ -11,7 +11,9 @@ use app\assets\AppAsset;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
 use khans\utils\widgets\menu\OverlayMenu;
+use kartik\spinner\SpinnerAsset;
 
+SpinnerAsset::register($this);
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -31,6 +33,9 @@ AppAsset::register($this);
         <?php $this->beginBody() ?>
 
         <div class="wrap">
+            <div id="spinner-frame" style="position: fixed; margin-top: 250px; width: 100%;">
+                <div id="spinner-span" style="width: 10%;" class="center-block text-center"></div>
+            </div>
             <?php
             NavBar::begin([
                 'brandLabel' => 'KHanS Utils Demo Pages',
@@ -44,7 +49,7 @@ AppAsset::register($this);
                 'items'   => [
                     ['label' => 'Home', 'url' => ['/site/index']],
                     ['label' => 'About', 'url' => ['/site/about']],
-                    
+
                     '<li>' . Html::a('راهنما', '#', [
                 'title' => 'راهنمای به کارگیری این صفحه',
                 'onclick' => "
@@ -63,7 +68,7 @@ $.ajax({
 return false;
 ",
             ]) . '</li>',
-                   '<li>' .  
+                   '<li>' .
                     OverlayMenu::widget([
     'title'      => 'General Menu',
     'label'      => 'منوی سریع',

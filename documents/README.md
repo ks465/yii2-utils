@@ -86,6 +86,7 @@ They are specialized versions for Kartik Gridview.
 1. [Captcha](widgets-captcha.md) renders a CAPTCHA widget
 1. [ExportMenu](widgets-export-menu.md)
 1. [WorkflowField](widgets-workflow-field.md)
+1. [Loading Spinner](widgets-spinner.md) render a loading animation, which is activated on each page change
 
    
 #Others

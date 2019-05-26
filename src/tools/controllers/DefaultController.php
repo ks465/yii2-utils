@@ -14,7 +14,7 @@ use yii\filters\VerbFilter;
  * Default controller for the `khan` module
  *
  * @package khans\utils\generatedControllers
- * @version 0.2.1-980304
+ * @version 0.2.2-980305
  * @since   1.0 */
 class DefaultController extends \khans\utils\controllers\KHanWebController
 {
@@ -52,12 +52,10 @@ class DefaultController extends \khans\utils\controllers\KHanWebController
         $result = [];
         $result['OverlayMenu'] = Yii::$app->cache->delete(OverlayMenu::$cacheKey);
 
-        return [
-            'title'   => "Reset Results",
-            'content' => '<pre class="ltr">' . var_export($result, true) . '</pre>',
-            'footer'  => Html::button('ببند', ['class' => 'btn btn-default pull-left', 'data-dismiss' => 'modal']),
-        ];
+        Yii::$app->session->addFlash('info', '<pre class="ltr">' . var_export($result, true) . '</pre>');
+        return $this->redirect(['index']);
     }
+
     /**
      * Renders a page containing definition of a selected workflow along with
      * visual representation of workflow

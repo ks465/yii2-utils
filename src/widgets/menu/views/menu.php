@@ -3,7 +3,7 @@
  * @package app\widgets\menu
  * @author Keyhan Sedaghat <keyhansedaghat@netscape.net>
  * @copyright khans 2018
- * @version 0.1.1-980304
+ * @version 0.1.2-980305
  */
 
 use yii\helpers\Html;
@@ -35,7 +35,7 @@ $columns = floor(12 / count($this->context->getMenu()->getTabs()));
         $icon = empty($tabData['icon']) ? '<i class="glyphicon glyphicon-plus"></i>&nbsp;' :
         '<i class="glyphicon glyphicon-' . $tabData['icon'] . '"></i>&nbsp;';
     ?>
-        <div class="<?= $tabID ?> col-md-<?=  $columns ?>">
+    	<div class="<?= $tabID ?> col-sm-4 col-md-2">
         <h4 class="text-info"><?= $icon . $tabData['title'] ?></h4>
 			<?= implode(PHP_EOL,$anchors[$tabID]) ?>
         </div>
