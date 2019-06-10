@@ -28,7 +28,7 @@ raoul2000\workflow\view\WorkflowViewWidget::widget([
 <div class="workflow-statuses-index">
     <h1>
         <?= Html::encode($this->title) ?>
-        <?= $this->render('wf-selector', ['files' => $files]) ?>
+        <?= $this->render('wf-selector', ['files' => $files, 'selectedWF' => $selectedWF]) ?>
     </h1>
     <h2>
         <?= $files[$selectedWF] ?>

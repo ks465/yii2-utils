@@ -16,7 +16,7 @@ use yii\base\InvalidConfigException;
  * Show CAPTCHA with additional hint and unique look
  *
  * @package khans\utils\widgets
- * @version 2.1.1-971112
+ * @version 2.2.1-980317
  * @since   1.0.0
  */
 class Captcha extends \yii\base\Widget
@@ -38,13 +38,9 @@ class Captcha extends \yii\base\Widget
      */
     public $tabIndex = 999;
     /**
-     * @var string the template for arranging the CAPTCHA image tag and the text input tag.
+     * @var string|array the route of the action that generates the CAPTCHA images.
      */
-    private $template = '<div class="row" style="vertical-align: middle !important;float: none;">
-    <div class="col-md-offset-1 col-md-3">{image}</div>
-    <div class="col-md-4 ltr text-left">{input}</div>
-    <div class="col-md-4 text-justify small"><i class="glyphicon glyphicon-info-sign"></i> برای تغییر کد امنیتی می‌توانید روی آن کلیک کنید</div>
-    </div>';
+    public $captchaAction = 'captcha';
 
     /**
      * Check for requirements
@@ -72,12 +68,13 @@ class Captcha extends \yii\base\Widget
             ],
         ])
             ->widget(\yii\captcha\Captcha::class, [
-                'template' => $this->template,
-                'options'  => [
-                    'tabindex' => $this->tabIndex,
-                    'class'    => 'form-control',
+                'captchaAction' => $this->captchaAction,
+                'options'       => [
+                    'tabindex'     => $this->tabIndex,
+                    'autocomplete' => 'off',
+                    'class'        => 'form-control ltr text-left',
                 ],
             ])
-            ->label(false);
+            ->hint('<small>' . 'برای تغییر کد امنیتی می‌توانید روی آن کلیک کنید' . '</small>');
     }
 }

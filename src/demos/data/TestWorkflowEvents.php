@@ -97,16 +97,16 @@ class TestWorkflowEvents extends \khans\utils\demos\data\KHanModel
          * in any configuration of the main application.
          * Note: This demo does not use array loader as is the case in the documentations!
          */
-        Yii::$app->set('workflowSource', 
+        Yii::$app->set('workflowSource',
             Yii::createObject([
                 'class' => 'raoul2000\workflow\source\file\WorkflowFileSource',
                 'definitionLoader' => [
                     'class' => 'raoul2000\workflow\source\file\PhpClassLoader',
-                    'namespace'  => 'khans\\utils\\demos\\data'
+                    'namespace'  => 'khans\\utils\\demos\\workflow'
                 ]
             ])
         );
-        Yii::setAlias('@workflowDefinitionNamespace', 'khans\\utils\\demos\\data');
+        Yii::setAlias('@workflowDefinitionNamespace', 'khans\\utils\\demos\\workflow');
 
         return array_merge([
             'EAV' => [
@@ -122,17 +122,17 @@ class TestWorkflowEvents extends \khans\utils\demos\data\KHanModel
             ],
         ], parent::behaviors());
     }
-    
+
     /**
      * THe error message is somehow static in the validator.
-     * 
+     *
      * @param type $attribute
      * @param type $error
      */
     public function addError($attribute, $error = '') {
         if('workflow_status' == $attribute){
-            $error = str_ireplace('Workflow validation failed : No transition found between status', 
-                    'تغییر وضعیت مجاز نیست.', 
+            $error = str_ireplace('Workflow validation failed : No transition found between status',
+                    'تغییر وضعیت مجاز نیست.',
                     $error);
             $error ='تغییر وضعیت مجاز نیست.';
         }

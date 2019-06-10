@@ -107,10 +107,11 @@ $config['modules']['khan'] = [
 '@mdm/admin' => '@vendor/mdmsoft/yii2-admin',
 ```
 
-###YII_ENV_DEV
+###YII\_ENV\_DEV
 
 + Require the `VarDump.php` in order to debug variables and queries.
 + Add GII generators to automate building of code. 
+
 ```php
 if (YII_ENV_DEV) { 
     require_once (__DIR__ . '/../vendor/khans465/yii2-utils/src/components/VarDump.php');
@@ -172,4 +173,25 @@ if (YII_DEBUG) {
 
     $config['components']['errorHandler'] = ['errorAction' => 'khan/default/error'];
 }
+```
+
+
+#AAA
+When using array based user model, add the following **BELOW** `component` in config file to force login for all pages as simple as possible:
+
+```php
+// 'as someNameHere' => ... is the syntax for adding behaviors.
+   'as beforeRequest' => [ 
+        'class' => 'yii\filters\AccessControl',
+        'rules' => [
+            [
+                'actions' => ['login', 'error', 'captcha'], //you need to have a controller and an action site/login 
+                'allow' => true, //because this gets called if the user is not logged in and no rule applies.
+            ],
+            [
+                'allow' => true,
+                'roles' => ['@'],
+            ],
+        ],
+    ],
 ```

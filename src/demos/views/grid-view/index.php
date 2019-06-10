@@ -83,6 +83,10 @@ $this->params['breadcrumbs'][] = $this->title;
         Workflow Playground
     </div>
     <div class="panel-body">
+		<a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/default/workflow']) ?>"
+           title="List of workflow defintions and details defined in the application.">
+            Workflow Definitions
+        </a>
         <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/test-workflow-events']) ?>"
            title="This Controller is used to manipulate data status and workflow to check different aspects of workflow behavior.">
             Workflow Statuses and Emails
@@ -90,6 +94,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/test-workflow-eav']) ?>"
            title="This Controller is used to play with workflow and EAV simultanously.">
             Workflow Statuses and EAV
+        </a>
+        <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/test-workflow-mixed']) ?>"
+           title="This Controller is used to play with mixed workflow.">
+            Mixed Workflow Sources
         </a>
     </div>
     <div class="panel-footer">

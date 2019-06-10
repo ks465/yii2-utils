@@ -21,7 +21,7 @@ use khans\utils\components\workflow\KHanWorkflowHelper;
  * workflow behavior.
  *
  * @package khans\utils\widgets
- * @version 0.3.2-980219
+ * @version 0.3.3-980320
  * @since   1.0
  *
  * @property string $defaultWorkflowId
@@ -64,7 +64,7 @@ class WorkflowBehavior extends \raoul2000\workflow\base\SimpleWorkflowBehavior
 
     private function doSomething($text, $transitionID)
     {
-//Yii::$app->session->addFlash('info', $text);
+// Yii::$app->session->addFlash('info', $text);
         $recordId = $this->owner->getPrimaryKey();
         if (empty($recordId)) {
             return;
@@ -82,24 +82,27 @@ class WorkflowBehavior extends \raoul2000\workflow\base\SimpleWorkflowBehavior
             foreach ($this->owner->attributes as $attr => $value){
                 $text = str_replace('{' . $attr . '}', $value , $text);
             }
-//Yii::$app->session->addFlash('info', 12 . $text);
+// Yii::$app->session->addFlash('info', 12 . $text);
         }
-
+// \Yii::$app->session->addFlash('info', $this->owner->tableComment);
         $data = [
-            'responsible_model'   => $this->owner->tableName(),
+            'responsible_model'   => $this->owner->tableComment,
             'responsible_record'  => $recordId,
             'enqueue_timestamp'   => time(),
             'content'             => $text,
+            'recipient_id'        => 'شناسه گیرنده',
             'recipient_email'     => 'student@khan.org',
             'cc_receivers'        => 'faculty@khan.org,department@khan.org',
             'attachments'         => null,
-            'workflow_transition' => $transitionID,
-            'user'                => Yii::$app->user->id,
+            'workflow_transition' => $transitionID->getId(),
+            'workflow_start'      => $transitionID->getStartStatus()->getLabel(),
+            'workflow_end'        => $transitionID->getEndStatus()->getLabel(),
+            'user_id'             => Yii::$app->user->id,
         ];
-
+        //todo: correct the db component
         $connection = Yii::$app->get('test')->createCommand();
         $connection->insert('sys_history_emails', $data)->execute();
-
+// Yii::$app->session->addFlash('info', 13 . implode(',', $data));
         //todo: run a customized event handler set in the owner model
     }
 
@@ -107,29 +110,32 @@ class WorkflowBehavior extends \raoul2000\workflow\base\SimpleWorkflowBehavior
     {
         //currently critical one
         $sendEmail = $this->shouldSendEmail($event);
-// vdd($result);
+// vdd($sendEmail);
         if ($sendEmail === false) {
             $this->doSomething('EMail will not be sent', 'N/A');
-//Yii::$app->session->addFlash('info', 0);
+// Yii::$app->session->addFlash('info', 0);
             return true;
         }
         if (is_null($event->getStartStatus())) {
             $this->doSomething('flowAfterChange (Null Start Status)', 'N/A');
-//Yii::$app->session->addFlash('info', 1);
+// Yii::$app->session->addFlash('info', 1);
             return true;
         }
         if (is_null($event->getTransition())) {
             $this->doSomething('flowAfterChange::' . $sendEmail, 'NULL Transition');
-//Yii::$app->session->addFlash('info', 2);
+// Yii::$app->session->addFlash('info', 2);
             return true;
         }
-//         if($sendEmail === true){
-//             $sendEmail = $this->defaultEmailText;
-//         }
-        $this->doSomething(KHanWorkflowHelper::getEmailTemplate($status), $event->getTransition()->getId());
+        $status = $event->getEndStatus();
+        if(empty($status)){
+// Yii::$app->session->addFlash('error', 3);
+            return true;
+        }
+
+        $this->doSomething(KHanWorkflowHelper::getEmailTemplate($status), $event->getTransition());
 
         //todo: run a customized event handler set in the owner model
-//Yii::$app->session->addFlash('info', 3);
+// Yii::$app->session->addFlash('info', 4);
         return true;
     }
 

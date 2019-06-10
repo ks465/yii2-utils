@@ -5,3 +5,7 @@ modules:
          url: http://127.0.0.1/khans/web/index.php
          #browser: chrome
          browser: firefox
+      - Yii2:
+            part: orm
+            entryScript: index-test.php
+            cleanup: false

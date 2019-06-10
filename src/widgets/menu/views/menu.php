@@ -16,7 +16,6 @@ use yii\helpers\Url;
 
 $baseUrl = $this->context->getBundleUrl();
 $columns = floor(12 / count($this->context->getMenu()->getTabs()));
-
 ?>
 <!-- The overlay -->
 <div id="KHanOverlayMenu" class="overlay center-block text-center">
@@ -37,7 +36,7 @@ $columns = floor(12 / count($this->context->getMenu()->getTabs()));
     ?>
     	<div class="<?= $tabID ?> col-sm-4 col-md-2">
         <h4 class="text-info"><?= $icon . $tabData['title'] ?></h4>
-			<?= implode(PHP_EOL,$anchors[$tabID]) ?>
+			<?= implode(PHP_EOL, $anchors[$tabID]) ?>
         </div>
     <?php
         }

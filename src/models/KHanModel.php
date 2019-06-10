@@ -9,12 +9,12 @@
 
 namespace khans\utils\models;
 
-use khans\utils\components\{Jalali, ViewHelper};
+use khans\utils\components\{Jalali, ViewHelper, ArrayHelper};
 use khans\utils\tools\models\SysHistoryDatabase;
 use Yii;
 use yii\behaviors\{BlameableBehavior, TimestampBehavior};
 use yii\db\ActiveRecord;
-use yii\helpers\ArrayHelper;
+use yii\web\IdentityInterface;
 
 /**
  * Class KHanModel holds the basic structure of all database models.
@@ -38,7 +38,7 @@ use yii\helpers\ArrayHelper;
  * @method mixed getWorkflowState()
  *
  * @package khans\utils
- * @version 0.4.10-980219
+ * @version 0.4.13-980320
  * @since   1.0
  */
 class KHanModel extends ActiveRecord
@@ -78,6 +78,9 @@ class KHanModel extends ActiveRecord
      */
     public static function getTableComment(): string
     {
+        if(empty(static::$tableComment)){
+            return static::tableName();
+        }
         return static::$tableComment;
     }
     /**
@@ -256,23 +259,23 @@ class KHanModel extends ActiveRecord
     /**
      * Get active record for the creator of the record from the given user table
      *
-     * @return KHanIdentity
+     * @return IdentityInterface
      */
-    public function getCreator(): ?KHanIdentity
+    public function getCreator(): ?IdentityInterface
     {
         return $this->getResponsibleUser($this->created_by);
     }
 
     /**
-     * Get active record for the given user id in all of the instances of [[KHanIdentity]].
+     * Get active record for the given user id in all of the instances of [[UserTable]] or [[UserArray]].
      * If the given id can not be found, an empty model will be returned.
      * This method should be overridden by the child classes to meet their structure requirements.
      *
      * @param integer $ownerID requested Id
      *
-     * @return KHanIdentity
+     * @return IdentityInterface
      */
-    protected function getResponsibleUser(int $ownerID): ?KHanIdentity
+    protected function getResponsibleUser(int $ownerID): ?IdentityInterface
     {
         return Yii::$app->user->identityClass::findOne($ownerID);
     }
@@ -280,9 +283,9 @@ class KHanModel extends ActiveRecord
     /**
      * Get active record for the updater of the record from the given user table
      *
-     * @return KHanIdentity
+     * @return IdentityInterface
      */
-    public function getUpdater(): ?KHanIdentity
+    public function getUpdater(): ?IdentityInterface
     {
         return $this->getResponsibleUser($this->updated_by);
     }
@@ -332,7 +335,7 @@ class KHanModel extends ActiveRecord
 
         $sql = SysHistoryDatabase::find()
             ->orWhere(['and',
-                ['table' => static::tableName()], 
+                ['table' => static::tableName()],
                 ['field_id' => $this->primaryKey]
             ]);
 

@@ -5,10 +5,15 @@ use yii\helpers\Url;
 use yii\bootstrap\Modal;
 use khans\utils\widgets\ConfirmButton;
 use kartik\form\ActiveForm;
+use mdm\admin\components\Helper;
 
 $this->title = 'Admin Tools';
 $this->params['breadcrumbs'][] = $this->title;
 
+echo 'Helper::getRegisteredRoutes()';
+vd(Helper::getRegisteredRoutes());
+echo 'Helper::getRoutesByUser(Yii::$app->user->id)';
+vd(Helper::getRoutesByUser(Yii::$app->user->id));
 
 $routesModel = new \mdm\admin\models\Route();
 
@@ -45,6 +50,7 @@ vd($routes);
             <p class="row well-sm">
                 <a class="btn btn-default col-sm-3" target="_blank" href="<?= Url::to(['/gii']) ?>">GII</a>
                 <a class="btn btn-info col-sm-3" href="<?= Url::to(['/khan/history-database']) ?>">Database History</a>
+                <a class="btn btn-default col-sm-3" href="<?= Url::to(['/khan/history-emails']) ?>">Sent Emails History</a>
                 <a class="btn btn-primary col-sm-3" href="<?= Url::to(['/khan/eav-attributes']) ?>">EAV Attributes</a>
                 <a class="btn btn-default col-sm-3" href="<?= Url::to(['/khan/eav-values']) ?>">EAV Values</a>
                 <a class="btn btn-danger col-sm-3" href="<?= Url::to(['/khan/import-csv']) ?>">Import CSV into Database</a>

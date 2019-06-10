@@ -66,33 +66,5 @@ echo ../../bin/codecept generate:test unit khans\utils\components\ArrayHelper
 ```
 
 ###Demonstration Tests
-All the tests in the `tests/demos` are simple calls to utilities. Run as follows for yourself:
-
-```php
-\khans\utils\tests\demos\BaseTester::runAllTests();
-```
-
-or you can run individual files like following:
-
-```php
-$tester_0 = new \khans\utils\tests\TestVarDump();
-$tester_1 = new \khans\utils\tests\TestUser();
-$tester_2 = new \khans\utils\tests\TestComponents();
-$tester_3 = new \khans\utils\tests\TestWidgets();
-$tester_4 = new \khans\utils\tests\TestOverlayMenuFiller();
-$tester_5 = new \khans\utils\tests\TestModels();
-$tester_6 = new app\components\demos\TestModels();
-$tester_7 = new app\components\demos\TestColumns();
-$tester_8 = new app\components\demos\TestSysTables();
-
-
-$tester_0->runTests();
-$tester_1->runTests();
-$tester_2->runTests();
-$tester_3->runTests();
-$tester_4->runTests();
-$tester_5->runTests();
-$tester_6->runTests();
-$tester_7->runTests();
-$tester_8->runTests();
-```
+The `/demos` is a demonstration site using a separate --SQLite-- database to demostrate use the utilities and tools in real scenarios.
+ Run as follows for yourself.

@@ -107,16 +107,16 @@ class MultiFormatData extends KHanModel
          * in any configuration of the main application.
          * Note: This demo does not use array loader as is the case in the documentations!
          */
-        Yii::$app->set('workflowSource', 
+        Yii::$app->set('workflowSource',
             Yii::createObject([
                 'class' => 'raoul2000\workflow\source\file\WorkflowFileSource',
                 'definitionLoader' => [
                     'class' => 'raoul2000\workflow\source\file\PhpClassLoader',
-                    'namespace'  => 'khans\\utils\\demos\\data'
+                    'namespace'  => 'khans\\utils\\demos\\workflow'
                 ]
             ])
         );
-        Yii::setAlias('@workflowDefinitionNamespace', 'khans\\utils\\demos\\data');
+        Yii::setAlias('@workflowDefinitionNamespace', 'khans\\utils\\demos\\workflow');
 
         return array_merge([
             'Workflow' => [

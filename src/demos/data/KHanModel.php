@@ -9,6 +9,7 @@ use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
 /**
  *
@@ -61,9 +62,9 @@ class KHanModel extends \khans\utils\models\KHanModel
      *
      * @param integer $ownerID requested Id
      *
-     * @return KHanIdentity
+     * @return IdentityInterface
      */
-    protected function getResponsibleUser(int $ownerID = null): ?KHanIdentity
+    protected function getResponsibleUser(int $ownerID = null): ?IdentityInterface
     {
         return Yii::$app->user->identityClass::findOne(1);
     }
@@ -83,12 +84,12 @@ class KHanModel extends \khans\utils\models\KHanModel
 
         $sql = SysHistoryDatabase::find()
             ->orWhere(['and',
-                ['table' => static::tableName()], 
+                ['table' => static::tableName()],
                 ['field_id' => $this->primaryKey]
             ]);
 
         $sql->orWhere(['field_id' => $eavListQuery]);
-       
+
         return $sql;
     }
 }

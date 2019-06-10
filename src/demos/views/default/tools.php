@@ -19,13 +19,21 @@ $this->params['breadcrumbs'][] = $this->title;
         System Tools
     </div>
     <div class="panel-body">
-        <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/history-database']) ?>"
-           title="History of changes in the records in all database tables.">
-            Database History
+        <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/user']) ?>"
+           title="User management methods.">
+            Users' CRUD
         </a>
         <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/history-users']) ?>"
            title="History of users' login.">
             Users' Login History
+        </a>
+        <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/history-database']) ?>"
+           title="History of changes in the records in all database tables.">
+            Database History
+        </a>
+        <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/history-emails']) ?>"
+        	title="List of emails sent to the users of this site.">
+        	Sent Emails History
         </a>
 
         <a class="btn btn-default col-sm-3" href="<?= Url::to(['/demos/pc-parents']) ?>"

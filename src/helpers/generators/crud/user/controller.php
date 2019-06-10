@@ -3,7 +3,7 @@
  * This is the template for generating a User CRUD controller class file.
  *
  * @package khans\utils\generatedControllers
- * @version 0.2.1-971226
+ * @version 0.2.2-980317
  * @since   1.0
  */
 
@@ -52,7 +52,7 @@ use yii\helpers\Html;
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> User model.
  *
  * @package khans\utils\generatedControllers
- * @version 0.2.1-971226
+ * @version 0.2.2-980317
  * @since   1.0
  */
 class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
@@ -349,6 +349,10 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         $pks = explode(',', $request->post('pks')); // Array or selected records primary keys
         $counter = 0;
         foreach ($pks as $pk) {
+            if($pk <= 1){ // Do not change system user and admin user in bulk mode
+                continue;
+            }
+
             $model = $this->findModel($pk);
             if($model->delete() !== false){
                 $counter++;

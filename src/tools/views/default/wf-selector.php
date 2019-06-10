@@ -2,11 +2,16 @@
 
 /* @var $this yii\web\View */
 /* @var $files array */
+/* @var $selectedWF string */
 
 use yii\web\JsExpression;
 use kartik\form\ActiveForm;
 use kartik\popover\PopoverX;
 use kartik\select2\Select2;
+
+if(!isset($selectedWF)){
+    $selectedWF = '';
+}
 
 PopoverX::begin([
     'type'         => PopoverX::TYPE_DEFAULT,
@@ -26,13 +31,14 @@ $form = ActiveForm::begin([
 echo Select2::widget([
     'name'          => 'workflow_select',
     'data'          => ['' => ''] + $files,
+    'value' => $selectedWF,
     'theme'         => Select2::THEME_BOOTSTRAP,
     'pluginOptions' => [
         'escapeMarkup' => new JsExpression("function(m) { return m; }"),
         'dir'          => 'rtl',
     ],
     'pluginEvents'  => [
-        "select2:select" => "function() { 
+        "select2:select" => "function() {
             $('form#workflow-form').submit();
         }",
     ]

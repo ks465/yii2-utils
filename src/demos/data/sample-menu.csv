@@ -10,3 +10,5 @@ id,title,url,image,class,tab,order
 9,Demos,/demos,cog,,management,3
 10,Database History,/demos/history-database,,,management,3
 11,User History,/demos/history-users,,,management,2
+12,User List,/demos/user,,,management,5
+13,User Auth,/demos/auth,,,management,6

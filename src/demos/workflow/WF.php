@@ -1,7 +1,7 @@
 <?php
 
 
-namespace khans\utils\demos\data;
+namespace khans\utils\demos\workflow;
 
 use raoul2000\workflow\source\file\IWorkflowDefinitionProvider;
 
@@ -12,48 +12,52 @@ class WF implements IWorkflowDefinitionProvider
         return [
             'initialStatusId' => 'One',
             'metadata'        => [
-                'description' => 'گردش کار دارای ...',
-                'email'       => 'ایمیل ارسال شده برای حالات عمومی آزمایشی',
+                'description' => 'Some simple base workflow',
+                'email'       => 'general email template',
             ],
             'status'          => [
                 'One'   => [
                     'transition' => ['Two'],
-                    'label'      => 'یکم',
+                    'label'      => 'First Level',
                     'metadata'   => [
-                        'description' => 'Start Status sample description',
-//                        'email' => false,
-//                        'email' => true,
-//                        'email' => 'Some fixed string',
-//                        'email' => 'Link to some EAV-enabled template {test_eav_workflow}',
-//                        'email' => 'Link to some template container {id}: {title}',
+                        'description' => 'Start status sample description',
+                        'email' => false,
+                        'actor' => 'inquirer',
                     ],
                 ],
                 'Two'   => [
                     'transition' => ['One', 'Three'],
-                    'label'      => 'دوم',
+                    'label'      => 'Level Two',
                     'metadata'   => [
+                        'description' => 'Second status description',
                         'actor' => 'Actor_1',
                         'email' => true,
                     ],
                 ],
                 'Three' => [
                     'transition' => ['Two', 'Four'],
-                    'label'      => 'سوم',
+                    'label'      => 'Level Three',
                     'metadata'   => [
+                        'description' => 'Third status description',
+                        'actor' => 'Actor_2',
                         'email' => false,
                     ],
                 ],
                 'Four'  => [
                     'transition' => ['Three', 'Five'],
-                    'label'      => 'چهارم',
+                    'label'      => 'Level Four',
                     'metadata'   => [
+                        'description' => 'Fourth status description',
+                        'actor' => 'Actor_3',
                         'email' => 'Link to some EAV-enabled template {test_eav_workflow}',
                     ],
                 ],
                 'Five'  => [
                     'transition' => ['Four'],
-                    'label'      => 'پنجم',
+                    'label'      => 'Level Five',
                     'metadata'   => [
+                        'description' => 'Fifth status description',
+                        'actor' => 'Actor_1',
                         'email' => 'Link to some template container {id}: {title}',
                     ],
                 ],

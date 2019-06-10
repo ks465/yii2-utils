@@ -29,18 +29,26 @@ use yii\helpers\Url;
         </div>
         <div class="row well-sm">
             <span class="col-md-4">
+                <a class="btn btn-primary btn-block" href="<?= Url::to(['reset-users']) ?>">Reset Users' Table</a>
+            </span>
+            <span class="col-md-4">
                 <a class="btn btn-primary btn-block" href="<?= Url::to(['reset-table']) ?>">Reset Test Table</a>
             </span>
             <span class="col-md-4">
                 <a class="btn btn-primary btn-block" href="<?= Url::to(['reset-eav']) ?>">Reset EAV Data</a>
             </span>
+        </div>
+        <div class="row well-sm">
             <span class="col-md-4">
                 <a class="btn btn-primary btn-block" href="<?= Url::to(['reset-workflow']) ?>">Reset Workflow Data</a>
+            </span>
+            <span class="col-md-4">
+                <a class="btn btn-primary btn-block" href="<?= Url::to(['reset-mixed-workflow']) ?>">Reset Mixed WF</a>
             </span>
         </div>
     </div>
 </div>
-<!--System tools
+<!--System tools-->
 <?= $this->render('tools') ?>
 <!--Grid Views-->
 <?= $this->render('/grid-view/index') ?>

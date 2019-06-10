@@ -1,4 +1,7 @@
-/*version: 5.1.0-980304*/
+@charset "UTF-8";
+
+/*version: 5.1.1-980308*/
+
 @font-face {
 	font-family: "parsi";
 	src: url('IRANSansWebFaNum_UltraLight.woff') format('woff2');

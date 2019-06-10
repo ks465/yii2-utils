@@ -14,11 +14,12 @@ echo "<?php\n";
 
 use yii\helpers\Html;
 use kartik\form\ActiveForm;
+use khans\utils\widgets\Captcha;
 
 /* @var $this yii\web\View */
 /* @var $model <?= $generator->authForms ?>\SignupForm */
 
-$this->title = 'ثبت نام';
+$this->title = 'نام‌نویسی';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -32,15 +33,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id' => 'signup-form',
                 ]); ?>
 
-                <?= "<?= " ?>$form->field($model, 'name') ?>
-                <?= "<?= " ?>$form->field($model, 'family') ?>
-                <?= "<?= " ?>$form->field($model, 'email')->textInput(['class' => 'ltr']) ?>
+                <?= "<?= " ?>$form->field($model, 'name', ['inputOptions' => ['autocomplete' => 'off']]) ?>
+                <?= "<?= " ?>$form->field($model, 'family', ['inputOptions' => ['autocomplete' => 'off']]) ?>
+                <?= "<?= " ?>$form->field($model, 'email', ['inputOptions' => ['autocomplete' => 'off']])->textInput(['class' => 'ltr']) ?>
 
                 <?= "<?= " ?>$form->field($model, 'password')->passwordInput() ?>
                 <?= "<?= " ?>$form->field($model, 'password_repeat')->passwordInput() ?>
 
-                <?= "<?= " ?>$form->field($model, 'verifyCode')->widget(\yii\captcha\Captcha::class,
-                    ['options' => ['class' => 'form-control'],]) ?>
+				<?=  "<?= " ?>Captcha::widget([
+                    'model'     => $model,
+                    'form'      => $form,
+                    'attribute' => 'verifyCode',
+                ]) ?>
 
                 <?= "<?= " ?>Html::submitButton('ثبت نام', ['class' => 'btn btn-success btn-block']) ?>
 
@@ -48,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         <p class="text-center">
-            <?= "<?= " ?>Html::a('پیش از این ثبت نام نموده‌اید؟ وارد شوید!', ['login']) ?>
+            <?= "<?= " ?>Html::a('پیش از این نام‌نویسی نموده‌اید؟ وارد شوید!', ['login']) ?>
         </p>
     </div>
 </div>

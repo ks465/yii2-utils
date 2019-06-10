@@ -16,6 +16,7 @@ Guides, notes, and anything regarding good style programming and documenting:
 
 
 #Concepts
+1. [AAA](concept-aaa.md) Setup for users' login, access control, etc.
 1. [Entity Attribute Value](concept-eav.md)
 1. [Parent Child Pattern](concept-parent-child.md)
 1. [Workflow](concept-workflow.md) Setup for workflow, workflow manager, and workflow components. 
@@ -87,6 +88,7 @@ They are specialized versions for Kartik Gridview.
 1. [ExportMenu](widgets-export-menu.md)
 1. [WorkflowField](widgets-workflow-field.md)
 1. [Loading Spinner](widgets-spinner.md) render a loading animation, which is activated on each page change
+1. [Growl Alert](helpers-alert.md) rendering alerts in two different type by default
 
    
 #Others
@@ -107,6 +109,7 @@ This can be used inside _**NavBar**_ menu or as a button on the page.
 1. [Tools Module](module-khan-tools.md) contains a module for some tools
    - History of changes
    - History of login attempts
+   - History of sent emails
    - EAV Attributes
    - EAV Values
  

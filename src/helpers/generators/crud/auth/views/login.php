@@ -35,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'fieldConfig' => ['autoPlaceholder' => true,],
     ]); ?>
     <?= "<?= " ?>$form->field($model, 'username', [
+    	'inputOptions' => ['autocomplete' => 'off'],
         'options' => [
             'class' => 'form-group ltr text-right',
             'style' => 'direction: ltr;',

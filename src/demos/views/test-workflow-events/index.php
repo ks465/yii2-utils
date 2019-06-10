@@ -35,5 +35,5 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 <pre class="col-md-6">
-    <?php vd(\khans\utils\demos\data\WF::getDefinition()['status']) ?>
+    <?php vd(\khans\utils\demos\workflow\WF::getDefinition()['status']) ?>
 </pre>

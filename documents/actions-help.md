@@ -45,13 +45,16 @@ return false;
 This --button-- file contains everything required for setting help up.
 
 It will render the following:
+
 ```html
 <a class="btn btn-info" onclick="<?= $onClick ?>" href="#">Help</a>
 ```
+
 **_BUT! if you want to put the link button in the NavBar menu, do NOT do that!
 Instead do the following_**
 
 Define Javascript responder to click event of the `Help` button:
+
 ```php
 $onClick = "
 $('#modalHelp').modal('show');
@@ -71,6 +74,7 @@ return false;
 ```
 
 Add a modal element dedicated to help action:
+
 ```php
 Modal::begin([
     'size'        => Modal::SIZE_LARGE,
@@ -87,6 +91,7 @@ Done! The las step is define the individual help pages.
 
 
 If `YII_ENV` equals "dev" referring page and requested file are shown:
+
 ```text
 Request Data:
 

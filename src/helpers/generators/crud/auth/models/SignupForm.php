@@ -100,7 +100,7 @@ class SignupForm extends \yii\base\Model
             'password'        => 'گذرواژه',
             'password_repeat' => 'تکرار گذرواژه',
             'verifyCode'      => 'کد امنیتی',
-            'consent'         => 'کلیه ضوابط و شرايط دانشگاه را مطالعه نموده‌ام و می‌پذیرم.',
+            'consent'         => 'کلیه ضوابط و شرايط را مطالعه نموده‌ام و می‌پذیرم.',
         ];
     }
 

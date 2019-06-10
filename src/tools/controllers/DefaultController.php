@@ -62,7 +62,8 @@ class DefaultController extends \khans\utils\controllers\KHanWebController
      *
      * @return string
      */
-    public function actionWorkflow() {
+    public function actionWorkflow()
+    {
         $selectedWF = $email = '';
         $allModels = $model = null;
         $showVisual = false;
@@ -75,7 +76,7 @@ class DefaultController extends \khans\utils\controllers\KHanWebController
             $check = KHanWorkflowHelper::checkWorkflowStructure($model->getWorkflow());
             if ($check['result'] === false) {
                 foreach ($check['messages'] as $key => $message) {
-                    \Yii::$app->session->addFlash('error', $key . ': ' . implode(', ', $message));
+                    \Yii::$app->session->addFlash('error', $key . ':<br/>' . implode('<br/>', $message));
                 }
             }
 

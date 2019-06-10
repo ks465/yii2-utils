@@ -12,6 +12,16 @@ For more information about usage see:
 
 There is a good demo in the `demos` module.
 
+###Mixed definitions
++    If the transition needs sending emails, it would be written to `sys_history_email` table.
++    Using mixed workflow prohibits selecting of `workflow status` by user upon creating a new record.
+    It should be done in the code by defining the workflow ID and initial status at the same time based on designed strategy.
++    After registering to a specific workflow, the record always belongs to that workflow.
+    So changing states is possible only in that workflow.
++    Labels of states in different definitions may be the same. In this case the state IDs are not the same, however.
+    Hence filtering the columns and grid views could not be done in a generic form. It should be designed for each scenario.
+
+
 #Workflow Manager
 In this version workflow are saved in the database tables and managed using [[\cornernote\workflow\manager\Module]].
 Both [[workflow]] and [[workflow-view]] are supported through this.

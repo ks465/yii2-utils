@@ -12,7 +12,7 @@ use yii\gii\CodeFile;
  * This generator will set defaults for the parent generator only.
  *
  * @package KHanS\Utils
- * @version 0.5.1-980210
+ * @version 0.5.2-980315
  * @since   1.0
  */
 class Generator extends \yii\gii\generators\crud\Generator
@@ -124,7 +124,7 @@ These authentication validation models to be created, set the namespace of the c
     public function generate()
     {
         if (empty($this->tableTitle)) {
-            if (!empty($this->modelClass::getTableComment())) {
+            if (method_exists($this->modelClass, 'getTableComment') and !empty($this->modelClass::getTableComment())) {
                 $this->tableTitle = $this->modelClass::getTableComment();
             } else {
                 $this->tableTitle = $this->getTableComment();

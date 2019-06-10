@@ -21,7 +21,7 @@ use yii\helpers\{ArrayHelper, Url};
  * See [ActionColumn Guide](guide:columns-action-column.md)
  *
  * @package common\widgets
- * @version 2.5.1-980215
+ * @version 2.5.-980308
  * @since   1.0
  */
 class ActionColumn extends \kartik\grid\ActionColumn
@@ -59,10 +59,6 @@ class ActionColumn extends \kartik\grid\ActionColumn
      */
     public function init()
     {
-        if (isset(Yii::$app->user->isSuperAdmin) and Yii::$app->user->isSuperAdmin) {
-            $this->audit = true;
-        }
-
         $this->hiddenFromExport = true;
         $this->vAlign = 'middle';
         $this->hAlign = 'center';
@@ -345,7 +341,7 @@ function makePopoverContent($model)
         $createTime = ArrayHelper::getValue($model, 'created_at', 0);
         $updateTime = ArrayHelper::getValue($model, 'updated_at', 0);
     } else {
-        throw new \Exception('Model for ActionColumn should inherit ' . KHanModel::class);
+        return 'ساختار جدول این گزینه را پشتیبانی نمی‌کند.';
     }
 
 
