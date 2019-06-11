@@ -27,6 +27,8 @@ class Multiple1WF extends WF
                 'actor' => 'Actor_1',
                 'description' => 'Level labeled 11',
                 'email' => 'Link to some template container {id}: {title}',
+                'class' => 'success',
+                'icon' => 'ok',
             ],
         ];
         $definitions['status']['Twelve'] = [
@@ -36,6 +38,8 @@ class Multiple1WF extends WF
                 'actor' => 'unknown',
                 'description' => 'Test extended level labeled 12',
                 'email' => 'Link to some template container {id}: {title}',
+                'class' => 'danger',
+                'icon' => 'cog',
             ],
         ];
 

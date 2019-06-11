@@ -8,7 +8,7 @@ namespace khans\utils\columns;
 
 use kartik\grid\GridView;
 use kartik\select2\Select2;
-use khans\utils\behaviors\WorkflowBehavior;
+use khans\utils\components\workflow\WorkflowBehavior;
 use khans\utils\models\KHanModel;
 use raoul2000\workflow\helpers\WorkflowHelper;
 use yii\base\InvalidConfigException;
@@ -23,7 +23,7 @@ use yii\db\Exception;
  * ```
  *
  * @package khans\utils
- * @version 0.5.1-980316
+ * @version 0.5.2-980321
  * @since 1.0
  */
 class ProgressColumn extends DataColumn

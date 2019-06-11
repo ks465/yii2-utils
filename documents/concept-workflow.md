@@ -22,6 +22,9 @@ There is a good demo in the `demos` module.
     Hence filtering the columns and grid views could not be done in a generic form. It should be designed for each scenario.
 
 
+###buttons.php
+This view file is a view file showing a button group for all defined transitions
+
 #Workflow Manager
 In this version workflow are saved in the database tables and managed using [[\cornernote\workflow\manager\Module]].
 Both [[workflow]] and [[workflow-view]] are supported through this.

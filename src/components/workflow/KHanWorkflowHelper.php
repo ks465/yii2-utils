@@ -11,10 +11,10 @@ use yii\base\InvalidConfigException;
  * Class KHanWorkflowHelper offers helper function for managing workflow definitions
  *
  * @package KHanS\Utils
- * @version 0.1.0-980221
+ * @version 0.2.0-980321
  * @since   1.0
  */
-class KHanWorkflowHelper
+class KHanWorkflowHelper extends \raoul2000\workflow\helpers\WorkflowHelper
 {
 
     /**
@@ -49,13 +49,24 @@ class KHanWorkflowHelper
                 $result['result'] = false;
                 $result['messages'][$id][] = 'Description is not defined.';
             }
+
             if ($status->getMetadata('actor', false) === false) {
                 $result['result'] = false;
                 $result['messages'][$id][] = 'Actor is not defined.';
             }
+
             if (is_null($status->getMetadata('email', null))) {
                 $result['result'] = false;
                 $result['messages'][$id][] = 'Email is not defined.';
+            }
+
+            if (is_null($status->getMetadata('class', null))) {
+                $result['result'] = false;
+                $result['messages'][$id][] = 'Class is not defined.';
+            }
+            if (is_null($status->getMetadata('icon', null))) {
+                $result['result'] = false;
+                $result['messages'][$id][] = 'Icon is not defined.';
             }
         }
 
@@ -131,7 +142,7 @@ class KHanWorkflowHelper
         if (is_null($workflowEmail) or $workflowEmail === FALSE) {
             return 'فرستادن ایمیل برای این گردش کار خاموش است.';
         }
-        if($workflowEmail === TRUE){
+        if($workflowEmail === true){
             return 'متن پیش‌فرض تعریف نشده است.';
         }
         return $workflowEmail;
@@ -158,5 +169,9 @@ class KHanWorkflowHelper
         }elseif(is_string($text)){
             return $text;
         }
+    }
+
+    public static function getAllowedStatusesByRole(Status $status, $roles) {
+        return true;
     }
 }

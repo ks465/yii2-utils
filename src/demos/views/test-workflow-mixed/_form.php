@@ -23,7 +23,7 @@ use raoul2000\workflow\helpers\WorkflowHelper;
     <?=$form->field($model, 'workflow_status', ['options' => ['disabled' => true, 'readonly' => true]])
         ->hint('Using mixed workflow prohibits selecting of `workflow status` by user. It should be done in the code by defining the workflow ID and initial status at the same time.')?>
 <?php else: ?>
-    <?= $form->field($model, 'workflow_status')->widget(\khans\utils\widgets\WorkflowField::class, []) ?>
+    <?= $form->field($model, 'workflow_status')->widget(\khans\utils\components\workflow\WorkflowField::class, []) ?>
 <?php endif; ?>
 
     <?= $form->field($model, 'status')->radioButtonGroup(khans\utils\models\KHanModel::getStatuses()) ?>

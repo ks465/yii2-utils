@@ -120,7 +120,7 @@ class MultiFormatData extends KHanModel
 
         return array_merge([
             'Workflow' => [
-                'class'                  => '\khans\utils\behaviors\WorkflowBehavior',
+                'class'                  => '\khans\utils\components\workflow\WorkflowBehavior',
                 'statusAttribute'        => 'progress_column',
                 'propagateErrorsToModel' => true,
                 'autoInsert'             => false,

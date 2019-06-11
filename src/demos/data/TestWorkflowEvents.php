@@ -114,7 +114,7 @@ class TestWorkflowEvents extends \khans\utils\demos\data\KHanModel
                 'id'    => 'test_workflow_events',
             ],
             'Workflow' => [
-                'class'                  => '\khans\utils\behaviors\WorkflowBehavior',
+                'class'                  => '\khans\utils\components\workflow\WorkflowBehavior',
                 'statusAttribute'        => 'workflow_status',
                 'propagateErrorsToModel' => true,
                 'autoInsert'             => false,

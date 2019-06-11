@@ -4,7 +4,7 @@
 /**
  * Created by PhpStorm. User: keyhan Date: 11/01/19 Time: 16:02
  */
-namespace khans\utils\widgets;
+namespace khans\utils\components\workflow;
 
 use khans\utils\models\KHanModel;
 
@@ -13,7 +13,7 @@ use khans\utils\models\KHanModel;
  * class mainly sets a few required config in a [[Select2]]
  *
  * @package khans\utils\widgets
- * @version 0.3.1-980316
+ * @version 0.3.2-980321
  * @since 1.0.0
  */
 class WorkflowField extends \kartik\select2\Select2

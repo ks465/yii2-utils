@@ -6,7 +6,7 @@
  * Time: 18:59
  */
 
-namespace khans\utils\behaviors;
+namespace khans\utils\components\workflow;
 
 use raoul2000\workflow\base\SimpleWorkflowBehavior;
 use raoul2000\workflow\base\WorkflowException;

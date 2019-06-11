@@ -68,4 +68,9 @@ $attributes = [
         'attributes' => $attributes,
     ]) ?>
 </div>
+WorkflowButtons Sample:
+<?= \khans\utils\components\workflow\WorkflowButtons::widget([
+        'model' => $model,
+       'name' => 'name-attribute-of the-button',
+]) ?>
 

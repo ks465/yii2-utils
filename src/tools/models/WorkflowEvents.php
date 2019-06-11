@@ -56,7 +56,7 @@ class WorkflowEvents extends \khans\utils\demos\data\KHanModel
     {
         return [
             'Workflow' => [
-                'class'                  => '\khans\utils\behaviors\WorkflowBehavior',
+                'class'                  => '\khans\utils\components\workflow\WorkflowBehavior',
                 'statusAttribute'        => 'workflow_status',
                 'propagateErrorsToModel' => true,
                 'autoInsert'             => false,

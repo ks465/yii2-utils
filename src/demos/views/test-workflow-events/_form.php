@@ -15,7 +15,7 @@ use yii\helpers\Html;
 
     <?= $form->field($model, 'title') ?>
 
-    <?= $form->field($model, 'workflow_status')->widget(\khans\utils\widgets\WorkflowField::class, []) ?>
+    <?= $form->field($model, 'workflow_status')->widget(\khans\utils\components\workflow\WorkflowField::class, []) ?>
 
     <?= $form->field($model, 'status')->radioButtonGroup(khans\utils\models\KHanModel::getStatuses()) ?>
 

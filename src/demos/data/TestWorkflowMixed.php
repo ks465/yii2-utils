@@ -97,7 +97,7 @@ class TestWorkflowMixed extends \khans\utils\demos\data\KHanModel
 
         return array_merge([
             'Workflow' => [
-                'class'                  => '\khans\utils\behaviors\WorkflowBehavior',
+                'class'                  => '\khans\utils\components\workflow\WorkflowBehavior',
                 'statusAttribute'        => 'workflow_status',
                 'propagateErrorsToModel' => true,
                 'autoInsert'             => false,

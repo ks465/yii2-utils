@@ -16,7 +16,7 @@ use khans\utils\demos\data\SysEavAttributes;
 
     <?= $form->field($model, 'title')->textInput(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'workflow_status')->widget(\khans\utils\widgets\WorkflowField::class, []) ?>
+    <?= $form->field($model, 'workflow_status')->widget(\khans\utils\components\workflow\WorkflowField::class, []) ?>
 
     <?= $form->field($model, 'status')->radioButtonGroup(khans\utils\models\KHanModel::getStatuses()) ?>
 
