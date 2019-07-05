@@ -12,7 +12,7 @@ use khans\utils\components\workflow\KHanWorkflowHelper;
  * the-button', ]); ```
  *
  * @package KHanS\Utils
- * @version 0.1.0-980321
+ * @version 0.1.1-980330
  * @since 1.0
  */
 class WorkflowButtons extends \yii\bootstrap\ButtonGroup
@@ -42,7 +42,7 @@ class WorkflowButtons extends \yii\bootstrap\ButtonGroup
             $data = $data['status'];
             $this->buttons[] = [
                 'label' => '<i class="glyphicon glyphicon-' . $data->getMetadata('icon') . '"></i> ' . $data->getLabel(),
-                'visible' => KHanWorkflowHelper::getAllowedStatusesByRole($data, '$roles'),
+                'visible' => KHanWorkflowHelper::getAllowedStatusesByRole($data),
                 'options' => [
                     'class' => 'btn btn-block btn-' . $data->getMetadata('class'),
                     'title' => $data->getMetadata('description'),

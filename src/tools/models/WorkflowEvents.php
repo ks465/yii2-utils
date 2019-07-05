@@ -22,7 +22,7 @@ use Yii;
  * @property int    $updated_at
  *
  * @package KHanS\Utils
- * @version 0.1.0-980221
+ * @version 0.1.1-980330
  * @since   1.0
  */
 class WorkflowEvents extends \khans\utils\demos\data\KHanModel
@@ -41,13 +41,13 @@ class WorkflowEvents extends \khans\utils\demos\data\KHanModel
         return 'test_workflow_events';
     }
 
-    /**
-     * @return \yii\db\Connection the database connection used by this AR class.
-     */
-    public static function getDb()
-    {
-        return Yii::$app->get('test');
-    }
+//     /**
+//      * @return \yii\db\Connection the database connection used by this AR class.
+//      */
+//     public static function getDb()
+//     {
+//         return Yii::$app->get('test');
+//     }
 
     /**
      * @inheritdoc

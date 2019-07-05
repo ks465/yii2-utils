@@ -11,7 +11,7 @@ use yii\base\InvalidConfigException;
  * Class KHanWorkflowHelper offers helper function for managing workflow definitions
  *
  * @package KHanS\Utils
- * @version 0.2.0-980321
+ * @version 0.2.1-980330
  * @since   1.0
  */
 class KHanWorkflowHelper extends \raoul2000\workflow\helpers\WorkflowHelper
@@ -67,6 +67,10 @@ class KHanWorkflowHelper extends \raoul2000\workflow\helpers\WorkflowHelper
             if (is_null($status->getMetadata('icon', null))) {
                 $result['result'] = false;
                 $result['messages'][$id][] = 'Icon is not defined.';
+            }
+            if (is_null($status->getMetadata('action', null))) {
+                $result['result'] = false;
+                $result['messages'][$id][] = 'Action --although optional-- is not defined.';
             }
         }
 
@@ -171,7 +175,12 @@ class KHanWorkflowHelper extends \raoul2000\workflow\helpers\WorkflowHelper
         }
     }
 
-    public static function getAllowedStatusesByRole(Status $status, $roles) {
+    public static function getAllowedStatusesByRole(Status $status) {
+        if(is_null($status->getMetadata('actor'))){
+            var_dump($status);
+            return true;
+        }
+        //if Status->actor is in user roles...
         return true;
     }
 }

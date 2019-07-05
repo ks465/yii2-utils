@@ -26,7 +26,7 @@ class JwtPayload extends BaseObject
     /**
      * Maximum allowed time shift between client and server
      */
-    const TIME_SHIFT_ALLOWED = 100;
+    const TIME_SHIFT_ALLOWED = 10;
     /**
      * @var string Secret key shared with the REST server
      * Use

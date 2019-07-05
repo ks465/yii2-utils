@@ -1,5 +1,5 @@
 #Workflow
-Documentation Edition: 1.0-970820
+Documentation Edition: 1.1-980330
 Class Version: 
 
 
@@ -87,6 +87,7 @@ class Post extends \yii\db\ActiveRecord
    + [ ] stage :array list of groups of statuses
    + [ ] color :string color coding for texts or buttons
    + [ ] icon :string icon used in buttons and links
+   + [ ] action :closure used to run arbitrary code on workflow transition
    
 \* Mandatory configs are checked. 
 
@@ -111,6 +112,19 @@ ActiveForm::end();
 + [$statusTable] name of table containing all statuses. 
 + [workflowID] ID of the workflow which the model is part of.
 
+
+#WorkflowButtons
+
+Show group of buttons based on defined transitions of the current status. Class and glyph icon are read from the 
+workflow definition. Uses [KHanWorkflowHelper::getAllowedStatusesByRole] for checking the access level of the user 
+to the target statuses based on the defined roles.
+
+```php
+\khans\utils\components\workflow\WorkflowButtons::widget([
+    'model' => $model,
+    'name' => 'name-attribute-of-buttons',
+])
+```
 
 #ProgressColumn
 
