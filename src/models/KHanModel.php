@@ -38,7 +38,7 @@ use yii\web\IdentityInterface;
  * @method mixed getWorkflowState()
  *
  * @package khans\utils
- * @version 0.4.14-980416
+ * @version 0.4.13-980320
  * @since   1.0
  */
 class KHanModel extends ActiveRecord
@@ -137,7 +137,7 @@ class KHanModel extends ActiveRecord
      */
     public static function getStatuses(): array
     {
-        return static::$_statuses;
+        return KHanModel::$_statuses;
     }
 
     /**
