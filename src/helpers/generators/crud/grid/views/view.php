@@ -3,7 +3,7 @@
  * This is the template for generating a AJAX CRUD index view file.
  *
  * @package khans\utils\generatedControllers
- * @version 0.3.1-980130
+ * @version 0.3.2-980425
  * @since   1.0
  */
 
@@ -174,7 +174,7 @@ $searchModel = new <?= $generator->childSearchModelClass ?>([
 ]);
 $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-$columns = require(<?= $generator->childColumnsPath ?>/_columns.php');
+$columns = require('<?= $generator->childColumnsPath ?>/_columns.php');
 $columns['action']['controller'] = '<?= $generator->childControllerId ?>';
 <?php
 foreach (explode(',', $generator->childLinkFields) as $item){
